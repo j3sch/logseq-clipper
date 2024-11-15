@@ -21,13 +21,13 @@ You can help translate Web Clipper into your language. Submit your translation v
 
 In no particular order:
 
-- [ ] A different icon for Web Clipper #135
-- [ ] Add to Microsoft Edge directory (awaiting approval)
-- [ ] Translate UI into more languages
+- [ ] A separate icon for Web Clipper
+- [ ] Add to Microsoft Edge directory, awaiting approval
+- [ ] Translate UI into more languages — help is welcomed
 - [ ] RTL support
 - [ ] Annotate highlights
 - [ ] Save Markdown with inline highlights
-- [ ] Save images locally (requires changes to Obsidian app)
+- [ ] Save images locally — requires changes to Obsidian app
 - [ ] Template directory
 - [ ] Template validation
 - [ ] Template logic (if/for)
