@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html id="popup">
 	<head>
-		<title>Logseq Web Clipper</title>
+		<title data-i18n="extensionName">Logseq Web Clipper</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 		<link rel="stylesheet" href="style.css">
 		<script src="browser-polyfill.min.js"></script>
@@ -14,40 +14,75 @@
 				</select>
 			</div>
 			<div id="popup-actions">
-				<a href="#" id="show-variables" class="clickable-icon" aria-label="Show page variables" title="Show page variables">
+				<a href="#" id="show-variables" class="clickable-icon" 
+					data-i18n-title="showPageVariables">
 					<i data-lucide="ellipsis"></i>
 				</a>
-				<a href="#" id="highlighter-mode" class="clickable-icon" aria-label="Highlight page" title="Highlight page">
+				<a href="#" id="highlighter-mode" class="clickable-icon" 
+					data-i18n-title="highlightPage">
 					<i data-lucide="highlighter"></i>
 				</a>
-				<a href="#" id="open-settings" class="clickable-icon" aria-label="Settings" title="Settings">
+				<a href="#" id="open-settings" class="clickable-icon" 
+					data-i18n-title="settings">
 					<i data-lucide="settings"></i>
 				</a>		
 			</div>
 		</div>
 		<p class="error-message" style="display: none;"></p>
 		<div class="clipper">
-			
-			<textarea id="note-name-field" type="text" placeholder="Note name" rows="1"></textarea>
+			<textarea id="note-name-field" type="text" data-i18n="noteName" rows="1"></textarea>
 			<div class="metadata-properties-header">
-				Properties
+				<span data-i18n="properties">Properties</span>
 				<i data-lucide="chevron-down"></i>
 			</div>
 			<div class="metadata-properties"></div>
 			<div id="note-content-container">
-				<textarea id="note-content-field" rows="4" placeholder="Notes about this page..."></textarea>
+				<textarea id="note-content-field" rows="4" data-i18n="notesAboutPage"></textarea>
 			</div>
 			<div class="clipper-footer">
 				<div id="interpreter" style="display: none;">
 					<textarea id="prompt-context" rows="3"></textarea>
 					<div class="interpreter-controls">
 						<select id="model-select" style="display: none;"></select>
-						<button id="interpret-btn">interpret</button>
+						<button id="interpret-btn" data-i18n="interpret">interpret</button>
 						<span id="interpreter-timer" style="display: none;"></span>
 					</div>
 					<div id="interpreter-error" style="display: none;"></div>
 				</div>
-				<button id="clip-btn" class="mod-cta">Add to Logseq</button>
+				<div class="action-buttons">
+					<button id="clip-btn" class="mod-cta" data-i18n="addToObsidian">Add to Logseq</button>
+					<div class="menu-btn">
+						<button id="more-btn"><i data-lucide="chevron-down"></i></button>
+						<div class="menu" id="more-dropdown">
+							<div class="menu-item" id="copy-content">
+								<div class="menu-item-icon">
+									<i data-lucide="copy"></i>
+								</div>
+								<div class="menu-item-title" data-i18n="copyToClipboard">
+									Copy to clipboard
+								</div>
+							</div>
+							<div class="menu-item" id="save-downloads">
+								<div class="menu-item-icon">
+									<i data-lucide="file-down"></i>
+								</div>
+								<div class="menu-item-title" data-i18n="saveFile">
+									Save file&hellip;
+								</div>
+							</div>
+							<div class="menu-item share-content">
+								<div class="menu-item-icon">
+									<i data-lucide="arrow-up-right"></i>
+								</div>
+								<div class="menu-item-title" data-i18n="share">
+									Share&hellip;
+								</div>
+						</div>
+					</div>
+					<div class="share-btn">
+						<a class="share-content clickable-icon"><i data-lucide="share"></i></a>
+					</div>
+				</div>
 			</div>
 		</div>
 		<script type="module" src="popup.js"></script>

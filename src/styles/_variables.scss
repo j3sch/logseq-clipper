@@ -45,7 +45,7 @@
 	--dropdown-background-hover: var(--interactive-hover);
 	--dropdown-background-position: right .25rem top 50%, 0 0;
 	--dropdown-background-size: 1rem auto, 100%;
-	--dropdown-padding: 0 .5rem;
+	--dropdown-padding: 0 1.75rem 0 .5rem;
 
 	--divider-color: var(--background-modifier-border);
 
@@ -117,7 +117,8 @@
 	--modal-radius: var(--radius-l);
 	--modal-community-sidebar-width: 280px;
 
-	--popup-padding: 0.75rem; 
+	--popup-padding: 0.75rem;
+	--popup-properties-padding: 2px 0.5rem 0.5rem; 
 
 	--radius-s: 0.25rem;
 	--radius-m: 0.5rem;

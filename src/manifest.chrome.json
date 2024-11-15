@@ -1,7 +1,8 @@
 {
 	"manifest_version": 3,
+	"default_locale": "en",
 	"name": "Logseq Web Clipper",
-	"version": "0.9.5",
+	"version": "0.9.7",
 	"description": "Save content from the web to Logseq, in a private and durable format you can access offline.",
 	"permissions": [
 		"activeTab",
@@ -12,6 +13,7 @@
 		"scripting"
 	],
 	"host_permissions": [
+		"<all_urls>",
 		"http://*/*",
 		"https://*/*"
 	],
@@ -57,21 +59,21 @@
 				"default": "Ctrl+Shift+O",
 				"mac": "Command+Shift+O"
 			},
-			"description": "Open Logseq Clipper"
+			"description": "__MSG_commandOpenClipper__"
 		},
 		"quick_clip": {
 			"suggested_key": {
 				"default": "Alt+Shift+O",
 				"mac": "Alt+Shift+O"
 			},
-			"description": "Quick clip"
+			"description": "__MSG_commandQuickClip__"
 		},
 		"toggle_highlighter": {
 			"suggested_key": {
 				"default": "Alt+H",
 				"mac": "Alt+H"
 			},
-			"description": "Toggle highlighter mode"
+			"description": "__MSG_commandToggleHighlighter__"
 		}
 	}
 }

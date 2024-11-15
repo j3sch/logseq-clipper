@@ -1,13 +1,19 @@
 {
 	"manifest_version": 3,
+	"default_locale": "en",
 	"name": "Logseq Web Clipper",
-	"version": "0.9.5",
+	"version": "0.9.7",
 	"description": "Save content from the web to Logseq, in a private and durable format you can access offline.",
 	"permissions": [
 		"activeTab",
 		"contextMenus",
 		"storage",
 		"scripting"
+	],
+	"host_permissions": [
+		"<all_urls>",
+		"http://*/*",
+		"https://*/*"
 	],
 	"action": {
 		"default_popup": "popup.html",
@@ -45,10 +51,6 @@
 	"content_security_policy": {
 		"extension_pages": "script-src 'self'; object-src 'self'"
 	},
-	"host_permissions": [
-		"http://*/*",
-		"https://*/*"
-	],
 	"commands": {
 		"_execute_action": {
 			"suggested_key": {

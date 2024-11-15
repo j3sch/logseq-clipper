@@ -11,7 +11,26 @@ Install the extension by downloading it from the official directory for your bro
 
 ## Use the extension
 
-Documentation is available on the [Obsidian Help site](https://help.obsidian.md/web-clipper), which covers how to use templates, triggers, highlighting, and more.
+Documentation is available on the [Obsidian Help site](https://help.obsidian.md/web-clipper), which covers how to use [highlighting](https://help.obsidian.md/web-clipper/highlight), [templates](https://help.obsidian.md/web-clipper/templates), [variables](https://help.obsidian.md/web-clipper/variables), [filters](https://help.obsidian.md/web-clipper/filters), and more.
+
+## Translations
+
+You can help translate Web Clipper into your language. Submit your translation via pull request using the format found in the [/locales](/src/locales) folder.
+
+## Roadmap
+
+In no particular order:
+
+- [ ] A different icon for Web Clipper #135
+- [ ] Add to Microsoft Edge directory (awaiting approval)
+- [ ] Translate UI into more languages
+- [ ] RTL support
+- [ ] Annotate highlights
+- [ ] Save Markdown with inline highlights
+- [ ] Save images locally (requires changes to Obsidian app)
+- [ ] Template directory
+- [ ] Template validation
+- [ ] Template logic (if/for)
 
 ## Developers
 
@@ -49,3 +68,4 @@ For Firefox:
 - [lz-string](https://github.com/pieroxy/lz-string) to compress templates to reduce storage space
 - [lucide](https://github.com/lucide-icons/lucide) for icons
 - [mathml-to-latex](https://github.com/asnunes/mathml-to-latex) for MathML to LaTeX conversion
+- [dompurify](https://github.com/cure53/DOMPurify) for sanitizing HTML

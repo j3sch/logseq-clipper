@@ -10,7 +10,7 @@ import { getLocalStorage, setLocalStorage, loadSettings, generalSettings, Settin
 import { escapeHtml, unescapeValue } from '../utils/string-utils';
 import { loadTemplates, createDefaultTemplate } from '../managers/template-manager';
 import browser from '../utils/browser-polyfill';
-import { addBrowserClassToHtml } from '../utils/browser-detection';
+import { addBrowserClassToHtml, detectBrowser } from '../utils/browser-detection';
 import { createElementWithClass } from '../utils/dom-utils';
 import { initializeInterpreter, handleInterpreterUI, collectPromptVariables } from '../utils/interpreter';
 import { adjustNoteNameHeight } from '../utils/ui-utils';
@@ -20,6 +20,9 @@ import { ensureContentScriptLoaded } from '../utils/content-script-utils';
 import { isBlankPage, isValidUrl } from '../utils/active-tab-manager';
 import { memoizeWithExpiration } from '../utils/memoize';
 import { debounce } from '../utils/debounce';
+import { sanitizeFileName } from '../utils/string-utils';
+import { saveFile } from '../utils/file-utils';
+import { translatePage, getMessage } from '../utils/i18n';
 import { formatHighlightsToLogseq } from '../utils/formatHighlightsToLogseq';
 
 let loadedSettings: Settings;
@@ -99,6 +102,9 @@ const debouncedSetPopupDimensions = debounce(setPopupDimensions, 100); // 100ms 
 
 async function initializeExtension(tabId: number) {
 	try {
+		// Initialize translations
+		translatePage();
+
 		// First, add the browser class to allow browser-specific styles to apply
 		await addBrowserClassToHtml();
 
@@ -130,10 +136,12 @@ async function initializeExtension(tabId: number) {
 
 		const tab = await browser.tabs.get(tabId);
 		if (!tab.url || isBlankPage(tab.url)) {
-			return false;
+			showError('pageCannotBeClipped');
+			return;
 		}
 		if (!isValidUrl(tab.url)) {
-			return false;
+			showError('onlyHttpSupported');
+			return;
 		}
 		await ensureContentScriptLoaded(tabId);
 		await refreshFields(tabId);
@@ -148,6 +156,7 @@ async function initializeExtension(tabId: number) {
 		return true;
 	} catch (error) {
 		console.error('Error initializing extension:', error);
+		showError('failedToInitialize');
 		return false;
 	}
 }
@@ -205,9 +214,9 @@ function setupMessageListeners() {
 					refreshFields(currentTabId); // Force template check when URL changes
 				}
 			} else if (request.isBlankPage) {
-				showError('This page cannot be clipped.');
+				showError(getMessage('pageCannotBeClipped'));
 			} else {
-				showError('This page cannot be clipped. Only http and https URLs are supported.');
+				showError(getMessage('onlyHttpSupported'));
 			}
 		} else if (request.action === "highlightsUpdated") {
 			// Refresh fields when highlights are updated
@@ -252,7 +261,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 		try {
 			const initialized = await initializeExtension(currentTabId);
 			if (!initialized) {
-				showError('This page cannot be clipped.');
+				showError(getMessage('pageCannotBeClipped'));
 				return;
 			}
 
@@ -275,10 +284,10 @@ document.addEventListener('DOMContentLoaded', async function () {
 
 		} catch (error) {
 			console.error('Error initializing popup:', error);
-			showError('Please try reloading the page.');
+			showError(getMessage('pleaseReloadPage'));
 		}
 	} else {
-		showError('Please try reloading the page.');
+		showError(getMessage('pleaseReloadPage'));
 	}
 });
 
@@ -304,12 +313,142 @@ function setupEventListeners(tabId: number) {
 	if (highlighterModeButton) {
 		highlighterModeButton.addEventListener('click', () => toggleHighlighterMode(tabId));
 	}
+
+	const moreButton = document.getElementById('more-btn');
+	const moreDropdown = document.getElementById('more-dropdown');
+	const copyContentButton = document.getElementById('copy-content');
+	const saveDownloadsButton = document.getElementById('save-downloads');
+	const shareContentButton = document.getElementById('share-content');
+
+	if (moreButton && moreDropdown) {
+		moreButton.addEventListener('click', (e) => {
+			e.stopPropagation();
+			moreDropdown.classList.toggle('show');
+		});
+
+		// Close dropdown when clicking outside
+		document.addEventListener('click', (e) => {
+			if (!moreButton.contains(e.target as Node)) {
+				moreDropdown.classList.remove('show');
+			}
+		});
+	}
+
+	if (copyContentButton) {
+		copyContentButton.addEventListener('click', async () => {
+			const properties = Array.from(document.querySelectorAll('.metadata-property input')).map(input => {
+				const inputElement = input as HTMLInputElement;
+				return {
+					id: inputElement.dataset.id || Date.now().toString() + Math.random().toString(36).slice(2, 11),
+					name: inputElement.id,
+					value: inputElement.type === 'checkbox' ? inputElement.checked : inputElement.value
+				};
+			}) as Property[];
+
+			const noteContentField = document.getElementById('note-content-field') as HTMLTextAreaElement;
+			const frontmatter = await generateFrontmatter(properties);
+			const fileContent = frontmatter + noteContentField.value;
+
+			await copyToClipboard(fileContent);
+		});
+	}
+
+	if (saveDownloadsButton) {
+		saveDownloadsButton.addEventListener('click', handleSaveToDownloads);
+	}
+
+	const shareButtons = document.querySelectorAll('.share-content');
+	if (shareButtons) {
+		shareButtons.forEach(button => {
+			button.addEventListener('click', (e) => {
+				// Get content synchronously
+				const properties = Array.from(document.querySelectorAll('.metadata-property input')).map(input => {
+					const inputElement = input as HTMLInputElement;
+					return {
+						id: inputElement.dataset.id || Date.now().toString() + Math.random().toString(36).slice(2, 11),
+						name: inputElement.id,
+						value: inputElement.type === 'checkbox' ? inputElement.checked : inputElement.value
+					};
+				}) as Property[];
+
+				const noteContentField = document.getElementById('note-content-field') as HTMLTextAreaElement;
+
+				// Use Promise.all to prepare the data
+				Promise.all([
+					generateFrontmatter(properties),
+					Promise.resolve(noteContentField.value)
+				]).then(([frontmatter, noteContent]) => {
+					const fileContent = frontmatter + noteContent;
+
+					// Call share directly from the click handler
+					const noteNameField = document.getElementById('note-name-field') as HTMLInputElement;
+					let fileName = noteNameField?.value || 'untitled';
+					fileName = sanitizeFileName(fileName);
+					if (!fileName.toLowerCase().endsWith('.md')) {
+						fileName += '.md';
+					}
+
+					if (navigator.share && navigator.canShare) {
+						const blob = new Blob([fileContent], { type: 'text/markdown;charset=utf-8' });
+						const file = new File([blob], fileName, { type: 'text/markdown;charset=utf-8' });
+
+						const shareData = {
+							files: [file],
+							text: 'Shared from Obsidian Web Clipper'
+						};
+
+						if (navigator.canShare(shareData)) {
+							navigator.share(shareData)
+								.then(() => {
+									const moreDropdown = document.getElementById('more-dropdown');
+									if (moreDropdown) {
+										moreDropdown.classList.remove('show');
+									}
+								})
+								.catch((error) => {
+									console.error('Error sharing:', error);
+								});
+						}
+					}
+				});
+			});
+		});
+	}
+
+	// Update the visibility check for share buttons
+	const shareButtonElements = document.querySelectorAll('.share-content');
+	if (shareButtonElements.length > 0) {
+		detectBrowser().then(browser => {
+			const isSafariBrowser = ['safari', 'mobile-safari', 'ipad-os'].includes(browser);
+			if (!isSafariBrowser || !navigator.share || !navigator.canShare) {
+				shareButtonElements.forEach(button => {
+					const parentElement = button.closest('.share-btn, .menu-item') as HTMLElement;
+					if (parentElement) {
+						parentElement.style.display = 'none';
+					}
+				});
+			} else {
+				// Test if we can share files (only on Safari)
+				const testFile = new File(["test"], "test.txt", { type: "text/plain" });
+				const testShare = { files: [testFile] };
+				if (!navigator.canShare(testShare)) {
+					shareButtonElements.forEach(button => {
+						const parentElement = button.closest('.share-btn, .menu-item') as HTMLElement;
+						if (parentElement) {
+							parentElement.style.display = 'none';
+						}
+					});
+				}
+			}
+		});
+	}
 }
 
 async function initializeUI() {
 	const clipButton = document.getElementById('clip-btn');
 	if (clipButton) {
 		clipButton.addEventListener('click', handleClip);
+
 		clipButton.focus();
 	} else {
 		console.warn('Clip button not found');
@@ -338,12 +477,12 @@ async function initializeUI() {
 	}
 }
 
-function showError(message: string): void {
+function showError(messageKey: string): void {
 	const errorMessage = document.querySelector('.error-message') as HTMLElement;
 	const clipper = document.querySelector('.clipper') as HTMLElement;
 
 	if (errorMessage && clipper) {
-		errorMessage.textContent = message;
+		errorMessage.textContent = getMessage(messageKey);
 		errorMessage.style.display = 'flex';
 		clipper.style.display = 'none';
 
@@ -389,7 +528,7 @@ async function handleClip() {
 				await waitForInterpreter(interpretBtn);
 			} catch (error) {
 				console.error('Interpreter processing failed:', error);
-				showError('Interpreter processing failed. Please try again.');
+				showError('failedToProcessInterpreter');
 				return;
 			}
 		} else if (interpretBtn.textContent?.toLowerCase() !== 'done') {
@@ -398,7 +537,7 @@ async function handleClip() {
 				await waitForInterpreter(interpretBtn);
 			} catch (error) {
 				console.error('Interpreter processing failed:', error);
-				showError('Interpreter processing failed. Please try again.');
+				showError('failedToProcessInterpreter');
 				return;
 			}
 		}
@@ -439,24 +578,24 @@ async function handleClip() {
 		}
 	} catch (error) {
 		console.error('Error in handleClip:', error);
-		showError('Failed to save to Logseq. Please try again.');
+		showError('failedToSaveFile');
 		throw error;
 	}
 }
 
-function waitForInterpreter(interpretBtn: HTMLButtonElement): Promise<void> {
+async function waitForInterpreter(interpretBtn: HTMLButtonElement): Promise<void> {
 	return new Promise((resolve, reject) => {
 		const checkProcessing = () => {
 			if (!interpretBtn.classList.contains('processing')) {
 				if (interpretBtn.textContent?.toLowerCase() === 'done') {
 					resolve();
 				} else if (interpretBtn.textContent?.toLowerCase() === 'error') {
-					reject(new Error('Interpreter processing failed'));
+					reject(new Error(getMessage('failedToProcessInterpreter')));
 				} else {
-					setTimeout(checkProcessing, 100); // Check every 100ms
+					setTimeout(checkProcessing, 100);
 				}
 			} else {
-				setTimeout(checkProcessing, 100); // Check every 100ms
+				setTimeout(checkProcessing, 100);
 			}
 		};
 		checkProcessing();
@@ -466,18 +605,18 @@ function waitForInterpreter(interpretBtn: HTMLButtonElement): Promise<void> {
 async function refreshFields(tabId: number, checkTemplateTriggers: boolean = true) {
 	if (templates.length === 0) {
 		console.warn('No templates available');
-		showError('No templates available. Please add a template in the settings.');
+		showError('noTemplates');
 		return;
 	}
 
 	try {
 		const tab = await browser.tabs.get(tabId);
 		if (!tab.url || isBlankPage(tab.url)) {
-			showError('This page cannot be clipped. Please navigate to a web page.');
+			showError('pageCannotBeClipped');
 			return;
 		}
 		if (!isValidUrl(tab.url)) {
-			showError('This page cannot be clipped. Only http and https URLs are supported.');
+			showError('onlyHttpSupported');
 			return;
 		}
 
@@ -808,10 +947,75 @@ function updateHighlighterModeUI(isActive: boolean) {
 			highlighterModeButton.style.display = 'flex';
 			highlighterModeButton.classList.toggle('active', isActive);
 			highlighterModeButton.setAttribute('aria-pressed', isActive.toString());
-			highlighterModeButton.title = isActive ? 'Disable highlighter' : 'Enable highlighter';
+			highlighterModeButton.title = isActive ? getMessage('disableHighlighter') : getMessage('enableHighlighter');
 		} else {
 			highlighterModeButton.style.display = 'none';
 		}
+	}
+}
+
+export async function copyToClipboard(content: string) {
+	try {
+		await navigator.clipboard.writeText(content);
+		const moreDropdown = document.getElementById('more-dropdown');
+		if (moreDropdown) {
+			moreDropdown.classList.remove('show');
+		}
+
+		// Change the main button text temporarily
+		const clipButton = document.getElementById('clip-btn');
+		if (clipButton) {
+			const originalText = clipButton.textContent || getMessage('addToObsidian');
+			clipButton.textContent = getMessage('copied');
+
+			// Reset the text after 1.5 seconds
+			setTimeout(() => {
+				clipButton.textContent = originalText;
+			}, 1500);
+		}
+	} catch (error) {
+		console.error('Failed to copy to clipboard:', error);
+		showError('failedToCopyText');
+	}
+}
+
+async function handleSaveToDownloads() {
+	try {
+		const noteNameField = document.getElementById('note-name-field') as HTMLInputElement;
+		let fileName = noteNameField?.value || 'untitled';
+		fileName = sanitizeFileName(fileName);
+		if (!fileName.toLowerCase().endsWith('.md')) {
+			fileName += '.md';
+		}
+
+		const properties = Array.from(document.querySelectorAll('.metadata-property input')).map(input => {
+			const inputElement = input as HTMLInputElement;
+			return {
+				id: inputElement.dataset.id || Date.now().toString() + Math.random().toString(36).slice(2, 11),
+				name: inputElement.id,
+				value: inputElement.type === 'checkbox' ? inputElement.checked : inputElement.value
+			};
+		}) as Property[];
+
+		const noteContentField = document.getElementById('note-content-field') as HTMLTextAreaElement;
+		const frontmatter = await generateFrontmatter(properties);
+		const fileContent = frontmatter + noteContentField.value;
+
+		await saveFile({
+			content: fileContent,
+			fileName,
+			mimeType: 'text/markdown',
+			tabId: currentTabId,
+			onError: (error) => showError('failedToSaveFile')
+		});
+
+		const moreDropdown = document.getElementById('more-dropdown');
+		if (moreDropdown) {
+			moreDropdown.classList.remove('show');
+		}
+	} catch (error) {
+		console.error('Failed to save file:', error);
+		showError('failedToSaveFile');
 	}
 }
 

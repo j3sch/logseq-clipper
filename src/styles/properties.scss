@@ -28,7 +28,7 @@
 
 .metadata-properties {
 	--input-height: var(--metadata-input-height);
-	padding: 2px 0.5rem 0.5rem;
+	padding: var(--popup-properties-padding);
 	margin: 0;
 	display: flex;
 	flex-direction: column;
@@ -49,6 +49,7 @@
 	gap: 2px;
 	align-items: center;
 	border-radius: var(--radius-s);
+	overflow: hidden;
 	min-height: var(--input-height);
 	transition:
 		box-shadow .15s ease-in-out,
