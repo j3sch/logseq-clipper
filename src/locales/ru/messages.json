@@ -130,7 +130,15 @@
 		}
 	},
 	"extensionDescription": {
-		"message": "将 Web Clipper 的属性保存到 $strong_start$types.json$strong_end$ 文件中，该文件可以导入到其他设备上的 Web Clipper 中。"
+		"message": "将 Web Clipper 的属性保存到 $strong_start$types.json$strong_end$ 文件中，该文件可以导入到其他设备上的 Web Clipper 中。",
+		"placeholders": {
+			"strong_end": {
+				"content": "</strong>"
+			},
+			"strong_start": {
+				"content": "<strong>"
+			}
+		}
 	},
 	"extensionName": {
 		"message": "Logseq Web Clipper"
