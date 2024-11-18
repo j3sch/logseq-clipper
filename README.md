@@ -1,37 +1,5 @@
 A fork of the official [Obsidian Web Clipper](https://github.com/obsidianmd/obsidian-clipper), adapted for Logseq. Logseq Web Clipper is a browser extension that helps you highlight and save web pages. 
 
-
-## Get started
-
-Install the extension by downloading it from the official directory for your browser:
-
-- **[Chrome Web Store](https://chromewebstore.google.com/detail/obsidian-web-clipper/cnjifjpddelmedmihgijeibhnjfabmlf)** for Chrome, Brave, Edge, Arc, Orion, and other Chromium-based browsers.
-- **[Firefox Add-Ons](https://addons.mozilla.org/en-US/firefox/addon/web-clipper-obsidian/)** for Firefox and Firefox Mobile.
-- **[Safari Extensions](https://apps.apple.com/us/app/obsidian-web-clipper/id6720708363)** for macOS, iOS, and iPadOS.
-
-## Use the extension
-
-Documentation is available on the [Obsidian Help site](https://help.obsidian.md/web-clipper), which covers how to use [highlighting](https://help.obsidian.md/web-clipper/highlight), [templates](https://help.obsidian.md/web-clipper/templates), [variables](https://help.obsidian.md/web-clipper/variables), [filters](https://help.obsidian.md/web-clipper/filters), and more.
-
-## Translations
-
-You can help translate Web Clipper into your language. Submit your translation via pull request using the format found in the [/locales](/src/locales) folder.
-
-## Roadmap
-
-In no particular order:
-
-- [ ] A separate icon for Web Clipper
-- [ ] Add to Microsoft Edge directory, awaiting approval
-- [ ] Translate UI into more languages — help is welcomed
-- [ ] RTL support
-- [ ] Annotate highlights
-- [ ] Save Markdown with inline highlights
-- [ ] Save images locally — requires changes to Obsidian app
-- [ ] Template directory
-- [ ] Template validation
-- [ ] Template logic (if/for)
-
 ## Developers
 
 To build the extension:

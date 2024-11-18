@@ -100,7 +100,9 @@ module.exports = (env, argv) => {
 					{
 						from: 'src/locales',
 						to: '_locales'
-					}
+					},
+{ from: "LICENSE", to: "LICENSE.txt" } 
+
 				],
 			}),
 			new MiniCssExtractPlugin({
