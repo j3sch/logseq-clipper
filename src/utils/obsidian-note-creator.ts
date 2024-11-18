@@ -1,3 +1,4 @@
+import { replace } from './filters/replace';
 import browser from './browser-polyfill';
 import { escapeDoubleQuotes, sanitizeFileName } from '../utils/string-utils';
 import { Template, Property } from '../types/types';
@@ -12,13 +13,38 @@ export async function generateFrontmatter(properties: Property[]): Promise<strin
 
 		switch (propertyType) {
 			case 'multitext':
-				const tags = property.value.split(' ').map(tag => tag.trim()).filter(tag => tag !== '');
-				if (tags.length > 0) {
-					const formattedTags = tags.map(tag => `#${tag}`).join(' ');
-					frontmatter += ` ${formattedTags}\n`;
-				} else {
-					frontmatter += '\n';
+				if (property.name === 'tags') {
+					const tags = property.value
+						.split(' ')
+						.map(tag => tag.replace(/,/g, '').trim())
+						.filter(tag => tag !== '');
+					if (tags.length > 0) {
+						const formattedTags = tags.map(tag => `${tag}`).join(',');
+						frontmatter += ` ${formattedTags}\n`;
+					} else {
+						frontmatter += '\n';
+					}
+					break;
 				}
+				let items: string[];
+				if (property.value.trim().startsWith('["') && property.value.trim().endsWith('"]')) {
+					try {
+						items = JSON.parse(property.value);
+					} catch (e) {
+						// If parsing fails, fall back to splitting by comma
+						items = property.value.split(',').map(item => item.trim());
+					}
+				} else {
+					// Split by comma, but keep wikilinks intact
+					items = property.value.split(/,(?![^\[]*\]\])/).map(item => item.trim());
+				}
+				items = items.filter(item => item !== '');
+				if (items.length > 0) {
+					items.forEach(item => {
+						frontmatter += ` ${escapeDoubleQuotes(item)}`;
+					});
+				}
+				frontmatter += '\n';
 				break;
 			case 'number':
 				const numericValue = property.value.replace(/[^\d.-]/g, '');
