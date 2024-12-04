@@ -5,8 +5,39 @@ import { Readability } from '@mozilla/readability';
 import browser from './browser-polyfill';
 import { debugLog } from './debug';
 import dayjs from 'dayjs';
-import { AnyHighlightData } from './highlighter';
+import { AnyHighlightData, TextHighlightData, HighlightData } from './highlighter';
 import { generalSettings } from './storage-utils';
+import { 
+	getElementByXPath,
+	wrapElementWithMark,
+	wrapTextWithMark 
+} from './dom-utils';
+
+// Define ElementHighlightData type inline since it's not exported from highlighter.ts
+interface ElementHighlightData extends HighlightData {
+	type: 'element';
+}
+
+function canHighlightElement(element: Element): boolean {
+	// List of elements that can't be nested inside mark
+	const unsupportedElements = ['img', 'video', 'audio', 'iframe', 'canvas', 'svg', 'math', 'table'];
+	
+	// Check if the element contains any unsupported elements
+	const hasUnsupportedElements = unsupportedElements.some(tag => 
+		element.getElementsByTagName(tag).length > 0
+	);
+	
+	// Check if the element itself is an unsupported type
+	const isUnsupportedType = unsupportedElements.includes(element.tagName.toLowerCase());
+	
+	return !hasUnsupportedElements && !isUnsupportedType;
+}
+
+function stripHtml(html: string): string {
+	const div = document.createElement('div');
+	div.innerHTML = html;
+	return div.textContent || '';
+}
 
 export function extractReadabilityContent(doc: Document): ReturnType<Readability['parse']> | null {
 	try {
@@ -143,20 +174,28 @@ export async function initializePageContent(content: string, selectedHtml: strin
 			|| getMetaContent(doc, "name", "application-name")
 			|| '';
 
+		const favicon = 
+			getMetaContent(doc, "property", "og:image:favicon")
+			|| doc.querySelector("link[rel='icon']")?.getAttribute("href")
+			|| doc.querySelector("link[rel='shortcut icon']")?.getAttribute("href")
+			|| new URL("/favicon.ico", currentUrl).href;
+
 		const readabilityArticle = extractReadabilityContent(doc);
 		if (!readabilityArticle) {
 			console.warn('Failed to parse content with Readability, falling back to full content');
 		}
 
-		if (generalSettings.highlighterEnabled && generalSettings.highlightBehavior !== 'no-highlights' && highlights && highlights.length > 0) {
-			const highlightsContent = highlights.map(highlight => highlight.content).join('');
-			content = highlightsContent;
-		} else if (selectedHtml) {
+		if (selectedHtml) {
 			content = selectedHtml;
 		} else if (readabilityArticle && readabilityArticle.content) {
 			content = readabilityArticle.content;
 		} else {
 			content = doc.body.innerHTML || fullHtml;
+		}
+
+		// Process highlights after getting the base content
+		if (generalSettings.highlighterEnabled && generalSettings.highlightBehavior !== 'no-highlights' && highlights && highlights.length > 0) {
+			content = processHighlights(content, highlights, readabilityArticle);
 		}
 
 		const markdownBody = createMarkdownContent(content, currentUrl);
@@ -187,10 +226,11 @@ export async function initializePageContent(content: string, selectedHtml: strin
 			'{{time}}': dayjs().format('YYYY-MM-DDTHH:mm:ssZ').trim(),
 			'{{description}}': description.trim(),
 			'{{domain}}': domain.trim(),
+			'{{favicon}}': favicon.trim(),
 			'{{fullHtml}}': fullHtml.trim(),
 			'{{image}}': image.trim(),
 			'{{noteName}}': noteName.trim(),
-			'{{published}}': published.trim(),
+			'{{published}}': published.split(',')[0].trim(),
 			'{{site}}': site.trim(),
 			'{{title}}': title.trim(),
 			'{{url}}': currentUrl.trim(),
@@ -284,42 +324,82 @@ function getSchemaProperty(schemaOrgData: any, property: string, defaultValue: s
 		return getSchemaProperty.memoized.get(memoKey) as string;
 	}
 
-	const searchSchema = (data: any, props: string[], fullPath: string): string => {
-		if (typeof data === 'string') return data;
-		if (!data || typeof data !== 'object') return '';
+	const searchSchema = (data: any, props: string[], fullPath: string, isExactMatch: boolean = true): string[] => {
+		if (typeof data === 'string') {
+			return props.length === 0 ? [data] : [];
+		}
+		
+		if (!data || typeof data !== 'object') {
+			return [];
+		}
 
 		if (Array.isArray(data)) {
-			// If the full path is 'author.name', concatenate the names
-			if (fullPath === 'author.name') {
-				return data.map((item: any) => searchSchema(item, ['name'], 'name')).filter(Boolean).join(', ');
+
+			const currentProp = props[0];
+			if (/^\[\d+\]$/.test(currentProp)) {
+				const index = parseInt(currentProp.slice(1, -1));
+				if (data[index]) {
+					return searchSchema(data[index], props.slice(1), fullPath, isExactMatch);
+				}
+				return [];
 			}
-			return data.map((item: any) => searchSchema(item, props, fullPath)).filter(Boolean).join(', ');
+			
+			if (props.length === 0 && data.every(item => typeof item === 'string' || typeof item === 'number')) {
+				return data.map(String);
+			}
+			
+			// Collect all matches from array items
+			const results = data.flatMap(item => 
+				searchSchema(item, props, fullPath, isExactMatch)
+			);
+			return results;
 		}
 
 		const [currentProp, ...remainingProps] = props;
+		
 		if (!currentProp) {
-			if (typeof data === 'string') return data;
-			if (typeof data === 'object' && data.name) return data.name;
-			return '';
+			if (typeof data === 'string') return [data];
+			if (typeof data === 'object' && data.name) {
+				return [data.name];
+			}
+			return [];
 		}
 
-		const value = data[currentProp];
-		if (value !== undefined) {
-			return searchSchema(value, remainingProps, fullPath ? `${fullPath}.${currentProp}` : currentProp);
+		// Check for exact path match first
+		if (data.hasOwnProperty(currentProp)) {
+			return searchSchema(data[currentProp], remainingProps, 
+				fullPath ? `${fullPath}.${currentProp}` : currentProp, true);
 		}
 
-		for (const key in data) {
-			if (typeof data[key] === 'object') {
-				const result = searchSchema(data[key], props, fullPath ? `${fullPath}.${key}` : key);
-				if (result) return result;
+		// Only search nested objects if we're allowing non-exact matches
+		if (!isExactMatch) {
+			const nestedResults: string[] = [];
+			for (const key in data) {
+				if (typeof data[key] === 'object') {
+					const results = searchSchema(data[key], props, 
+						fullPath ? `${fullPath}.${key}` : key, false);
+					nestedResults.push(...results);
+				}
+			}
+			if (nestedResults.length > 0) {
+				return nestedResults;
 			}
 		}
 
-		return '';
+		return [];
 	};
 
 	try {
-		const result = searchSchema(schemaOrgData, property.split('.'), '') || defaultValue;
+		// First try exact match
+		let results = searchSchema(schemaOrgData, property.split('.'), '', true);
+		
+		// If no exact match found, try recursive search
+		if (results.length === 0) {
+			results = searchSchema(schemaOrgData, property.split('.'), '', false);
+		}
+		
+		const result = results.length > 0 ? results.filter(Boolean).join(', ') : defaultValue;
+		
 		getSchemaProperty.memoized.set(memoKey, result);
 		return result;
 	} catch (error) {
@@ -329,3 +409,161 @@ function getSchemaProperty(schemaOrgData: any, property: string, defaultValue: s
 }
 
 getSchemaProperty.memoized = new Map<string, string>();
+
+function processHighlights(content: string, highlights: AnyHighlightData[], readabilityArticle: ReturnType<Readability['parse']> | null): string {
+	// First check if highlighter is enabled and we have highlights
+	if (!generalSettings.highlighterEnabled || !highlights?.length) {
+		return content;
+	}
+
+	// Then check the behavior setting
+	if (generalSettings.highlightBehavior === 'no-highlights') {
+		return content;
+	}
+
+	if (generalSettings.highlightBehavior === 'replace-content') {
+		return highlights.map(highlight => highlight.content).join('');
+	}
+
+	if (generalSettings.highlightBehavior === 'highlight-inline') {
+		// Use readability content if available, otherwise fall back to original content
+		const processedContent = readabilityArticle?.content || content;
+		debugLog('Highlights', 'Using content length:', processedContent.length);
+
+		const tempDiv = document.createElement('div');
+		tempDiv.innerHTML = processedContent;
+
+		const textHighlights = filterAndSortHighlights(highlights);
+		debugLog('Highlights', 'Processing highlights:', textHighlights.length);
+
+		for (const highlight of textHighlights) {
+			processHighlight(highlight, tempDiv);
+		}
+
+		return tempDiv.innerHTML;
+	}
+
+	// Default fallback
+	return content;
+}
+
+function filterAndSortHighlights(highlights: AnyHighlightData[]): (TextHighlightData | ElementHighlightData)[] {
+	return highlights
+		.filter((h): h is (TextHighlightData | ElementHighlightData) => {
+			if (h.type === 'text') {
+				return !!(h.xpath?.trim() || h.content?.trim());
+			}
+			if (h.type === 'element' && h.xpath?.trim()) {
+				const element = getElementByXPath(h.xpath);
+				return element ? canHighlightElement(element) : false;
+			}
+			return false;
+		})
+		.sort((a, b) => {
+			if (a.xpath && b.xpath) {
+				const elementA = getElementByXPath(a.xpath);
+				const elementB = getElementByXPath(b.xpath);
+				if (elementA === elementB && a.type === 'text' && b.type === 'text') {
+					return b.startOffset - a.startOffset;
+				}
+			}
+			return 0;
+		});
+}
+
+function processHighlight(highlight: TextHighlightData | ElementHighlightData, tempDiv: HTMLDivElement) {
+	try {
+		if (highlight.xpath) {
+			processXPathHighlight(highlight, tempDiv);
+		} else {
+			processContentBasedHighlight(highlight, tempDiv);
+		}
+	} catch (error) {
+		debugLog('Highlights', 'Error processing highlight:', error);
+	}
+}
+
+function processXPathHighlight(highlight: TextHighlightData | ElementHighlightData, tempDiv: HTMLDivElement) {
+	const element = document.evaluate(
+		highlight.xpath,
+		tempDiv,
+		null,
+		XPathResult.FIRST_ORDERED_NODE_TYPE,
+		null
+	).singleNodeValue as Element;
+
+	if (!element) {
+		debugLog('Highlights', 'Could not find element for xpath:', highlight.xpath);
+		return;
+	}
+
+	if (highlight.type === 'element') {
+		wrapElementWithMark(element);
+	} else {
+		wrapTextWithMark(element, highlight as TextHighlightData);
+	}
+}
+
+function processContentBasedHighlight(highlight: TextHighlightData | ElementHighlightData, tempDiv: HTMLDivElement) {
+	const contentDiv = document.createElement('div');
+	contentDiv.innerHTML = highlight.content;
+
+	const innerContent = contentDiv.children.length === 1 && 
+		contentDiv.firstElementChild?.tagName === 'DIV' ? 
+		contentDiv.firstElementChild.innerHTML : 
+		contentDiv.innerHTML;
+
+	const paragraphs = Array.from(contentDiv.querySelectorAll('p'));
+	if (paragraphs.length) {
+		processContentParagraphs(paragraphs, tempDiv);
+	} else {
+		processInlineContent(innerContent, tempDiv);
+	}
+}
+
+function processContentParagraphs(sourceParagraphs: Element[], tempDiv: HTMLDivElement) {
+	sourceParagraphs.forEach(sourceParagraph => {
+		const sourceText = stripHtml(sourceParagraph.outerHTML).trim();
+		debugLog('Highlights', 'Looking for paragraph:', sourceText);
+		
+		const paragraphs = Array.from(tempDiv.querySelectorAll('p'));
+		for (const targetParagraph of paragraphs) {
+			const targetText = stripHtml(targetParagraph.outerHTML).trim();
+			
+			if (targetText === sourceText) {
+				debugLog('Highlights', 'Found matching paragraph:', targetParagraph.outerHTML);
+				wrapElementWithMark(targetParagraph);
+				break;
+			}
+		}
+	});
+}
+
+function processInlineContent(content: string, tempDiv: HTMLDivElement) {
+	const searchText = stripHtml(content).trim();
+	debugLog('Highlights', 'Searching for text:', searchText);
+	
+	const walker = document.createTreeWalker(tempDiv, NodeFilter.SHOW_TEXT);
+	
+	let node;
+	while (node = walker.nextNode() as Text) {
+		const nodeText = node.textContent || '';
+		const index = nodeText.indexOf(searchText);
+		
+		if (index !== -1) {
+			debugLog('Highlights', 'Found matching text in node:', {
+				text: nodeText,
+				index: index
+			});
+			
+			const range = document.createRange();
+			range.setStart(node, index);
+			range.setEnd(node, index + searchText.length);
+			
+			const mark = document.createElement('mark');
+			range.surroundContents(mark);
+			debugLog('Highlights', 'Created mark element:', mark.outerHTML);
+			break;
+		}
+	}
+}

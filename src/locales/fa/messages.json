@@ -1,6 +1,18 @@
 {
+	"addModel": {
+		"message": "+ افزودن مدل"
+	},
+	"addModelTitle": {
+		"message": "افزودن مدل"
+	},
 	"addProperty": {
 		"message": "+ افزودن خواص"
+	},
+	"addProvider": {
+		"message": "+ اضافه کردن ارائه دهنده"
+	},
+	"addProviderTitle": {
+		"message": "افزودن ارائه دهنده"
 	},
 	"addToObsidian": {
 		"message": "افزودن به Logseq"
@@ -17,14 +29,50 @@
 	"alwaysShowHighlightsDescription": {
 		"message": "هنگام بارگذاری صفحه، جملات روشن ذخیره شده خود را نمایش بشود. آن را خاموش کنید تا فقط وقتی حالت جملات روشن فعال است جملات روشن نمایش داده شود."
 	},
+	"apiKeyMissing": {
+		"message": "کلید API وجود ندارد"
+	},
+	"apiKeysWarning": {
+		"message": "با استفاده از یک ارائه‌دهنده خارجی، شما با شرایط و سیاست حریم خصوصی آنها موافقت می‌کنید. درخواست‌های مفسر مستقیماً به ارائه‌دهنده انتخابی شما ارسال می‌شود. Obsidian هیچ داده‌ای در مورد درخواست‌های شما جمع‌آوری یا ذخیره نمی‌کند."
+	},
 	"appendToDaily": {
 		"message": "اضافه کردن به یادداشت روزانه، در آخر آن "
 	},
 	"appendToExisting": {
 		"message": "اضافه کردن به یادداشت موجود، در آخر آن"
 	},
+	"autoRunInterpreter": {
+		"message": "اجرای خودکار"
+	},
+	"autoRunInterpreterDescription": {
+		"message": "اگر قالب شامل متغیرهای پرامپت باشد، فوراً اجرا می‌شود. این کار اعتبار API ارائه‌دهنده مدل شما را مصرف می‌کند. اگر می‌خواهید مفسر را فقط به صورت دستی اجرا کنید، آن را خاموش کنید."
+	},
 	"behavior": {
 		"message": "رفتار"
+	},
+	"behaviorWarning": {
+		"message": "افزودن به یادداشت موجود یا یادداشت روزانه به ابسیدین  ورژن ۱.۷.۲ یا بالاتر نیاز دارد"
+	},
+	"cancel": {
+		"message": "لغو"
+	},
+	"cannotDeleteProvider": {
+		"message": "امکان حذف ارائه دهنده $1 وجود ندارد زیرا توسط $2 مدل استفاده می شود."
+	},
+	"changelog": {
+		"message": "تغییرات"
+	},
+	"chooseFile": {
+		"message": "یک فایل انتخاب کنید"
+	},
+	"choosePropertiesFile": {
+		"message": "فایل خصوصیات را انتخاب کنید"
+	},
+	"chooseSettingsFile": {
+		"message": "فایل تنظیمات را انتخاب کنید"
+	},
+	"chooseTemplateFile": {
+		"message": "فایل قالب را انتخاب کنید"
 	},
 	"clipBehavior": {
 		"message": "رفتار کلیپ"
@@ -55,6 +103,9 @@
 	"confirmDeleteTemplate": {
 		"message": "آیا مطمئنید که می خواهید الگوی \"$1\" را حذف کنید؟"
 	},
+	"confirmReplaceSettings": {
+		"message": "این کار تمام تنظیمات فعلی شما را، از جمله قالب ها و خصوصیات، جایگزین می کند. آیا مطمئن هستید که می خواهید ادامه دهید؟"
+	},
 	"copied": {
 		"message": "کپی شد!"
 	},
@@ -67,8 +118,17 @@
 	"createNewNote": {
 		"message": "یادداشت جدید ایجاد کن"
 	},
+	"custom": {
+		"message": "سفارشی"
+	},
 	"dailyNoteFormat": {
 		"message": "قالب یادداشت روزانه (به عنوان مثال، YYYY-MM-DD)"
+	},
+	"defaultInterpreterContext": {
+		"message": "متن پیش‌فرض مفسر"
+	},
+	"defaultInterpreterContextDescription": {
+		"message": "مدل از این متن برای تفسیر متغیرهای پرامپت استفاده خواهد کرد. متغیرها و فیلترها می‌توانند اینجا استفاده شوند."
 	},
 	"defaultTemplateName": {
 		"message": "پیش فرض"
@@ -76,17 +136,32 @@
 	"delete": {
 		"message": "حذف کن"
 	},
+	"deleteModelConfirm": {
+		"message": "آیا مطمئن هستید که می‌خواهید این مدل را حذف کنید؟"
+	},
+	"deleteProviderConfirm": {
+		"message": "آیا مطمئن هستید که می خواهید این ارائه دهنده را حذف کنید؟"
+	},
 	"disableHighlighter": {
 		"message": "مارکر جملات روشن را غیرفعال کن"
 	},
-	"display": {
-		"message": "نمایش"
+	"done": {
+		"message": "انجام شد"
+	},
+	"dragAndDropFile": {
+		"message": "فایل را اینجا بکشید و رها کنید"
 	},
 	"duplicate": {
 		"message": "دو نسخه کن"
 	},
 	"earlyAccessFeatures": {
 		"message": "ویژگی‌های نسخه زودرس"
+	},
+	"editModel": {
+		"message": "ویرایش مدل"
+	},
+	"editProvider": {
+		"message": "ویرایش ارائه دهنده"
 	},
 	"editTemplate": {
 		"message": "ویرایش قالب"
@@ -96,6 +171,26 @@
 	},
 	"enableHighlighterDescription": {
 		"message": "محتوایی را که می‌خواهید در ابسیدین ذخیره کنید را برجسته کنید"
+	},
+	"enableInterpreter": {
+		"message": "فعال‌سازی مفسر"
+	},
+	"enableInterpreterDescription": {
+		"message": "از زبان طبیعی برای استخراج داده‌ها از صفحات استفاده کنید. برای مثال، می‌توانید از نحو قالب $strong_start${{\"خلاصه‌ای از صفحه\"}}$strong_end$ استفاده کنید. نیاز به کلید API یا مدل سفارشی پیکربندی شده در زیر دارد. $link_start$بیشتر بدانید$link_end$",
+		"placeholders": {
+			"link_end": {
+				"content": "</a>"
+			},
+			"link_start": {
+				"content": "<a href=\"https://help.obsidian.md/web-clipper/interpreter\" target=\"_blank\">"
+			},
+			"strong_end": {
+				"content": "</strong>"
+			},
+			"strong_start": {
+				"content": "<strong>"
+			}
+		}
 	},
 	"error": {
 		"message": "خطا"
@@ -141,8 +236,20 @@
 	"failedToDeleteTemplate": {
 		"message": "حذف قالب انجام نشد. لطفا دوباره امتحان کنید."
 	},
+	"failedToDuplicateTemplate": {
+		"message": "تکثیر قالب با شکست مواجه شد. لطفا دوباره تلاش کنید."
+	},
+	"failedToExportHighlights": {
+		"message": "خروجی گرفتن از برجسته سازی ها با شکست مواجه شد. لطفا برای جزئیات بیشتر، کنسول را بررسی کنید."
+	},
+	"failedToExportSettings": {
+		"message": "خروجی گرفتن از تنظیمات با شکست مواجه شد. لطفا برای جزئیات بیشتر، کنسول را بررسی کنید."
+	},
 	"failedToExtractContent": {
 		"message": "استخراج محتوای صفحه ناموفق بود."
+	},
+	"failedToImportTemplate": {
+		"message": "خطا در وارد کردن قالب. لطفا فایل را بررسی کنید و دوباره تلاش کنید."
 	},
 	"failedToInitialize": {
 		"message": "لطفاً برنامه افزودنی را دوباره بارگیری کنید."
@@ -162,6 +269,9 @@
 	"failedToSaveFile": {
 		"message": "فایل ذخیره نشد"
 	},
+	"failedToSaveProvider": {
+		"message": "ذخیره سازی ارائه دهنده با شکست مواجه شد. لطفا دوباره تلاش کنید."
+	},
 	"folder": {
 		"message": "پوشه"
 	},
@@ -170,6 +280,18 @@
 	},
 	"generalSettings": {
 		"message": "تنظیمات عمومی"
+	},
+	"getApiKeyHere": {
+		"message": "کلید API $1 خود را از اینجا بگیرید."
+	},
+	"help": {
+		"message": "راهنما"
+	},
+	"helpDescription": {
+		"message": "نحوه استفاده از Web Clipper را بیاموزید و در رفع مشکلات کمک بگیرید."
+	},
+	"highlightInline": {
+		"message": "محتوای صفحه را برجسته کنید"
 	},
 	"highlightPage": {
 		"message": "صحفه را برجسته کن"
@@ -192,6 +314,12 @@
 	"importAllSettingsDescription": {
 		"message": "درج تمام تنظیمات حتی خواص و قالب‌ها. این جایگزین تنظیمات فعلی شما خواهد شد."
 	},
+	"importFailed": {
+		"message": "وارد کردن با شکست مواجه شد. لطفا برای جزئیات بیشتر، کنسول را بررسی کنید."
+	},
+	"importModalTitle": {
+		"message": "وارد کردن"
+	},
 	"importProperties": {
 		"message": "درج خواص"
 	},
@@ -211,6 +339,15 @@
 				"content": "<strong>"
 			}
 		}
+	},
+	"importSettings": {
+		"message": "وارد کردن تنظیمات"
+	},
+	"importTemplate": {
+		"message": "وارد کردن قالب"
+	},
+	"interpret": {
+		"message": "تفسیر"
 	},
 	"interpreter": {
 		"message": "تفسیرگر"
@@ -241,6 +378,30 @@
 	"legacyMode": {
 		"message": "حالت قدیمی"
 	},
+	"legacyModeDescription": {
+		"message": "از روش برش URI سازگار با ابسیدین ۱.۶.۷ یا نسخه قبلی استفاده می کند. توجه داشته باشید که طول محتوایی که می توانید کلیپ کنید توسط مرورگر و سیستم عامل شما محدود است. برخی از صفحات ممکن است بدون هیچ خطایی از کار بیفتند."
+	},
+	"modelName": {
+		"message": "نام مدل"
+	},
+	"modelNameDescription": {
+		"message": "نام مدلی که می‌خواهید در رابط کاربری نمایش داده شود."
+	},
+	"modelProvider": {
+		"message": "ارائه‌دهنده"
+	},
+	"modelProviderDescription": {
+		"message": "ارائه‌دهنده مدل، مثلاً Ollama، OpenRouter، Google و غیره."
+	},
+	"modelProviderPlaceholder": {
+		"message": "ارائه دهنده"
+	},
+	"modelRequiredFields": {
+		"message": "نام مدل، ارائه دهنده، و شناسه مدل الزامی است."
+	},
+	"models": {
+		"message": "مدل‌ها"
+	},
 	"more": {
 		"message": "بیشتر"
 	},
@@ -252,6 +413,9 @@
 	},
 	"noTemplates": {
 		"message": "هیچ قالبی در دسترس نیست لطفا یک قالب در تنظیمات اضافه کنید."
+	},
+	"noUnusedProperties": {
+		"message": "هیچ خصوصیت استفاده نشده ای یافت نشد."
 	},
 	"noteContent": {
 		"message": "محتوای یادداشت"
@@ -288,14 +452,23 @@
 	"onlyHttpSupported": {
 		"message": "این صفحه را نمی توان کلیپ داد. فقط آدرس های http و https پشتیبانی می شوند."
 	},
+	"open": {
+		"message": "باز کردن"
+	},
+	"optional": {
+		"message": "(اختیاری)"
+	},
+	"orPasteBelow": {
+		"message": "یا محتوا را در زیر بچسبانید"
+	},
 	"pageCannotBeClipped": {
 		"message": "این صفحه را نمی توان کلیپ داد."
 	},
 	"pageVariables": {
 		"message": "متغیرهای صفحه"
 	},
-	"pasteCursorPosition": {
-		"message": "قرار دادن در موقعیت مکان‌نما"
+	"pasteJsonHere": {
+		"message": "JSON را اینجا بچسبانید"
 	},
 	"pleaseReload": {
 		"message": "لطفاً صفحه را دوباره بارگیری کنید."
@@ -305,6 +478,9 @@
 	},
 	"prependToExisting": {
 		"message": "به یادداشت موجود، از اول اضافه کنید"
+	},
+	"processing": {
+		"message": "در حال پردازش"
 	},
 	"properties": {
 		"message": "خواص"
@@ -317,6 +493,48 @@
 	},
 	"propertyValue": {
 		"message": "مقدار خاص"
+	},
+	"provider": {
+		"message": "ارائه دهنده"
+	},
+	"providerApiKey": {
+		"message": "کلید API"
+	},
+	"providerApiKeyDescription": {
+		"message": "کلید API شما برای این ارائه دهنده."
+	},
+	"providerBaseUrl": {
+		"message": "URL پایه"
+	},
+	"providerBaseUrlDescription": {
+		"message": "URL نقطه پایانی API برای این ارائه دهنده."
+	},
+	"providerModelId": {
+		"message": "شناسه مدل"
+	},
+	"providerModelIdDescription": {
+		"message": "شناسه مدل از ارائه‌دهنده شما. معمولاً یک نام کوتاه بدون فاصله است."
+	},
+	"providerModelIdPlaceholder": {
+		"message": "شناسه مدل"
+	},
+	"providerName": {
+		"message": "نام ارائه دهنده"
+	},
+	"providerNameDescription": {
+		"message": "نام نمایش داده شده برای این ارائه دهنده."
+	},
+	"providerPreset": {
+		"message": "پیش تنظیم شده"
+	},
+	"providerPresetDescription": {
+		"message": "یک ارائه دهنده انتخاب کنید یا یکی سفارشی ایجاد کنید."
+	},
+	"providerRequiredFields": {
+		"message": "نام ارائه دهنده و URL پایه الزامی است."
+	},
+	"providers": {
+		"message": "ارائه‌دهندگان"
 	},
 	"refresh": {
 		"message": "ریفرش"
@@ -348,17 +566,29 @@
 	"resetDefaultTemplateDescription": {
 		"message": "هر تغییری که در قالب پیش فرض ایجاد کرده اید را حذف کن"
 	},
+	"save": {
+		"message": "ذخیره"
+	},
 	"saveFile": {
 		"message": "ذخیره فایل..."
 	},
 	"searchVariables": {
 		"message": "جستجوی متغیرها..."
 	},
+	"selectProvider": {
+		"message": "یک ارائه دهنده انتخاب کنید"
+	},
+	"selectTemplateToExport": {
+		"message": "لطفا یک قالب برای خروجی گرفتن انتخاب کنید."
+	},
 	"settings": {
 		"message": "تنظیمات"
 	},
 	"settingsHeading": {
 		"message": "تنظیمات"
+	},
+	"settingsImportSuccess": {
+		"message": "تمام تنظیمات با موفقیت وارد شدند. لطفا صفحه را برای دیدن تغییرات تازه کنید."
 	},
 	"share": {
 		"message": " اشتراک ..."
@@ -408,6 +638,12 @@
 	"systemDefault": {
 		"message": "سیستم"
 	},
+	"templateCopied": {
+		"message": "قالب JSON به کلیپ بورد کپی شد"
+	},
+	"templateCopyError": {
+		"message": "کپی کردن قالب JSON به کلیپ بورد با شکست مواجه شد"
+	},
 	"templateName": {
 		"message": "نام قالب"
 	},
@@ -426,6 +662,18 @@
 	"templatesHeading": {
 		"message": "قالب‌ها"
 	},
+	"thinking": {
+		"message": "در حال فکر کردن"
+	},
+	"unknownProvider": {
+		"message": "ارائه دهنده ناشناخته"
+	},
+	"updateAvailable": {
+		"message": "به‌روزرسانی جدید در دسترس است."
+	},
+	"usingLatestVersion": {
+		"message": "شما از آخرین نسخه استفاده می‌کنید."
+	},
 	"vault": {
 		"message": "خزانه"
 	},
@@ -443,13 +691,18 @@
 	"vaults": {
 		"message": "خزانه‌ها"
 	},
-	"help": {
-		"message": "راهنما"
+	"vaultsDescription": {
+		"message": "به طور پیش‌فرض، یادداشت‌های بریده شده در خزانه باز فعلی ذخیره می‌شوند. اگر می‌خواهید گزینه ذخیره در خزانه‌های مختلف را داشته باشید، می‌توانید خزانه‌ها را در اینجا اضافه کنید. نام خزانه باید دقیقاً با نام خزانه ابسیدین مطابقت داشته باشد. برای افزودن خزانه، $strong_start$enter$strong_end$ را فشار دهید.",
+		"placeholders": {
+			"strong_end": {
+				"content": "</strong>"
+			},
+			"strong_start": {
+				"content": "<strong>"
+			}
+		}
 	},
-	"helpDescription": {
-		"message": "نحوه استفاده از Web Clipper را بیاموزید و در رفع مشکلات کمک بگیرید."
-	},
-	"open": {
-		"message": "باز کردن"
+	"version": {
+		"message": "نسخه"
 	}
 }

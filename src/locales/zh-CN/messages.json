@@ -1,6 +1,18 @@
 {
+	"addModel": {
+		"message": "+ 添加模型"
+	},
+	"addModelTitle": {
+		"message": "添加模型"
+	},
 	"addProperty": {
 		"message": "+ 添加属性"
+	},
+	"addProvider": {
+		"message": "+ 添加提供商"
+	},
+	"addProviderTitle": {
+		"message": "添加提供商"
 	},
 	"addToObsidian": {
 		"message": "添加到 Logseq"
@@ -17,14 +29,50 @@
 	"alwaysShowHighlightsDescription": {
 		"message": "加载页面时显示已保存的高亮内容。关闭此选项则仅在高亮模式激活时显示高亮。"
 	},
+	"apiKeyMissing": {
+		"message": "无 API 密钥"
+	},
+	"apiKeysWarning": {
+		"message": "使用外部提供商即表示您同意其条款和隐私政策。解释器请求直接发送给您选择的提供商。Obsidian 不会收集或存储任何关于您请求的数据。"
+	},
 	"appendToDaily": {
 		"message": "添加到日记末尾"
 	},
 	"appendToExisting": {
 		"message": "添加到现有笔记末尾"
 	},
+	"autoRunInterpreter": {
+		"message": "自动运行"
+	},
+	"autoRunInterpreterDescription": {
+		"message": "如果模板包含提示变量，则立即运行。这将消耗模型提供商的 API 额度。如果您只想手动运行解释器，请关闭此选项。"
+	},
 	"behavior": {
 		"message": "行为"
+	},
+	"behaviorWarning": {
+		"message": "添加到现有笔记或日记需要 Obsidian 1.7.2 或更高版本。"
+	},
+	"cancel": {
+		"message": "取消"
+	},
+	"cannotDeleteProvider": {
+		"message": "无法删除提供商 \"$1\"，因为它正在被 $2 个模型使用。"
+	},
+	"changelog": {
+		"message": "更新日志"
+	},
+	"chooseFile": {
+		"message": "选择一个文件"
+	},
+	"choosePropertiesFile": {
+		"message": "选择属性文件"
+	},
+	"chooseSettingsFile": {
+		"message": "选择设置文件"
+	},
+	"chooseTemplateFile": {
+		"message": "选择模板文件"
 	},
 	"clipBehavior": {
 		"message": "剪藏行为"
@@ -55,6 +103,9 @@
 	"confirmDeleteTemplate": {
 		"message": "确定要删除模板「$1」吗？"
 	},
+	"confirmReplaceSettings": {
+		"message": "这将替换您当前的所有设置，包括模板和属性。您确定要继续吗？"
+	},
 	"copied": {
 		"message": "已复制！"
 	},
@@ -67,8 +118,17 @@
 	"createNewNote": {
 		"message": "创建新笔记"
 	},
+	"custom": {
+		"message": "自定义"
+	},
 	"dailyNoteFormat": {
 		"message": "日记格式（如：YYYY-MM-DD）"
+	},
+	"defaultInterpreterContext": {
+		"message": "默认解释器上下文"
+	},
+	"defaultInterpreterContextDescription": {
+		"message": "模型将使用此上下文来解释提示变量。可以在此处使用变量和过滤器。"
 	},
 	"defaultTemplateName": {
 		"message": "默认"
@@ -76,17 +136,32 @@
 	"delete": {
 		"message": "删除"
 	},
+	"deleteModelConfirm": {
+		"message": "您确定要删除此模型吗？"
+	},
+	"deleteProviderConfirm": {
+		"message": "您确定要删除此提供商吗？"
+	},
 	"disableHighlighter": {
 		"message": "禁用高亮"
 	},
-	"display": {
-		"message": "显示"
+	"done": {
+		"message": "完成"
+	},
+	"dragAndDropFile": {
+		"message": "将文件拖放到此处"
 	},
 	"duplicate": {
 		"message": "复制"
 	},
 	"earlyAccessFeatures": {
 		"message": "早期访问功能"
+	},
+	"editModel": {
+		"message": "编辑模型"
+	},
+	"editProvider": {
+		"message": "编辑提供商"
 	},
 	"editTemplate": {
 		"message": "编辑模板"
@@ -141,8 +216,20 @@
 	"failedToDeleteTemplate": {
 		"message": "删除模板失败。请重试。"
 	},
+	"failedToDuplicateTemplate": {
+		"message": "无法复制模板。请再试一次。"
+	},
+	"failedToExportHighlights": {
+		"message": "无法导出高亮显示。请检查控制台以获取更多详细信息。"
+	},
+	"failedToExportSettings": {
+		"message": "无法导出设置。请检查控制台以获取更多详细信息。"
+	},
 	"failedToExtractContent": {
 		"message": "无法提取页面内容。"
+	},
+	"failedToImportTemplate": {
+		"message": "导入模板出错。请检查文件并重试。"
 	},
 	"failedToInitialize": {
 		"message": "请尝试重新加载扩展。"
@@ -153,11 +240,17 @@
 	"failedToProcessInterpreter": {
 		"message": "解释器处理失败。请重试。"
 	},
+	"failedToResetTemplate": {
+		"message": "无法重置默认模板。请再试一次。"
+	},
 	"failedToSave": {
 		"message": "保存文件失败"
 	},
 	"failedToSaveFile": {
 		"message": "保存文件失败"
+	},
+	"failedToSaveProvider": {
+		"message": "无法保存提供商。请再试一次。"
 	},
 	"folder": {
 		"message": "文件夹"
@@ -167,6 +260,18 @@
 	},
 	"generalSettings": {
 		"message": "常规设置"
+	},
+	"getApiKeyHere": {
+		"message": "在此处获取您的 $1 API 密钥。"
+	},
+	"help": {
+		"message": "帮助"
+	},
+	"helpDescription": {
+		"message": "了解如何使用 Web Clipper 并获取故障排除帮助。"
+	},
+	"highlightInline": {
+		"message": "高亮页面内容"
 	},
 	"highlightPage": {
 		"message": "高亮页面"
@@ -189,6 +294,12 @@
 	"importAllSettingsDescription": {
 		"message": "导入包括模板和属性在内的所有设置。这将替换您当前的配置。"
 	},
+	"importFailed": {
+		"message": "导入失败。请检查控制台以获取更多详细信息。"
+	},
+	"importModalTitle": {
+		"message": "导入"
+	},
 	"importProperties": {
 		"message": "导入属性"
 	},
@@ -208,6 +319,15 @@
 				"content": "<strong>"
 			}
 		}
+	},
+	"importSettings": {
+		"message": "导入设置"
+	},
+	"importTemplate": {
+		"message": "导入模板"
+	},
+	"interpret": {
+		"message": "解释"
 	},
 	"interpreter": {
 		"message": "解释器"
@@ -238,6 +358,30 @@
 	"legacyMode": {
 		"message": "传统模式"
 	},
+	"legacyModeDescription": {
+		"message": "使用与 Obsidian 1.6.7 或更早版本兼容的 URI 剪藏方法。请注意，您可以剪藏的内容长度受浏览器和操作系统限制。某些页面可能会静默失败。"
+	},
+	"modelName": {
+		"message": "模型名称"
+	},
+	"modelNameDescription": {
+		"message": "您想在界面中显示的模型名称。"
+	},
+	"modelProvider": {
+		"message": "提供商"
+	},
+	"modelProviderDescription": {
+		"message": "模型提供商，例如 Ollama、OpenRouter、Google 等。"
+	},
+	"modelProviderPlaceholder": {
+		"message": "提供商"
+	},
+	"modelRequiredFields": {
+		"message": "模型名称、提供商和模型 ID 是必需的。"
+	},
+	"models": {
+		"message": "模型"
+	},
 	"more": {
 		"message": "更多"
 	},
@@ -249,6 +393,9 @@
 	},
 	"noTemplates": {
 		"message": "没有可用的模板。请在设置中添加模板。"
+	},
+	"noUnusedProperties": {
+		"message": "未找到未使用的属性。"
 	},
 	"noteContent": {
 		"message": "笔记内容"
@@ -285,14 +432,23 @@
 	"onlyHttpSupported": {
 		"message": "无法剪藏此页面。仅支持 http 和 https URL。"
 	},
+	"open": {
+		"message": "打开"
+	},
+	"optional": {
+		"message": "(可选)"
+	},
+	"orPasteBelow": {
+		"message": "或在下面粘贴内容"
+	},
 	"pageCannotBeClipped": {
 		"message": "无法剪藏此页面。"
 	},
 	"pageVariables": {
 		"message": "页面变量"
 	},
-	"pasteCursorPosition": {
-		"message": "在光标位置粘贴"
+	"pasteJsonHere": {
+		"message": "在此处粘贴 JSON"
 	},
 	"pleaseReload": {
 		"message": "请尝试重新加载页面。"
@@ -302,6 +458,9 @@
 	},
 	"prependToExisting": {
 		"message": "添加到现有笔记开头"
+	},
+	"processing": {
+		"message": "处理中"
 	},
 	"properties": {
 		"message": "属性"
@@ -314,6 +473,48 @@
 	},
 	"propertyValue": {
 		"message": "属性值"
+	},
+	"provider": {
+		"message": "提供商"
+	},
+	"providerApiKey": {
+		"message": "API 密钥"
+	},
+	"providerApiKeyDescription": {
+		"message": "此提供商的 API 密钥。"
+	},
+	"providerBaseUrl": {
+		"message": "基础 URL"
+	},
+	"providerBaseUrlDescription": {
+		"message": "此提供商的 API 端点 URL。"
+	},
+	"providerModelId": {
+		"message": "模型 ID"
+	},
+	"providerModelIdDescription": {
+		"message": "来自提供商的模型标识符。通常是一个不含空格的简短名称。"
+	},
+	"providerModelIdPlaceholder": {
+		"message": "模型 ID"
+	},
+	"providerName": {
+		"message": "提供商名称"
+	},
+	"providerNameDescription": {
+		"message": "此提供商的显示名称。"
+	},
+	"providerPreset": {
+		"message": "预设"
+	},
+	"providerPresetDescription": {
+		"message": "选择一个提供商或创建一个自定义的。"
+	},
+	"providerRequiredFields": {
+		"message": "提供商名称和基础 URL 是必需的。"
+	},
+	"providers": {
+		"message": "提供商"
 	},
 	"refresh": {
 		"message": "刷新"
@@ -345,17 +546,29 @@
 	"resetDefaultTemplateDescription": {
 		"message": "移除对默认模板的所有更改。"
 	},
+	"save": {
+		"message": "保存"
+	},
 	"saveFile": {
 		"message": "保存文件..."
 	},
 	"searchVariables": {
 		"message": "搜索变量..."
 	},
+	"selectProvider": {
+		"message": "选择一个提供商"
+	},
+	"selectTemplateToExport": {
+		"message": "请选择要导出的模板。"
+	},
 	"settings": {
 		"message": "设置"
 	},
 	"settingsHeading": {
 		"message": "设置"
+	},
+	"settingsImportSuccess": {
+		"message": "所有设置已成功导入。请刷新页面查看更改。"
 	},
 	"share": {
 		"message": "分享..."
@@ -405,6 +618,12 @@
 	"systemDefault": {
 		"message": "系统默认"
 	},
+	"templateCopied": {
+		"message": "已将模板 JSON 复制到剪贴板"
+	},
+	"templateCopyError": {
+		"message": "无法将模板 JSON 复制到剪贴板"
+	},
 	"templateName": {
 		"message": "模板名称"
 	},
@@ -423,6 +642,18 @@
 	"templatesHeading": {
 		"message": "模板"
 	},
+	"thinking": {
+		"message": "思考中"
+	},
+	"unknownProvider": {
+		"message": "未知的提供商"
+	},
+	"updateAvailable": {
+		"message": "有可用更新。"
+	},
+	"usingLatestVersion": {
+		"message": "您正在使用最新版本。"
+	},
 	"vault": {
 		"message": "保管库"
 	},
@@ -440,13 +671,18 @@
 	"vaults": {
 		"message": "保管库"
 	},
-	"help": {
-		"message": "帮助"
+	"vaultsDescription": {
+		"message": "默认情况下，剪藏的笔记会保存到当前打开的保管库。如果您需要保存到不同的保管库，可以在此处添加保管库。保管库名称必须与 Obsidian 保管库的名称完全匹配。按 $strong_start$回车键$strong_end$ 添加保管库。",
+		"placeholders": {
+			"strong_end": {
+				"content": "</strong>"
+			},
+			"strong_start": {
+				"content": "<strong>"
+			}
+		}
 	},
-	"helpDescription": {
-		"message": "了解如何使用 Web Clipper 并获取故障排除帮助。"
-	},
-	"open": {
-		"message": "打开"
+	"version": {
+		"message": "版本"
 	}
 }

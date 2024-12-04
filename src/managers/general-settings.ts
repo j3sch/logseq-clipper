@@ -1,7 +1,7 @@
 import { handleDragStart, handleDragOver, handleDrop, handleDragEnd } from '../utils/drag-and-drop';
 import { initializeIcons } from '../icons/icons';
 import { getCommands } from '../utils/hotkeys';
-import { initializeToggles } from '../utils/ui-utils';
+import { initializeToggles, updateToggleState, initializeSettingToggle } from '../utils/ui-utils';
 import { generalSettings, loadSettings, saveSettings } from '../utils/storage-utils';
 import { detectBrowser } from '../utils/browser-detection';
 import { createElementWithClass, createElementWithHTML } from '../utils/dom-utils';
@@ -10,7 +10,9 @@ import { updateTemplateList, showTemplateEditor } from '../managers/template-ui'
 import { exportAllSettings, importAllSettings } from '../utils/import-export';
 import { Template } from '../types/types';
 import { exportHighlights } from './highlights-manager';
-import { getMessage } from '../utils/i18n';
+import { getMessage, setupLanguageAndDirection } from '../utils/i18n';
+import { debounce } from '../utils/debounce';
+import browser from '../utils/browser-polyfill';
 
 export function updateVaultList(): void {
 	const vaultList = document.getElementById('vault-list') as HTMLUListElement;
@@ -91,8 +93,32 @@ export async function setShortcutInstructions() {
 	}
 }
 
+async function initializeVersionDisplay(): Promise<void> {
+	const manifest = browser.runtime.getManifest();
+	const versionNumber = document.getElementById('version-number');
+	const updateAvailable = document.getElementById('update-available');
+	const usingLatestVersion = document.getElementById('using-latest-version');
+
+	if (versionNumber) {
+		versionNumber.textContent = manifest.version;
+	}
+
+	// Listen for extension updates
+	browser.runtime.onUpdateAvailable.addListener((details) => {
+		if (updateAvailable && usingLatestVersion) {
+			updateAvailable.style.display = 'block';
+			usingLatestVersion.style.display = 'none';
+		}
+	});
+}
+
 export function initializeGeneralSettings(): void {
-	loadSettings().then(() => {
+	loadSettings().then(async () => {
+		await setupLanguageAndDirection();
+
+		// Add version check initialization
+		await initializeVersionDisplay();
+
 		updateVaultList();
 		initializeShowMoreActionsToggle();
 		initializeBetaFeaturesToggle();
@@ -113,7 +139,9 @@ export function initializeGeneralSettings(): void {
 function initializeAutoSave(): void {
 	const generalSettingsForm = document.getElementById('general-settings-form');
 	if (generalSettingsForm) {
+		// Listen for both input and change events
 		generalSettingsForm.addEventListener('input', debounce(saveSettingsFromForm, 500));
+		generalSettingsForm.addEventListener('change', debounce(saveSettingsFromForm, 500));
 	}
 }
 
@@ -126,32 +154,24 @@ function saveSettingsFromForm(): void {
 	const alwaysShowHighlightsToggle = document.getElementById('highlighter-visibility') as HTMLInputElement;
 	const highlightBehaviorSelect = document.getElementById('highlighter-behavior') as HTMLSelectElement;
 
-	const settings = {
-		showMoreActionsButton: showMoreActionsToggle?.checked,
-		betaFeatures: betaFeaturesToggle?.checked,
-		legacyMode: legacyModeToggle?.checked,
-		silentOpen: silentOpenToggle?.checked,
-		highlighterEnabled: highlighterToggle?.checked,
-		alwaysShowHighlights: alwaysShowHighlightsToggle?.checked,
-		highlightBehavior: highlightBehaviorSelect?.value
+	const updatedSettings = {
+		...generalSettings, // Keep existing settings
+		showMoreActionsButton: showMoreActionsToggle?.checked ?? generalSettings.showMoreActionsButton,
+		betaFeatures: betaFeaturesToggle?.checked ?? generalSettings.betaFeatures,
+		legacyMode: legacyModeToggle?.checked ?? generalSettings.legacyMode,
+		silentOpen: silentOpenToggle?.checked ?? generalSettings.silentOpen,
+		highlighterEnabled: highlighterToggle?.checked ?? generalSettings.highlighterEnabled,
+		alwaysShowHighlights: alwaysShowHighlightsToggle?.checked ?? generalSettings.alwaysShowHighlights,
+		highlightBehavior: highlightBehaviorSelect?.value ?? generalSettings.highlightBehavior
 	};
 
-	saveSettings(settings);
-}
-
-function debounce(func: Function, delay: number): (...args: any[]) => void {
-	let timeoutId: NodeJS.Timeout;
-	return (...args: any[]) => {
-		clearTimeout(timeoutId);
-		timeoutId = setTimeout(() => func(...args), delay);
-	};
+	saveSettings(updatedSettings);
 }
 
 function initializeShowMoreActionsToggle(): void {
-	const showMoreActionsToggle = document.getElementById('show-more-actions-toggle') as HTMLInputElement;
-	if (showMoreActionsToggle) {
-		showMoreActionsToggle.checked = generalSettings.showMoreActionsButton;
-	}
+	initializeSettingToggle('show-more-actions-toggle', generalSettings.showMoreActionsButton, (checked) => {
+		saveSettings({ ...generalSettings, showMoreActionsButton: checked });
+	});
 }
 
 function initializeVaultInput(): void {
@@ -203,33 +223,21 @@ async function initializeKeyboardShortcuts(): Promise<void> {
 }
 
 function initializeBetaFeaturesToggle(): void {
-	const betaFeaturesToggle = document.getElementById('beta-features-toggle') as HTMLInputElement;
-	if (betaFeaturesToggle) {
-		betaFeaturesToggle.checked = generalSettings.betaFeatures;
-		betaFeaturesToggle.addEventListener('change', () => {
-			saveSettings({ betaFeatures: betaFeaturesToggle.checked });
-		});
-	}
+	initializeSettingToggle('beta-features-toggle', generalSettings.betaFeatures, (checked) => {
+		saveSettings({ ...generalSettings, betaFeatures: checked });
+	});
 }
 
 function initializeLegacyModeToggle(): void {
-	const legacyModeToggle = document.getElementById('legacy-mode-toggle') as HTMLInputElement;
-	if (legacyModeToggle) {
-		legacyModeToggle.checked = generalSettings.legacyMode;
-		legacyModeToggle.addEventListener('change', () => {
-			saveSettings({ legacyMode: legacyModeToggle.checked });
-		});
-	}
+	initializeSettingToggle('legacy-mode-toggle', generalSettings.legacyMode, (checked) => {
+		saveSettings({ ...generalSettings, legacyMode: checked });
+	});
 }
 
 function initializeSilentOpenToggle(): void {
-	const silentOpenToggle = document.getElementById('silent-open-toggle') as HTMLInputElement;
-	if (silentOpenToggle) {
-		silentOpenToggle.checked = generalSettings.silentOpen;
-		silentOpenToggle.addEventListener('change', () => {
-			saveSettings({ silentOpen: silentOpenToggle.checked });
-		});
-	}
+	initializeSettingToggle('silent-open-toggle', generalSettings.silentOpen, (checked) => {
+		saveSettings({ ...generalSettings, silentOpen: checked });
+	});
 }
 
 function initializeResetDefaultTemplateButton(): void {
@@ -279,28 +287,19 @@ function initializeExportHighlightsButton(): void {
 }
 
 function initializeHighlighterSettings(): void {
-	const highlighterToggle = document.getElementById('highlighter-toggle') as HTMLInputElement;
-	const alwaysShowHighlightsToggle = document.getElementById('highlighter-visibility') as HTMLInputElement;
+	initializeSettingToggle('highlighter-toggle', generalSettings.highlighterEnabled, (checked) => {
+		saveSettings({ ...generalSettings, highlighterEnabled: checked });
+	});
+
+	initializeSettingToggle('highlighter-visibility', generalSettings.alwaysShowHighlights, (checked) => {
+		saveSettings({ ...generalSettings, alwaysShowHighlights: checked });
+	});
+
 	const highlightBehaviorSelect = document.getElementById('highlighter-behavior') as HTMLSelectElement;
-
-	if (highlighterToggle) {
-		highlighterToggle.checked = generalSettings.highlighterEnabled;
-		highlighterToggle.addEventListener('change', () => {
-			saveSettings({ highlighterEnabled: highlighterToggle.checked });
-		});
-	}
-
-	if (alwaysShowHighlightsToggle) {
-		alwaysShowHighlightsToggle.checked = generalSettings.alwaysShowHighlights;
-		alwaysShowHighlightsToggle.addEventListener('change', () => {
-			saveSettings({ alwaysShowHighlights: alwaysShowHighlightsToggle.checked });
-		});
-	}
-
 	if (highlightBehaviorSelect) {
 		highlightBehaviorSelect.value = generalSettings.highlightBehavior;
 		highlightBehaviorSelect.addEventListener('change', () => {
-			saveSettings({ highlightBehavior: highlightBehaviorSelect.value });
+			saveSettings({ ...generalSettings, highlightBehavior: highlightBehaviorSelect.value });
 		});
 	}
 }

@@ -1,0 +1,722 @@
+{
+	"addModel": {
+		"message": "+ 모델 추가"
+	},
+	"addModelTitle": {
+		"message": "모델 추가"
+	},
+	"addProperty": {
+		"message": "+ 속성 추가하기"
+	},
+	"addProvider": {
+		"message": "+ 공급자 추가"
+	},
+	"addProviderTitle": {
+		"message": "제공자 추가"
+	},
+	"addToObsidian": {
+		"message": "Obsidian에 추가하기"
+	},
+	"addVaultPlaceholder": {
+		"message": "볼트(보관소)를 추가하려면 엔터를 누르세요."
+	},
+	"advanced": {
+		"message": "고급 설정"
+	},
+	"allProperties": {
+		"message": "모든 속성"
+	},
+	"alwaysShowHighlights": {
+		"message": "하이라이트 항상 표시"
+	},
+	"alwaysShowHighlightsDescription": {
+		"message": "웹페이지를 로드할 때 저장된 하이라이트를 표시합니다. 하이라이트 모드가 활성화된 경우에만 하이라이트를 표시하려면 이 옵션을 끄십시오."
+	},
+	"apiKeyMissing": {
+		"message": "API 키가 없습니다"
+	},
+	"apiKeysWarning": {
+		"message": "외부 제공자를 사용하면 해당 제공자의 이용 약관 및 개인정보 보호정책에 동의하는 것입니다. 인터프리터 요청은 선택한 제공자에게 직접 전송됩니다. Obsidian은 요청에 대한 데이터를 수집하거나 저장하지 않습니다."
+	},
+	"appendToDaily": {
+		"message": "데일리 노트 맨 아래에 추가"
+	},
+	"appendToExisting": {
+		"message": "기존에 있는 노트 맨 아래에 추가"
+	},
+	"autoRunInterpreter": {
+		"message": "자동 실행"
+	},
+	"autoRunInterpreterDescription": {
+		"message": "템플릿에 프롬프트 변수가 포함되어 있는 경우 즉시 실행합니다. 이는 모델 제공자의 API 크레딧을 소비합니다. 인터프리터를 수동으로만 실행하려면 끄십시오."
+	},
+	"behavior": {
+		"message": "동작 방식"
+	},
+	"behaviorWarning": {
+		"message": "기존에 있는 노트나 데일리 노트에 추가하려면 Obsidian 1.7.2 이상이 필요합니다."
+	},
+	"cancel": {
+		"message": "취소"
+	},
+	"cannotDeleteProvider": {
+		"message": "\"$1\" 공급자를 삭제할 수 없습니다. 이는 $2 모델에서 사용 중이기 때문입니다."
+	},
+	"changelog": {
+		"message": "변경 내역"
+	},
+	"chooseFile": {
+		"message": "파일을 선택하세요"
+	},
+	"choosePropertiesFile": {
+		"message": "속성 파일 선택"
+	},
+	"chooseSettingsFile": {
+		"message": "설정 파일을 선택하십시오"
+	},
+	"chooseTemplateFile": {
+		"message": "템플릿 파일을 선택하세요"
+	},
+	"clipBehavior": {
+		"message": "클립 동작 방식"
+	},
+	"clipBehaviorDescription": {
+		"message": "하이라이트 표시된 내용이 Obsidian에 저장되는 방식을 선택하세요. $strong_start${{content}}$strong_end$ 변수를 정의합니다.",
+		"placeholders": {
+			"strong_end": {
+				"content": "</strong>"
+			},
+			"strong_start": {
+				"content": "<strong>"
+			}
+		}
+	},
+	"close": {
+		"message": "닫기"
+	},
+	"commandOpenClipper": {
+		"message": "Obsidian Clipper 열기"
+	},
+	"commandQuickClip": {
+		"message": "퀵 클립"
+	},
+	"commandToggleHighlighter": {
+		"message": "하이라이터 모드 전환"
+	},
+	"confirmDeleteTemplate": {
+		"message": "템플릿을 삭제하시겠습니까? \"$1\"?"
+	},
+	"confirmReplaceSettings": {
+		"message": "이 작업은 현재의 모든 설정, 템플릿 및 속성을 대체합니다. 계속하시겠습니까?"
+	},
+	"copied": {
+		"message": "복사되었습니다!"
+	},
+	"copyAsJson": {
+		"message": "JSON으로 복사하기"
+	},
+	"copyToClipboard": {
+		"message": "클립보드에 복사하기"
+	},
+	"createNewNote": {
+		"message": "새 노트 만들기"
+	},
+	"custom": {
+		"message": "사용자 정의"
+	},
+	"dailyNoteFormat": {
+		"message": "데일리 노트 형식 (e.g., YYYY-MM-DD)"
+	},
+	"defaultInterpreterContext": {
+		"message": "기본 인터프리터 컨텍스트"
+	},
+	"defaultInterpreterContextDescription": {
+		"message": "모델이 프롬프트 변수를 해석하는 데 사용할 컨텍스트입니다. 변수와 필터를 사용할 수 있습니다."
+	},
+	"defaultTemplateName": {
+		"message": "기본 템플릿"
+	},
+	"delete": {
+		"message": "삭제"
+	},
+	"deleteModelConfirm": {
+		"message": "이 모델을 삭제하시겠습니까?"
+	},
+	"deleteProviderConfirm": {
+		"message": "이 공급자를 삭제하시겠습니까?"
+	},
+	"disableHighlighter": {
+		"message": "하이라이터 끄기"
+	},
+	"done": {
+		"message": "완료"
+	},
+	"dragAndDropFile": {
+		"message": "여기에 파일을 드래그 앤 드롭하세요"
+	},
+	"duplicate": {
+		"message": "복제"
+	},
+	"earlyAccessDescription": {
+		"message": "Obsidian의 최신 얼리 액세스 (early access) 버전이 필요한 기능을 사용합니다. 현재 Obsidian 1.7.2 이상이 필요합니다.",
+		"placeholders": {
+			"link_end": {
+				"content": "</a>"
+			},
+			"link_start": {
+				"content": "<a href=\"https://help.obsidian.md/Obsidian/Early+access+versions\" target=\"_blank\">"
+			}
+		}
+	},
+	"earlyAccessFeatures": {
+		"message": "얼리 액세스 기능"
+	},
+	"editModel": {
+		"message": "모델 편집"
+	},
+	"editProvider": {
+		"message": "공급자 편집"
+	},
+	"editTemplate": {
+		"message": "템플릿 편집"
+	},
+	"enableHighlighter": {
+		"message": "하이라이터 켜기"
+	},
+	"enableHighlighterDescription": {
+		"message": "하이라이트한 웹페이지 내용을 Obsidian에 저장합니다."
+	},
+	"enableInterpreter": {
+		"message": "인터프리터 활성화"
+	},
+	"enableInterpreterDescription": {
+		"message": "자연어를 사용하여 페이지에서 데이터를 추출합니다. 예를 들어, $strong_start${{\"페이지 요약\"}}$strong_end$ 템플릿 구문을 사용할 수 있습니다. API 키 또는 아래에서 구성된 사용자 지정 모델이 필요합니다. $link_start$자세히 알아보기$link_end$",
+		"placeholders": {
+			"link_end": {
+				"content": "</a>"
+			},
+			"link_start": {
+				"content": "<a href=\"https://help.obsidian.md/web-clipper/interpreter\" target=\"_blank\">"
+			},
+			"strong_end": {
+				"content": "</strong>"
+			},
+			"strong_start": {
+				"content": "<strong>"
+			}
+		}
+	},
+	"error": {
+		"message": "에러"
+	},
+	"export": {
+		"message": "내보내기"
+	},
+	"exportAllSettings": {
+		"message": "모든 설정 내보내기"
+	},
+	"exportAllSettingsDescription": {
+		"message": "템플릿 및 속성을 포함한 모든 설정 내보내기."
+	},
+	"exportHighlights": {
+		"message": "하이라이트 내보내기"
+	},
+	"exportHighlightsDescription": {
+		"message": "하이라이트를 파일로 내보내기."
+	},
+	"exportProperties": {
+		"message": "속성 내보내기"
+	},
+	"exportPropertiesDescription": {
+		"message": "Obsidian Vault 또는 다른 장치의 Web Clipper로 가져올 수 있는 $strong_start$types.json$strong_end$ 파일에 Web Clipper 속성을 저장합니다.",
+		"placeholders": {
+			"strong_end": {
+				"content": "</strong>"
+			},
+			"strong_start": {
+				"content": "<strong>"
+			}
+		}
+	},
+	"extensionDescription": {
+		"message": "웹 콘텐츠를 저장하여 오프라인에서도 접근할 수 있는 개인적이고 내구성 있는 형식으로 보관하세요. Obsidian의 공식 브라우저 확장 프로그램입니다."
+	},
+	"extensionName": {
+		"message": "Obsidian Web Clipper"
+	},
+	"failedToCopyText": {
+		"message": "텍스트를 복사하지 못했습니다"
+	},
+	"failedToDeleteTemplate": {
+		"message": "템플릿을 삭제하지 못했습니다. 다시 시도해 주세요."
+	},
+	"failedToDuplicateTemplate": {
+		"message": "템플릿 복제에 실패했습니다. 다시 시도해 주세요."
+	},
+	"failedToExportHighlights": {
+		"message": "하이라이트 내보내기에 실패했습니다. 자세한 내용은 콘솔을 확인해 주세요."
+	},
+	"failedToExportSettings": {
+		"message": "설정 내보내기에 실패했습니다. 자세한 내용은 콘솔을 확인해 주세요."
+	},
+	"failedToExtractContent": {
+		"message": "페이지 콘텐츠를 추출하지 못했습니다."
+	},
+	"failedToImportTemplate": {
+		"message": "템플릿 가져오기 오류. 파일을 확인하고 다시 시도해 주세요."
+	},
+	"failedToInitialize": {
+		"message": "확장 프로그램을 다시 로드해 주세요."
+	},
+	"failedToInitializeContent": {
+		"message": "페이지 콘텐츠를 초기화하지 못했습니다."
+	},
+	"failedToProcessInterpreter": {
+		"message": "인터프리터 처리에 실패했습니다. 다시 시도해 주세요."
+	},
+	"failedToResetTemplate": {
+		"message": "템플릿을 초기화하지 못했습니다. 다시 시도해 주세요."
+	},
+	"failedToSave": {
+		"message": "파일을 저장하지 못했습니다"
+	},
+	"failedToSaveFile": {
+		"message": "파일을 저장하지 못했습니다"
+	},
+	"failedToSaveProvider": {
+		"message": "제공자 저장에 실패했습니다. 다시 시도해 주세요."
+	},
+	"folder": {
+		"message": "Folder"
+	},
+	"general": {
+		"message": "일반"
+	},
+	"generalSettings": {
+		"message": "일반 설정"
+	},
+	"getApiKeyHere": {
+		"message": "여기에서 $1 API 키를 받으세요."
+	},
+	"help": {
+		"message": "도움말"
+	},
+	"helpDescription": {
+		"message": "Web Clipper 사용 방법을 알아보고 문제 해결을 위한 도움을 받으세요."
+	},
+	"highlightInline": {
+		"message": "페이지 내용 인라인 하이라이트"
+	},
+	"highlightPage": {
+		"message": "페이지 하이라이트"
+	},
+	"highlighter": {
+		"message": "하이라이터"
+	},
+	"highlighterSettings": {
+		"message": "하이라이터 설정"
+	},
+	"hotkeys": {
+		"message": "단축키"
+	},
+	"import": {
+		"message": "들여오기"
+	},
+	"importAllSettings": {
+		"message": "모든 설정 들여오기"
+	},
+	"importAllSettingsDescription": {
+		"message": "템플릿과 속성을 포함한 모든 설정을 들여옵니다. 현재 구성이 대체됩니다."
+	},
+	"importFailed": {
+		"message": "가져오기 실패했습니다. 자세한 내용은 콘솔을 확인해 주세요."
+	},
+	"importModalTitle": {
+		"message": "수입"
+	},
+	"importProperties": {
+		"message": "속성 들여오기"
+	},
+	"importPropertiesDescription": {
+		"message": "Obsidian에서 속성을 가져오려면 보괏소 내의 $strong_2_start$.obsidian$strong_2_end$ 폴더에서 $strong_1_start$types.json$strong_1_end$ 파일을 찾으세요. 이 폴더는 대부분의 운영 체제에서 기본적으로 숨겨져 있습니다.",
+		"placeholders": {
+			"strong_1_end": {
+				"content": "</strong>"
+			},
+			"strong_1_start": {
+				"content": "<strong>"
+			},
+			"strong_2_end": {
+				"content": "</strong>"
+			},
+			"strong_2_start": {
+				"content": "<strong>"
+			}
+		}
+	},
+	"importSettings": {
+		"message": "설정 가져오기"
+	},
+	"importTemplate": {
+		"message": "템플릿 가져오기"
+	},
+	"interpret": {
+		"message": "해석"
+	},
+	"interpreter": {
+		"message": "인터프리터"
+	},
+	"interpreterContext": {
+		"message": "인터프리터 컨텍스트"
+	},
+	"interpreterContextDescription": {
+		"message": "프롬프트 변수를 해석하는 데 사용되는 컨텍스트입니다. $link_start$인프리터 설정$link_end$에 정의된 기본 컨텍스트를 재정의합니다. 여기서 변수를 사용할 수 있습니다.",
+		"placeholders": {
+			"link_end": {
+				"content": "</a>"
+			},
+			"link_start": {
+				"content": "<a href=\"?section=interpreter\">"
+			}
+		}
+	},
+	"language": {
+		"message": "언어"
+	},
+	"languageDescription": {
+		"message": "확장 프로그램 인터페이스의 표시 언어를 선택하세요."
+	},
+	"lastUsed": {
+		"message": "마지막으로 사용된 보관소"
+	},
+	"legacyMode": {
+		"message": "레거시 모드"
+	},
+	"legacyModeDescription": {
+		"message": "Obsidian 1.6.7 이하 버전과 호환되는 URI 클리핑 방법을 사용합니다. 클립할 수 있는 내용량은 브라우저와 OS에 따라 제한됩니다. 일부 페이지는 오류 없이 실패할 수 있습니다."
+	},
+	"modelName": {
+		"message": "모델 이름"
+	},
+	"modelNameDescription": {
+		"message": "인터페이스에 표시할 모델 이름입니다."
+	},
+	"modelProvider": {
+		"message": "제공자"
+	},
+	"modelProviderDescription": {
+		"message": "모델 제공자 (예: Ollama, OpenRouter, Google 등)"
+	},
+	"modelProviderPlaceholder": {
+		"message": "공급자"
+	},
+	"modelRequiredFields": {
+		"message": "모델 이름, 제공자, 그리고 모델 ID가 필요합니다."
+	},
+	"models": {
+		"message": "모델"
+	},
+	"more": {
+		"message": "더 보기"
+	},
+	"newTemplate": {
+		"message": "새 템플릿"
+	},
+	"noHighlights": {
+		"message": "하이라이트 없음"
+	},
+	"noTemplates": {
+		"message": "템플릿 없음. 설정에서 템플릿을 추가하세요."
+	},
+	"noUnusedProperties": {
+		"message": "사용하지 않는 속성이 발견되지 않았습니다."
+	},
+	"noteContent": {
+		"message": "노트 내용"
+	},
+	"noteContentDescription": {
+		"message": "노트의 내용을 사용자 정의합니다. 변수를 사용하여 페이지의 데이터를 미리 채울 수 있습니다."
+	},
+	"noteLocation": {
+		"message": "노트"
+	},
+	"noteLocationDescription": {
+		"message": "노트의 폴더 또는 파일 경로"
+	},
+	"noteName": {
+		"message": "노트 이름"
+	},
+	"noteNameFormat": {
+		"message": "노트 이름 형식"
+	},
+	"noteNameFormatDescription": {
+		"message": "노트의 파일 이름 형식입니다. {{title}}, {{date}} 및 {{published}}와 같은 변수를 사용하여 페이지의 데이터를 미리 채울 수 있습니다. $link_start$자세히 알아보기$link_end$.",
+		"placeholders": {
+			"link_end": {
+				"content": "</a>"
+			},
+			"link_start": {
+				"content": "<a href=\"https://help.obsidian.md/web-clipper/variables\" target=\"_blank\">"
+			}
+		}
+	},
+	"notesAboutPage": {
+		"message": "이 페이지에 대한 메모..."
+	},
+	"onlyHttpSupported": {
+		"message": "이 페이지는 클립할 수 없습니다. http 및 https URL만 지원됩니다."
+	},
+	"open": {
+		"message": "열기"
+	},
+	"optional": {
+		"message": "(선택사항)"
+	},
+	"orPasteBelow": {
+		"message": "아래에 내용을 붙여넣으세요."
+	},
+	"pageCannotBeClipped": {
+		"message": "이 페이지는 클립할 수 없습니다."
+	},
+	"pageVariables": {
+		"message": "페이지 변수"
+	},
+	"pasteJsonHere": {
+		"message": "여기에 JSON을 붙여넣으세요"
+	},
+	"pleaseReload": {
+		"message": "페이지를 다시 로드해 주세요."
+	},
+	"prependToDaily": {
+		"message": "데일리 노트 맨 위에 추가"
+	},
+	"prependToExisting": {
+		"message": "기존에 있는 노트 맨 위에 추가"
+	},
+	"processing": {
+		"message": "처리 중"
+	},
+	"properties": {
+		"message": "속성"
+	},
+	"propertiesSettings": {
+		"message": "속성 설정"
+	},
+	"propertyName": {
+		"message": "속성 이름"
+	},
+	"propertyValue": {
+		"message": "속성 값"
+	},
+	"provider": {
+		"message": "공급자"
+	},
+	"providerApiKey": {
+		"message": "API 키"
+	},
+	"providerApiKeyDescription": {
+		"message": "이 공급자를 위한 API 키입니다."
+	},
+	"providerBaseUrl": {
+		"message": "기본 URL"
+	},
+	"providerBaseUrlDescription": {
+		"message": "이 제공자를 위한 API 엔드포인트 URL입니다."
+	},
+	"providerModelId": {
+		"message": "모델 ID"
+	},
+	"providerModelIdDescription": {
+		"message": "제공자의 모델 식별자입니다. 일반적으로 공백이 없는 짧은 이름입니다."
+	},
+	"providerModelIdPlaceholder": {
+		"message": "모델 ID"
+	},
+	"providerName": {
+		"message": "제공자 이름"
+	},
+	"providerNameDescription": {
+		"message": "이 공급자의 표시 이름."
+	},
+	"providerPreset": {
+		"message": "프리셋"
+	},
+	"providerPresetDescription": {
+		"message": "공급자를 선택하거나 사용자 정의 공급자를 생성하십시오."
+	},
+	"providerRequiredFields": {
+		"message": "공급자 이름과 기본 URL이 필요합니다."
+	},
+	"providers": {
+		"message": "제공자"
+	},
+	"refresh": {
+		"message": "새로 고침"
+	},
+	"remove": {
+		"message": "제거"
+	},
+	"removeProperty": {
+		"message": "속성 제거"
+	},
+	"removeUnusedProperties": {
+		"message": "사용하지 않는 속성 제거"
+	},
+	"removeUnusedPropertiesDescription": {
+		"message": "어떤 템플릿에서도 사용되지 않는 모든 속성을 제거합니다."
+	},
+	"removeVault": {
+		"message": "볼트 제거"
+	},
+	"replaceContent": {
+		"message": "페이지 내용 바꾸기"
+	},
+	"reset": {
+		"message": "초기화"
+	},
+	"resetDefaultTemplate": {
+		"message": "기본 템플릿으로 초기화"
+	},
+	"resetDefaultTemplateDescription": {
+		"message": "기본 템플릿으로 초기화하여 템플릿에 대한 모든 사용자 정의를 제거합니다."
+	},
+	"save": {
+		"message": "저장"
+	},
+	"saveFile": {
+		"message": "파일 저장..."
+	},
+	"searchVariables": {
+		"message": "변수 검색..."
+	},
+	"selectProvider": {
+		"message": "공급자를 선택하십시오"
+	},
+	"selectTemplateToExport": {
+		"message": "내보낼 템플릿을 선택해 주세요."
+	},
+	"settings": {
+		"message": "설정"
+	},
+	"settingsHeading": {
+		"message": "설정"
+	},
+	"settingsImportSuccess": {
+		"message": "모든 설정이 성공적으로 가져와졌습니다. 변경 사항을 확인하려면 페이지를 새로 고치십시오."
+	},
+	"share": {
+		"message": "공유..."
+	},
+	"shortcutInstructionsBrave": {
+		"message": "키보드 단축키를 변경하려면 $1로 이동하세요"
+	},
+	"shortcutInstructionsChrome": {
+		"message": "키보드 단축키를 변경하려면 $1로 이동하세요"
+	},
+	"shortcutInstructionsDefault": {
+		"message": "키보드 단축키를 변경하려면 브라우저 확장 프로그램 설정으로 이동하세요."
+	},
+	"shortcutInstructionsEdge": {
+		"message": "키보드 단축키를 변경하려면 $1로 이동하세요"
+	},
+	"shortcutInstructionsFirefox": {
+		"message": "키보드 단축키를 변경하려면 $1로 이동하여 설정 아이콘을 클릭한 다음 \"부가 기능 단축키 관리\"를 선택하세요."
+	},
+	"shortcutInstructionsIntro": {
+		"message": "키보드 단축키를 사용하면 클리퍼 기능에 빠르게 액세스할 수 있습니다."
+	},
+	"shortcutInstructionsSafari": {
+		"message": "키보드 단축키는 Safari에서 사용자 정의할 수 없습니다."
+	},
+	"shortcutNotSet": {
+		"message": "설정되지 않음"
+	},
+	"showActionsButton": {
+		"message": "작업 버튼 표시"
+	},
+	"showActionsDescription": {
+		"message": "클리퍼 메뉴에서 페이지 변수를 확인할 수 있습니다. 템플릿에서 사용할 수 있는 변수를 확인하는 데 유용합니다."
+	},
+	"showPageVariables": {
+		"message": "페이지 변수 표시"
+	},
+	"silentOpen": {
+		"message": "클립한 노트 열지 않고 저장"
+	},
+	"silentOpenDescription": {
+		"message": "클립된 노트는 저장되지만 새 탭으로 열리지 않습니다. Obsidian은 포그라운드에서 실행됩니다."
+	},
+	"specificNoteName": {
+		"message": "특정 노트 이름"
+	},
+	"systemDefault": {
+		"message": "시스템 기본값"
+	},
+	"templateCopied": {
+		"message": "클립보드에 템플릿 JSON을 복사했습니다."
+	},
+	"templateCopyError": {
+		"message": "템플릿 JSON을 클립보드에 복사하는 데 실패했습니다."
+	},
+	"templateName": {
+		"message": "템플릿 이름"
+	},
+	"templateProperties": {
+		"message": "템플릿 속성"
+	},
+	"templatePropertiesDescription": {
+		"message": "클립된 노트의 맨 위에 추가할 속성입니다. 변수를 사용하여 페이지에서 데이터를 미리 채울 수 있습니다."
+	},
+	"templateTriggers": {
+		"message": "템플릿 트리거"
+	},
+	"templateTriggersDescription": {
+		"message": "이 템플릿을 자동으로 선택하도록 URL 패턴과 schema.org 데이터를 포함하는 경우에 대한 규칙을 정의하세요. 한 줄에 하나의 규칙을 작성하세요."
+	},
+	"templatesHeading": {
+		"message": "템플릿"
+	},
+	"thinking": {
+		"message": "생각 중"
+	},
+	"unknownProvider": {
+		"message": "알 수 없는 제공자"
+	},
+	"updateAvailable": {
+		"message": "업데이트가 있습니다."
+	},
+	"usingLatestVersion": {
+		"message": "최신 버전을 사용 중입니다."
+	},
+	"vault": {
+		"message": "보관소"
+	},
+	"vaultDescription": {
+		"message": "이 템플릿의 기본 보관소를 선택합니다. 보관소를 추가하거나 제거하려면 $link_start$일반 설정$link_end$으로 이동하세요.",
+		"placeholders": {
+			"link_end": {
+				"content": "</a>"
+			},
+			"link_start": {
+				"content": "<a href=\"?section=general\">"
+			}
+		}
+	},
+	"vaults": {
+		"message": "보관소"
+	},
+	"vaultsDescription": {
+		"message": "기본적으로 클립된 노트는 현재 열려 있는 보관소에 저장됩니다. 다른 보관소에 저장하는 옵션을 원하는 경우 여기에 추가할 수 있습니다. 보관소 이름은 Obsidian 볼트 이름과 정확히 일치해야 합니다. 보관소를 추가하려면 $strong_start$엔터$strong_end$를 누르세요.",
+		"placeholders": {
+			"strong_end": {
+				"content": "</strong>"
+			},
+			"strong_start": {
+				"content": "<strong>"
+			}
+		}
+	},
+	"version": {
+		"message": "버전"
+	}
+}

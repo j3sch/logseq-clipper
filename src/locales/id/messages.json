@@ -1,0 +1,722 @@
+{
+	"addModel": {
+		"message": "+ Tambah model"
+	},
+	"addModelTitle": {
+		"message": "Tambah model"
+	},
+	"addProperty": {
+		"message": "+ Tambah properti"
+	},
+	"addProvider": {
+		"message": "+ Tambah penyedia"
+	},
+	"addProviderTitle": {
+		"message": "Tambah penyedia"
+	},
+	"addToObsidian": {
+		"message": "Tambah ke Obsidian"
+	},
+	"addVaultPlaceholder": {
+		"message": "Tekan enter untuk menambahkan vault"
+	},
+	"advanced": {
+		"message": "Pengaturan Lanjutan"
+	},
+	"allProperties": {
+		"message": "Semua properti"
+	},
+	"alwaysShowHighlights": {
+		"message": "Selalu tampilkan sorotan"
+	},
+	"alwaysShowHighlightsDescription": {
+		"message": "Tampilkan sorotan yang tersimpan saat memuat laman web. Matikan untuk hanya menampilkan sorotan saat mode sorotan diaktifkan."
+	},
+	"apiKeyMissing": {
+		"message": "Tidak ada kunci API"
+	},
+	"apiKeysWarning": {
+		"message": "Dengan menggunakan penyedia eksternal, Anda menyetujui persyaratan dan kebijakan privasi mereka. Permintaan interpreter dikirim langsung ke penyedia yang Anda pilih. Obsidian tidak mengumpulkan atau menyimpan data apa pun tentang permintaan Anda."
+	},
+	"appendToDaily": {
+		"message": "Tambah ke catatan harian, di bagian akhir"
+	},
+	"appendToExisting": {
+		"message": "Tambah ke catatan yang telah ada, di bagian akhir"
+	},
+	"autoRunInterpreter": {
+		"message": "Jalankan secara otomatis"
+	},
+	"autoRunInterpreterDescription": {
+		"message": "Jalankan variabel prompt segera jika template berisi variabel. Ini akan menggunakan kredit API dari penyedia model Anda. Matikan jika Anda hanya ingin menjalankan interpreter secara manual."
+	},
+	"behavior": {
+		"message": "Perilaku"
+	},
+	"behaviorWarning": {
+		"message": "Perlu Obsidian 1.7.2 atau yang lebih baru untuk dapat menambahkan ke catatan yang telah ada atau catatan harian."
+	},
+	"cancel": {
+		"message": "Batal"
+	},
+	"cannotDeleteProvider": {
+		"message": "Tidak dapat menghapus penyedia \"$1\" karena sedang digunakan oleh $2 model."
+	},
+	"changelog": {
+		"message": "Catatan perubahan"
+	},
+	"chooseFile": {
+		"message": "Pilih file"
+	},
+	"choosePropertiesFile": {
+		"message": "Pilih file properti"
+	},
+	"chooseSettingsFile": {
+		"message": "Pilih file pengaturan"
+	},
+	"chooseTemplateFile": {
+		"message": "Pilih file template"
+	},
+	"clipBehavior": {
+		"message": "Perilaku klip"
+	},
+	"clipBehaviorDescription": {
+		"message": "Pilih bagaimana penyimpanan konten yang telah disorot ke dalam Obsidian. Mendefinisikan variabel $strong_start${{content}}$strong_end$.",
+		"placeholders": {
+			"strong_end": {
+				"content": "</strong>"
+			},
+			"strong_start": {
+				"content": "<strong>"
+			}
+		}
+	},
+	"close": {
+		"message": "Tutup"
+	},
+	"commandOpenClipper": {
+		"message": "Buka Obsidian Clipper"
+	},
+	"commandQuickClip": {
+		"message": "Klip cepat"
+	},
+	"commandToggleHighlighter": {
+		"message": "Aktifkan/nonaktifkan mode sorotan"
+	},
+	"confirmDeleteTemplate": {
+		"message": "Apakah Anda yakin ingin menghapus template \"$1\"?"
+	},
+	"confirmReplaceSettings": {
+		"message": "Ini akan menggantikan semua pengaturan Anda saat ini, termasuk template dan properti. Anda yakin ingin melanjutkan?"
+	},
+	"copied": {
+		"message": "Tersalin!"
+	},
+	"copyAsJson": {
+		"message": "Salin sebagai JSON"
+	},
+	"copyToClipboard": {
+		"message": "Salin ke clipboard"
+	},
+	"createNewNote": {
+		"message": "Buat catatan baru"
+	},
+	"custom": {
+		"message": "Kustom"
+	},
+	"dailyNoteFormat": {
+		"message": "Format catatan harian (mis., YYYY-MM-DD)"
+	},
+	"defaultInterpreterContext": {
+		"message": "Konteks interpreter default"
+	},
+	"defaultInterpreterContextDescription": {
+		"message": "Model akan menggunakan konteks ini untuk menginterpretasikan variabel prompt. Variabel dan filter dapat digunakan di sini."
+	},
+	"defaultTemplateName": {
+		"message": "Default"
+	},
+	"delete": {
+		"message": "Hapus"
+	},
+	"deleteModelConfirm": {
+		"message": "Apakah Anda yakin ingin menghapus model ini?"
+	},
+	"deleteProviderConfirm": {
+		"message": "Anda yakin ingin menghapus penyedia ini?"
+	},
+	"disableHighlighter": {
+		"message": "Nonaktifkan sorotan"
+	},
+	"done": {
+		"message": "selesai"
+	},
+	"dragAndDropFile": {
+		"message": "Seret dan lepas file di sini"
+	},
+	"duplicate": {
+		"message": "Duplikat"
+	},
+	"earlyAccessDescription": {
+		"message": "Gunakan fitur yang memerlukan versi $link_start$akses awal$link_end$ terbaru dari Obsidian. Saat ini memerlukan Obsidian 1.7.2 atau yang lebih baru.",
+		"placeholders": {
+			"link_end": {
+				"content": "</a>"
+			},
+			"link_start": {
+				"content": "<a href=\"https://help.obsidian.md/Obsidian/Early+access+versions\" target=\"_blank\">"
+			}
+		}
+	},
+	"earlyAccessFeatures": {
+		"message": "Fitur early access"
+	},
+	"editModel": {
+		"message": "Edit model"
+	},
+	"editProvider": {
+		"message": "Edit penyedia"
+	},
+	"editTemplate": {
+		"message": "Ubah template"
+	},
+	"enableHighlighter": {
+		"message": "Aktifkan sorotan"
+	},
+	"enableHighlighterDescription": {
+		"message": "Sorot konten di laman web yang dapat disimpan ke Obsidian."
+	},
+	"enableInterpreter": {
+		"message": "Aktifkan interpreter"
+	},
+	"enableInterpreterDescription": {
+		"message": "Gunakan bahasa alami untuk mengekstrak data dari halaman. Misalnya, Anda dapat menggunakan sintaks template $strong_start${{\"ringkasan halaman\"}}$strong_end$. Memerlukan kunci API atau model kustom yang dikonfigurasi di bawah. $link_start$Pelajari lebih lanjut$link_end$",
+		"placeholders": {
+			"link_end": {
+				"content": "</a>"
+			},
+			"link_start": {
+				"content": "<a href=\"https://help.obsidian.md/web-clipper/interpreter\" target=\"_blank\">"
+			},
+			"strong_end": {
+				"content": "</strong>"
+			},
+			"strong_start": {
+				"content": "<strong>"
+			}
+		}
+	},
+	"error": {
+		"message": "Error"
+	},
+	"export": {
+		"message": "Ekspor"
+	},
+	"exportAllSettings": {
+		"message": "Ekspor semua pengaturan"
+	},
+	"exportAllSettingsDescription": {
+		"message": "Ekspor semua pengaturan termasuk template dan properti."
+	},
+	"exportHighlights": {
+		"message": "Ekspor sorotan"
+	},
+	"exportHighlightsDescription": {
+		"message": "Ekspor sorotan yang dimiliki ke dalam file."
+	},
+	"exportProperties": {
+		"message": "Ekspor properti"
+	},
+	"exportPropertiesDescription": {
+		"message": "Simpan properti Web Clipper ke file $strong_start$types.json$strong_end$ yang dapat diimpor ke dalam vault Obsidian, atau ke Web Clipper di perangkat lain.",
+		"placeholders": {
+			"strong_end": {
+				"content": "</strong>"
+			},
+			"strong_start": {
+				"content": "<strong>"
+			}
+		}
+	},
+	"extensionDescription": {
+		"message": "Simpan konten dari web dalam format yang bersifat privat dan tahan lama dan dapat diakses secara offline. Ekstensi browser resmi untuk Obsidian."
+	},
+	"extensionName": {
+		"message": "Obsidian Web Clipper"
+	},
+	"failedToCopyText": {
+		"message": "Gagal menyalin teks"
+	},
+	"failedToDeleteTemplate": {
+		"message": "Gagal menghapus template. Silakan coba lagi."
+	},
+	"failedToDuplicateTemplate": {
+		"message": "Gagal menduplikasi template. Silakan coba lagi."
+	},
+	"failedToExportHighlights": {
+		"message": "Gagal mengekspor sorotan. Silakan periksa konsol untuk detail lebih lanjut."
+	},
+	"failedToExportSettings": {
+		"message": "Gagal mengekspor pengaturan. Silakan periksa konsol untuk detail lebih lanjut."
+	},
+	"failedToExtractContent": {
+		"message": "Tidak dapat mengekstrak konten laman web."
+	},
+	"failedToImportTemplate": {
+		"message": "Kesalahan saat mengimpor template. Silakan periksa file dan coba lagi."
+	},
+	"failedToInitialize": {
+		"message": "Silakan coba muat ulang ekstensi."
+	},
+	"failedToInitializeContent": {
+		"message": "Tidak dapat menginisialisasi konten laman web."
+	},
+	"failedToProcessInterpreter": {
+		"message": "Tidak dapat memuat proses interpreter. Silakan coba lagi."
+	},
+	"failedToResetTemplate": {
+		"message": "Gagal mengatur ulang template default. Silakan coba lagi."
+	},
+	"failedToSave": {
+		"message": "Gagal menyimpan file"
+	},
+	"failedToSaveFile": {
+		"message": "Gagal menyimpan file"
+	},
+	"failedToSaveProvider": {
+		"message": "Gagal menyimpan penyedia. Silakan coba lagi."
+	},
+	"folder": {
+		"message": "Folder"
+	},
+	"general": {
+		"message": "Umum"
+	},
+	"generalSettings": {
+		"message": "Pengaturan umum"
+	},
+	"getApiKeyHere": {
+		"message": "Dapatkan kunci API $1 Anda di sini."
+	},
+	"help": {
+		"message": "Bantuan"
+	},
+	"helpDescription": {
+		"message": "Pelajari cara menggunakan Web Clipper dan dapatkan bantuan pemecahan masalah."
+	},
+	"highlightInline": {
+		"message": "Sorot konten laman web"
+	},
+	"highlightPage": {
+		"message": "Sorot laman web"
+	},
+	"highlighter": {
+		"message": "Penyorot"
+	},
+	"highlighterSettings": {
+		"message": "Penyorot"
+	},
+	"hotkeys": {
+		"message": "Tombol pintas"
+	},
+	"import": {
+		"message": "Impor"
+	},
+	"importAllSettings": {
+		"message": "Impor semua pengaturan"
+	},
+	"importAllSettingsDescription": {
+		"message": "Impor semua pengaturan termasuk template dan properti. Ini akan menggantikan konfigurasi yang telah ada saat ini."
+	},
+	"importFailed": {
+		"message": "Impor gagal. Silakan periksa konsol untuk detail lebih lanjut."
+	},
+	"importModalTitle": {
+		"message": "Impor"
+	},
+	"importProperties": {
+		"message": "Impor properti"
+	},
+	"importPropertiesDescription": {
+		"message": "Untuk mengimpor properti dari Obsidian, temukan file $strong_1_start$types.json$strong_1_end$ di folder $strong_2_start$.obsidian$strong_2_end$ dalam vault Anda. Sebagai catatan, folder ini tersembunyi secara default di sebagian besar sistem operasi.",
+		"placeholders": {
+			"strong_1_end": {
+				"content": "</strong>"
+			},
+			"strong_1_start": {
+				"content": "<strong>"
+			},
+			"strong_2_end": {
+				"content": "</strong>"
+			},
+			"strong_2_start": {
+				"content": "<strong>"
+			}
+		}
+	},
+	"importSettings": {
+		"message": "Impor pengaturan"
+	},
+	"importTemplate": {
+		"message": "Impor template"
+	},
+	"interpret": {
+		"message": "interpretasi"
+	},
+	"interpreter": {
+		"message": "Interpreter"
+	},
+	"interpreterContext": {
+		"message": "Konteks interpreter"
+	},
+	"interpreterContextDescription": {
+		"message": "Konteks yang digunakan untuk menginterpretasikan variabel prompt. Menimpa konteks default yang didefinisikan di $link_start$Pengaturan Interpreter$link_end$. Variabel dapat digunakan di sini.",
+		"placeholders": {
+			"link_end": {
+				"content": "</a>"
+			},
+			"link_start": {
+				"content": "<a href=\"?section=interpreter\">"
+			}
+		}
+	},
+	"language": {
+		"message": "Bahasa"
+	},
+	"languageDescription": {
+		"message": "Pilih bahasa tampilan untuk antarmuka ekstensi."
+	},
+	"lastUsed": {
+		"message": "Terakhir digunakan"
+	},
+	"legacyMode": {
+		"message": "Mode Legacy"
+	},
+	"legacyModeDescription": {
+		"message": "Menggunakan metode klip URI yang kompatibel dengan Obsidian 1.6.7 atau yang lebih lama. Perhatikan bahwa panjang konten yang dapat Anda klip dibatasi oleh browser dan sistem operasi Anda. Beberapa laman web bisa saja gagal tanpa ada pesan error yang tampil."
+	},
+	"modelName": {
+		"message": "Nama model"
+	},
+	"modelNameDescription": {
+		"message": "Nama model yang ingin Anda tampilkan di antarmuka."
+	},
+	"modelProvider": {
+		"message": "Penyedia"
+	},
+	"modelProviderDescription": {
+		"message": "Penyedia model, misalnya Ollama, OpenRouter, Google, dll."
+	},
+	"modelProviderPlaceholder": {
+		"message": "Penyedia"
+	},
+	"modelRequiredFields": {
+		"message": "Nama model, Penyedia, dan ID Model diperlukan."
+	},
+	"models": {
+		"message": "Model"
+	},
+	"more": {
+		"message": "Lainnya"
+	},
+	"newTemplate": {
+		"message": "Template baru"
+	},
+	"noHighlights": {
+		"message": "Tidak melakukan apa-apa"
+	},
+	"noTemplates": {
+		"message": "Tidak ada template yang tersedia. Silakan tambahkan template di pengaturan."
+	},
+	"noUnusedProperties": {
+		"message": "Tidak ada properti yang tidak digunakan ditemukan."
+	},
+	"noteContent": {
+		"message": "Konten catatan"
+	},
+	"noteContentDescription": {
+		"message": "Sesuaikan konten catatan. Gunakan variabel untuk mengisi data yang tersedia dari laman web."
+	},
+	"noteLocation": {
+		"message": "Lokasi catatan"
+	},
+	"noteLocationDescription": {
+		"message": "Folder atau letak catatan."
+	},
+	"noteName": {
+		"message": "Nama catatan"
+	},
+	"noteNameFormat": {
+		"message": "Nama catatan"
+	},
+	"noteNameFormatDescription": {
+		"message": "Format untuk nama file catatan. Anda dapat menggunakan variabel seperti {{title}}, {{date}}, dan {{published}} untuk mengisi data yang tersedia dari laman web. $link_start$Pelajari lebih lanjut$link_end$.",
+		"placeholders": {
+			"link_end": {
+				"content": "</a>"
+			},
+			"link_start": {
+				"content": "<a href=\"https://help.obsidian.md/web-clipper/variables\" target=\"_blank\">"
+			}
+		}
+	},
+	"notesAboutPage": {
+		"message": "Catatan tentang laman web ini..."
+	},
+	"onlyHttpSupported": {
+		"message": "Laman ini tidak dapat diklip. Hanya laman web dengan URL http dan https yang didukung."
+	},
+	"open": {
+		"message": "Buka"
+	},
+	"optional": {
+		"message": "(opsional)"
+	},
+	"orPasteBelow": {
+		"message": "Atau tempel konten di bawah ini"
+	},
+	"pageCannotBeClipped": {
+		"message": "Laman ini tidak dapat diklip."
+	},
+	"pageVariables": {
+		"message": "Variabel laman web"
+	},
+	"pasteJsonHere": {
+		"message": "Tempel JSON di sini"
+	},
+	"pleaseReload": {
+		"message": "Silakan coba muat ulang laman web."
+	},
+	"prependToDaily": {
+		"message": "Tambah ke catatan harian, di bagian awal"
+	},
+	"prependToExisting": {
+		"message": "Tambah ke catatan yang telah ada, di bagian awal"
+	},
+	"processing": {
+		"message": "memproses"
+	},
+	"properties": {
+		"message": "Properti"
+	},
+	"propertiesSettings": {
+		"message": "Properti"
+	},
+	"propertyName": {
+		"message": "Nama properti"
+	},
+	"propertyValue": {
+		"message": "Value properti"
+	},
+	"provider": {
+		"message": "Penyedia"
+	},
+	"providerApiKey": {
+		"message": "Kunci API"
+	},
+	"providerApiKeyDescription": {
+		"message": "Kunci API Anda untuk penyedia ini."
+	},
+	"providerBaseUrl": {
+		"message": "URL Dasar"
+	},
+	"providerBaseUrlDescription": {
+		"message": "URL endpoint API untuk penyedia ini."
+	},
+	"providerModelId": {
+		"message": "ID model"
+	},
+	"providerModelIdDescription": {
+		"message": "Pengidentifikasi model dari penyedia Anda. Biasanya nama pendek tanpa spasi."
+	},
+	"providerModelIdPlaceholder": {
+		"message": "ID model"
+	},
+	"providerName": {
+		"message": "Nama penyedia"
+	},
+	"providerNameDescription": {
+		"message": "Nama tampilan untuk penyedia ini."
+	},
+	"providerPreset": {
+		"message": "Preset"
+	},
+	"providerPresetDescription": {
+		"message": "Pilih penyedia atau buat yang kustom."
+	},
+	"providerRequiredFields": {
+		"message": "Nama penyedia dan URL Dasar diperlukan."
+	},
+	"providers": {
+		"message": "Penyedia"
+	},
+	"refresh": {
+		"message": "Muat ulang"
+	},
+	"remove": {
+		"message": "Hapus"
+	},
+	"removeProperty": {
+		"message": "Hapus properti"
+	},
+	"removeUnusedProperties": {
+		"message": "Hapus properti yang tidak digunakan"
+	},
+	"removeUnusedPropertiesDescription": {
+		"message": "Hapus semua properti yang tidak digunakan dalam template apapun."
+	},
+	"removeVault": {
+		"message": "Hapus vault"
+	},
+	"replaceContent": {
+		"message": "Ganti konten laman web"
+	},
+	"reset": {
+		"message": "Atur ulang"
+	},
+	"resetDefaultTemplate": {
+		"message": "Atur ulang template default"
+	},
+	"resetDefaultTemplateDescription": {
+		"message": "Hapus semua perubahan yang telah dibuat pada template default."
+	},
+	"save": {
+		"message": "Simpan"
+	},
+	"saveFile": {
+		"message": "Simpan file..."
+	},
+	"searchVariables": {
+		"message": "Cari variabel..."
+	},
+	"selectProvider": {
+		"message": "Pilih penyedia"
+	},
+	"selectTemplateToExport": {
+		"message": "Silakan pilih template untuk diekspor."
+	},
+	"settings": {
+		"message": "Pengaturan"
+	},
+	"settingsHeading": {
+		"message": "Pengaturan"
+	},
+	"settingsImportSuccess": {
+		"message": "Semua pengaturan berhasil diimpor. Silakan segarkan halaman untuk melihat perubahannya."
+	},
+	"share": {
+		"message": "Bagikan..."
+	},
+	"shortcutInstructionsBrave": {
+		"message": "Untuk mengubah konfigurasi tombol, pergi ke $1"
+	},
+	"shortcutInstructionsChrome": {
+		"message": "Untuk mengubah konfigurasi tombol, pergi ke $1"
+	},
+	"shortcutInstructionsDefault": {
+		"message": "Untuk mengubah konfigurasi tombol, periksa pengaturan ekstensi browser Anda."
+	},
+	"shortcutInstructionsEdge": {
+		"message": "Untuk mengubah konfigurasi tombol, pergi ke $1"
+	},
+	"shortcutInstructionsFirefox": {
+		"message": "Untuk mengubah konfigurasi tombol, pergi ke $1, klik ikon roda gigi, dan pilih \"Kelola Pintasan Ekstensi\"."
+	},
+	"shortcutInstructionsIntro": {
+		"message": "Pintasan keyboard memberi Anda akses cepat ke fitur clipper."
+	},
+	"shortcutInstructionsSafari": {
+		"message": "Pintasan keyboard tidak dapat disesuaikan di Safari."
+	},
+	"shortcutNotSet": {
+		"message": "Belum diatur"
+	},
+	"showActionsButton": {
+		"message": "Tampilkan tombol aksi"
+	},
+	"showActionsDescription": {
+		"message": "Memungkinkan Anda memeriksa variabel laman web dari menu clipper. Berguna untuk melihat variabel yang dapat digunakan di dalam template."
+	},
+	"showPageVariables": {
+		"message": "Tampilkan variabel laman web"
+	},
+	"silentOpen": {
+		"message": "Simpan catatan yang diklip tanpa membuka catatan"
+	},
+	"silentOpenDescription": {
+		"message": "Catatan yang diklip akan disimpan, tetapi tidak akan dibuka di dalam tab baru. Obsidian tetap akan diangkat ke latar depan."
+	},
+	"specificNoteName": {
+		"message": "Nama catatan spesifik"
+	},
+	"systemDefault": {
+		"message": "Sistem"
+	},
+	"templateCopied": {
+		"message": "Template JSON telah disalin ke papan klip"
+	},
+	"templateCopyError": {
+		"message": "Gagal menyalin template JSON ke papan klip"
+	},
+	"templateName": {
+		"message": "Nama template"
+	},
+	"templateProperties": {
+		"message": "Properti"
+	},
+	"templatePropertiesDescription": {
+		"message": "Properti untuk ditambahkan ke bagian atas catatan yang diklip. Gunakan variabel untuk mengisi data yang tersedia dari laman web."
+	},
+	"templateTriggers": {
+		"message": "Pemicu template"
+	},
+	"templateTriggersDescription": {
+		"message": "Tentukan aturan untuk memilih template ini secara otomatis jika sesuai dengan pola URL yang ditentukan atau memiliki data schema.org. Tuliskan satu aturan per baris."
+	},
+	"templatesHeading": {
+		"message": "Template"
+	},
+	"thinking": {
+		"message": "berpikir"
+	},
+	"unknownProvider": {
+		"message": "Penyedia tidak dikenal"
+	},
+	"updateAvailable": {
+		"message": "Pembaruan tersedia."
+	},
+	"usingLatestVersion": {
+		"message": "Anda menggunakan versi terbaru."
+	},
+	"vault": {
+		"message": "Vault"
+	},
+	"vaultDescription": {
+		"message": "Pilih vault default untuk template ini. Pergi ke $link_start$pengaturan umum$link_end$ untuk menambah atau menghapus vault.",
+		"placeholders": {
+			"link_end": {
+				"content": "</a>"
+			},
+			"link_start": {
+				"content": "<a href=\"?section=general\">"
+			}
+		}
+	},
+	"vaults": {
+		"message": "Vault"
+	},
+	"vaultsDescription": {
+		"message": "Secara default, catatan yang diklip akan disimpan ke vault yang sedang dibuka. Anda dapat menambahkan vault di sini jika Anda ingin menambah opsi untuk menyimpan ke vault lainnya. Nama vault harus sama persis dengan nama vault Obsidian. Tekan $strong_start$enter$strong_end$ untuk menambah vault.",
+		"placeholders": {
+			"strong_end": {
+				"content": "</strong>"
+			},
+			"strong_start": {
+				"content": "<strong>"
+			}
+		}
+	},
+	"version": {
+		"message": "Versi"
+	}
+}

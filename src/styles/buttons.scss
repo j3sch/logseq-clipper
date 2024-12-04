@@ -19,6 +19,10 @@ button,
 	border: none;
 	text-decoration: none;
 
+	&:disabled {
+		opacity: 0.67;
+		cursor: not-allowed;
+	}
 	.is-mobile & {
 		padding: 0.25rem 1rem;
 	}
@@ -84,7 +88,7 @@ button.clickable-icon {
 
 .add-btn {
 	padding: 2px 0 8px;
-	margin-left: -2px;
+	margin-inline-start: -2px;
 	font-weight: 500;
 	color: var(--text-normal);
 	font-size: var(--font-ui-small);

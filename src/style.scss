@@ -31,6 +31,7 @@ body {
 @import 'styles/modals';
 @import 'styles/popup';
 @import 'styles/properties';
+@import 'styles/rtl';
 @import 'styles/safari';
 @import 'styles/settings';
 @import 'styles/side-panel';
@@ -41,6 +42,10 @@ body {
 a.text-muted,
 .text-muted {
 	color: var(--text-muted);
+}
+
+.text-warning {
+	color: var(--text-warning);
 }
 
 .small {

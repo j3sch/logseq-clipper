@@ -48,12 +48,13 @@
 					<textarea id="prompt-context" rows="3"></textarea>
 					<div class="interpreter-controls">
 						<select id="model-select" style="display: none;"></select>
-						<button id="interpret-btn">interpret</button>
+						<button id="interpret-btn" data-i18n="interpret">interpret</button>
 						<span id="interpreter-timer" style="display: none;"></span>
 					</div>
+					<div id="token-counter" class="token-counter"></div>
 					<div id="interpreter-error" style="display: none;"></div>
 				</div>
-				<div class="action-buttons">
+				<div class="action-buttons" id="action-buttons">
 					<button id="clip-btn" class="mod-cta" data-i18n="addToObsidian">Add to Logseq</button>
 					<div class="menu-btn">
 						<button id="more-btn"><i data-lucide="chevron-down"></i></button>
@@ -71,10 +72,21 @@
 									<i data-lucide="file-down"></i>
 								</div>
 								<div class="menu-item-title" data-i18n="saveFile">
-									Save file&hellip;
+									Save file...
+								</div>
+							</div>
+							<div class="menu-item share-content">
+								<div class="menu-item-icon">
+									<i data-lucide="arrow-up-right"></i>
+								</div>
+								<div class="menu-item-title" data-i18n="share">
+									Share...
 								</div>
 							</div>
 						</div>
+					</div>
+					<div class="share-btn">
+						<a class="share-content clickable-icon" data-i18n-title="share"><i data-lucide="share"></i></a>
 					</div>
 				</div>
 			</div>

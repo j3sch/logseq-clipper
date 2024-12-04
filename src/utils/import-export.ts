@@ -1,20 +1,27 @@
-import { Template, Property } from '../types/types';
+import { Template } from '../types/types';
 import { templates, saveTemplateSettings, editingTemplateIndex, loadTemplates } from '../managers/template-manager';
 import { showTemplateEditor, updateTemplateList } from '../managers/template-ui';
 import { sanitizeFileName } from './string-utils';
-import { detectBrowser } from './browser-detection';
 import { generalSettings, loadSettings } from '../utils/storage-utils';
 import { addPropertyType, updatePropertyTypesList } from '../managers/property-types-manager';
 import { hideModal } from '../utils/modal-utils';
-import { showImportModal as showGenericImportModal } from './import-modal';
+import { showImportModal } from './import-modal';
 import browser from '../utils/browser-polyfill';
 import { saveFile } from './file-utils';
+import { compressToUTF16, decompressFromUTF16 } from 'lz-string';
+import { getMessage } from './i18n';
 
 const SCHEMA_VERSION = '0.1.0';
 
+// Add these type definitions at the top
+interface StorageData {
+	[key: string]: any;
+	template_list?: string[];
+}
+
 export async function exportTemplate(): Promise<void> {
 	if (editingTemplateIndex === -1) {
-		alert('Please select a template to export.');
+		alert(getMessage('selectTemplateToExport'));
 		return;
 	}
 
@@ -120,7 +127,7 @@ export function importTemplate(input?: HTMLInputElement): void {
 				hideModal(document.getElementById('import-modal'));
 			} catch (error) {
 				console.error('Error parsing imported template:', error);
-				alert('Error importing template. Please check the file and try again.');
+				alert(getMessage('failedToImportTemplate'));
 			}
 		};
 		reader.readAsText(file);
@@ -244,21 +251,19 @@ export function importTemplateFile(file: File): void {
 			console.log('Template import completed');
 		} catch (error) {
 			console.error('Error parsing imported template:', error);
-			alert('Error importing template. Please check the file and try again.');
+			alert(getMessage('failedToImportTemplate'));
 		}
 	};
 	reader.readAsText(file);
 }
 
 export function showTemplateImportModal(): void {
-	showGenericImportModal(
+	showImportModal(
 		'import-modal',
 		importTemplateFromJson,
 		'.json',
-		'Choose template file or drag and drop',
-		'Paste template JSON here',
 		true,
-		'Import template'
+		'importTemplate'
 	);
 }
 
@@ -307,10 +312,10 @@ export function copyTemplateToClipboard(template: Template): void {
 	const jsonContent = JSON.stringify(orderedTemplate, null, 2);
 
 	navigator.clipboard.writeText(jsonContent).then(() => {
-		alert('Copied template JSON to clipboard');
+		alert(getMessage('templateCopied'));
 	}).catch(err => {
 		console.error('Failed to copy template JSON: ', err);
-		alert('Failed to copy template JSON to clipboard');
+		alert(getMessage('templateCopyError'));
 	});
 }
 
@@ -318,11 +323,30 @@ export async function exportAllSettings(): Promise<void> {
 	console.log('Starting exportAllSettings function');
 	try {
 		console.log('Fetching all data from browser storage');
-		const allData = await browser.storage.sync.get(null);
+		const allData = await browser.storage.sync.get(null) as StorageData;
 		console.log('All data fetched:', allData);
 
-		console.log('Stringifying data');
-		const content = JSON.stringify(allData, null, 2);
+		// Create a copy of the data to modify
+		const exportData: StorageData = { ...allData };
+
+		// Decompress all templates
+		const templateIds = exportData.template_list || [];
+		for (const id of templateIds) {
+			const key = `template_${id}`;
+			if (exportData[key] && Array.isArray(exportData[key])) {
+				try {
+					// Join chunks and decompress
+					const compressedData = (exportData[key] as string[]).join('');
+					const decompressedData = decompressFromUTF16(compressedData);
+					exportData[key] = JSON.parse(decompressedData);
+				} catch (error) {
+					console.error(`Failed to decompress template ${id}:`, error);
+				}
+			}
+		}
+
+		console.log('Data prepared for export:', exportData);
+		const content = JSON.stringify(exportData, null, 2);
 		console.log('Data stringified, length:', content.length);
 
 		const fileName = 'logseq-web-clipper-settings.json';
@@ -337,33 +361,64 @@ export async function exportAllSettings(): Promise<void> {
 		console.log('Export completed successfully');
 	} catch (error) {
 		console.error('Error in exportAllSettings:', error);
-		alert('Failed to export settings. Please check the console for more details.');
+		alert(getMessage('failedToExportSettings'));
 	}
 }
 
 export function importAllSettings(): void {
-	showGenericImportModal(
+	showImportModal(
 		'import-modal',
 		importAllSettingsFromJson,
 		'.json',
-		'Choose settings file or drag and drop',
-		'Paste settings JSON here',
 		false,
-		'Import all settings'
+		'importAllSettings'
 	);
 }
 
 async function importAllSettingsFromJson(jsonContent: string): Promise<void> {
 	try {
-		const settings = JSON.parse(jsonContent);
-		if (confirm('This will replace all your current settings, including templates and properties. Are you sure you want to continue?')) {
+		const settings = JSON.parse(jsonContent) as StorageData;
+		
+		if (confirm(getMessage('confirmReplaceSettings'))) {
+			// Create a copy of the settings to modify
+			const importData: StorageData = { ...settings };
+			
+			// Compress all templates
+			const templateIds = importData.template_list || [];
+			for (const id of templateIds) {
+				const key = `template_${id}`;
+				if (importData[key]) {
+					try {
+						// Check if the data is already compressed (will be an array of strings)
+						const isAlreadyCompressed = Array.isArray(importData[key]) && 
+							importData[key].every((chunk: any) => typeof chunk === 'string');
+
+						if (!isAlreadyCompressed) {
+							// Compress the template data
+							const templateStr = JSON.stringify(importData[key]);
+							const compressedData = compressToUTF16(templateStr);
+							
+							// Split into chunks
+							const chunks: string[] = [];
+							const CHUNK_SIZE = 8000;
+							for (let i = 0; i < compressedData.length; i += CHUNK_SIZE) {
+								chunks.push(compressedData.slice(i, i + CHUNK_SIZE));
+							}
+							importData[key] = chunks;
+						}
+					} catch (error) {
+						console.error(`Failed to process template ${id}:`, error);
+					}
+				}
+			}
+
 			await browser.storage.sync.clear();
-			await browser.storage.sync.set(settings);
+			await browser.storage.sync.set(importData);
 			await loadSettings();
 			await loadTemplates();
 			updateTemplateList();
 			updatePropertyTypesList();
-			alert('All settings imported successfully. Please refresh the page to see the changes.');
+			alert(getMessage('settingsImportSuccess'));
 		}
 	} catch (error) {
 		console.error('Error importing all settings:', error);

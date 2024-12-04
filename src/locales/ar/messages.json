@@ -1,0 +1,722 @@
+{
+	"addModel": {
+		"message": "+ إضافة نموذج"
+	},
+	"addModelTitle": {
+		"message": "إضافة نموذج"
+	},
+	"addProperty": {
+		"message": "+ إضافة خاصية"
+	},
+	"addProvider": {
+		"message": "+ أضف مزود"
+	},
+	"addProviderTitle": {
+		"message": "أضف مزود"
+	},
+	"addToObsidian": {
+		"message": "إضافة إلى أوبسيديان"
+	},
+	"addVaultPlaceholder": {
+		"message": "اضغط على Enter لإضافة خزينة"
+	},
+	"advanced": {
+		"message": "متقدم"
+	},
+	"allProperties": {
+		"message": "جميع الخصائص"
+	},
+	"alwaysShowHighlights": {
+		"message": "إظهار التظليلات دائماً"
+	},
+	"alwaysShowHighlightsDescription": {
+		"message": "عرض التظليلات المحفوظة عند تحميل الصفحة. قم بإيقافها لعرض التظليلات فقط عند تفعيل وضع التظليل."
+	},
+	"apiKeyMissing": {
+		"message": "لا يوجد مفتاح API"
+	},
+	"apiKeysWarning": {
+		"message": "باستخدام مزود خارجي، فإنك توافق على شروطهم وسياسة الخصوصية الخاصة بهم. يتم إرسال طلبات المفسر مباشرة إلى المزود الذي تختاره. لا يقوم Obsidian بجمع أو تخزين أي بيانات حول طلباتك."
+	},
+	"appendToDaily": {
+		"message": "إضافة إلى الملاحظة اليومية، في النهاية"
+	},
+	"appendToExisting": {
+		"message": "إضافة إلى ملاحظة موجودة، في النهاية"
+	},
+	"autoRunInterpreter": {
+		"message": "تشغيل تلقائي"
+	},
+	"autoRunInterpreterDescription": {
+		"message": "تشغيل متغيرات الإدخال فورًا إذا كان القالب يحتوي على أي منها. سيستهلك هذا رصيد API مع مزود النموذج الخاص بك. قم بإيقاف التشغيل إذا كنت تريد فقط تشغيل المفسر يدويًا."
+	},
+	"behavior": {
+		"message": "السلوك"
+	},
+	"behaviorWarning": {
+		"message": "الإضافة إلى ملاحظة موجودة أو ملاحظة يومية تتطلب أوبسيديان 1.7.2 أو أحدث."
+	},
+	"cancel": {
+		"message": "إلغاء"
+	},
+	"cannotDeleteProvider": {
+		"message": "لا يمكن حذف المزود \"$1\" لأنه يتم استخدامه بواسطة $2 نموذج (نماذج)."
+	},
+	"changelog": {
+		"message": "سجل التغييرات"
+	},
+	"chooseFile": {
+		"message": "اختر ملف"
+	},
+	"choosePropertiesFile": {
+		"message": "اختر ملف الخصائص"
+	},
+	"chooseSettingsFile": {
+		"message": "اختر ملف الإعدادات"
+	},
+	"chooseTemplateFile": {
+		"message": "اختر ملف القالب"
+	},
+	"clipBehavior": {
+		"message": "سلوك القص"
+	},
+	"clipBehaviorDescription": {
+		"message": "اختر كيفية حفظ المحتوى المظلل في أوبسيديان. يحدد متغير $strong_start${{content}}$strong_end$.",
+		"placeholders": {
+			"strong_end": {
+				"content": "</strong>"
+			},
+			"strong_start": {
+				"content": "<strong>"
+			}
+		}
+	},
+	"close": {
+		"message": "إغلاق"
+	},
+	"commandOpenClipper": {
+		"message": "فتح قاصّ أوبسيديان"
+	},
+	"commandQuickClip": {
+		"message": "قص سريع"
+	},
+	"commandToggleHighlighter": {
+		"message": "تبديل وضع التظليل"
+	},
+	"confirmDeleteTemplate": {
+		"message": "هل أنت متأكد من أنك تريد حذف القالب \"$1\"؟"
+	},
+	"confirmReplaceSettings": {
+		"message": "سيؤدي هذا إلى استبدال كل إعداداتك الحالية، بما في ذلك القوالب والخصائص. هل أنت متأكد أنك تريد المتابعة؟"
+	},
+	"copied": {
+		"message": "تم النسخ!"
+	},
+	"copyAsJson": {
+		"message": "نسخ كـ JSON"
+	},
+	"copyToClipboard": {
+		"message": "نسخ إلى الحافظة"
+	},
+	"createNewNote": {
+		"message": "إنشاء ملاحظة جديدة"
+	},
+	"custom": {
+		"message": "مخصص"
+	},
+	"dailyNoteFormat": {
+		"message": "تنسيق الملاحظة اليومية (مثال: YYYY-MM-DD)"
+	},
+	"defaultInterpreterContext": {
+		"message": "سياق المفسر الافتراضي"
+	},
+	"defaultInterpreterContextDescription": {
+		"message": "سيستخدم النموذج هذا السياق لتفسير متغيرات الإدخال. يمكن استخدام المتغيرات والمرشحات هنا."
+	},
+	"defaultTemplateName": {
+		"message": "افتراضي"
+	},
+	"delete": {
+		"message": "حذف"
+	},
+	"deleteModelConfirm": {
+		"message": "هل أنت متأكد من أنك تريد حذف هذا النموذج؟"
+	},
+	"deleteProviderConfirm": {
+		"message": "هل أنت متأكد أنك تريد حذف هذا المزود؟"
+	},
+	"disableHighlighter": {
+		"message": "تعطيل المظلل"
+	},
+	"done": {
+		"message": "تم"
+	},
+	"dragAndDropFile": {
+		"message": "اسحب وأسقط الملف هنا"
+	},
+	"duplicate": {
+		"message": "نسخ"
+	},
+	"earlyAccessDescription": {
+		"message": "استخدم الميزات التي تتطلب أحدث $link_start$نسخة وصول مبكر$link_end$ من أوبسيديان. تتطلب حالياً أوبسيديان 1.7.2 أو أحدث.",
+		"placeholders": {
+			"link_end": {
+				"content": "</a>"
+			},
+			"link_start": {
+				"content": "<a href=\"https://help.obsidian.md/Obsidian/Early+access+versions\" target=\"_blank\">"
+			}
+		}
+	},
+	"earlyAccessFeatures": {
+		"message": "ميزات الوصول المبكر"
+	},
+	"editModel": {
+		"message": "تعديل النموذج"
+	},
+	"editProvider": {
+		"message": "تعديل المزود"
+	},
+	"editTemplate": {
+		"message": "تعديل القالب"
+	},
+	"enableHighlighter": {
+		"message": "تفعيل المظلل"
+	},
+	"enableHighlighterDescription": {
+		"message": "قم بتظليل المحتوى على صفحات الويب الذي تريد حفظه في أوبسيديان."
+	},
+	"enableInterpreter": {
+		"message": "تمكين المفسر"
+	},
+	"enableInterpreterDescription": {
+		"message": "استخدم اللغة الطبيعية لاستخراج البيانات من الصفحات. على سبيل المثال، يمكنك استخدام صيغة القالب $strong_start${{\"ملخص للصفحة\"}}$strong_end$. يتطلب مفتاح API أو نموذج مخصص تم تكوينه أدناه. $link_start$تعلم المزيد$link_end$",
+		"placeholders": {
+			"link_end": {
+				"content": "</a>"
+			},
+			"link_start": {
+				"content": "<a href=\"https://help.obsidian.md/web-clipper/interpreter\" target=\"_blank\">"
+			},
+			"strong_end": {
+				"content": "</strong>"
+			},
+			"strong_start": {
+				"content": "<strong>"
+			}
+		}
+	},
+	"error": {
+		"message": "خطأ"
+	},
+	"export": {
+		"message": "تصدير"
+	},
+	"exportAllSettings": {
+		"message": "تصدير جميع الإعدادات"
+	},
+	"exportAllSettingsDescription": {
+		"message": "تصدير جميع الإعدادات بما في ذلك القوالب والخصائص."
+	},
+	"exportHighlights": {
+		"message": "تصدير التظليلات"
+	},
+	"exportHighlightsDescription": {
+		"message": "تصدير تظليلاتك إلى ملف."
+	},
+	"exportProperties": {
+		"message": "تصدير الخصائص"
+	},
+	"exportPropertiesDescription": {
+		"message": "احفظ خصائص قاصّ الويب في ملف $strong_start$types.json$strong_end$ يمكن استيراده إلى خزينة أوبسيديان الخاصة بك، أو إلى قاصّ الويب على أجهزة أخرى.",
+		"placeholders": {
+			"strong_end": {
+				"content": "</strong>"
+			},
+			"strong_start": {
+				"content": "<strong>"
+			}
+		}
+	},
+	"extensionDescription": {
+		"message": "احفظ المحتوى من الويب بتنسيق خاص ودائم يمكنك الوصول إليه دون اتصال. الإضافة الرسمية للمتصفح لأوبسيديان."
+	},
+	"extensionName": {
+		"message": "قاصّ أوبسيديان للويب"
+	},
+	"failedToCopyText": {
+		"message": "فشل نسخ النص"
+	},
+	"failedToDeleteTemplate": {
+		"message": "فشل حذف القالب. يرجى المحاولة مرة أخرى."
+	},
+	"failedToDuplicateTemplate": {
+		"message": "فشل في تكرار القالب. يرجى المحاولة مرة أخرى."
+	},
+	"failedToExportHighlights": {
+		"message": "فشل في تصدير الأبراز. يرجى التحقق من وحدة التحكم لمزيد من التفاصيل."
+	},
+	"failedToExportSettings": {
+		"message": "فشل في تصدير الإعدادات. يرجى التحقق من وحدة التحكم لمزيد من التفاصيل."
+	},
+	"failedToExtractContent": {
+		"message": "تعذر استخراج محتوى الصفحة."
+	},
+	"failedToImportTemplate": {
+		"message": "خطأ في استيراد القالب. يرجى التحقق من الملف والمحاولة مرة أخرى."
+	},
+	"failedToInitialize": {
+		"message": "يرجى محاولة إعادة تحميل الإضافة."
+	},
+	"failedToInitializeContent": {
+		"message": "تعذر تهيئة محتوى الصفحة."
+	},
+	"failedToProcessInterpreter": {
+		"message": "فشلت معالجة المفسر. يرجى المحاولة مرة أخرى."
+	},
+	"failedToResetTemplate": {
+		"message": "فشل إعادة تعيين القالب الافتراضي. يرجى المحاولة مرة أخرى."
+	},
+	"failedToSave": {
+		"message": "فشل حفظ الملف"
+	},
+	"failedToSaveFile": {
+		"message": "فشل حفظ الملف"
+	},
+	"failedToSaveProvider": {
+		"message": "فشل في حفظ المزود. يرجى المحاولة مرة أخرى."
+	},
+	"folder": {
+		"message": "مجلد"
+	},
+	"general": {
+		"message": "عام"
+	},
+	"generalSettings": {
+		"message": "الإعدادات العامة"
+	},
+	"getApiKeyHere": {
+		"message": "احصل على مفتاح API الخاص بك $1 هنا."
+	},
+	"help": {
+		"message": "المساعدة"
+	},
+	"helpDescription": {
+		"message": "تعلم كيفية استخدام قاصّ الويب واحصل على المساعدة في حل المشكلات."
+	},
+	"highlightInline": {
+		"message": "تظليل محتوى الصفحة"
+	},
+	"highlightPage": {
+		"message": "تظليل الصفحة"
+	},
+	"highlighter": {
+		"message": "المظلل"
+	},
+	"highlighterSettings": {
+		"message": "المظلل"
+	},
+	"hotkeys": {
+		"message": "اختصارات لوحة المفاتيح"
+	},
+	"import": {
+		"message": "استيراد"
+	},
+	"importAllSettings": {
+		"message": "استيراد جميع الإعدادات"
+	},
+	"importAllSettingsDescription": {
+		"message": "استيراد جميع الإعدادات بما في ذلك القوالب والخصائص. سيؤدي هذا إلى استبدال التكوين الحالي الخاص بك."
+	},
+	"importFailed": {
+		"message": "فشل الاستيراد. يرجى التحقق من وحدة التحكم لمزيد من التفاصيل."
+	},
+	"importModalTitle": {
+		"message": "استيراد"
+	},
+	"importProperties": {
+		"message": "استيراد الخصائص"
+	},
+	"importPropertiesDescription": {
+		"message": "لاستيراد خصائصك من أوبسيديان، حدد موقع ملف $strong_1_start$types.json$strong_1_end$ في مجلد $strong_2_start$.obsidian$strong_2_end$ داخل خزينتك. لاحظ أن هذا المجلد مخفي افتراضياً في معظم أنظمة التشغيل.",
+		"placeholders": {
+			"strong_1_end": {
+				"content": "</strong>"
+			},
+			"strong_1_start": {
+				"content": "<strong>"
+			},
+			"strong_2_end": {
+				"content": "</strong>"
+			},
+			"strong_2_start": {
+				"content": "<strong>"
+			}
+		}
+	},
+	"importSettings": {
+		"message": "استيراد الإعدادات"
+	},
+	"importTemplate": {
+		"message": "استيراد القالب"
+	},
+	"interpret": {
+		"message": "تفسير"
+	},
+	"interpreter": {
+		"message": "المفسر"
+	},
+	"interpreterContext": {
+		"message": "سياق المفسر"
+	},
+	"interpreterContextDescription": {
+		"message": "السياق المستخدم لتفسير متغيرات الإدخال. يتجاوز السياق الافتراضي المحدد في $link_start$إعدادات المفسر$link_end$. يمكن استخدام المتغيرات هنا.",
+		"placeholders": {
+			"link_end": {
+				"content": "</a>"
+			},
+			"link_start": {
+				"content": "<a href=\"?section=interpreter\">"
+			}
+		}
+	},
+	"language": {
+		"message": "اللغة"
+	},
+	"languageDescription": {
+		"message": "اختر لغة العرض لواجهة الإضافة."
+	},
+	"lastUsed": {
+		"message": "آخر استخدام"
+	},
+	"legacyMode": {
+		"message": "الوضع القديم"
+	},
+	"legacyModeDescription": {
+		"message": "يستخدم طريقة قص URI المتوافقة مع أوبسيديان 1.6.7 أو أقدم. لاحظ أن طول المحتوى الذي يمكنك قصه محدود بواسطة متصفحك ونظام التشغيل. قد تفشل بعض الصفحات بدون أي أخطاء."
+	},
+	"modelName": {
+		"message": "اسم النموذج"
+	},
+	"modelNameDescription": {
+		"message": "اسم النموذج الذي تريد عرضه في الواجهة."
+	},
+	"modelProvider": {
+		"message": "المزود"
+	},
+	"modelProviderDescription": {
+		"message": "مزود النموذج، على سبيل المثال Ollama أو OpenRouter أو Google، إلخ."
+	},
+	"modelProviderPlaceholder": {
+		"message": "المزود"
+	},
+	"modelRequiredFields": {
+		"message": "اسم النموذج، المزود، ومعرف النموذج مطلوبين."
+	},
+	"models": {
+		"message": "النماذج"
+	},
+	"more": {
+		"message": "المزيد"
+	},
+	"newTemplate": {
+		"message": "قالب جديد"
+	},
+	"noHighlights": {
+		"message": "لا تفعل شيئاً"
+	},
+	"noTemplates": {
+		"message": "لا توجد قوالب متاحة. يرجى إضافة قالب في الإعدادات."
+	},
+	"noUnusedProperties": {
+		"message": "لم يتم العثور على خصائص غير مستخدمة."
+	},
+	"noteContent": {
+		"message": "محتوى الملاحظة"
+	},
+	"noteContentDescription": {
+		"message": "تخصيص محتوى الملاحظة. استخدم المتغيرات لملء البيانات مسبقاً من الصفحة."
+	},
+	"noteLocation": {
+		"message": "موقع الملاحظة"
+	},
+	"noteLocationDescription": {
+		"message": "المجلد أو المسار للملاحظة."
+	},
+	"noteName": {
+		"message": "اسم الملاحظة"
+	},
+	"noteNameFormat": {
+		"message": "اسم الملاحظة"
+	},
+	"noteNameFormatDescription": {
+		"message": "تنسيق اسم ملف الملاحظة. يمكنك استخدام متغيرات مثل {{title}}، {{date}}، و{{published}} لملء البيانات مسبقاً من الصفحة. $link_start$تعلم المزيد$link_end$.",
+		"placeholders": {
+			"link_end": {
+				"content": "</a>"
+			},
+			"link_start": {
+				"content": "<a href=\"https://help.obsidian.md/web-clipper/variables\" target=\"_blank\">"
+			}
+		}
+	},
+	"notesAboutPage": {
+		"message": "ملاحظات حول هذه الصفحة..."
+	},
+	"onlyHttpSupported": {
+		"message": "لا يمكن قص هذه الصفحة. يتم دعم عناوين URL من نوع http و https فقط."
+	},
+	"open": {
+		"message": "فتح"
+	},
+	"optional": {
+		"message": "(اختياري)"
+	},
+	"orPasteBelow": {
+		"message": "أو الصق المحتوى أدناه"
+	},
+	"pageCannotBeClipped": {
+		"message": "لا يمكن قص هذه الصفحة."
+	},
+	"pageVariables": {
+		"message": "متغيرات الصفحة"
+	},
+	"pasteJsonHere": {
+		"message": "الصق JSON هنا"
+	},
+	"pleaseReload": {
+		"message": "يرجى محاولة إعادة تحميل الصفحة."
+	},
+	"prependToDaily": {
+		"message": "إضافة إلى الملاحظة اليومية، في البداية"
+	},
+	"prependToExisting": {
+		"message": "إضافة إلى ملاحظة موجودة، في البداية"
+	},
+	"processing": {
+		"message": "جاري المعالجة"
+	},
+	"properties": {
+		"message": "الخصائص"
+	},
+	"propertiesSettings": {
+		"message": "الخصائص"
+	},
+	"propertyName": {
+		"message": "اسم الخاصية"
+	},
+	"propertyValue": {
+		"message": "قيمة الخاصية"
+	},
+	"provider": {
+		"message": "المزود"
+	},
+	"providerApiKey": {
+		"message": "مفتاح API"
+	},
+	"providerApiKeyDescription": {
+		"message": "مفتاح API الخاص بك لهذا المزود."
+	},
+	"providerBaseUrl": {
+		"message": "URL الأساسي"
+	},
+	"providerBaseUrlDescription": {
+		"message": "URL نقطة النهاية لل API لهذا المزود."
+	},
+	"providerModelId": {
+		"message": "معرف النموذج"
+	},
+	"providerModelIdDescription": {
+		"message": "معرف النموذج من المزود الخاص بك. عادةً ما يكون اسمًا قصيرًا بدون مسافات."
+	},
+	"providerModelIdPlaceholder": {
+		"message": "معرف النموذج"
+	},
+	"providerName": {
+		"message": "اسم المزود"
+	},
+	"providerNameDescription": {
+		"message": "اسم العرض لهذا المزود."
+	},
+	"providerPreset": {
+		"message": "الإعداد المسبق"
+	},
+	"providerPresetDescription": {
+		"message": "اختر مزود أو أنشئ واحدًا مخصصًا."
+	},
+	"providerRequiredFields": {
+		"message": "اسم المزود وURL الأساسي مطلوبين."
+	},
+	"providers": {
+		"message": "المزودون"
+	},
+	"refresh": {
+		"message": "تحديث"
+	},
+	"remove": {
+		"message": "إزالة"
+	},
+	"removeProperty": {
+		"message": "إزالة الخاصية"
+	},
+	"removeUnusedProperties": {
+		"message": "إزالة الخصائص غير المستخدمة"
+	},
+	"removeUnusedPropertiesDescription": {
+		"message": "إزالة جميع الخصائص التي لا تستخدم في أي قالب."
+	},
+	"removeVault": {
+		"message": "إزالة الخزينة"
+	},
+	"replaceContent": {
+		"message": "استبدال محتوى الصفحة"
+	},
+	"reset": {
+		"message": "إعادة تعيين"
+	},
+	"resetDefaultTemplate": {
+		"message": "إعادة تعيين القالب الافتراضي"
+	},
+	"resetDefaultTemplateDescription": {
+		"message": "إزالة أي تغييرات قمت بها على القالب الافتراضي."
+	},
+	"save": {
+		"message": "حفظ"
+	},
+	"saveFile": {
+		"message": "حفظ الملف..."
+	},
+	"searchVariables": {
+		"message": "البحث عن المتغيرات..."
+	},
+	"selectProvider": {
+		"message": "اختر مزود"
+	},
+	"selectTemplateToExport": {
+		"message": "الرجاء اختيار قالب للتصدير."
+	},
+	"settings": {
+		"message": "الإعدادات"
+	},
+	"settingsHeading": {
+		"message": "الإعدادات"
+	},
+	"settingsImportSuccess": {
+		"message": "تم استيراد جميع الإعدادات بنجاح. يرجى تحديث الصفحة لرؤية التغييرات."
+	},
+	"share": {
+		"message": "مشاركة..."
+	},
+	"shortcutInstructionsBrave": {
+		"message": "لتغيير تعيينات المفاتيح، انتقل إلى $1"
+	},
+	"shortcutInstructionsChrome": {
+		"message": "لتغيير تعيينات المفاتيح، انتقل إلى $1"
+	},
+	"shortcutInstructionsDefault": {
+		"message": "لتغيير تعيينات المفاتيح، يرجى الرجوع إلى إعدادات إضافات متصفحك."
+	},
+	"shortcutInstructionsEdge": {
+		"message": "لتغيير تعيينات المفاتيح، انتقل إلى $1"
+	},
+	"shortcutInstructionsFirefox": {
+		"message": "لتغيير تعيينات المفاتيح، انتقل إلى $1، انقر على أيقونة الترس، واختر \"إدارة اختصارات الإضافة\"."
+	},
+	"shortcutInstructionsIntro": {
+		"message": "اختصارات لوحة المفاتيح تمنحك وصولاً سريعاً إلى ميزات القاصّ."
+	},
+	"shortcutInstructionsSafari": {
+		"message": "اختصارات لوحة المفاتيح غير قابلة للتخصيص في سفاري."
+	},
+	"shortcutNotSet": {
+		"message": "غير معين"
+	},
+	"showActionsButton": {
+		"message": "إظهار زر الإجراءات"
+	},
+	"showActionsDescription": {
+		"message": "يتيح لك فحص متغيرات الصفحة من قائمة القاصّ. مفيد لرؤية المتغيرات المتاحة للاستخدام في القوالب."
+	},
+	"showPageVariables": {
+		"message": "إظهار متغيرات الصفحة"
+	},
+	"silentOpen": {
+		"message": "حفظ الملاحظة المقصوصة دون فتحها"
+	},
+	"silentOpenDescription": {
+		"message": "سيتم حفظ الملاحظات المقصوصة ولكن لن يتم فتحها كتبويب جديد. سيظل أوبسيديان يُجلب إلى المقدمة."
+	},
+	"specificNoteName": {
+		"message": "اسم ملاحظة محدد"
+	},
+	"systemDefault": {
+		"message": "النظام"
+	},
+	"templateCopied": {
+		"message": "تم نسخ قالب JSON إلى الحافظة"
+	},
+	"templateCopyError": {
+		"message": "فشل في نسخ قالب JSON إلى الحافظة"
+	},
+	"templateName": {
+		"message": "اسم القالب"
+	},
+	"templateProperties": {
+		"message": "الخصائص"
+	},
+	"templatePropertiesDescription": {
+		"message": "خصائص لإضافتها إلى أعلى الملاحظة المقصوصة. استخدم المتغيرات لملء البيانات مسبقاً من الصفحة."
+	},
+	"templateTriggers": {
+		"message": "محفزات القالب"
+	},
+	"templateTriggersDescription": {
+		"message": "تحديد قواعد لاختيار هذا القالب تلقائياً إذا كان يتطابق مع نمط URL أو يحتوي على بيانات schema.org. قاعدة واحدة لكل سطر."
+	},
+	"templatesHeading": {
+		"message": "القوالب"
+	},
+	"thinking": {
+		"message": "يفكر"
+	},
+	"unknownProvider": {
+		"message": "مزود غير معروف"
+	},
+	"updateAvailable": {
+		"message": "يتوفر تحديث جديد."
+	},
+	"usingLatestVersion": {
+		"message": "أنت تستخدم أحدث إصدار."
+	},
+	"vault": {
+		"message": "الخزينة"
+	},
+	"vaultDescription": {
+		"message": "حدد الخزينة الافتراضية لهذا القالب. انتقل إلى $link_start$الإعدادات العامة$link_end$ لإضافة أو إزالة الخزائن.",
+		"placeholders": {
+			"link_end": {
+				"content": "</a>"
+			},
+			"link_start": {
+				"content": "<a href=\"?section=general\">"
+			}
+		}
+	},
+	"vaults": {
+		"message": "الخزائن"
+	},
+	"vaultsDescription": {
+		"message": "بشكل افتراضي، يتم حفظ الملاحظات المقصوصة في الخزينة المفتوحة حالياً. يمكنك إضافة خزائن هنا إذا كنت تريد خيار الحفظ في خزائن مختلفة. يجب أن تتطابق أسماء الخزائن بالضبط مع اسم خزينة أوبسيديان. اضغط على $strong_start$enter$strong_end$ لإضافة خزينة.",
+		"placeholders": {
+			"strong_end": {
+				"content": "</strong>"
+			},
+			"strong_start": {
+				"content": "<strong>"
+			}
+		}
+	},
+	"version": {
+		"message": "الإصدار"
+	}
+}

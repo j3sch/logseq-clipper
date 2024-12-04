@@ -1,6 +1,18 @@
 {
+	"addModel": {
+		"message": "+ Add model"
+	},
+	"addModelTitle": {
+		"message": "Add model"
+	},
 	"addProperty": {
 		"message": "+ Add property"
+	},
+	"addProvider": {
+		"message": "+ Add provider"
+	},
+	"addProviderTitle": {
+		"message": "Add provider"
 	},
 	"addToObsidian": {
 		"message": "Add to Logseq"
@@ -17,14 +29,50 @@
 	"alwaysShowHighlightsDescription": {
 		"message": "Display your saved highlights when you load a page. Turn off to only display highlights when highlighter mode is activated."
 	},
+	"apiKeyMissing": {
+		"message": "No API key"
+	},
+	"apiKeysWarning": {
+		"message": "By using an external provider you agree to their terms and privacy policy. Interpreter requests are sent directly to the provider you choose. Obsidian does not gather or store any data about your requests."
+	},
 	"appendToDaily": {
 		"message": "Add to daily note, at the bottom"
 	},
 	"appendToExisting": {
 		"message": "Add to an existing note, at the bottom"
 	},
+	"autoRunInterpreter": {
+		"message": "Automatically run"
+	},
+	"autoRunInterpreterDescription": {
+		"message": "Run prompt variables immediately if the template contains any. This will consume API credits with your model provider. Turn off if you only want to run interpreter manually."
+	},
 	"behavior": {
 		"message": "Behavior"
+	},
+	"behaviorWarning": {
+		"message": "Adding to an existing note or daily note requires Obsidian 1.7.2 or later."
+	},
+	"cancel": {
+		"message": "Cancel"
+	},
+	"cannotDeleteProvider": {
+		"message": "Cannot delete provider \"$1\" because it is being used by $2 model(s)."
+	},
+	"changelog": {
+		"message": "Changelog"
+	},
+	"chooseFile": {
+		"message": "Choose a file"
+	},
+	"choosePropertiesFile": {
+		"message": "Choose properties file"
+	},
+	"chooseSettingsFile": {
+		"message": "Choose settings file"
+	},
+	"chooseTemplateFile": {
+		"message": "Choose template file"
 	},
 	"clipBehavior": {
 		"message": "Clip behavior"
@@ -55,6 +103,9 @@
 	"confirmDeleteTemplate": {
 		"message": "Are you sure you want to delete the template \"$1\"?"
 	},
+	"confirmReplaceSettings": {
+		"message": "This will replace all your current settings, including templates and properties. Are you sure you want to continue?"
+	},
 	"copied": {
 		"message": "Copied!"
 	},
@@ -67,8 +118,17 @@
 	"createNewNote": {
 		"message": "Create new note"
 	},
+	"custom": {
+		"message": "Custom"
+	},
 	"dailyNoteFormat": {
 		"message": "Daily note format (e.g., YYYY-MM-DD)"
+	},
+	"defaultInterpreterContext": {
+		"message": "Default interpreter context"
+	},
+	"defaultInterpreterContextDescription": {
+		"message": "Override the context used to interpret prompt variables. Variables can be used here."
 	},
 	"defaultTemplateName": {
 		"message": "Default"
@@ -76,17 +136,32 @@
 	"delete": {
 		"message": "Delete"
 	},
+	"deleteModelConfirm": {
+		"message": "Are you sure you want to delete this model?"
+	},
+	"deleteProviderConfirm": {
+		"message": "Are you sure you want to delete this provider?"
+	},
 	"disableHighlighter": {
 		"message": "Disable highlighter"
 	},
-	"display": {
-		"message": "Display"
+	"done": {
+		"message": "Done"
+	},
+	"dragAndDropFile": {
+		"message": "Drag and drop file here"
 	},
 	"duplicate": {
 		"message": "Duplicate"
 	},
 	"earlyAccessFeatures": {
 		"message": "Early access features"
+	},
+	"editModel": {
+		"message": "Edit model"
+	},
+	"editProvider": {
+		"message": "Edit provider"
 	},
 	"editTemplate": {
 		"message": "Edit template"
@@ -141,8 +216,20 @@
 	"failedToDeleteTemplate": {
 		"message": "Failed to delete template. Please try again."
 	},
+	"failedToDuplicateTemplate": {
+		"message": "Failed to duplicate template. Please try again."
+	},
+	"failedToExportHighlights": {
+		"message": "Failed to export highlights. Please check the console for more details."
+	},
+	"failedToExportSettings": {
+		"message": "Failed to export settings. Please check the console for more details."
+	},
 	"failedToExtractContent": {
 		"message": "Unable to extract page content."
+	},
+	"failedToImportTemplate": {
+		"message": "Error importing template. Please check the file and try again."
 	},
 	"failedToInitialize": {
 		"message": "Please try reloading the extension."
@@ -162,6 +249,9 @@
 	"failedToSaveFile": {
 		"message": "Failed to save file"
 	},
+	"failedToSaveProvider": {
+		"message": "Failed to save provider. Please try again."
+	},
 	"folder": {
 		"message": "Folder"
 	},
@@ -171,11 +261,17 @@
 	"generalSettings": {
 		"message": "General settings"
 	},
+	"getApiKeyHere": {
+		"message": "Get your $1 API key here."
+	},
 	"help": {
 		"message": "Help"
 	},
 	"helpDescription": {
 		"message": "Learn how to use Web Clipper and get help troubleshooting."
+	},
+	"highlightInline": {
+		"message": "Highlight the page content"
 	},
 	"highlightPage": {
 		"message": "Highlight page"
@@ -198,6 +294,12 @@
 	"importAllSettingsDescription": {
 		"message": "Import all settings including templates and properties. This will replace your current configuration."
 	},
+	"importFailed": {
+		"message": "Import failed. Please check the console for more details."
+	},
+	"importModalTitle": {
+		"message": "Import"
+	},
 	"importProperties": {
 		"message": "Import properties"
 	},
@@ -211,6 +313,15 @@
 				"content": "<strong>"
 			}
 		}
+	},
+	"importSettings": {
+		"message": "Import settings"
+	},
+	"importTemplate": {
+		"message": "Import template"
+	},
+	"interpret": {
+		"message": "interpret"
 	},
 	"interpreter": {
 		"message": "Interpreter"
@@ -241,6 +352,30 @@
 	"legacyMode": {
 		"message": "Legacy mode"
 	},
+	"legacyModeDescription": {
+		"message": "Uses the URI clipping method compatible with Obsidian 1.6.7 or earlier. Note that the length of the content you can clip is limited by your browser and OS. Some pages may fail without any errors."
+	},
+	"modelName": {
+		"message": "Display name"
+	},
+	"modelNameDescription": {
+		"message": "The name of the model you want to display in the interface."
+	},
+	"modelProvider": {
+		"message": "Provider"
+	},
+	"modelProviderDescription": {
+		"message": "Select the provider for this model."
+	},
+	"modelProviderPlaceholder": {
+		"message": "Provider"
+	},
+	"modelRequiredFields": {
+		"message": "Model name, Provider, and Model ID are required."
+	},
+	"models": {
+		"message": "Models"
+	},
 	"more": {
 		"message": "More"
 	},
@@ -252,6 +387,9 @@
 	},
 	"noTemplates": {
 		"message": "No templates available. Please add a template in the settings."
+	},
+	"noUnusedProperties": {
+		"message": "No unused properties found."
 	},
 	"noteContent": {
 		"message": "Note content"
@@ -291,14 +429,20 @@
 	"open": {
 		"message": "Open"
 	},
+	"optional": {
+		"message": "(optional)"
+	},
+	"orPasteBelow": {
+		"message": "Or paste content below"
+	},
 	"pageCannotBeClipped": {
 		"message": "This page cannot be clipped."
 	},
 	"pageVariables": {
 		"message": "Page variables"
 	},
-	"pasteCursorPosition": {
-		"message": "Paste at cursor position"
+	"pasteJsonHere": {
+		"message": "Paste JSON here"
 	},
 	"pleaseReload": {
 		"message": "Please try reloading the page."
@@ -308,6 +452,9 @@
 	},
 	"prependToExisting": {
 		"message": "Add to an existing note, at the top"
+	},
+	"processing": {
+		"message": "processing"
 	},
 	"properties": {
 		"message": "Properties"
@@ -320,6 +467,48 @@
 	},
 	"propertyValue": {
 		"message": "Property value"
+	},
+	"provider": {
+		"message": "Provider"
+	},
+	"providerApiKey": {
+		"message": "API key"
+	},
+	"providerApiKeyDescription": {
+		"message": "Your API key for this provider."
+	},
+	"providerBaseUrl": {
+		"message": "Base URL"
+	},
+	"providerBaseUrlDescription": {
+		"message": "The API endpoint URL for this provider."
+	},
+	"providerModelId": {
+		"message": "Model ID"
+	},
+	"providerModelIdDescription": {
+		"message": "The identifier of the model from your provider. Typically a short name without spaces."
+	},
+	"providerModelIdPlaceholder": {
+		"message": "Model ID"
+	},
+	"providerName": {
+		"message": "Provider name"
+	},
+	"providerNameDescription": {
+		"message": "Display name for this provider."
+	},
+	"providerPreset": {
+		"message": "Preset"
+	},
+	"providerPresetDescription": {
+		"message": "Choose a provider or create a custom one."
+	},
+	"providerRequiredFields": {
+		"message": "Provider name and Base URL are required."
+	},
+	"providers": {
+		"message": "Providers"
 	},
 	"refresh": {
 		"message": "Refresh"
@@ -351,17 +540,29 @@
 	"resetDefaultTemplateDescription": {
 		"message": "Remove any changes you've made to the default template."
 	},
+	"save": {
+		"message": "Save"
+	},
 	"saveFile": {
 		"message": "Save file..."
 	},
 	"searchVariables": {
 		"message": "Search variables..."
 	},
+	"selectProvider": {
+		"message": "Select a provider"
+	},
+	"selectTemplateToExport": {
+		"message": "Please select a template to export."
+	},
 	"settings": {
 		"message": "Settings"
 	},
 	"settingsHeading": {
 		"message": "Settings"
+	},
+	"settingsImportSuccess": {
+		"message": "All settings imported successfully. Please refresh the page to see the changes."
 	},
 	"share": {
 		"message": "Share..."
@@ -411,6 +612,12 @@
 	"systemDefault": {
 		"message": "System"
 	},
+	"templateCopied": {
+		"message": "Copied template JSON to clipboard"
+	},
+	"templateCopyError": {
+		"message": "Failed to copy template JSON to clipboard"
+	},
 	"templateName": {
 		"message": "Template name"
 	},
@@ -429,6 +636,18 @@
 	"templatesHeading": {
 		"message": "Templates"
 	},
+	"thinking": {
+		"message": "thinking"
+	},
+	"unknownProvider": {
+		"message": "Unknown provider"
+	},
+	"updateAvailable": {
+		"message": "An update is available."
+	},
+	"usingLatestVersion": {
+		"message": "You are using the latest version."
+	},
 	"vault": {
 		"message": "Vault"
 	},
@@ -445,5 +664,19 @@
 	},
 	"vaults": {
 		"message": "Vaults"
+	},
+	"vaultsDescription": {
+		"message": "By default, clipped notes are saved to the currently open vault. You can add vaults here if you want the option to save to different vaults. Vault names must exactly match the name of the Obsidian vault. Press $strong_start$enter$strong_end$ to add a vault.",
+		"placeholders": {
+			"strong_end": {
+				"content": "</strong>"
+			},
+			"strong_start": {
+				"content": "<strong>"
+			}
+		}
+	},
+	"version": {
+		"message": "Version"
 	}
 }

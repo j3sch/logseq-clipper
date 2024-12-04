@@ -1,6 +1,18 @@
 {
+	"addModel": {
+		"message": "+ Добавить модель"
+	},
+	"addModelTitle": {
+		"message": "Добавить модель"
+	},
 	"addProperty": {
 		"message": "+ Добавить свойство"
+	},
+	"addProvider": {
+		"message": "+ Добавить провайдера"
+	},
+	"addProviderTitle": {
+		"message": "Добавить провайдера"
 	},
 	"addToObsidian": {
 		"message": "Добавить в Logseq"
@@ -17,14 +29,50 @@
 	"alwaysShowHighlightsDescription": {
 		"message": "Отображение сохраненных выделений маркером при загрузке страницы. Выключите, чтобы отображать выделения маркером только при включении режима."
 	},
+	"apiKeyMissing": {
+		"message": "Отсутствует API ключ"
+	},
+	"apiKeysWarning": {
+		"message": "Используя внешнего провайдера, вы соглашаетесь с их условиями использования и политикой конфиденциальности. Запросы интерпретатора отправляются напрямую выбранному вами провайдеру. Obsidian не собирает и не хранит никаких данных о ваших запросах."
+	},
 	"appendToDaily": {
 		"message": "Добавлять в конец ежедневной заметки"
 	},
 	"appendToExisting": {
 		"message": "Добавлять в конец существующей заметки"
 	},
+	"autoRunInterpreter": {
+		"message": "Автоматический запуск"
+	},
+	"autoRunInterpreterDescription": {
+		"message": "Немедленно выполнять переменные подсказок, если они есть в шаблоне. Это будет расходовать API-кредиты вашего провайдера модели. Отключите, если хотите запускать интерпретатор только вручную."
+	},
 	"behavior": {
 		"message": "Поведение"
+	},
+	"behaviorWarning": {
+		"message": "Для добавления в существующую заметку или ежедневную заметку требуется Obsidian 1.7.2 или более поздняя версия."
+	},
+	"cancel": {
+		"message": "Отмена"
+	},
+	"cannotDeleteProvider": {
+		"message": "Невозможно удалить провайдера \"$1\", так как он используется в $2 модели(ях)."
+	},
+	"changelog": {
+		"message": "История изменений"
+	},
+	"chooseFile": {
+		"message": "Выберите файл"
+	},
+	"choosePropertiesFile": {
+		"message": "Выберите файл свойств"
+	},
+	"chooseSettingsFile": {
+		"message": "Выберите файл настроек"
+	},
+	"chooseTemplateFile": {
+		"message": "Выберите файл шаблона"
 	},
 	"clipBehavior": {
 		"message": "Поведение при сохранении"
@@ -55,6 +103,9 @@
 	"confirmDeleteTemplate": {
 		"message": "Вы уверены, что хотите удалить шаблон \"$1\"?"
 	},
+	"confirmReplaceSettings": {
+		"message": "Это заменит все ваши текущие настройки, включая шаблоны и свойства. Вы уверены, что хотите продолжить?"
+	},
 	"copied": {
 		"message": "Скопировано!"
 	},
@@ -67,8 +118,17 @@
 	"createNewNote": {
 		"message": "Создать заметку"
 	},
+	"custom": {
+		"message": "Пользовательский"
+	},
 	"dailyNoteFormat": {
 		"message": "Формат ежедневной заметки (например, YYYY-MM-DD)"
+	},
+	"defaultInterpreterContext": {
+		"message": "Контекст интерпретатора по умолчанию"
+	},
+	"defaultInterpreterContextDescription": {
+		"message": "Модель будет использовать этот контекст для интерпретации переменных подсказок. Здесь можно использовать переменные и фильтры."
 	},
 	"defaultTemplateName": {
 		"message": "По умолчанию"
@@ -76,17 +136,32 @@
 	"delete": {
 		"message": "Удалить"
 	},
+	"deleteModelConfirm": {
+		"message": "Вы уверены, что хотите удалить эту модель?"
+	},
+	"deleteProviderConfirm": {
+		"message": "Вы уверены, что хотите удалить этого провайдера?"
+	},
 	"disableHighlighter": {
 		"message": "Выключить маркер"
 	},
-	"display": {
-		"message": "Отображение"
+	"done": {
+		"message": "готово"
+	},
+	"dragAndDropFile": {
+		"message": "Перетащите файл сюда"
 	},
 	"duplicate": {
 		"message": "Дублировать"
 	},
 	"earlyAccessFeatures": {
 		"message": "Функции раннего доступа"
+	},
+	"editModel": {
+		"message": "Редактировать модель"
+	},
+	"editProvider": {
+		"message": "Редактировать провайдера"
 	},
 	"editTemplate": {
 		"message": "Изменить шаблон"
@@ -149,8 +224,20 @@
 	"failedToDeleteTemplate": {
 		"message": "Не удалось удалить шаблон. Пожалуйста, попробуйте еще раз."
 	},
+	"failedToDuplicateTemplate": {
+		"message": "Не удалось дублировать шаблон. Пожалуйста, попробуйте снова."
+	},
+	"failedToExportHighlights": {
+		"message": "Не удалось экспортировать выделенные фрагменты. Пожалуйста, проверьте консоль для получения дополнительной информации."
+	},
+	"failedToExportSettings": {
+		"message": "Не удалось экспортировать настройки. Пожалуйста, проверьте консоль для получения дополнительной информации."
+	},
 	"failedToExtractContent": {
 		"message": "Невозможно извлечь содержимое страницы."
+	},
+	"failedToImportTemplate": {
+		"message": "Ошибка при импорте шаблона. Пожалуйста, проверьте файл и попробуйте снова."
 	},
 	"failedToInitialize": {
 		"message": "Пожалуйста, попробуйте перезагрузить расширение."
@@ -170,6 +257,9 @@
 	"failedToSaveFile": {
 		"message": "Не удалось сохранить файл"
 	},
+	"failedToSaveProvider": {
+		"message": "Не удалось сохранить провайдера. Пожалуйста, попробуйте снова."
+	},
 	"folder": {
 		"message": "Папка"
 	},
@@ -178,6 +268,18 @@
 	},
 	"generalSettings": {
 		"message": "Основные настройки"
+	},
+	"getApiKeyHere": {
+		"message": "Получите ваш $1 API ключ здесь."
+	},
+	"help": {
+		"message": "Помощь"
+	},
+	"helpDescription": {
+		"message": "Узнайте, как использовать Web Clipper и получите помощь в устранении неполадок."
+	},
+	"highlightInline": {
+		"message": "Выделить содержимое страницы"
 	},
 	"highlightPage": {
 		"message": "Выделить страницу"
@@ -200,6 +302,12 @@
 	"importAllSettingsDescription": {
 		"message": "Импорт всех настроек, включая шаблоны и свойства. Это заменит вашу текущую конфигурацию."
 	},
+	"importFailed": {
+		"message": "Импорт не удался. Пожалуйста, проверьте консоль для получения дополнительной информации."
+	},
+	"importModalTitle": {
+		"message": "Импорт"
+	},
 	"importProperties": {
 		"message": "Импорт свойств"
 	},
@@ -219,6 +327,15 @@
 				"content": "<strong>"
 			}
 		}
+	},
+	"importSettings": {
+		"message": "Импортировать настройки"
+	},
+	"importTemplate": {
+		"message": "Импортировать шаблон"
+	},
+	"interpret": {
+		"message": "интерпретировать"
 	},
 	"interpreter": {
 		"message": "Интерпретатор"
@@ -249,6 +366,30 @@
 	"legacyMode": {
 		"message": "Режим совместимости"
 	},
+	"legacyModeDescription": {
+		"message": "Использует метод обработки URI, совместимый с Obsidian 1.6.7 или более ранней версией. Обратите внимание, что длина контента, который вы можете вырезать, ограничена вашим браузером и ОС. Некоторые страницы могут не открыться без ошибок."
+	},
+	"modelName": {
+		"message": "Название модели"
+	},
+	"modelNameDescription": {
+		"message": "Имя модели, которое вы хотите отображать в интерфейсе."
+	},
+	"modelProvider": {
+		"message": "Провайдер"
+	},
+	"modelProviderDescription": {
+		"message": "Провайдер модели, например Ollama, OpenRouter, Google и т.д."
+	},
+	"modelProviderPlaceholder": {
+		"message": "Провайдер"
+	},
+	"modelRequiredFields": {
+		"message": "Требуются имя модели, провайдер и ID модели."
+	},
+	"models": {
+		"message": "Модели"
+	},
 	"more": {
 		"message": "Далее"
 	},
@@ -260,6 +401,9 @@
 	},
 	"noTemplates": {
 		"message": "Нет доступных шаблонов. Пожалуйста, добавьте шаблон в настройках."
+	},
+	"noUnusedProperties": {
+		"message": "Неиспользуемых свойств не найдено."
 	},
 	"noteContent": {
 		"message": "Содержимое заметки"
@@ -296,14 +440,23 @@
 	"onlyHttpSupported": {
 		"message": "Эту страницу нельзя сохранить. Поддерживаются только URL-адреса http и https."
 	},
+	"open": {
+		"message": "Открыть"
+	},
+	"optional": {
+		"message": "(необязательно)"
+	},
+	"orPasteBelow": {
+		"message": "Или вставьте содержимое ниже"
+	},
 	"pageCannotBeClipped": {
 		"message": "Эту страницу нельзя сохранить."
 	},
 	"pageVariables": {
 		"message": "Переменные страницы"
 	},
-	"pasteCursorPosition": {
-		"message": "Вставить в позицию курсора"
+	"pasteJsonHere": {
+		"message": "Вставьте JSON здесь"
 	},
 	"pleaseReload": {
 		"message": "Пожалуйста, попробуйте перезагрузить страницу."
@@ -313,6 +466,9 @@
 	},
 	"prependToExisting": {
 		"message": "Добавить в начало существующей заметки"
+	},
+	"processing": {
+		"message": "обработка"
 	},
 	"properties": {
 		"message": "Свойства"
@@ -325,6 +481,48 @@
 	},
 	"propertyValue": {
 		"message": "Значение свойства"
+	},
+	"provider": {
+		"message": "Провайдер"
+	},
+	"providerApiKey": {
+		"message": "API ключ"
+	},
+	"providerApiKeyDescription": {
+		"message": "Ваш API ключ для этого провайдера."
+	},
+	"providerBaseUrl": {
+		"message": "Базовый URL"
+	},
+	"providerBaseUrlDescription": {
+		"message": "URL конечной точки API для этого провайдера."
+	},
+	"providerModelId": {
+		"message": "ID модели"
+	},
+	"providerModelIdDescription": {
+		"message": "Идентификатор модели от вашего провайдера. Обычно это короткое имя без пробелов."
+	},
+	"providerModelIdPlaceholder": {
+		"message": "ID модели"
+	},
+	"providerName": {
+		"message": "Имя провайдера"
+	},
+	"providerNameDescription": {
+		"message": "Отображаемое имя для этого провайдера."
+	},
+	"providerPreset": {
+		"message": "Предустановка"
+	},
+	"providerPresetDescription": {
+		"message": "Выберите провайдера или создайте собственного."
+	},
+	"providerRequiredFields": {
+		"message": "Требуются имя провайдера и базовый URL."
+	},
+	"providers": {
+		"message": "Провайдеры"
 	},
 	"refresh": {
 		"message": "Обновить"
@@ -356,17 +554,29 @@
 	"resetDefaultTemplateDescription": {
 		"message": "Удалить все изменения, внесенные в шаблон по умолчанию."
 	},
+	"save": {
+		"message": "Сохранить"
+	},
 	"saveFile": {
 		"message": "Сохранить файл..."
 	},
 	"searchVariables": {
 		"message": "Поиск переменных..."
 	},
+	"selectProvider": {
+		"message": "Выберите провайдера"
+	},
+	"selectTemplateToExport": {
+		"message": "Пожалуйста, выберите шаблон для экспорта."
+	},
 	"settings": {
 		"message": "Настройки"
 	},
 	"settingsHeading": {
 		"message": "Настройки"
+	},
+	"settingsImportSuccess": {
+		"message": "Все настройки успешно импортированы. Пожалуйста, обновите страницу, чтобы увидеть изменения."
 	},
 	"share": {
 		"message": "Поделиться..."
@@ -416,6 +626,12 @@
 	"systemDefault": {
 		"message": "Системный"
 	},
+	"templateCopied": {
+		"message": "Шаблон JSON скопирован в буфер обмена"
+	},
+	"templateCopyError": {
+		"message": "Не удалось скопировать шаблон JSON в буфер обмена"
+	},
 	"templateName": {
 		"message": "Название шаблона"
 	},
@@ -434,6 +650,18 @@
 	"templatesHeading": {
 		"message": "Шаблоны"
 	},
+	"thinking": {
+		"message": "думаю"
+	},
+	"unknownProvider": {
+		"message": "Неизвестный провайдер"
+	},
+	"updateAvailable": {
+		"message": "Доступно обновление."
+	},
+	"usingLatestVersion": {
+		"message": "Вы используете последнюю версию."
+	},
 	"vault": {
 		"message": "Хранилище"
 	},
@@ -451,13 +679,18 @@
 	"vaults": {
 		"message": "Хранилища"
 	},
-	"help": {
-		"message": "Помощь"
+	"vaultsDescription": {
+		"message": "По умолчанию заметки сохраняются в текущем открытом хранилище. Вы можете добавить хранилища здесь, если хотите иметь возможность сохранять в разных хранилищах. Имена хранилищ должны полностью совпадать с именем хранилища Obsidian. Нажмите $strong_start$Enter$strong_end$, чтобы добавить хранилище.",
+		"placeholders": {
+			"strong_end": {
+				"content": "</strong>"
+			},
+			"strong_start": {
+				"content": "<strong>"
+			}
+		}
 	},
-	"helpDescription": {
-		"message": "Узнайте, как использовать Web Clipper и получите помощь в устранении неполадок."
-	},
-	"open": {
-		"message": "Открыть"
+	"version": {
+		"message": "Версия"
 	}
 }

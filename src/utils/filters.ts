@@ -2,6 +2,7 @@ import { FilterFunction } from '../types/types';
 import { debugLog } from './debug';
 
 import { blockquote } from './filters/blockquote';
+import { calc } from './filters/calc';
 import { callout } from './filters/callout';
 import { camel } from './filters/camel';
 import { capitalize } from './filters/capitalize';
@@ -9,6 +10,7 @@ import { date } from './filters/date';
 import { date_modify } from './filters/date_modify';
 import { first } from './filters/first';
 import { footnote } from './filters/footnote';
+import { fragment_link } from './filters/fragment_link';
 import { html_to_json } from './filters/html_to_json';
 import { image } from './filters/image';
 import { join } from './filters/join';
@@ -16,7 +18,7 @@ import { kebab } from './filters/kebab';
 import { last } from './filters/last';
 import { list } from './filters/list';
 import { link } from './filters/link';
-import { fragment_link } from './filters/fragment_link';
+import { length } from './filters/length';
 import { lower } from './filters/lower';
 import { map } from './filters/map';
 import { markdown } from './filters/markdown';
@@ -25,6 +27,7 @@ import { object } from './filters/object';
 import { pascal } from './filters/pascal';
 import { remove_html } from './filters/remove_html';
 import { replace } from './filters/replace';
+import { replace_tags } from './filters/replace_tags';
 import { round } from './filters/round';
 import { safe_name } from './filters/safe_name';
 import { slice } from './filters/slice';
@@ -44,6 +47,7 @@ import { wikilink } from './filters/wikilink';
 
 export const filters: { [key: string]: FilterFunction } = {
 	blockquote,
+	calc,
 	callout,
 	camel,
 	capitalize,
@@ -57,6 +61,7 @@ export const filters: { [key: string]: FilterFunction } = {
 	join,
 	kebab,
 	last,
+	length,
 	link,
 	list,
 	lower,
@@ -67,6 +72,7 @@ export const filters: { [key: string]: FilterFunction } = {
 	pascal,
 	remove_html,
 	replace,
+	replace_tags,
 	round,
 	safe_name,
 	slice,

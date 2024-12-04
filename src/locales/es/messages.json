@@ -1,6 +1,18 @@
 {
+	"addModel": {
+		"message": "+ Agregar modelo"
+	},
+	"addModelTitle": {
+		"message": "Agregar modelo"
+	},
 	"addProperty": {
 		"message": "+ Agregar propiedad"
+	},
+	"addProvider": {
+		"message": "+ Agregar proveedor"
+	},
+	"addProviderTitle": {
+		"message": "Agregar proveedor"
 	},
 	"addToObsidian": {
 		"message": "Agregar a Logseq"
@@ -17,14 +29,50 @@
 	"alwaysShowHighlightsDescription": {
 		"message": "Muestra tus resaltados guardados cuando cargas una página. Desactiva para mostrar los resaltados solo cuando el modo resaltador está activado."
 	},
+	"apiKeyMissing": {
+		"message": "Sin clave API"
+	},
+	"apiKeysWarning": {
+		"message": "Al usar un proveedor externo, aceptas sus términos y política de privacidad. Las solicitudes del intérprete se envían directamente al proveedor que elijas. Obsidian no recopila ni almacena ningún dato sobre tus solicitudes."
+	},
 	"appendToDaily": {
 		"message": "Agregar a la nota diaria, al final"
 	},
 	"appendToExisting": {
 		"message": "Agregar a una nota existente, al final"
 	},
+	"autoRunInterpreter": {
+		"message": "Ejecutar automáticamente"
+	},
+	"autoRunInterpreterDescription": {
+		"message": "Ejecuta las variables de prompt inmediatamente si la plantilla contiene alguna. Esto consumirá créditos de API con tu proveedor de modelo. Desactiva si solo quieres ejecutar el intérprete manualmente."
+	},
 	"behavior": {
 		"message": "Comportamiento"
+	},
+	"behaviorWarning": {
+		"message": "Agregar a una nota existente o nota diaria requiere Obsidian 1.7.2 o posterior."
+	},
+	"cancel": {
+		"message": "Cancelar"
+	},
+	"cannotDeleteProvider": {
+		"message": "No se puede eliminar el proveedor \"$1\" porque está siendo utilizado por $2 modelo(s)."
+	},
+	"changelog": {
+		"message": "Registro de cambios"
+	},
+	"chooseFile": {
+		"message": "Elegir un archivo"
+	},
+	"choosePropertiesFile": {
+		"message": "Elegir archivo de propiedades"
+	},
+	"chooseSettingsFile": {
+		"message": "Elegir archivo de configuración"
+	},
+	"chooseTemplateFile": {
+		"message": "Elegir archivo de plantilla"
 	},
 	"clipBehavior": {
 		"message": "Comportamiento de guardado"
@@ -55,6 +103,9 @@
 	"confirmDeleteTemplate": {
 		"message": "¿Estás seguro de que quieres eliminar la plantilla \"$1\"?"
 	},
+	"confirmReplaceSettings": {
+		"message": "Esto reemplazará todas sus configuraciones actuales, incluyendo plantillas y propiedades. ¿Está seguro de que desea continuar?"
+	},
 	"copied": {
 		"message": "¡Copiado!"
 	},
@@ -67,8 +118,17 @@
 	"createNewNote": {
 		"message": "Crear nueva nota"
 	},
+	"custom": {
+		"message": "Personalizado"
+	},
 	"dailyNoteFormat": {
 		"message": "Formato de nota diaria (ej., YYYY-MM-DD)"
+	},
+	"defaultInterpreterContext": {
+		"message": "Contexto predeterminado del intérprete"
+	},
+	"defaultInterpreterContextDescription": {
+		"message": "El modelo usará este contexto para interpretar las variables de prompt. Se pueden usar variables y filtros aquí."
 	},
 	"defaultTemplateName": {
 		"message": "Predeterminado"
@@ -76,17 +136,32 @@
 	"delete": {
 		"message": "Eliminar"
 	},
+	"deleteModelConfirm": {
+		"message": "¿Estás seguro de que quieres eliminar este modelo?"
+	},
+	"deleteProviderConfirm": {
+		"message": "¿Estás seguro de que quieres eliminar este proveedor?"
+	},
 	"disableHighlighter": {
 		"message": "Desactivar resaltador"
 	},
-	"display": {
-		"message": "Pantalla"
+	"done": {
+		"message": "hecho"
+	},
+	"dragAndDropFile": {
+		"message": "Arrastre y suelte el archivo aquí"
 	},
 	"duplicate": {
 		"message": "Duplicar"
 	},
 	"earlyAccessFeatures": {
 		"message": "Funciones de acceso anticipado"
+	},
+	"editModel": {
+		"message": "Editar modelo"
+	},
+	"editProvider": {
+		"message": "Editar proveedor"
 	},
 	"editTemplate": {
 		"message": "Editar plantilla"
@@ -141,8 +216,20 @@
 	"failedToDeleteTemplate": {
 		"message": "Error al eliminar la plantilla. Por favor, inténtalo de nuevo."
 	},
+	"failedToDuplicateTemplate": {
+		"message": "Error al duplicar la plantilla. Por favor, inténtelo de nuevo."
+	},
+	"failedToExportHighlights": {
+		"message": "Error al exportar los resaltados. Por favor, consulte la consola para más detalles."
+	},
+	"failedToExportSettings": {
+		"message": "Error al exportar las configuraciones. Por favor, consulte la consola para más detalles."
+	},
 	"failedToExtractContent": {
 		"message": "No se pudo extraer el contenido de la página."
+	},
+	"failedToImportTemplate": {
+		"message": "Error al importar la plantilla. Por favor, revise el archivo e intente de nuevo."
 	},
 	"failedToInitialize": {
 		"message": "Por favor, intenta recargar la extensión."
@@ -162,6 +249,9 @@
 	"failedToSaveFile": {
 		"message": "Error al guardar el archivo"
 	},
+	"failedToSaveProvider": {
+		"message": "Error al guardar el proveedor. Por favor, intente de nuevo."
+	},
 	"folder": {
 		"message": "Carpeta"
 	},
@@ -170,6 +260,18 @@
 	},
 	"generalSettings": {
 		"message": "Ajustes generales"
+	},
+	"getApiKeyHere": {
+		"message": "Obtén tu clave API de $1 aquí."
+	},
+	"help": {
+		"message": "Ayuda"
+	},
+	"helpDescription": {
+		"message": "Aprenda a usar Web Clipper y obtenga ayuda para solucionar problemas."
+	},
+	"highlightInline": {
+		"message": "Resaltar el contenido de la página"
 	},
 	"highlightPage": {
 		"message": "Resaltar página"
@@ -192,6 +294,12 @@
 	"importAllSettingsDescription": {
 		"message": "Importa todos los ajustes incluyendo plantillas y propiedades. Esto reemplazará tu configuración actual."
 	},
+	"importFailed": {
+		"message": "La importación falló. Por favor, consulte la consola para más detalles."
+	},
+	"importModalTitle": {
+		"message": "Importar"
+	},
 	"importProperties": {
 		"message": "Importar propiedades"
 	},
@@ -211,6 +319,15 @@
 				"content": "<strong>"
 			}
 		}
+	},
+	"importSettings": {
+		"message": "Importar configuraciones"
+	},
+	"importTemplate": {
+		"message": "Importar plantilla"
+	},
+	"interpret": {
+		"message": "interpretar"
 	},
 	"interpreter": {
 		"message": "Intérprete"
@@ -241,6 +358,30 @@
 	"legacyMode": {
 		"message": "Modo heredado"
 	},
+	"legacyModeDescription": {
+		"message": "Usa el método de guardado URI compatible con Obsidian 1.6.7 o anterior. Ten en cuenta que la longitud del contenido que puedes guardar está limitada por tu navegador y sistema operativo. Algunas páginas pueden fallar sin mostrar errores."
+	},
+	"modelName": {
+		"message": "Nombre del modelo"
+	},
+	"modelNameDescription": {
+		"message": "El nombre del modelo que desea mostrar en la interfaz."
+	},
+	"modelProvider": {
+		"message": "Proveedor"
+	},
+	"modelProviderDescription": {
+		"message": "El proveedor del modelo, por ejemplo Ollama, OpenRouter, Google, etc."
+	},
+	"modelProviderPlaceholder": {
+		"message": "Proveedor"
+	},
+	"modelRequiredFields": {
+		"message": "El nombre del modelo, el proveedor y la ID del modelo son obligatorios."
+	},
+	"models": {
+		"message": "Modelos"
+	},
 	"more": {
 		"message": "Más"
 	},
@@ -252,6 +393,9 @@
 	},
 	"noTemplates": {
 		"message": "No hay plantillas disponibles. Por favor, añade una plantilla en los ajustes."
+	},
+	"noUnusedProperties": {
+		"message": "No se encontraron propiedades sin usar."
 	},
 	"noteContent": {
 		"message": "Contenido de la nota"
@@ -288,14 +432,23 @@
 	"onlyHttpSupported": {
 		"message": "Esta página no se puede guardar. Solo se admiten URLs http y https."
 	},
+	"open": {
+		"message": "Abrir"
+	},
+	"optional": {
+		"message": "(opcional)"
+	},
+	"orPasteBelow": {
+		"message": "O pegue el contenido a continuación"
+	},
 	"pageCannotBeClipped": {
 		"message": "Esta página no se puede guardar."
 	},
 	"pageVariables": {
 		"message": "Variables de página"
 	},
-	"pasteCursorPosition": {
-		"message": "Pegar en la posición del cursor"
+	"pasteJsonHere": {
+		"message": "Pegue el JSON aquí"
 	},
 	"pleaseReload": {
 		"message": "Por favor, intenta recargar la página."
@@ -305,6 +458,9 @@
 	},
 	"prependToExisting": {
 		"message": "Agregar a una nota existente, al principio"
+	},
+	"processing": {
+		"message": "procesando"
 	},
 	"properties": {
 		"message": "Propiedades"
@@ -317,6 +473,48 @@
 	},
 	"propertyValue": {
 		"message": "Valor de la propiedad"
+	},
+	"provider": {
+		"message": "Proveedor"
+	},
+	"providerApiKey": {
+		"message": "Clave API"
+	},
+	"providerApiKeyDescription": {
+		"message": "Tu clave API para este proveedor."
+	},
+	"providerBaseUrl": {
+		"message": "URL base"
+	},
+	"providerBaseUrlDescription": {
+		"message": "La URL del punto final de la API para este proveedor."
+	},
+	"providerModelId": {
+		"message": "ID del modelo"
+	},
+	"providerModelIdDescription": {
+		"message": "El identificador del modelo de su proveedor. Típicamente un nombre corto sin espacios."
+	},
+	"providerModelIdPlaceholder": {
+		"message": "ID del modelo"
+	},
+	"providerName": {
+		"message": "Nombre del proveedor."
+	},
+	"providerNameDescription": {
+		"message": "Nombre para mostrar de este proveedor."
+	},
+	"providerPreset": {
+		"message": "Preestablecido"
+	},
+	"providerPresetDescription": {
+		"message": "Elige un proveedor o crea uno personalizado."
+	},
+	"providerRequiredFields": {
+		"message": "El nombre del proveedor y la URL base son obligatorios."
+	},
+	"providers": {
+		"message": "Proveedores"
 	},
 	"refresh": {
 		"message": "Refrescar"
@@ -348,17 +546,29 @@
 	"resetDefaultTemplateDescription": {
 		"message": "Elimina cualquier cambio que hayas hecho a la plantilla predeterminada."
 	},
+	"save": {
+		"message": "Guardar"
+	},
 	"saveFile": {
 		"message": "Guardar archivo..."
 	},
 	"searchVariables": {
 		"message": "Buscar variables..."
 	},
+	"selectProvider": {
+		"message": "Seleccionar un proveedor"
+	},
+	"selectTemplateToExport": {
+		"message": "Por favor, seleccione una plantilla para exportar."
+	},
 	"settings": {
 		"message": "Ajustes"
 	},
 	"settingsHeading": {
 		"message": "Ajustes"
+	},
+	"settingsImportSuccess": {
+		"message": "Todas las configuraciones se importaron con éxito. Por favor, actualice la página para ver los cambios."
 	},
 	"share": {
 		"message": "Compartir..."
@@ -408,6 +618,12 @@
 	"systemDefault": {
 		"message": "Sistema"
 	},
+	"templateCopied": {
+		"message": "Se copió el JSON de la plantilla al portapapeles"
+	},
+	"templateCopyError": {
+		"message": "Error al copiar el JSON de la plantilla al portapapeles"
+	},
 	"templateName": {
 		"message": "Nombre de la plantilla"
 	},
@@ -426,6 +642,18 @@
 	"templatesHeading": {
 		"message": "Plantillas"
 	},
+	"thinking": {
+		"message": "pensando"
+	},
+	"unknownProvider": {
+		"message": "Proveedor desconocido"
+	},
+	"updateAvailable": {
+		"message": "Hay una actualización disponible."
+	},
+	"usingLatestVersion": {
+		"message": "Estás usando la última versión."
+	},
 	"vault": {
 		"message": "Bóveda"
 	},
@@ -443,13 +671,18 @@
 	"vaults": {
 		"message": "Bóvedas"
 	},
-	"help": {
-		"message": "Ayuda"
+	"vaultsDescription": {
+		"message": "Por defecto, las notas se guardan en la bóveda abierta actualmente. Puedes añadir bóvedas aquí si quieres la opción de guardar en diferentes bóvedas. Los nombres de las bóvedas deben coincidir exactamente con el nombre de la bóveda de Obsidian. Presiona $strong_start$enter$strong_end$ para añadir una bóveda.",
+		"placeholders": {
+			"strong_end": {
+				"content": "</strong>"
+			},
+			"strong_start": {
+				"content": "<strong>"
+			}
+		}
 	},
-	"helpDescription": {
-		"message": "Aprenda a usar Web Clipper y obtenga ayuda para solucionar problemas."
-	},
-	"open": {
-		"message": "Abrir"
+	"version": {
+		"message": "Versión"
 	}
 }

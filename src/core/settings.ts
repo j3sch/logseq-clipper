@@ -1,18 +1,15 @@
-import { Template } from '../types/types';
 import { 
-	createDefaultTemplate, 
 	deleteTemplate,
 	duplicateTemplate,
 	findTemplateById, 
-	getEditingTemplateIndex,
-	getTemplates, 
+	getEditingTemplateIndex, 
 	loadTemplates, 
 	saveTemplateSettings, 
 	templates,
 	cleanupTemplateStorage,
 	rebuildTemplateList
 } from '../managers/template-manager';
-import { updateTemplateList, showTemplateEditor, resetUnsavedChanges, initializeAddPropertyButton } from '../managers/template-ui';
+import { updateTemplateList, showTemplateEditor, initializeAddPropertyButton } from '../managers/template-ui';
 import { initializeGeneralSettings } from '../managers/general-settings';
 import { showSettingsSection, initializeSidebar } from '../managers/settings-section-ui';
 import { initializeInterpreterSettings } from '../managers/interpreter-settings';
@@ -25,8 +22,7 @@ import { updateUrl, getUrlParameters } from '../utils/routing';
 import { addBrowserClassToHtml } from '../utils/browser-detection';
 import { initializeMenu } from '../managers/menu';
 import { addMenuItemListener } from '../managers/menu';
-import { getCurrentLanguage, setLanguage, getAvailableLanguages, getMessage } from '../utils/language-settings';
-import { translatePage } from '../utils/i18n';
+import { translatePage, getCurrentLanguage, setLanguage, getAvailableLanguages, getMessage, setupLanguageAndDirection } from '../utils/i18n';
 
 declare global {
 	interface Window {
@@ -42,7 +38,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 	const newTemplateBtn = document.getElementById('new-template-btn') as HTMLButtonElement;
 
 	async function initializeSettings(): Promise<void> {
-		// Initialize translations first
 		await translatePage();
 		
 		await initializeGeneralSettings();
@@ -66,14 +61,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 	async function initializeLanguageSelector(languageSelect: HTMLSelectElement): Promise<void> {
 		try {
-			// Initialize i18n first
+			await setupLanguageAndDirection();
 			await translatePage();
 			
 			// Populate language options
 			const languages = getAvailableLanguages();
 			const currentLanguage = await getCurrentLanguage();
 			
-			languageSelect.innerHTML = languages.map(lang => {
+			languageSelect.innerHTML = languages.map((lang: { code: string; name: string }) => {
 				const displayName = lang.code === '' ? getMessage('systemDefault') : lang.name;
 				return `<option value="${lang.code}" ${lang.code === currentLanguage ? 'selected' : ''}>${displayName}</option>`;
 			}).join('');
@@ -117,7 +112,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 				updateUrl('templates', newTemplate.id);
 			}).catch(error => {
 				console.error('Failed to duplicate template:', error);
-				alert('Failed to duplicate template. Please try again.');
+				alert(getMessage('failedToDuplicateTemplate'));
 			});
 		}
 	}
@@ -126,7 +121,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 		const editingTemplateIndex = getEditingTemplateIndex();
 		if (editingTemplateIndex !== -1) {
 			const currentTemplate = templates[editingTemplateIndex];
-			if (confirm(`Are you sure you want to delete the template "${currentTemplate.name}"?`)) {
+			if (confirm(getMessage('confirmDeleteTemplate', [currentTemplate.name]))) {
 				const success = await deleteTemplate(currentTemplate.id);
 				if (success) {
 					// Reload templates after deletion
@@ -138,7 +133,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 						showSettingsSection('general');
 					}
 				} else {
-					alert('Failed to delete template. Please try again.');
+					alert(getMessage('failedToDeleteTemplate'));
 				}
 			}
 		}
