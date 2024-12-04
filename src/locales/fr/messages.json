@@ -1,6 +1,18 @@
 {
+	"addModel": {
+		"message": "+ Ajouter un modèle"
+	},
+	"addModelTitle": {
+		"message": "Ajouter un modèle de langage"
+	},
 	"addProperty": {
 		"message": "+ Ajouter une propriété"
+	},
+	"addProvider": {
+		"message": "+ Ajouter un fournisseur"
+	},
+	"addProviderTitle": {
+		"message": "Ajouter un fournisseur"
 	},
 	"addToObsidian": {
 		"message": "Ajouter à Logseq"
@@ -17,14 +29,50 @@
 	"alwaysShowHighlightsDescription": {
 		"message": "Affiche vos surlignages sauvegardés lors du chargement d'une page. Désactivez pour n'afficher les surlignages que lorsque le mode surlignage est activé."
 	},
+	"apiKeyMissing": {
+		"message": "Pas de clé API"
+	},
+	"apiKeysWarning": {
+		"message": "En utilisant un fournisseur externe, vous acceptez leurs conditions d'utilisation et leur politique de confidentialité. Les requêtes de l'interpréteur sont envoyées directement au fournisseur que vous choisissez. Logseq ne collecte ni ne stocke aucune donnée concernant vos requêtes."
+	},
 	"appendToDaily": {
 		"message": "Ajouter à la note quotidienne, à la fin"
 	},
 	"appendToExisting": {
 		"message": "Ajouter à une note existante, à la fin"
 	},
+	"autoRunInterpreter": {
+		"message": "Exécuter automatiquement"
+	},
+	"autoRunInterpreterDescription": {
+		"message": "Exécute les variables de prompt immédiatement si le modèle en contient. Cela consommera des crédits API avec votre fournisseur de modèle. Désactivez si vous souhaitez exécuter l'interpréteur manuellement uniquement."
+	},
 	"behavior": {
 		"message": "Comportement"
+	},
+	"behaviorWarning": {
+		"message": "L'ajout à une note existante ou à la note quotidienne nécessite Obsidian 1.7.2 ou ultérieur."
+	},
+	"cancel": {
+		"message": "Annuler"
+	},
+	"cannotDeleteProvider": {
+		"message": "Impossible de supprimer le fournisseur \"$1\" car il est utilisé par $2 modèle(s)."
+	},
+	"changelog": {
+		"message": "Journal des modifications"
+	},
+	"chooseFile": {
+		"message": "Choisir un fichier"
+	},
+	"choosePropertiesFile": {
+		"message": "Choisir un fichier de propriétés"
+	},
+	"chooseSettingsFile": {
+		"message": "Choisir un fichier de paramètres"
+	},
+	"chooseTemplateFile": {
+		"message": "Choisir un fichier de modèle"
 	},
 	"clipBehavior": {
 		"message": "Comportement de sauvegarde"
@@ -55,6 +103,9 @@
 	"confirmDeleteTemplate": {
 		"message": "Êtes-vous sûr de vouloir supprimer le modèle \"$1\" ?"
 	},
+	"confirmReplaceSettings": {
+		"message": "Cela remplacera tous vos paramètres actuels, y compris les modèles et les propriétés. Êtes-vous sûr de vouloir continuer ?"
+	},
 	"copied": {
 		"message": "Copié !"
 	},
@@ -67,8 +118,17 @@
 	"createNewNote": {
 		"message": "Créer une nouvelle note"
 	},
+	"custom": {
+		"message": "Personnalisé"
+	},
 	"dailyNoteFormat": {
 		"message": "Format de note quotidienne (ex: YYYY-MM-DD)"
+	},
+	"defaultInterpreterContext": {
+		"message": "Contexte par défaut de l'interpréteur"
+	},
+	"defaultInterpreterContextDescription": {
+		"message": "Le modèle utilisera ce contexte pour interpréter les variables de prompt. Les variables et filtres peuvent être utilisés ici."
 	},
 	"defaultTemplateName": {
 		"message": "Par défaut"
@@ -76,11 +136,20 @@
 	"delete": {
 		"message": "Supprimer"
 	},
-	"disableHighlighter": {
-		"message": "Désactiver le surlignage"
+	"deleteModelConfirm": {
+		"message": "Êtes-vous sûr de vouloir supprimer ce modèle ?"
 	},
-	"display": {
-		"message": "Affichage"
+	"deleteProviderConfirm": {
+		"message": "Êtes-vous sûr de vouloir supprimer ce fournisseur ?"
+	},
+	"disableHighlighter": {
+		"message": "Désactiver le surlignageur"
+	},
+	"done": {
+		"message": "terminé"
+	},
+	"dragAndDropFile": {
+		"message": "Glissez et déposez un fichier ici"
 	},
 	"duplicate": {
 		"message": "Dupliquer"
@@ -88,11 +157,17 @@
 	"earlyAccessFeatures": {
 		"message": "Fonctionnalités d'accès anticipé"
 	},
+	"editModel": {
+		"message": "Modifier le modèle de langage"
+	},
+	"editProvider": {
+		"message": "Modifier le fournisseur"
+	},
 	"editTemplate": {
 		"message": "Modifier le modèle"
 	},
 	"enableHighlighter": {
-		"message": "Activer le surlignage"
+		"message": "Activer le surligneur"
 	},
 	"enableHighlighterDescription": {
 		"message": "Surlignez du contenu sur les pages web que vous pouvez sauvegarder dans Logseq."
@@ -141,8 +216,20 @@
 	"failedToDeleteTemplate": {
 		"message": "Échec de la suppression du modèle. Veuillez réessayer."
 	},
+	"failedToDuplicateTemplate": {
+		"message": "Échec de la duplication du modèle. Veuillez réessayer."
+	},
+	"failedToExportHighlights": {
+		"message": "Échec de l'exportation des surlignages. Veuillez vérifier la console pour plus de détails."
+	},
+	"failedToExportSettings": {
+		"message": "Échec de l'exportation des paramètres. Veuillez vérifier la console pour plus de détails."
+	},
 	"failedToExtractContent": {
 		"message": "Impossible d'extraire le contenu de la page."
+	},
+	"failedToImportTemplate": {
+		"message": "Erreur lors de l'importation du modèle. Veuillez vérifier le fichier et réessayer."
 	},
 	"failedToInitialize": {
 		"message": "Veuillez essayer de recharger l'extension."
@@ -153,11 +240,17 @@
 	"failedToProcessInterpreter": {
 		"message": "Échec du traitement de l'interpréteur. Veuillez réessayer."
 	},
+	"failedToResetTemplate": {
+		"message": "Échec de la réinitialisation du modèle par défaut. Veuillez réessayer."
+	},
 	"failedToSave": {
 		"message": "Échec de l'enregistrement du fichier"
 	},
 	"failedToSaveFile": {
 		"message": "Échec de l'enregistrement du fichier"
+	},
+	"failedToSaveProvider": {
+		"message": "Échec de l'enregistrement du fournisseur. Veuillez réessayer."
 	},
 	"folder": {
 		"message": "Dossier"
@@ -168,14 +261,26 @@
 	"generalSettings": {
 		"message": "Paramètres généraux"
 	},
+	"getApiKeyHere": {
+		"message": "Obtenez votre clé API $1 ici."
+	},
+	"help": {
+		"message": "Aide"
+	},
+	"helpDescription": {
+		"message": "Apprenez à utiliser Web Clipper et obtenez de l'aide pour le dépannage."
+	},
+	"highlightInline": {
+		"message": "Surligner le contenu de la page"
+	},
 	"highlightPage": {
 		"message": "Surligner la page"
 	},
 	"highlighter": {
-		"message": "Surlignage"
+		"message": "Surligneur"
 	},
 	"highlighterSettings": {
-		"message": "Surlignage"
+		"message": "Surligneur"
 	},
 	"hotkeys": {
 		"message": "Raccourcis clavier"
@@ -188,6 +293,12 @@
 	},
 	"importAllSettingsDescription": {
 		"message": "Importe tous les paramètres, y compris les modèles et les propriétés. Cela remplacera votre configuration actuelle."
+	},
+	"importFailed": {
+		"message": "L'importation a échoué. Veuillez vérifier la console pour plus de détails."
+	},
+	"importModalTitle": {
+		"message": "Importer"
 	},
 	"importProperties": {
 		"message": "Importer les propriétés"
@@ -208,6 +319,15 @@
 				"content": "<strong>"
 			}
 		}
+	},
+	"importSettings": {
+		"message": "Importer les paramètres"
+	},
+	"importTemplate": {
+		"message": "Importer un modèle"
+	},
+	"interpret": {
+		"message": "interpréter"
 	},
 	"interpreter": {
 		"message": "Interpréteur"
@@ -238,6 +358,30 @@
 	"legacyMode": {
 		"message": "Mode hérité"
 	},
+	"legacyModeDescription": {
+		"message": "Utilise la méthode d'enregistrement URI compatible avec Obsidian 1.6.7 ou antérieur. Notez que la longueur du contenu que vous pouvez enregistrer est limitée par votre navigateur et votre système d'exploitation. Certaines pages peuvent échouer sans erreur."
+	},
+	"modelName": {
+		"message": "Nom du modèle de langage"
+	},
+	"modelNameDescription": {
+		"message": "Le nom du modèle que vous souhaitez afficher dans l'interface."
+	},
+	"modelProvider": {
+		"message": "Fournisseur"
+	},
+	"modelProviderDescription": {
+		"message": "Le fournisseur du modèle, par exemple Ollama, OpenRouter, Google, etc."
+	},
+	"modelProviderPlaceholder": {
+		"message": "Fournisseur"
+	},
+	"modelRequiredFields": {
+		"message": "Le nom du modèle, le fournisseur et l'ID du modèle sont requis."
+	},
+	"models": {
+		"message": "Modèles de langage"
+	},
 	"more": {
 		"message": "Plus"
 	},
@@ -249,6 +393,9 @@
 	},
 	"noTemplates": {
 		"message": "Aucun modèle disponible. Veuillez ajouter un modèle dans les paramètres."
+	},
+	"noUnusedProperties": {
+		"message": "Aucune propriété inutilisée trouvée."
 	},
 	"noteContent": {
 		"message": "Contenu de la note"
@@ -285,11 +432,23 @@
 	"onlyHttpSupported": {
 		"message": "Cette page ne peut pas être enregistrée. Seules les URLs http et https sont supportées."
 	},
+	"open": {
+		"message": "Ouvrir"
+	},
+	"optional": {
+		"message": "(optionnel)"
+	},
+	"orPasteBelow": {
+		"message": "Ou collez le contenu ci-dessous"
+	},
 	"pageCannotBeClipped": {
 		"message": "Cette page ne peut pas être enregistrée."
 	},
 	"pageVariables": {
 		"message": "Variables de page"
+	},
+	"pasteJsonHere": {
+		"message": "Collez le JSON ici"
 	},
 	"pasteCursorPosition": {
 		"message": "Coller à la position du curseur"
@@ -303,6 +462,9 @@
 	"prependToExisting": {
 		"message": "Ajouter à une note existante, au début"
 	},
+	"processing": {
+		"message": "traitement"
+	},
 	"properties": {
 		"message": "Propriétés"
 	},
@@ -314,6 +476,48 @@
 	},
 	"propertyValue": {
 		"message": "Valeur de la propriété"
+	},
+	"provider": {
+		"message": "Fournisseur"
+	},
+	"providerApiKey": {
+		"message": "Clé API"
+	},
+	"providerApiKeyDescription": {
+		"message": "Votre clé API pour ce fournisseur."
+	},
+	"providerBaseUrl": {
+		"message": "URL de base"
+	},
+	"providerBaseUrlDescription": {
+		"message": "L'URL du point de terminaison API pour ce fournisseur."
+	},
+	"providerModelId": {
+		"message": "ID du modèle"
+	},
+	"providerModelIdDescription": {
+		"message": "L'identifiant du modèle de votre fournisseur. Généralement un nom court sans espaces."
+	},
+	"providerModelIdPlaceholder": {
+		"message": "ID du modèle"
+	},
+	"providerName": {
+		"message": "Nom du fournisseur"
+	},
+	"providerNameDescription": {
+		"message": "Nom d'affichage pour ce fournisseur."
+	},
+	"providerPreset": {
+		"message": "Préréglage"
+	},
+	"providerPresetDescription": {
+		"message": "Choisissez un fournisseur ou créez-en un personnalisé."
+	},
+	"providerRequiredFields": {
+		"message": "Le nom du fournisseur et l'URL de base sont requis."
+	},
+	"providers": {
+		"message": "Fournisseurs"
 	},
 	"refresh": {
 		"message": "Actualiser"
@@ -345,17 +549,29 @@
 	"resetDefaultTemplateDescription": {
 		"message": "Supprime toutes les modifications apportées au modèle par défaut."
 	},
+	"save": {
+		"message": "Enregistrer"
+	},
 	"saveFile": {
 		"message": "Enregistrer le fichier..."
 	},
 	"searchVariables": {
 		"message": "Rechercher des variables..."
 	},
+	"selectProvider": {
+		"message": "Sélectionnez un fournisseur"
+	},
+	"selectTemplateToExport": {
+		"message": "Veuillez sélectionner un modèle à exporter."
+	},
 	"settings": {
 		"message": "Paramètres"
 	},
 	"settingsHeading": {
 		"message": "Paramètres"
+	},
+	"settingsImportSuccess": {
+		"message": "Tous les paramètres ont été importés avec succès. Veuillez rafraîchir la page pour voir les modifications."
 	},
 	"share": {
 		"message": "Partager..."
@@ -405,6 +621,12 @@
 	"systemDefault": {
 		"message": "Système"
 	},
+	"templateCopied": {
+		"message": "Modèle copié dans le presse-papiers"
+	},
+	"templateCopyError": {
+		"message": "Échec de la copie du modèle dans le presse-papiers"
+	},
 	"templateName": {
 		"message": "Nom du modèle"
 	},
@@ -423,6 +645,18 @@
 	"templatesHeading": {
 		"message": "Modèles"
 	},
+	"thinking": {
+		"message": "réflexion"
+	},
+	"unknownProvider": {
+		"message": "Fournisseur inconnu"
+	},
+	"updateAvailable": {
+		"message": "Une mise à jour est disponible."
+	},
+	"usingLatestVersion": {
+		"message": "Vous utilisez la dernière version."
+	},
 	"vault": {
 		"message": "Coffre"
 	},
@@ -440,13 +674,18 @@
 	"vaults": {
 		"message": "Coffres"
 	},
-	"help": {
-		"message": "Aide"
+	"vaultsDescription": {
+		"message": "Par défaut, les notes sont enregistrées dans le coffre actuellement ouvert. Vous pouvez ajouter des coffres ici si vous souhaitez pouvoir enregistrer dans différents coffres. Les noms des coffres doivent correspondre exactement au nom du coffre Obsidian. Appuyez sur $strong_start$entrée$strong_end$ pour ajouter un coffre.",
+		"placeholders": {
+			"strong_end": {
+				"content": "</strong>"
+			},
+			"strong_start": {
+				"content": "<strong>"
+			}
+		}
 	},
-	"helpDescription": {
-		"message": "Apprenez à utiliser Web Clipper et obtenez de l'aide pour le dépannage."
-	},
-	"open": {
-		"message": "Ouvrir"
+	"version": {
+		"message": "Version"
 	}
 }
