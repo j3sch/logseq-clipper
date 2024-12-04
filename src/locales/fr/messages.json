@@ -131,7 +131,7 @@
 		"message": "Le modèle utilisera ce contexte pour interpréter les variables de prompt. Les variables et filtres peuvent être utilisés ici."
 	},
 	"defaultTemplateName": {
-		"message": "Par défaut"
+		"message": "Défaut"
 	},
 	"delete": {
 		"message": "Supprimer"
@@ -239,6 +239,9 @@
 	},
 	"failedToProcessInterpreter": {
 		"message": "Échec du traitement de l'interpréteur. Veuillez réessayer."
+	},
+	"failedToResetProviders": {
+		"message": "Échec de la réinitialisation des fournisseurs et des modèles"
 	},
 	"failedToResetTemplate": {
 		"message": "Échec de la réinitialisation du modèle par défaut. Veuillez réessayer."
@@ -548,6 +551,12 @@
 	},
 	"resetDefaultTemplateDescription": {
 		"message": "Supprime toutes les modifications apportées au modèle par défaut."
+	},
+	"resetProvidersAndModels": {
+		"message": "Réinitialiser les modèles par défaut"
+	},
+	"resetProvidersAndModelsDescription": {
+		"message": "Réinitialiser les fournisseurs et les modèles aux paramètres par défaut."
 	},
 	"save": {
 		"message": "Enregistrer"

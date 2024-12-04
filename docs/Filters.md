@@ -46,9 +46,16 @@ Filters to convert text strings from one format to another.
 - `replace` replaces occurrences of specified text:
 	- Simple replacement: `"hello!"|replace:",":""` removes all commas.
 	- Multiple replacements: `"hello world"|replace:("e":"a","o":"0")` returns `"hall0 w0rld"`.
+	- Regex support using JavaScript regex syntax:
+		- Format: `/pattern/flags` where flags are optional
+		- Replace all vowels: `"hello world"|replace:"/[aeiou]/g":"*"` → `"h*ll* w*rld"`
+		- Case-insensitive: `"HELLO world"|replace:"/hello/i":"hi"` → `"hi world"`
+		- Multiple regex: `"hello world"|replace:("/[aeiou]/g":"*","/\s+/":"-")` → `"h*ll*-w*rld"`
+		- Available flags: `g` (global), `i` (case-insensitive), `m` (multiline), `s` (dotAll), `u` (unicode), `y` (sticky)
 	- Replacements are applied in the order they are specified.
 	- To remove specified text, use `""` as the replacement value.
-	- Special characters including `: | { } ( ) ' "` should be escaped with a backslash when used in the search term, e.g. `\:` to search for a literal colon.
+	- Special characters including `: | { } ( ) ' "` should be escaped with a backslash in non-regex searches.
+	- To use a literal forward slash in non-regex searches, escape it: `"path/to/file"|replace:"\\/":","`
 - `safe_name` converts text to a safe file name.
 	- By default, `safe_name` applies the most conservative sanitization rules.
 	- OS-specific rules can be applied with `safe_name:os` where `os` can be `windows`, `mac`, or `linux` to only apply the rules for that operating system.
@@ -105,16 +112,21 @@ Filters to process HTML content and convert HTML to Markdown. Note that your inp
 
 - `markdown` converts a string to an [[Obsidian Flavored Markdown]] formatted string.
 	- Useful when combined with variables that return HTML such as `{{contentHtml}}`, `{{fullHtml}}`, and selector variables like `{{selectorHtml:cssSelector}}`.
+- `remove_attr` removes specified HTML attributes from tags.
+	- Example: `"<div class="test" id="example">Content</div>"|remove_attr:"class"` returns `<div id="example">Content</div>`.
+	- Multiple attributes: `{{contentHtml|remove_attr:("class,style,id")}}`
 - `remove_html` removes specified HTML elements and their content from a string.
 	- Supports tag name, class, or id, e.g. `{{contentHtml|remove_html:("img,.class-name,#element-id")}}`
-	- To remove only HTML tags or attributes without removing the content use the `strip_tags` or `strip_attr` filters.
-- `strip_attr` removes all HTML attributes from a string.
+- `remove_tags` removes specified HTML tags. Keeps the content of the tags.
+	- Example: `"<p>Hello <b>world</b>!</p>"|remove_tags:"b"` returns `"<p>Hello world!</p>"`.
+	- Multiple tags: `{{contentHtml|remove_tags:("a,em,strong")}}`
+- `strip_attr` removes all HTML attributes from a string, except the specified attributes.
 	- Use `strip_attr:("class, id")` to keep specific attributes.
 	- Example: `"<div class="test" id="example">Content</div>"|strip_attr:("class")` returns `<div id="example">Content</div>`.
 - `strip_md` removes all Markdown formatting and returns a plain text string, e.g. turning `**text**` into `text`.
 	- Turns formatted text into unformatted plain text, including bold, italic, highlights, headers, code, blockquotes, tables, task lists, and wikilinks.
 	- Entirely removes tables, footnotes, images, and HTML elements.
-- `strip_tags` removes all HTML tags from a string. Unlike `remove_html` this doesn't remove the content within the tags.
+- `strip_tags` removes all HTML tags from a string, except the specified tags. Keeps the content of the tags.
 	- Use `strip_tags:("p,strong,em")` to keep specific tags.
 	- Example: `"<p>Hello <b>world</b>!</p>"|strip_tags:("b")` returns `Hello <b>world</b>!`.
 - `replace_tags` replaces specified HTML tags with different tags while preserving their attributes and content.
@@ -172,3 +184,8 @@ Filters to process arrays and objects.
 	- Works with string literals from `map` by accessing the `str` property:
 		- Example: `["rock", "pop"]|map:item => "genres/${item}"|template:"${str}"` returns `"genres/rock\ngenres/pop"`.
 		- The `str` property is automatically used when applying `template` to objects created by `map` with string literals.
+- `unique` removes duplicate values from arrays and objects.
+	- For arrays of primitives: `[1,2,2,3,3]|unique` returns `[1,2,3]`.
+	- For arrays of objects: `[{"a":1},{"b":2},{"a":1}]|unique` returns `[{"a":1},{"b":2}]`.
+	- For objects: Removes properties with duplicate values, keeping the last occurrence's key.
+	- For strings: Returns the input unchanged.

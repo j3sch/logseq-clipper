@@ -23,7 +23,7 @@ const PRESET_PROVIDERS: Record<string, PresetProvider> = {
 	azure: {
 		id: 'azure-openai',
 		name: 'Azure OpenAI',
-		baseUrl: 'https://{endpoint}/openai/deployments/{deployment-id}/chat/completions?api-version=2024-10-21',
+		baseUrl: 'https://{resource-name}.openai.azure.com/openai/deployments/{deployment-id}/chat/completions?api-version=2024-10-21',
 	},
 	ollama: {
 		id: 'ollama',
@@ -95,6 +95,8 @@ export function initializeInterpreterSettings(): void {
 	if (addProviderBtn) {
 		addProviderBtn.addEventListener('click', (event) => addProviderToList(event));
 	}
+
+	initializeResetProvidersButton();
 }
 
 function initializeInterpreterToggles(): void {
@@ -116,8 +118,13 @@ function initializeProviderList() {
 		return;
 	}
 
+	// Sort providers alphabetically by name
+	const sortedProviders = [...generalSettings.providers].sort((a, b) => 
+		a.name.toLowerCase().localeCompare(b.name.toLowerCase())
+	);
+
 	providerList.innerHTML = '';
-	generalSettings.providers.forEach((provider, index) => {
+	sortedProviders.forEach((provider, index) => {
 		const providerItem = createProviderListItem(provider, index);
 		providerList.appendChild(providerItem);
 	});
@@ -130,6 +137,7 @@ function createProviderListItem(provider: Provider, index: number): HTMLElement 
 	const providerItem = document.createElement('div');
 	providerItem.className = 'provider-list-item';
 	providerItem.dataset.index = index.toString();
+	providerItem.dataset.providerId = provider.id;
 
 	providerItem.innerHTML = `
 		<div class="provider-list-item-info">
@@ -140,13 +148,13 @@ function createProviderListItem(provider: Provider, index: number): HTMLElement 
 			${!provider.apiKey ? `<span class="provider-no-key"><i data-lucide="alert-triangle"></i> ${getMessage('apiKeyMissing')}</span>` : ''}
 		</div>
 		<div class="provider-list-item-actions">
-			<button class="edit-provider-btn clickable-icon" data-index="${index}" aria-label="Edit provider">
+			<button class="edit-provider-btn clickable-icon" data-provider-id="${provider.id}" aria-label="Edit provider">
 				<i data-lucide="pen-line"></i>
 			</button>
-			<button class="duplicate-provider-btn clickable-icon" data-index="${index}" aria-label="Duplicate provider">
+			<button class="duplicate-provider-btn clickable-icon" data-provider-id="${provider.id}" aria-label="Duplicate provider">
 				<i data-lucide="copy-plus"></i>
 			</button>
-			<button class="delete-provider-btn clickable-icon" data-index="${index}" aria-label="Delete provider">
+			<button class="delete-provider-btn clickable-icon" data-provider-id="${provider.id}" aria-label="Delete provider">
 				<i data-lucide="trash-2"></i>
 			</button>
 		</div>
@@ -157,7 +165,13 @@ function createProviderListItem(provider: Provider, index: number): HTMLElement 
 		editBtn.addEventListener('click', (e) => {
 			e.preventDefault();
 			e.stopPropagation();
-			editProvider(index);
+			const providerId = editBtn.getAttribute('data-provider-id');
+			if (providerId) {
+				const providerIndex = generalSettings.providers.findIndex(p => p.id === providerId);
+				if (providerIndex !== -1) {
+					editProvider(providerIndex);
+				}
+			}
 		});
 	}
 
@@ -166,7 +180,13 @@ function createProviderListItem(provider: Provider, index: number): HTMLElement 
 		duplicateBtn.addEventListener('click', (e) => {
 			e.preventDefault();
 			e.stopPropagation();
-			duplicateProvider(index);
+			const providerId = duplicateBtn.getAttribute('data-provider-id');
+			if (providerId) {
+				const providerIndex = generalSettings.providers.findIndex(p => p.id === providerId);
+				if (providerIndex !== -1) {
+					duplicateProvider(providerIndex);
+				}
+			}
 		});
 	}
 
@@ -175,7 +195,13 @@ function createProviderListItem(provider: Provider, index: number): HTMLElement 
 		deleteBtn.addEventListener('click', (e) => {
 			e.preventDefault();
 			e.stopPropagation();
-			deleteProvider(index);
+			const providerId = deleteBtn.getAttribute('data-provider-id');
+			if (providerId) {
+				const providerIndex = generalSettings.providers.findIndex(p => p.id === providerId);
+				if (providerIndex !== -1) {
+					deleteProvider(providerIndex);
+				}
+			}
 		});
 	}
 
@@ -271,7 +297,7 @@ async function showProviderModal(provider: Provider, index?: number) {
 			// When editing, try to find matching preset
 			if (index !== undefined) {
 				const matchingPreset = Object.entries(PRESET_PROVIDERS).find(([_, preset]) => 
-					preset.name === provider.name && preset.baseUrl === provider.baseUrl
+					preset.name === provider.name
 				);
 				presetSelect.value = matchingPreset ? matchingPreset[0] : '';
 			} else {
@@ -509,11 +535,15 @@ function showModelModal(model: ModelConfig, index?: number) {
 	nameInput.value = model.name;
 	providerModelIdInput.value = model.providerModelId || '';
 
-	// Populate provider select
+	// Populate provider select with alphabetically sorted providers
 	providerSelect.innerHTML = '<option value="" data-i18n="selectProvider">Select a provider</option>';
-	generalSettings.providers.forEach(provider => {
+	const sortedProviders = [...generalSettings.providers].sort((a, b) => 
+		a.name.toLowerCase().localeCompare(b.name.toLowerCase())
+	);
+	sortedProviders.forEach(provider => {
 		const option = document.createElement('option');
 		option.value = provider.id;
+		
 		option.textContent = provider.name;
 		providerSelect.appendChild(option);
 	});
@@ -624,4 +654,77 @@ function duplicateModel(index: number) {
 	// Show edit modal for the new model
 	const newIndex = generalSettings.models.length - 1;
 	showModelModal(duplicatedModel, newIndex);
+}
+
+function initializeResetProvidersButton(): void {
+	const resetProvidersBtn = document.getElementById('reset-providers-btn');
+	if (resetProvidersBtn) {
+		resetProvidersBtn.addEventListener('click', async () => {
+			try {
+				// Keep custom providers
+				const defaultProviderIds = ['openai', 'anthropic'];
+				const customProviders = generalSettings.providers.filter(p => !defaultProviderIds.includes(p.id));
+				
+				// Reset default providers while preserving API keys
+				const defaultProviders = defaultProviderIds.map(id => {
+					const defaultProvider = PRESET_PROVIDERS[id];
+					const existing = generalSettings.providers.find(p => p.id === id);
+					return {
+						id,
+						name: defaultProvider.name,
+						baseUrl: defaultProvider.baseUrl,
+						apiKey: existing?.apiKey || ''
+					};
+				});
+
+				// Combine default and custom providers
+				generalSettings.providers = [...defaultProviders, ...customProviders];
+
+				// Create default models
+				const defaultModels: ModelConfig[] = [
+					{
+						id: 'gpt-4o-mini',
+						providerId: 'openai',
+						providerModelId: 'gpt-4o-mini',
+						name: 'GPT-4o Mini',
+						enabled: true
+					},
+					{
+						id: 'gpt-4o',
+						providerId: 'openai',
+						providerModelId: 'gpt-4o',
+						name: 'GPT-4o',
+						enabled: true
+					},
+					{
+						id: 'claude-3-sonnet',
+						providerId: 'anthropic',
+						providerModelId: 'claude-3-sonnet-20240620',
+						name: 'Claude 3.5 Sonnet',
+						enabled: true
+					},
+					{
+						id: 'claude-3-haiku',
+						providerId: 'anthropic',
+						providerModelId: 'claude-3-haiku-20240307',
+						name: 'Claude 3 Haiku',
+						enabled: true
+					}
+				];
+
+				// Keep custom models
+				const defaultModelIds = defaultModels.map(m => m.id);
+				const customModels = generalSettings.models.filter(m => !defaultModelIds.includes(m.id));
+				generalSettings.models = [...defaultModels, ...customModels];
+				
+				await saveSettings();
+				// Reinitialize the lists
+				initializeProviderList();
+				initializeModelList();
+			} catch (error) {
+				console.error('Failed to reset providers and models:', error);
+				alert(getMessage('failedToResetProviders'));
+			}
+		});
+	}
 }

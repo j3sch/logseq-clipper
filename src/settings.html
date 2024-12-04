@@ -96,18 +96,17 @@
 								<h3 data-i18n="advanced">Advanced</h3>
 								<div class="setting-item mod-horizontal" style="display: none;">
 									<div class="setting-item-info">
-										<label for="show-more-actions-toggle" data-i18n="showActionsButton">Show actions button</label>
-										<div class="setting-item-description" data-i18n="showActionsDescription">
-											Allows you to inspect page variables from the clipper menu. Useful for seeing the variables that are available to use in&nbsp;templates.
+										<label for="beta-features-toggle" data-i18n="earlyAccessFeatures">Early access features</label>
+										<div class="setting-item-description" data-i18n="earlyAccessDescription">
+											Use features that require the latest <a href="https://help.obsidian.md/Obsidian/Early+access+versions" target="_blank">early access version</a> of Obsidian. Currently requires Obsidian 1.7.2 or later.
 										</div>
 									</div>
 									<div class="setting-item-control">
-										<div class="checkbox-container is-enabled">
-											<input type="checkbox" id="show-more-actions-toggle" />
+										<div class="checkbox-container">
+											<input type="checkbox" id="beta-features-toggle" />
 										</div>
 									</div>
 								</div>
-							
 								<div class="setting-item mod-horizontal">
 									<div class="setting-item-info">
 										<label for="silent-open-toggle" data-i18n="silentOpen">Save clipped note without opening&nbsp;it</label>
@@ -276,11 +275,23 @@
 							</div>
 							<div>
 								<h3 data-i18n="advanced">Advanced</h3>
+								<div class="setting-item mod-horizontal">
+									<div class="setting-item-info">
+										<label for="reset-providers-btn" data-i18n="resetProvidersAndModels">Reset default models</label>
+										<div class="setting-item-description" data-i18n="resetProvidersAndModelsDescription">
+											Reset providers and models to the default settings.
+										</div>
+									</div>
+									<div class="setting-item-control">
+										<button type="button" id="reset-providers-btn" class="mod-warning" data-i18n="reset">Reset</button>
+									</div>
+								</div>
 								<div class="setting-item">
 									<label for="default-prompt-context" style="font-weight: 400;" data-i18n="defaultInterpreterContext">Default interpreter context</label>
 									<div class="setting-item-description" data-i18n="defaultInterpreterContextDescription">Override the context used to interpret prompt variables. Variables can be used here.</div>
 									<textarea id="default-prompt-context" rows="4" placeholder="{{fullHtml}}" spellcheck="false"></textarea>
 								</div>
+								
 							</div>
 						</form>
 					</div>
