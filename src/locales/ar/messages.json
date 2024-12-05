@@ -225,7 +225,7 @@
 		"message": "تصدير الخصائص"
 	},
 	"exportPropertiesDescription": {
-		"message": "احفظ خصائص Web Clipper في ملف $_start$types.json$strong_end$ الذي يمكن استيراده إلى Web Clipper على أجهزة أخرى.",
+		"message": "احفظ خصائص Web Clipper في ملف $strong_start$types.json$strong_end$ الذي يمكن استيراده إلى Web Clipper على أجهزة أخرى.",
 		"placeholders": {
 			"strong_end": {
 				"content": "</strong>"
@@ -338,7 +338,7 @@
 		"message": "استيراد الخصائص"
 	},
 	"importPropertiesDescription": {
-		"message": "احفظ خصائص Web Clipper في ملف $strong_start$types.json$strong_end$ والذي يمكن استيراده إلى Web Clipper على أجهزة أخرى.",
+		"message": "احفظ خصائص Web Clipper في ملف $strong_1_start$types.json$strong_1_end$ والذي يمكن استيراده إلى Web Clipper على أجهزة أخرى.",
 		"placeholders": {
 			"strong_1_end": {
 				"content": "</strong>"

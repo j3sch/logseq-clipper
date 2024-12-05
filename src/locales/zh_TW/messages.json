@@ -340,16 +340,10 @@
 	"importPropertiesDescription": {
 		"message": "將 Web Clipper 的屬性保存到一個 $strong_start$types.json$strong_end$ 文件中，以便在其他設備上的 Web Clipper 中導入。",
 		"placeholders": {
-			"strong_1_end": {
+			"strong_end": {
 				"content": "</strong>"
 			},
-			"strong_1_start": {
-				"content": "<strong>"
-			},
-			"strong_2_end": {
-				"content": "</strong>"
-			},
-			"strong_2_start": {
+			"strong_start": {
 				"content": "<strong>"
 			}
 		}

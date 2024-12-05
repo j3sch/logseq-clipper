@@ -340,16 +340,10 @@
 	"importPropertiesDescription": {
 		"message": "Salve as propriedades do Web Clipper em um arquivo $strong_start$types.json$strong_end$ que pode ser importado para o Web Clipper em outros dispositivos.",
 		"placeholders": {
-			"strong_1_end": {
+			"strong_end": {
 				"content": "</strong>"
 			},
-			"strong_1_start": {
-				"content": "<strong>"
-			},
-			"strong_2_end": {
-				"content": "</strong>"
-			},
-			"strong_2_start": {
+			"strong_start": {
 				"content": "<strong>"
 			}
 		}
