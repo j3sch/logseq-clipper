@@ -15,7 +15,7 @@
 		"message": "Dodaj operatora"
 	},
 	"addToObsidian": {
-		"message": "Zapisz w Obsidian"
+		"message": "Zapisz w Logseq"
 	},
 	"addVaultPlaceholder": {
 		"message": "Kliknij Enter, aby dodać sejf"
@@ -36,7 +36,7 @@
 		"message": "Brak klucza API"
 	},
 	"apiKeysWarning": {
-		"message": "Korzystając z usług zewnętrznego operatora, użytkownik akceptuje jego regulamin i politykę prywatności. Zapytania użytkowników wysyłane są bezpośrednio do wybranego operatora. Obsidian nie gromadzi ani nie przechowuje żadnych danych dotyczących zapytań."
+		"message": "Korzystając z usług zewnętrznego operatora, użytkownik akceptuje jego regulamin i politykę prywatności. Zapytania użytkowników wysyłane są bezpośrednio do wybranego operatora. Logseq nie gromadzi ani nie przechowuje żadnych danych dotyczących zapytań."
 	},
 	"appendToDaily": {
 		"message": "Zapisz na dole codziennej notatki"
@@ -52,9 +52,6 @@
 	},
 	"behavior": {
 		"message": "Sposób działania"
-	},
-	"behaviorWarning": {
-		"message": "Aby zapisać w istniejącej lub codziennej notatce wymagany jest Obsidian w wersji 1.7.2 lub nowszej."
 	},
 	"cancel": {
 		"message": "Anuluj"
@@ -81,7 +78,7 @@
 		"message": "Sposób działania przechwytywania"
 	},
 	"clipBehaviorDescription": {
-		"message": "Pozwala wybrać sposób zapisywania wyróżnionej zawartości w Obsidian. Definiuje zmienną $strong_start${{content}}$strong_end$.",
+		"message": "Pozwala wybrać sposób zapisywania wyróżnionej zawartości w Logseq. Definiuje zmienną $strong_start${{content}}$strong_end$.",
 		"placeholders": {
 			"strong_end": {
 				"content": "</strong>"
@@ -95,7 +92,7 @@
 		"message": "Zamknij"
 	},
 	"commandOpenClipper": {
-		"message": "Otwórz schowek Obsidian"
+		"message": "Otwórz schowek Logseq"
 	},
 	"commandQuickClip": {
 		"message": "Przechwyć"
@@ -158,7 +155,7 @@
 		"message": "Duplikuj"
 	},
 	"earlyAccessDescription": {
-		"message": "Korzystaj z funkcji, które wymagają najnowszej wersji $link_start$wczesnego dostępu$link_end$ Obsidian. Obecnie wymagana wersja Obsidian to 1.7.2 lub nowsza.",
+		"message": "Korzystaj z funkcji, które wymagają najnowszej wersji $link_start$wczesnego dostępu$link_end$ Logseq. Obecnie wymagana wersja Logseq to 1.7.2 lub nowsza.",
 		"placeholders": {
 			"link_end": {
 				"content": "</a>"
@@ -184,7 +181,7 @@
 		"message": "Włącz zakreślacz"
 	},
 	"enableHighlighterDescription": {
-		"message": "Wyróżniaj treści na stronach, które możesz zapisać w Obsidian."
+		"message": "Wyróżniaj treści na stronach, które możesz zapisać w Logseq."
 	},
 	"enableInterpreter": {
 		"message": "Włącz interpreter"
@@ -228,7 +225,7 @@
 		"message": "Eksportuj atrybuty"
 	},
 	"exportPropertiesDescription": {
-		"message": "Zapisz atrybuty Web Clipper w pliku $strong_start$types.json$strong_end$, który można zaimportować do sejfu w Obsidian lub do Web Clipper na innych urządzeniach.",
+		"message": "Zapisz właściwości Web Clipper do pliku $strong_start$types.json$strong_end$, który można zaimportować do Web Clipper na innych urządzeniach.",
 		"placeholders": {
 			"strong_end": {
 				"content": "</strong>"
@@ -239,10 +236,10 @@
 		}
 	},
 	"extensionDescription": {
-		"message": "Zapisuj treści z Internetu w prywatnym i bezpiecznym formacie, do którego masz dostęp offline. Oficjalne rozszerzenie przeglądarki dla Obsidian."
+		"message": "Zapisuj treści z Internetu w prywatnym i bezpiecznym formacie, do którego masz dostęp offline."
 	},
 	"extensionName": {
-		"message": "Obsidian Web Clipper"
+		"message": "Logseq Web Clipper"
 	},
 	"failedToCopyText": {
 		"message": "Nie udało się skopiować tekstu"
@@ -341,7 +338,7 @@
 		"message": "Importuj atrybuty"
 	},
 	"importPropertiesDescription": {
-		"message": "Aby zaimportować atrybuty z Obsidian, zlokalizuj plik $strong_1_start$types.json$strong_1_end$ w folderze $strong_2_start$.obsidian$strong_2_end$ w sejfie. Folder ten jest domyślnie ukryty w większości systemów operacyjnych.",
+		"message": "Zapisz właściwości Web Clipper w pliku $strong_start$types.json$strong_end$, który można zaimportować do Web Clipper na innych urządzeniach.",
 		"placeholders": {
 			"strong_1_end": {
 				"content": "</strong>"
@@ -394,9 +391,6 @@
 	},
 	"legacyMode": {
 		"message": "Tryb klasyczny"
-	},
-	"legacyModeDescription": {
-		"message": "Używa URI jako sposobu wyodrębniania treści, który jest kompatybilny z Obsidian w wersji 1.6.7 lub starszej. Należy pamiętać, że długość treści, którą można wyodrębnić, jest ograniczona przez przeglądarkę i system operacyjny. Część stron może nie działać pomimo braku błędów."
 	},
 	"modelName": {
 		"message": "Nazwa modelu"
@@ -653,7 +647,7 @@
 		"message": "Zapisz notatkę bez jej otwierania"
 	},
 	"silentOpenDescription": {
-		"message": "Notatki będą zapisywane bez otwierania ich w nowej karcie. Obsidian nadal będzie umieszczany na wierzchu."
+		"message": "Notatki będą zapisywane bez otwierania ich w nowej karcie. Logseq nadal będzie umieszczany na wierzchu."
 	},
 	"specificNoteName": {
 		"message": "Nazwa konkretnej notatki"
@@ -708,20 +702,6 @@
 			},
 			"link_start": {
 				"content": "<a href=\"?section=general\">"
-			}
-		}
-	},
-	"vaults": {
-		"message": "Sejfy"
-	},
-	"vaultsDescription": {
-		"message": "Domyślnie notatki są zapisywane w obecnie otwartym sejfie. Jeśli chcesz mieć możliwość zapisywania w różnych sejfach, możesz je dodawać w tym miejscu. Nazwy sejfów muszą dokładnie odpowiadać tym w Obsidian. Kliknij $strong_start$Enter$strong_end$, aby dodać sejf.",
-		"placeholders": {
-			"strong_end": {
-				"content": "</strong>"
-			},
-			"strong_start": {
-				"content": "<strong>"
 			}
 		}
 	},

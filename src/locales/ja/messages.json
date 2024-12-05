@@ -33,7 +33,7 @@
 		"message": "\"APIキーがありません\""
 	},
 	"apiKeysWarning": {
-		"message": "外部プロバイダーを使用することで、そのプロバイダーの利用規約とプライバシーポリシーに同意したことになります。インタープリターのリクエストは選択したプロバイダーに直接送信されます。Obsidianはリクエストに関するデータを収集または保存しません。"
+		"message": "外部プロバイダーを使用することで、そのプロバイダーの利用規約とプライバシーポリシーに同意したことになります。インタープリターのリクエストは選択したプロバイダーに直接送信されます。Logseqはリクエストに関するデータを収集または保存しません。"
 	},
 	"appendToDaily": {
 		"message": "デイリーノートの末尾に追加"
@@ -49,9 +49,6 @@
 	},
 	"behavior": {
 		"message": "動作"
-	},
-	"behaviorWarning": {
-		"message": "既存のノートやデイリーノートへの追加にはObsidian 1.7.2以降が必要です。"
 	},
 	"cancel": {
 		"message": "キャンセル"
@@ -205,7 +202,7 @@
 		}
 	},
 	"extensionDescription": {
-		"message": "Webコンテンツをプライベートで永続的なオフラインアクセス可能な形式で保存します。Logseqの公式ブラウザ拡張機能です。"
+		"message": "Webコンテンツをプライベートで永続的なオフラインアクセス可能な形式で保存します"
 	},
 	"extensionName": {
 		"message": "Logseq Web Clipper"
@@ -360,9 +357,6 @@
 	},
 	"legacyMode": {
 		"message": "レガシーモード"
-	},
-	"legacyModeDescription": {
-		"message": "Obsidian 1.6.7以前と互換性のあるURIクリップ方式を使用します。クリップできるコンテンツの長さはブラウザとOSによって制限されます。エラーなしに失敗する場合があります。"
 	},
 	"modelName": {
 		"message": "モデル名"
@@ -674,20 +668,6 @@
 			},
 			"link_start": {
 				"content": "<a href=\"?section=general\">"
-			}
-		}
-	},
-	"vaults": {
-		"message": "保管庫"
-	},
-	"vaultsDescription": {
-		"message": "デフォルトでは、クリップしたノートは現在開いている保管庫に保存されます。異なる保管庫に保存するオプションが必要な場合は、ここで保管庫を追加できます。保管庫名はObsidian保管庫の名前と完全に一致する必要があります。$strong_start$Enter$strong_end$キーを押して保管庫を追加します。",
-		"placeholders": {
-			"strong_end": {
-				"content": "</strong>"
-			},
-			"strong_start": {
-				"content": "<strong>"
 			}
 		}
 	},

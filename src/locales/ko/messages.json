@@ -15,7 +15,7 @@
 		"message": "제공자 추가"
 	},
 	"addToObsidian": {
-		"message": "Obsidian에 추가하기"
+		"message": "Logseq에 추가하기"
 	},
 	"addVaultPlaceholder": {
 		"message": "볼트(보관소)를 추가하려면 엔터를 누르세요."
@@ -36,7 +36,7 @@
 		"message": "API 키가 없습니다"
 	},
 	"apiKeysWarning": {
-		"message": "외부 제공자를 사용하면 해당 제공자의 이용 약관 및 개인정보 보호정책에 동의하는 것입니다. 인터프리터 요청은 선택한 제공자에게 직접 전송됩니다. Obsidian은 요청에 대한 데이터를 수집하거나 저장하지 않습니다."
+		"message": "외부 제공자를 사용하면 해당 제공자의 이용 약관 및 개인정보 보호정책에 동의하는 것입니다. 인터프리터 요청은 선택한 제공자에게 직접 전송됩니다. Logseq은 요청에 대한 데이터를 수집하거나 저장하지 않습니다."
 	},
 	"appendToDaily": {
 		"message": "데일리 노트 맨 아래에 추가"
@@ -52,9 +52,6 @@
 	},
 	"behavior": {
 		"message": "동작 방식"
-	},
-	"behaviorWarning": {
-		"message": "기존에 있는 노트나 데일리 노트에 추가하려면 Obsidian 1.7.2 이상이 필요합니다."
 	},
 	"cancel": {
 		"message": "취소"
@@ -81,7 +78,7 @@
 		"message": "클립 동작 방식"
 	},
 	"clipBehaviorDescription": {
-		"message": "하이라이트 표시된 내용이 Obsidian에 저장되는 방식을 선택하세요. $strong_start${{content}}$strong_end$ 변수를 정의합니다.",
+		"message": "하이라이트 표시된 내용이 Logseq에 저장되는 방식을 선택하세요. $strong_start${{content}}$strong_end$ 변수를 정의합니다.",
 		"placeholders": {
 			"strong_end": {
 				"content": "</strong>"
@@ -95,7 +92,7 @@
 		"message": "닫기"
 	},
 	"commandOpenClipper": {
-		"message": "Obsidian Clipper 열기"
+		"message": "Logseq Clipper 열기"
 	},
 	"commandQuickClip": {
 		"message": "퀵 클립"
@@ -158,13 +155,13 @@
 		"message": "복제"
 	},
 	"earlyAccessDescription": {
-		"message": "Obsidian의 최신 얼리 액세스 (early access) 버전이 필요한 기능을 사용합니다. 현재 Obsidian 1.7.2 이상이 필요합니다.",
+		"message": "Logseq의 최신 얼리 액세스 (early access) 버전이 필요한 기능을 사용합니다. 현재 Logseq 1.7.2 이상이 필요합니다.",
 		"placeholders": {
 			"link_end": {
 				"content": "</a>"
 			},
 			"link_start": {
-				"content": "<a href=\"https://help.obsidian.md/Obsidian/Early+access+versions\" target=\"_blank\">"
+				"content": "<a href=\"https://help.Logseq.md/obsidian/Early+access+versions\" target=\"_blank\">"
 			}
 		}
 	},
@@ -184,7 +181,7 @@
 		"message": "하이라이터 켜기"
 	},
 	"enableHighlighterDescription": {
-		"message": "하이라이트한 웹페이지 내용을 Obsidian에 저장합니다."
+		"message": "하이라이트한 웹페이지 내용을 Logseq에 저장합니다."
 	},
 	"enableInterpreter": {
 		"message": "인터프리터 활성화"
@@ -228,7 +225,7 @@
 		"message": "속성 내보내기"
 	},
 	"exportPropertiesDescription": {
-		"message": "Obsidian Vault 또는 다른 장치의 Web Clipper로 가져올 수 있는 $strong_start$types.json$strong_end$ 파일에 Web Clipper 속성을 저장합니다.",
+		"message": "Web Clipper 속성을 $strong_start$types.json$strong_end$ 파일에 저장하여 다른 기기에서 Web Clipper로 가져올 수 있습니다.",
 		"placeholders": {
 			"strong_end": {
 				"content": "</strong>"
@@ -239,10 +236,10 @@
 		}
 	},
 	"extensionDescription": {
-		"message": "웹 콘텐츠를 저장하여 오프라인에서도 접근할 수 있는 개인적이고 내구성 있는 형식으로 보관하세요. Obsidian의 공식 브라우저 확장 프로그램입니다."
+		"message": "웹 콘텐츠를 저장하여 오프라인에서도 접근할 수 있는 개인적이고 내구성 있는 형식으로 보관하세요."
 	},
 	"extensionName": {
-		"message": "Obsidian Web Clipper"
+		"message": "Logseq Web Clipper"
 	},
 	"failedToCopyText": {
 		"message": "텍스트를 복사하지 못했습니다"
@@ -341,7 +338,7 @@
 		"message": "속성 들여오기"
 	},
 	"importPropertiesDescription": {
-		"message": "Obsidian에서 속성을 가져오려면 보괏소 내의 $strong_2_start$.obsidian$strong_2_end$ 폴더에서 $strong_1_start$types.json$strong_1_end$ 파일을 찾으세요. 이 폴더는 대부분의 운영 체제에서 기본적으로 숨겨져 있습니다.",
+		"message": "Web Clipper 속성을 $strong_start$types.json$strong_end$ 파일로 저장하여 다른 기기의 Web Clipper에서 가져올 수 있습니다.",
 		"placeholders": {
 			"strong_1_end": {
 				"content": "</strong>"
@@ -394,9 +391,6 @@
 	},
 	"legacyMode": {
 		"message": "레거시 모드"
-	},
-	"legacyModeDescription": {
-		"message": "Obsidian 1.6.7 이하 버전과 호환되는 URI 클리핑 방법을 사용합니다. 클립할 수 있는 내용량은 브라우저와 OS에 따라 제한됩니다. 일부 페이지는 오류 없이 실패할 수 있습니다."
 	},
 	"modelName": {
 		"message": "모델 이름"
@@ -653,7 +647,7 @@
 		"message": "클립한 노트 열지 않고 저장"
 	},
 	"silentOpenDescription": {
-		"message": "클립된 노트는 저장되지만 새 탭으로 열리지 않습니다. Obsidian은 포그라운드에서 실행됩니다."
+		"message": "클립된 노트는 저장되지만 새 탭으로 열리지 않습니다. Logseq은 포그라운드에서 실행됩니다."
 	},
 	"specificNoteName": {
 		"message": "특정 노트 이름"
@@ -708,20 +702,6 @@
 			},
 			"link_start": {
 				"content": "<a href=\"?section=general\">"
-			}
-		}
-	},
-	"vaults": {
-		"message": "보관소"
-	},
-	"vaultsDescription": {
-		"message": "기본적으로 클립된 노트는 현재 열려 있는 보관소에 저장됩니다. 다른 보관소에 저장하는 옵션을 원하는 경우 여기에 추가할 수 있습니다. 보관소 이름은 Obsidian 볼트 이름과 정확히 일치해야 합니다. 보관소를 추가하려면 $strong_start$엔터$strong_end$를 누르세요.",
-		"placeholders": {
-			"strong_end": {
-				"content": "</strong>"
-			},
-			"strong_start": {
-				"content": "<strong>"
 			}
 		}
 	},

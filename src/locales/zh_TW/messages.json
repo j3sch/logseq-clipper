@@ -15,7 +15,7 @@
 		"message": "新增提供者"
 	},
 	"addToObsidian": {
-		"message": "新增到 Obsidian"
+		"message": "新增到 Logseq"
 	},
 	"addVaultPlaceholder": {
 		"message": "按 Enter 鍵新增儲存庫"
@@ -36,7 +36,7 @@
 		"message": "無 API 金鑰"
 	},
 	"apiKeysWarning": {
-		"message": "使用外部提供者即表示您同意其條款和隐私政策。解譯器請求直接發送給您選擇的提供者。Obsidian 不會收集或儲存任何關於您請求的資料。"
+		"message": "使用外部提供者即表示您同意其條款和隐私政策。解譯器請求直接發送給您選擇的提供者。Logseq 不會收集或儲存任何關於您請求的資料。"
 	},
 	"appendToDaily": {
 		"message": "新增到每日筆記底部"
@@ -52,9 +52,6 @@
 	},
 	"behavior": {
 		"message": "行為"
-	},
-	"behaviorWarning": {
-		"message": "新增到現有筆記或每日筆記需要 Obsidian 1.7.2 或更高版本。"
 	},
 	"cancel": {
 		"message": "取消"
@@ -81,7 +78,7 @@
 		"message": "擷取行為"
 	},
 	"clipBehaviorDescription": {
-		"message": "選擇如何將標記的內容儲存到 Obsidian。定義 $strong_start${{content}}$strong_end$ 變數。",
+		"message": "選擇如何將標記的內容儲存到 Logseq。定義 $strong_start${{content}}$strong_end$ 變數。",
 		"placeholders": {
 			"strong_end": {
 				"content": "</strong>"
@@ -95,7 +92,7 @@
 		"message": "關閉"
 	},
 	"commandOpenClipper": {
-		"message": "開啟 Obsidian Clipper"
+		"message": "開啟 Logseq Clipper"
 	},
 	"commandQuickClip": {
 		"message": "快速擷取"
@@ -158,7 +155,7 @@
 		"message": "複製"
 	},
 	"earlyAccessDescription": {
-		"message": "使用需要最新 $link_start$早期訪問版本$link_end$ 的 Obsidian 功能。目前需要 Obsidian 1.7.2 或更高版本。",
+		"message": "使用需要最新 $link_start$早期訪問版本$link_end$ 的 Logseq 功能。目前需要 Logseq 1.7.2 或更高版本。",
 		"placeholders": {
 			"link_end": {
 				"content": "</a>"
@@ -184,7 +181,7 @@
 		"message": "啟用標記"
 	},
 	"enableHighlighterDescription": {
-		"message": "在網頁上標記內容，您可以將其儲存到 Obsidian。"
+		"message": "在網頁上標記內容，您可以將其儲存到 Logseq。"
 	},
 	"enableInterpreter": {
 		"message": "啟用解譯器"
@@ -228,7 +225,7 @@
 		"message": "匯出屬性"
 	},
 	"exportPropertiesDescription": {
-		"message": "將 Web Clipper 屬性儲存到 $strong_start$types.json$strong_end$ 檔案，可以匯入到您的 Obsidian 儲存庫，或匯入到其他裝置上的 Web Clipper。",
+		"message": "将 Web Clipper 属性保存到 $strong_start$types.json$strong_end$ 文件中，可以在其他设备上的 Web Clipper 中导入。",
 		"placeholders": {
 			"strong_end": {
 				"content": "</strong>"
@@ -239,10 +236,10 @@
 		}
 	},
 	"extensionDescription": {
-		"message": "將網路內容以私密且穩定的格式儲存下來，供您離線存取使用。這是 Obsidian 官方推出的瀏覽器擴充套件。"
+		"message": "將網路內容以私密且穩定的格式儲存下來，供您離線存取使用。"
 	},
 	"extensionName": {
-		"message": "Obsidian 網頁擷取器"
+		"message": "Logseq 網頁擷取器"
 	},
 	"failedToCopyText": {
 		"message": "複製文字失敗"
@@ -341,7 +338,7 @@
 		"message": "匯入屬性"
 	},
 	"importPropertiesDescription": {
-		"message": "要從 Obsidian 匯入您的屬性，請在儲存庫中的 $strong_1_start$.obsidian$strong_1_end$ 資料夾中找到 $strong_2_start$types.json$strong_2_end$ 檔案。請注意，這個資料夾在大多數作業系統中預設是隱藏的。",
+		"message": "將 Web Clipper 的屬性保存到一個 $strong_start$types.json$strong_end$ 文件中，以便在其他設備上的 Web Clipper 中導入。",
 		"placeholders": {
 			"strong_1_end": {
 				"content": "</strong>"
@@ -394,9 +391,6 @@
 	},
 	"legacyMode": {
 		"message": "舊版模式"
-	},
-	"legacyModeDescription": {
-		"message": "使用與 Obsidian 1.6.7 或更早版本相容的 URI 擷取方法。請注意，您可以擷取的內容長度受限於您的瀏覽器和作業系統。有些頁面可能會在沒有任何錯誤的情況下失敗。"
 	},
 	"modelName": {
 		"message": "模型名稱"
@@ -653,7 +647,7 @@
 		"message": "儲存擷取筆記但不開啟"
 	},
 	"silentOpenDescription": {
-		"message": "擷取的筆記將被儲存但不會開啟為新標籤。Obsidian 仍會被提到上層。"
+		"message": "擷取的筆記將被儲存但不會開啟為新標籤。Logseq 仍會被提到上層。"
 	},
 	"specificNoteName": {
 		"message": "特定筆記名稱"
@@ -708,20 +702,6 @@
 			},
 			"link_start": {
 				"content": "<a href=\"?section=general\">"
-			}
-		}
-	},
-	"vaults": {
-		"message": "儲存庫"
-	},
-	"vaultsDescription": {
-		"message": "預設情況下，擷取的筆記會儲存到目前開啟的儲存庫。您可以在這裡新增儲存庫，如果您想要選擇儲存到不同的儲存庫。儲存庫名稱必須與 Obsidian 儲存庫的名稱完全相同。按 $strong_start$enter$strong_end$ 以新增儲存庫。",
-		"placeholders": {
-			"strong_end": {
-				"content": "</strong>"
-			},
-			"strong_start": {
-				"content": "<strong>"
 			}
 		}
 	},

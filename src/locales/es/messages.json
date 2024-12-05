@@ -33,7 +33,7 @@
 		"message": "Sin clave API"
 	},
 	"apiKeysWarning": {
-		"message": "Al usar un proveedor externo, aceptas sus términos y política de privacidad. Las solicitudes del intérprete se envían directamente al proveedor que elijas. Obsidian no recopila ni almacena ningún dato sobre tus solicitudes."
+		"message": "Al usar un proveedor externo, aceptas sus términos y política de privacidad. Las solicitudes del intérprete se envían directamente al proveedor que elijas. Logseq no recopila ni almacena ningún dato sobre tus solicitudes."
 	},
 	"appendToDaily": {
 		"message": "Agregar a la nota diaria, al final"
@@ -49,9 +49,6 @@
 	},
 	"behavior": {
 		"message": "Comportamiento"
-	},
-	"behaviorWarning": {
-		"message": "Agregar a una nota existente o nota diaria requiere Obsidian 1.7.2 o posterior."
 	},
 	"cancel": {
 		"message": "Cancelar"
@@ -205,7 +202,7 @@
 		}
 	},
 	"extensionDescription": {
-		"message": "Guarda contenido web en un formato privado y duradero al que puedes acceder sin conexión. La extensión oficial para Logseq."
+		"message": "Guarda contenido web en un formato privado y duradero al que puedes acceder sin conexión."
 	},
 	"extensionName": {
 		"message": "Logseq Web Clipper"
@@ -360,9 +357,6 @@
 	},
 	"legacyMode": {
 		"message": "Modo heredado"
-	},
-	"legacyModeDescription": {
-		"message": "Usa el método de guardado URI compatible con Obsidian 1.6.7 o anterior. Ten en cuenta que la longitud del contenido que puedes guardar está limitada por tu navegador y sistema operativo. Algunas páginas pueden fallar sin mostrar errores."
 	},
 	"modelName": {
 		"message": "Nombre del modelo"
@@ -674,20 +668,6 @@
 			},
 			"link_start": {
 				"content": "<a href=\"?section=general\">"
-			}
-		}
-	},
-	"vaults": {
-		"message": "Bóvedas"
-	},
-	"vaultsDescription": {
-		"message": "Por defecto, las notas se guardan en la bóveda abierta actualmente. Puedes añadir bóvedas aquí si quieres la opción de guardar en diferentes bóvedas. Los nombres de las bóvedas deben coincidir exactamente con el nombre de la bóveda de Obsidian. Presiona $strong_start$enter$strong_end$ para añadir una bóveda.",
-		"placeholders": {
-			"strong_end": {
-				"content": "</strong>"
-			},
-			"strong_start": {
-				"content": "<strong>"
 			}
 		}
 	},

@@ -50,9 +50,6 @@
 	"behavior": {
 		"message": "Comportement"
 	},
-	"behaviorWarning": {
-		"message": "L'ajout à une note existante ou à la note quotidienne nécessite Obsidian 1.7.2 ou ultérieur."
-	},
 	"cancel": {
 		"message": "Annuler"
 	},
@@ -194,7 +191,7 @@
 		"message": "Exporter les propriétés"
 	},
 	"exportPropertiesDescription": {
-		"message": "Enregistrez les propriétés de Web Clipper dans un fichier $strong_start$types.json$strong_end$ qui peut être importé dans Web Clipper sur d'autres appareils.",
+		"message": "Enregistrer les propriétés de Web Clipper dans un fichier $strong_start$types.json$strong_end$ qui peut être importé dans Web Clipper sur d'autres appareils.",
 		"placeholders": {
 			"strong_end": {
 				"content": "</strong>"
@@ -205,7 +202,7 @@
 		}
 	},
 	"extensionDescription": {
-		"message": "Sauvegardez du contenu web dans un format privé et durable accessible hors ligne. L'extension officielle pour Logseq."
+		"message": "Sauvegardez du contenu web dans un format privé et durable accessible hors ligne."
 	},
 	"extensionName": {
 		"message": "Logseq Web Clipper"
@@ -360,9 +357,6 @@
 	},
 	"legacyMode": {
 		"message": "Mode hérité"
-	},
-	"legacyModeDescription": {
-		"message": "Utilise la méthode d'enregistrement URI compatible avec Obsidian 1.6.7 ou antérieur. Notez que la longueur du contenu que vous pouvez enregistrer est limitée par votre navigateur et votre système d'exploitation. Certaines pages peuvent échouer sans erreur."
 	},
 	"modelName": {
 		"message": "Nom du modèle de langage"
@@ -677,20 +671,6 @@
 			},
 			"link_start": {
 				"content": "<a href=\"?section=general\">"
-			}
-		}
-	},
-	"vaults": {
-		"message": "Coffres"
-	},
-	"vaultsDescription": {
-		"message": "Par défaut, les notes sont enregistrées dans le coffre actuellement ouvert. Vous pouvez ajouter des coffres ici si vous souhaitez pouvoir enregistrer dans différents coffres. Les noms des coffres doivent correspondre exactement au nom du coffre Obsidian. Appuyez sur $strong_start$entrée$strong_end$ pour ajouter un coffre.",
-		"placeholders": {
-			"strong_end": {
-				"content": "</strong>"
-			},
-			"strong_start": {
-				"content": "<strong>"
 			}
 		}
 	},

@@ -33,7 +33,7 @@
 		"message": "No API key"
 	},
 	"apiKeysWarning": {
-		"message": "By using an external provider you agree to their terms and privacy policy. Interpreter requests are sent directly to the provider you choose. Obsidian does not gather or store any data about your requests."
+		"message": "By using an external provider you agree to their terms and privacy policy. Interpreter requests are sent directly to the provider you choose. Logseq does not gather or store any data about your requests."
 	},
 	"appendToDaily": {
 		"message": "Add to daily note, at the bottom"
@@ -49,9 +49,6 @@
 	},
 	"behavior": {
 		"message": "Behavior"
-	},
-	"behaviorWarning": {
-		"message": "Adding to an existing note or daily note requires Obsidian 1.7.2 or later."
 	},
 	"cancel": {
 		"message": "Cancel"
@@ -205,7 +202,7 @@
 		}
 	},
 	"extensionDescription": {
-		"message": "Save content from the web in a private and durable format that you can access offline. The official browser extension for Logseq."
+		"message": "Save content from the web in a private and durable format that you can access offline."
 	},
 	"extensionName": {
 		"message": "Logseq Web Clipper"
@@ -354,9 +351,6 @@
 	},
 	"legacyMode": {
 		"message": "Legacy mode"
-	},
-	"legacyModeDescription": {
-		"message": "Uses the URI clipping method compatible with Obsidian 1.6.7 or earlier. Note that the length of the content you can clip is limited by your browser and OS. Some pages may fail without any errors."
 	},
 	"modelName": {
 		"message": "Display name"
@@ -668,20 +662,6 @@
 			},
 			"link_start": {
 				"content": "<a href=\"?section=general\">"
-			}
-		}
-	},
-	"vaults": {
-		"message": "Vaults"
-	},
-	"vaultsDescription": {
-		"message": "By default, clipped notes are saved to the currently open vault. You can add vaults here if you want the option to save to different vaults. Vault names must exactly match the name of the Obsidian vault. Press $strong_start$enter$strong_end$ to add a vault.",
-		"placeholders": {
-			"strong_end": {
-				"content": "</strong>"
-			},
-			"strong_start": {
-				"content": "<strong>"
 			}
 		}
 	},

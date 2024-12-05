@@ -33,7 +33,7 @@
 		"message": "无 API 密钥"
 	},
 	"apiKeysWarning": {
-		"message": "使用外部提供商即表示您同意其条款和隐私政策。解释器请求直接发送给您选择的提供商。Obsidian 不会收集或存储任何关于您请求的数据。"
+		"message": "使用外部提供商即表示您同意其条款和隐私政策。解释器请求直接发送给您选择的提供商。Logseq 不会收集或存储任何关于您请求的数据。"
 	},
 	"appendToDaily": {
 		"message": "添加到日记末尾"
@@ -49,9 +49,6 @@
 	},
 	"behavior": {
 		"message": "行为"
-	},
-	"behaviorWarning": {
-		"message": "添加到现有笔记或日记需要 Obsidian 1.7.2 或更高版本。"
 	},
 	"cancel": {
 		"message": "取消"
@@ -194,7 +191,7 @@
 		"message": "导出属性"
 	},
 	"exportPropertiesDescription": {
-		"message": "将网页剪藏器的属性保存到 $strong_start$types.json$strong_end$ 文件，可以导入到 Logseq 保管库或其他设备上的网页剪藏器。",
+		"message": "将 Web Clipper 属性保存到 $strong_start$types.json$strong_end$ 文件中，可以在其他设备上的 Web Clipper 中导入。",
 		"placeholders": {
 			"strong_end": {
 				"content": "</strong>"
@@ -205,7 +202,7 @@
 		}
 	},
 	"extensionDescription": {
-		"message": "以私密且持久的格式保存网页内容，可离线访问。Logseq 官方浏览器扩展。"
+		"message": "以私密且持久的格式保存网页内容，可离线访问。"
 	},
 	"extensionName": {
 		"message": "Logseq 网页剪藏器"
@@ -360,9 +357,6 @@
 	},
 	"legacyMode": {
 		"message": "传统模式"
-	},
-	"legacyModeDescription": {
-		"message": "使用与 Obsidian 1.6.7 或更早版本兼容的 URI 剪藏方法。请注意，您可以剪藏的内容长度受浏览器和操作系统限制。某些页面可能会静默失败。"
 	},
 	"modelName": {
 		"message": "模型名称"
@@ -674,20 +668,6 @@
 			},
 			"link_start": {
 				"content": "<a href=\"?section=general\">"
-			}
-		}
-	},
-	"vaults": {
-		"message": "保管库"
-	},
-	"vaultsDescription": {
-		"message": "默认情况下，剪藏的笔记会保存到当前打开的保管库。如果您需要保存到不同的保管库，可以在此处添加保管库。保管库名称必须与 Obsidian 保管库的名称完全匹配。按 $strong_start$回车键$strong_end$ 添加保管库。",
-		"placeholders": {
-			"strong_end": {
-				"content": "</strong>"
-			},
-			"strong_start": {
-				"content": "<strong>"
 			}
 		}
 	},
