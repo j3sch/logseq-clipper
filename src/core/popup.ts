@@ -577,11 +577,7 @@ async function handleClip() {
 			}) as Property[];
 			const frontmatter = await memoizedGenerateFrontmatter(updatedProperties as Property[]);
 			fileContent = frontmatter + noteContentField.value + formatHighlightsToLogseq(noteContent);
-		} else {
-			fileContent = formatHighlightsToLogseq(noteContent);
 		}
-
-		console.log("fileContent", fileContent);
 
 		await saveToObsidian(fileContent, noteName, currentTemplate.behavior);
 		await incrementStat('addToObsidian');

@@ -66,7 +66,6 @@ export async function generateFrontmatter(properties: Property[]): Promise<strin
 				frontmatter += property.value.trim() !== '' ? ` "${escapeDoubleQuotes(property.value)}"\n` : '\n';
 		}
 	}
-	frontmatter += 'Highlights:\n';
 
 	// Check if the frontmatter is empty
 	if (frontmatter.trim() === '---\n---') {

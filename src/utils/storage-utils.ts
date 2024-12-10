@@ -11,7 +11,7 @@ export let generalSettings: Settings = {
 	silentOpen: false,
 	highlighterEnabled: true,
 	alwaysShowHighlights: false,
-	highlightBehavior: 'highlight-inline',
+	highlightBehavior: 'replace-content',
 	showMoreActionsButton: false,
 	interpreterModel: 'gpt-4o-mini',
 	models: [
@@ -260,7 +260,7 @@ export async function loadSettings(): Promise<Settings> {
 		silentOpen: false,
 		highlighterEnabled: true,
 		alwaysShowHighlights: true,
-		highlightBehavior: 'highlight-inline',
+		highlightBehavior: 'replace-content',
 		interpreterModel: 'gpt-4o-mini',
 		models: [],
 		providers: [],
