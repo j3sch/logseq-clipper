@@ -11,6 +11,7 @@ interface PresetProvider {
 	name: string;
 	baseUrl: string;
 	apiKeyUrl?: string;
+	modelsList?: string;
 }
 
 const PRESET_PROVIDERS: Record<string, PresetProvider> = {
@@ -18,29 +19,48 @@ const PRESET_PROVIDERS: Record<string, PresetProvider> = {
 		id: 'anthropic',
 		name: 'Anthropic',
 		baseUrl: 'https://api.anthropic.com/v1/messages',
-		apiKeyUrl: 'https://console.anthropic.com/settings/keys'
+		apiKeyUrl: 'https://console.anthropic.com/settings/keys',
+		modelsList: 'https://docs.anthropic.com/en/docs/about-claude/models'
 	},
 	azure: {
 		id: 'azure-openai',
 		name: 'Azure OpenAI',
 		baseUrl: 'https://{resource-name}.openai.azure.com/openai/deployments/{deployment-id}/chat/completions?api-version=2024-10-21',
+		apiKeyUrl: 'https://oai.azure.com/portal/',
+		modelsList: 'https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models'
+	},
+	google: {
+		id: 'google',
+		name: 'Google Gemini',
+		baseUrl: 'https://generativelanguage.googleapis.com/v1beta/chat/completions',
+		apiKeyUrl: 'https://aistudio.google.com/apikey'
+	},
+	huggingface: {
+		id: 'huggingface',
+		name: 'Hugging Face',
+		baseUrl: 'https://api-inference.huggingface.co/models/{model-id}/chat/completions',
+		apiKeyUrl: 'https://huggingface.co/settings/tokens',
+		modelsList: 'https://huggingface.co/models?pipeline_tag=text-generation&sort=trending'
 	},
 	ollama: {
 		id: 'ollama',
 		name: 'Ollama',
-		baseUrl: 'http://127.0.0.1:11434/api/chat'
+		baseUrl: 'http://127.0.0.1:11434/api/chat',
+		modelsList: 'https://ollama.com/search'
 	},
 	openai: {
 		id: 'openai',
 		name: 'OpenAI',
 		baseUrl: 'https://api.openai.com/v1/chat/completions',
-		apiKeyUrl: 'https://platform.openai.com/api-keys'
+		apiKeyUrl: 'https://platform.openai.com/api-keys',
+		modelsList: 'https://platform.openai.com/docs/models'
 	},
 	openrouter: {
 		id: 'openrouter',
 		name: 'OpenRouter',
 		baseUrl: 'https://openrouter.ai/api/v1/chat/completions',
-		apiKeyUrl: 'https://openrouter.ai/settings/keys'
+		apiKeyUrl: 'https://openrouter.ai/settings/keys',
+		modelsList: 'https://openrouter.ai/models'
 	}
 };
 
@@ -142,17 +162,18 @@ function createProviderListItem(provider: Provider, index: number): HTMLElement 
 	providerItem.innerHTML = `
 		<div class="provider-list-item-info">
 			<div class="provider-name">
-				<div class="provider-icon-container"><span class="provider-icon icon-${provider.name.toLowerCase().replace(/\s+/g, '-')}"></span></div>
-				${provider.name}
+				<div class="provider-icon-container">
+					<span class="provider-icon icon-${provider.name.toLowerCase().replace(/\s+/g, '-')}"></span>
+				</div>
+				<div class="provider-name-text">
+					${provider.name}
+				</div>
 			</div>
-			${!provider.apiKey ? `<span class="provider-no-key"><i data-lucide="alert-triangle"></i> ${getMessage('apiKeyMissing')}</span>` : ''}
+			${!provider.apiKey ? `<span class="provider-no-key"><i data-lucide="alert-triangle"></i> <span class="mh">${getMessage('apiKeyMissing')}</span></span>` : ''}
 		</div>
 		<div class="provider-list-item-actions">
 			<button class="edit-provider-btn clickable-icon" data-provider-id="${provider.id}" aria-label="Edit provider">
 				<i data-lucide="pen-line"></i>
-			</button>
-			<button class="duplicate-provider-btn clickable-icon" data-provider-id="${provider.id}" aria-label="Duplicate provider">
-				<i data-lucide="copy-plus"></i>
 			</button>
 			<button class="delete-provider-btn clickable-icon" data-provider-id="${provider.id}" aria-label="Delete provider">
 				<i data-lucide="trash-2"></i>
@@ -420,7 +441,7 @@ function createModelListItem(model: ModelConfig, index: number): HTMLElement {
 		</div>
 		<div class="model-list-item-info">
 			<div class="model-name">${model.name}</div>
-			<div class="model-provider">${providerName}</div>
+			<div class="model-provider mh">${providerName}</div>
 		</div>
 		<div class="model-list-item-actions">
 			<button class="edit-model-btn clickable-icon" data-index="${index}" aria-label="Edit model">
@@ -697,17 +718,17 @@ function initializeResetProvidersButton(): void {
 						enabled: true
 					},
 					{
-						id: 'claude-3-sonnet',
+						id: 'claude-3-5-sonnet',
 						providerId: 'anthropic',
-						providerModelId: 'claude-3-sonnet-20240620',
+						providerModelId: 'claude-3-5-sonnet-latest',
 						name: 'Claude 3.5 Sonnet',
 						enabled: true
 					},
 					{
-						id: 'claude-3-haiku',
+						id: 'claude-3-5-haiku',
 						providerId: 'anthropic',
-						providerModelId: 'claude-3-haiku-20240307',
-						name: 'Claude 3 Haiku',
+						providerModelId: 'claude-3-5-haiku-latest',
+						name: 'Claude 3.5 Haiku',
 						enabled: true
 					}
 				];

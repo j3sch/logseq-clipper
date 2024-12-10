@@ -75,7 +75,7 @@
 		"message": "Vorlagendatei auswählen"
 	},
 	"clipBehavior": {
-		"message": "Ausschneideverhalten"
+		"message": "Speicherverhalten"
 	},
 	"clipBehaviorDescription": {
 		"message": "Wählen Sie, wie hervorgehobener Inhalt in Logseq gespeichert wird. Definiert die $strong_start${{content}}$strong_end$ Variable.",
@@ -611,7 +611,7 @@
 		"message": "Um Tastenzuweisungen zu ändern, gehen Sie zu $1"
 	},
 	"shortcutInstructionsDefault": {
-		"message": "Um Tastenzuweisungen zu ändern, beachten Sie bitte die Erweiterungseinstellungen Ihres Browsers."
+		"message": "Öffne die Browser-Einstellungen um Tastenkombinationen zu ändern."
 	},
 	"shortcutInstructionsEdge": {
 		"message": "Um Tastenzuweisungen zu ändern, gehen Sie zu $1"
