@@ -41,6 +41,9 @@
 	"appendToDaily": {
 		"message": "Tambah ke catatan harian, di bagian akhir"
 	},
+	"pasteCursorPosition": {
+		"message": "Tempel di posisi kursor"
+	},
 	"appendToExisting": {
 		"message": "Tambah ke catatan yang telah ada, di bagian akhir"
 	},

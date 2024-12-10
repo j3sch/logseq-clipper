@@ -41,6 +41,9 @@
 	"appendToDaily": {
 		"message": "데일리 노트 맨 아래에 추가"
 	},
+	"pasteCursorPosition": {
+		"message": "커서 위치에 붙여넣기"
+	},
 	"appendToExisting": {
 		"message": "기존에 있는 노트 맨 아래에 추가"
 	},

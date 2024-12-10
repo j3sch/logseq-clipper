@@ -41,6 +41,9 @@
 	"appendToDaily": {
 		"message": "Zapisz na dole codziennej notatki"
 	},
+	"pasteCursorPosition": {
+		"message": "Wklej w pozycji kursora"
+	},
 	"appendToExisting": {
 		"message": "Zapisz na dole istniejącej notatki"
 	},

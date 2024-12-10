@@ -41,6 +41,9 @@
 	"appendToDaily": {
 		"message": "إضافة إلى الملاحظة اليومية، في النهاية"
 	},
+	"pasteCursorPosition": {
+		"message": "اللصق في موضع المؤشر"
+	},
 	"appendToExisting": {
 		"message": "إضافة إلى ملاحظة موجودة، في النهاية"
 	},

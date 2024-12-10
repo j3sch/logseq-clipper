@@ -114,7 +114,7 @@ export function createDefaultTemplate(): Template {
 	return {
 		id: Date.now().toString() + Math.random().toString(36).slice(2, 11),
 		name: getMessage('defaultTemplateName'),
-		behavior: 'create',
+		behavior: 'append-daily',
 		noteNameFormat: '{{title}}',
 		path: 'Clippings',
 		noteContentFormat: '{{content}}',

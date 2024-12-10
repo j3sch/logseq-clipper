@@ -41,6 +41,9 @@
 	"appendToDaily": {
 		"message": "Daily note mein, ant mein jodein"
 	},
+	"pasteCursorPosition": {
+		"message": " करसर की स्थिति पर पेस्ट करें"
+	},
 	"appendToExisting": {
 		"message": "Maujuda note mein, ant mein jodein"
 	},

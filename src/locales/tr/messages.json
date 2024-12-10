@@ -41,6 +41,9 @@
 	"appendToDaily": {
 		"message": "Günlük nota, sona ekle"
 	},
+	"pasteCursorPosition": {
+		"message": "İmleç konumuna yapıştır"
+	},
 	"appendToExisting": {
 		"message": "Mevcut nota, sona ekle"
 	},

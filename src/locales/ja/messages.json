@@ -38,6 +38,9 @@
 	"appendToDaily": {
 		"message": "デイリーノートの末尾に追加"
 	},
+	"pasteCursorPosition": {
+		"message": "カーソル位置に貼り付け"
+	},
 	"appendToExisting": {
 		"message": "既存のノートの末尾に追加"
 	},

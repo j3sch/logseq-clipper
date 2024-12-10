@@ -41,6 +41,9 @@
 	"appendToDaily": {
 		"message": "Toevoegen aan dagelijkse notitie, onderaan"
 	},
+	"pasteCursorPosition": {
+		"message": "Plakken op cursorpositie"
+	},
 	"appendToExisting": {
 		"message": "Toevoegen aan bestaande notitie, onderaan"
 	},

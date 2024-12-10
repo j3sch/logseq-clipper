@@ -41,6 +41,9 @@
 	"appendToDaily": {
 		"message": "新增到每日筆記底部"
 	},
+	"pasteCursorPosition": {
+		"message": "貼到游標位置"
+	},
 	"appendToExisting": {
 		"message": "新增到現有筆記底部"
 	},

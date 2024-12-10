@@ -38,6 +38,9 @@
 	"appendToDaily": {
 		"message": "اضافه کردن به یادداشت روزانه، در آخر آن "
 	},
+	"pasteCursorPosition": {
+		"message": "چسباندن در موقعیت مکان‌نما"
+	},
 	"appendToExisting": {
 		"message": "اضافه کردن به یادداشت موجود، در آخر آن"
 	},

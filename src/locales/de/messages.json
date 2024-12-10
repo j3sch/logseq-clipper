@@ -41,6 +41,9 @@
 	"appendToDaily": {
 		"message": "Zur Tagesnotiz am Ende hinzufügen"
 	},
+	"pasteCursorPosition": {
+		"message": "An Cursorposition einfügen"
+	},
 	"appendToExisting": {
 		"message": "Zu bestehender Notiz am Ende hinzufügen"
 	},

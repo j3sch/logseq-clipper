@@ -38,6 +38,9 @@
 	"appendToDaily": {
 		"message": "Add to daily note, at the bottom"
 	},
+	"pasteCursorPosition": {
+		"message": "Paste at cursor position"
+	},
 	"appendToExisting": {
 		"message": "Add to an existing note, at the bottom"
 	},

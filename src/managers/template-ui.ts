@@ -179,7 +179,7 @@ export function showTemplateEditor(template: Template | null): void {
 	if (pathInput) pathInput.value = editingTemplate.path || '';
 
 	const behaviorSelect = document.getElementById('template-behavior') as HTMLSelectElement;
-	if (behaviorSelect) behaviorSelect.value = editingTemplate.behavior || 'create';
+	if (behaviorSelect) behaviorSelect.value = editingTemplate.behavior || 'appendToDaily';
 
 	const noteNameFormat = document.getElementById('note-name-format') as HTMLInputElement;
 	if (noteNameFormat) {

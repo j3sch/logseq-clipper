@@ -41,6 +41,9 @@
 	"appendToDaily": {
 		"message": "Aggiungi alla nota giornaliera, in fondo"
 	},
+	"pasteCursorPosition": {
+		"message": "Incolla nella posizione del cursore"
+	},
 	"appendToExisting": {
 		"message": "Aggiungi a una nota esistente, in fondo"
 	},

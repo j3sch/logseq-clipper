@@ -38,6 +38,9 @@
 	"appendToDaily": {
 		"message": "Добавлять в конец ежедневной заметки"
 	},
+	"pasteCursorPosition": {
+		"message": "Вставить в позицию курсора"
+	},
 	"appendToExisting": {
 		"message": "Добавлять в конец существующей заметки"
 	},

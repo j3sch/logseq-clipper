@@ -38,6 +38,9 @@
 	"appendToDaily": {
 		"message": "添加到日记末尾"
 	},
+	"pasteCursorPosition": {
+		"message": "粘贴到光标位置"
+	},
 	"appendToExisting": {
 		"message": "添加到现有笔记末尾"
 	},
