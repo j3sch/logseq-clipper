@@ -341,7 +341,7 @@
 		"message": "Eigenschaften importieren"
 	},
 	"importPropertiesDescription": {
-		"message": "Speichern Sie die Web Clipper-Eigenschaften in einer $strong_start$types.json$strong_end$-Datei, die in den Web Clipper auf anderen Geräten importiert werden kann.",
+		"message": "Um Ihre Eigenschaften aus der Datei $strong_start$types.json$strong_end$ zu importieren.",
 		"placeholders": {
 			"strong_end": {
 				"content": "</strong>"

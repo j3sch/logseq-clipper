@@ -341,18 +341,12 @@
 		"message": "استيراد الخصائص"
 	},
 	"importPropertiesDescription": {
-		"message": "احفظ خصائص Web Clipper في ملف $strong_1_start$types.json$strong_1_end$ والذي يمكن استيراده إلى Web Clipper على أجهزة أخرى.",
+		"message": "لاستيراد خصائصك من الملف $strong_start$types.json$strong_end$.",
 		"placeholders": {
-			"strong_1_end": {
+			"strong_end": {
 				"content": "</strong>"
 			},
-			"strong_1_start": {
-				"content": "<strong>"
-			},
-			"strong_2_end": {
-				"content": "</strong>"
-			},
-			"strong_2_start": {
+			"strong_start": {
 				"content": "<strong>"
 			}
 		}
