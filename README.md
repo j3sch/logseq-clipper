@@ -2,8 +2,8 @@ A fork of the official [Obsidian Web Clipper](https://github.com/obsidianmd/obsi
 
 ## Installation
 Available for Chromium-based browsers like Chrome, Brave, and Arc, as well as Firefox:
-[Chrome Web Store](https://chromewebstore.google.com/detail/logseq-web-clipper/fhjehofpeafndgabgbehflkncpmdldgg)
-[Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/logseq-web-clipper/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search)
+- [Chrome Web Store](https://chromewebstore.google.com/detail/logseq-web-clipper/fhjehofpeafndgabgbehflkncpmdldgg)  
+- [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/logseq-web-clipper/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search)
 
 ## Developers
 
