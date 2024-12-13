@@ -1,8 +1,9 @@
 A fork of the official [Obsidian Web Clipper](https://github.com/obsidianmd/obsidian-clipper), adapted for Logseq. Logseq Web Clipper is a browser extension that helps you highlight and save web pages. 
 
-Avaible for Chromium-based browsers like Chrome, Brave, and Arc, as well as Firefox.
-Chrome Web Store: [Logseq Web Clipper](https://chromewebstore.google.com/detail/logseq-web-clipper/fhjehofpeafndgabgbehflkncpmdldgg)
-Firefox: [Logseq Web Clipper](https://addons.mozilla.org/en-US/firefox/addon/logseq-web-clipper/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search)
+## Installation
+Available for Chromium-based browsers like Chrome, Brave, and Arc, as well as Firefox:
+[Chrome Web Store](https://chromewebstore.google.com/detail/logseq-web-clipper/fhjehofpeafndgabgbehflkncpmdldgg)
+[Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/logseq-web-clipper/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search)
 
 ## Developers
 
