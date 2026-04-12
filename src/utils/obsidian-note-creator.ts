@@ -1,13 +1,14 @@
-import { replace } from './filters/replace';
 import browser from './browser-polyfill';
 import { escapeDoubleQuotes, sanitizeFileName } from '../utils/string-utils';
 import { Template, Property } from '../types/types';
-import { generalSettings } from './storage-utils';
+import { generalSettings, incrementStat } from './storage-utils';
+import { copyToClipboard } from './clipboard-utils';
+import { getMessage } from './i18n';
 
 export async function generateFrontmatter(properties: Property[]): Promise<string> {
 	let frontmatter = '\u200B\n';
 	for (const property of properties) {
-		frontmatter += `${property.name}::`; // Use double colons
+		frontmatter += `${property.name}::`; // Use double colons for Logseq format
 
 		const propertyType = generalSettings.propertyTypes.find(p => p.name === property.name)?.type || 'text';
 
@@ -68,11 +69,37 @@ export async function generateFrontmatter(properties: Property[]): Promise<strin
 	}
 
 	// Check if the frontmatter is empty
-	if (frontmatter.trim() === '---\n---') {
+	if (frontmatter.trim() === '\u200B') {
 		return '';
 	}
 
 	return frontmatter;
+}
+
+function openObsidianUrl(url: string): void {
+	browser.tabs.query({ active: true, currentWindow: true }).then((tabs) => {
+		const currentTab = tabs[0];
+		if (currentTab && currentTab.id) {
+			browser.tabs.update(currentTab.id, { url: url });
+		}
+	});
+}
+
+async function tryClipboardWrite(fileContent: string, obsidianUrl: string): Promise<void> {
+	const success = await copyToClipboard(fileContent);
+
+	if (success) {
+		// &clipboard tells the app to read data from clipboard instead of the content param.
+		obsidianUrl += `&clipboard&content=${encodeURIComponent(getMessage('clipboardError', 'https://help.obsidian.md/web-clipper/troubleshoot'))}`;
+		openObsidianUrl(obsidianUrl);
+		console.log('Logseq URL:', obsidianUrl);
+	} else {
+		console.error('All clipboard methods failed, falling back to URI method');
+		// Final fallback: use URI method with actual content (same as legacy mode)
+		obsidianUrl += `&content=${encodeURIComponent(fileContent)}`;
+		openObsidianUrl(obsidianUrl);
+		console.log('Logseq URL (URI fallback):', obsidianUrl);
+	}
 }
 
 export async function saveToObsidian(
@@ -82,7 +109,7 @@ export async function saveToObsidian(
 ): Promise<void> {
 	let obsidianUrl: string;
 
-	const isDailyNote = behavior === 'append-daily'
+	const isDailyNote = behavior === 'append-daily' || behavior === 'prepend-daily';
 
 	if (isDailyNote) {
 		obsidianUrl = `logseq://x-callback-url/quickCapture?page=TODAY&append=true`;
@@ -96,15 +123,13 @@ export async function saveToObsidian(
 		obsidianUrl += '&silent=true';
 	}
 
-	obsidianUrl += `&content=${encodeURIComponent(fileContent)}`;
-	openObsidianUrl(obsidianUrl);
-
-	function openObsidianUrl(url: string): void {
-		browser.tabs.query({ active: true, currentWindow: true }).then((tabs) => {
-			const currentTab = tabs[0];
-			if (currentTab && currentTab.id) {
-				browser.tabs.update(currentTab.id, { url: url });
-			}
-		});
+	if (generalSettings.legacyMode) {
+		// Use the URI method
+		obsidianUrl += `&content=${encodeURIComponent(fileContent)}`;
+		console.log('Logseq URL:', obsidianUrl);
+		openObsidianUrl(obsidianUrl);
+	} else {
+		// Try to copy to clipboard with fallback mechanisms
+		await tryClipboardWrite(fileContent, obsidianUrl);
 	}
 }

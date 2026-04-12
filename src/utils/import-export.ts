@@ -8,6 +8,7 @@ import { hideModal } from '../utils/modal-utils';
 import { showImportModal } from './import-modal';
 import browser from '../utils/browser-polyfill';
 import { saveFile } from './file-utils';
+import { copyToClipboardWithFeedback } from './clipboard-utils';
 import { compressToUTF16, decompressFromUTF16 } from 'lz-string';
 import { getMessage } from './i18n';
 
@@ -311,11 +312,16 @@ export function copyTemplateToClipboard(template: Template): void {
 
 	const jsonContent = JSON.stringify(orderedTemplate, null, 2);
 
-	navigator.clipboard.writeText(jsonContent).then(() => {
-		alert(getMessage('templateCopied'));
-	}).catch(err => {
-		console.error('Failed to copy template JSON: ', err);
-		alert(getMessage('templateCopyError'));
+	copyToClipboardWithFeedback(
+		jsonContent,
+		getMessage('templateCopied'),
+		getMessage('templateCopyError')
+	).then(success => {
+		if (success) {
+			alert(getMessage('templateCopied'));
+		} else {
+			alert(getMessage('templateCopyError'));
+		}
 	});
 }
 
@@ -378,11 +384,11 @@ export function importAllSettings(): void {
 async function importAllSettingsFromJson(jsonContent: string): Promise<void> {
 	try {
 		const settings = JSON.parse(jsonContent) as StorageData;
-		
+
 		if (confirm(getMessage('confirmReplaceSettings'))) {
 			// Create a copy of the settings to modify
 			const importData: StorageData = { ...settings };
-			
+
 			// Compress all templates
 			const templateIds = importData.template_list || [];
 			for (const id of templateIds) {
@@ -390,14 +396,14 @@ async function importAllSettingsFromJson(jsonContent: string): Promise<void> {
 				if (importData[key]) {
 					try {
 						// Check if the data is already compressed (will be an array of strings)
-						const isAlreadyCompressed = Array.isArray(importData[key]) && 
+						const isAlreadyCompressed = Array.isArray(importData[key]) &&
 							importData[key].every((chunk: any) => typeof chunk === 'string');
 
 						if (!isAlreadyCompressed) {
 							// Compress the template data
 							const templateStr = JSON.stringify(importData[key]);
 							const compressedData = compressToUTF16(templateStr);
-							
+
 							// Split into chunks
 							const chunks: string[] = [];
 							const CHUNK_SIZE = 8000;

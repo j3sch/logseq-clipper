@@ -1,0 +1,1009 @@
+{
+	"activity": {
+		"message": "गतिविधि"
+	},
+	"addModel": {
+		"message": "+ Model jodein"
+	},
+	"addModelTitle": {
+		"message": "Model jodein"
+	},
+	"addProperty": {
+		"message": "+ Property jodein"
+	},
+	"addProvider": {
+		"message": "+ Provider jodein"
+	},
+	"addProviderTitle": {
+		"message": "Provider jodein"
+	},
+	"addToObsidian": {
+		"message": "Logseq me save karein"
+	},
+	"addVaultPlaceholder": {
+		"message": "Vault jodne ke liye enter dabaein"
+	},
+	"advanced": {
+		"message": "Advanced"
+	},
+	"allProperties": {
+		"message": "Sabhi properties"
+	},
+	"allTime": {
+		"message": "सभी समय"
+	},
+	"alwaysShowHighlights": {
+		"message": "Hamesha highlights dikhayein"
+	},
+	"alwaysShowHighlightsDescription": {
+		"message": "Page load hone par aapke save kiye gaye highlights dikhayein. Highlighter mode active hone par hi highlights dikhane ke liye band karein."
+	},
+	"apiKeyMissing": {
+		"message": "API key nahi hai"
+	},
+	"apiKeysWarning": {
+		"message": "External provider ka use karte samay, aap unki terms aur privacy policy se agree karte hain..."
+	},
+	"appendToDaily": {
+		"message": "Daily note mein, ant mein jodein"
+	},
+	"appendToExisting": {
+		"message": "Maujuda note mein, ant mein jodein"
+	},
+	"autoRunInterpreter": {
+		"message": "Automatic chalayein"
+	},
+	"autoRunInterpreterDescription": {
+		"message": "Template me prompt variables hone par turant chalega. Is se aapke model provider ke API credits kharch honge. Agar aap interpreter ko sirf manually chalana chahte hain to ise band kar dein."
+	},
+	"behavior": {
+		"message": "Behavior"
+	},
+	"byDay": {
+		"message": "दिनों"
+	},
+	"byMonth": {
+		"message": "महीनों"
+	},
+	"byWeek": {
+		"message": "सप्ताहों"
+	},
+	"cancel": {
+		"message": "Cancel"
+	},
+	"cannotDeleteProvider": {
+		"message": "Provider \"$1\" ko nahi hata sakte kyunki yeh $2 model(s) dwara upyog kiya ja raha hai."
+	},
+	"changelog": {
+		"message": "Changelog"
+	},
+	"chooseFile": {
+		"message": "File chunein"
+	},
+	"choosePropertiesFile": {
+		"message": "Properties file chunein"
+	},
+	"chooseSettingsFile": {
+		"message": "Settings file chunein"
+	},
+	"chooseTemplateFile": {
+		"message": "Template file chunein"
+	},
+	"clipBehavior": {
+		"message": "Save karne ka tarika"
+	},
+	"clipBehaviorDescription": {
+		"message": "Chunein ki highlight ki gayi samagri ko Logseq mein kaise save kiya jaye. $strong_start${{content}}$strong_end$ variable ko define karta hai.",
+		"placeholders": {
+			"strong_end": {
+				"content": "</strong>"
+			},
+			"strong_start": {
+				"content": "<strong>"
+			}
+		}
+	},
+	"clipboardError": {
+		"message": "Obsidian आपके क्लिपबोर्ड तक पहुँच नहीं पा रहा है। यहाँ दिए गए समस्या-निवारण निर्देश आज़माएँ: $1",
+		"placeholders": {
+			"1": {
+				"content": "$1"
+			}
+		}
+	},
+	"close": {
+		"message": "Band karein"
+	},
+	"commandOpenClipper": {
+		"message": "Logseq Clipper kholein"
+	},
+	"commandQuickClip": {
+		"message": "Quick clip"
+	},
+	"commandToggleHighlighter": {
+		"message": "Highlighter mode toggle karein"
+	},
+	"commandToggleReader": {
+		"message": "पठन दृश्य टॉगल करें"
+	},
+	"confirmDeleteTemplate": {
+		"message": "Kya aap template \"$1\" ko hatana chahte hain?"
+	},
+	"confirmReplaceSettings": {
+		"message": "Yeh aapki vartaman sabhi settings ko badal dega, jismein templates aur properties shamil hain. Kya aap jaari rakhna chahte hain?"
+	},
+	"copied": {
+		"message": "Copy ho gaya!"
+	},
+	"copyAsJson": {
+		"message": "JSON ke roop mein copy karein"
+	},
+	"copyToClipboard": {
+		"message": "Clipboard par copy karein"
+	},
+	"createNewNote": {
+		"message": "Naya note banayein"
+	},
+	"custom": {
+		"message": "Custom"
+	},
+	"dailyNoteFormat": {
+		"message": "Daily note format (jaise: YYYY-MM-DD)"
+	},
+	"defaultInterpreterContext": {
+		"message": "Default interpreter context"
+	},
+	"defaultInterpreterContextDescription": {
+		"message": "Prompt variables ki vyakhya ke liye upyog kiye jane wale context ko override karein. Yahan variables ka upyog kiya ja sakta hai."
+	},
+	"defaultTemplateName": {
+		"message": "Default"
+	},
+	"delete": {
+		"message": "Delete"
+	},
+	"deleteModelConfirm": {
+		"message": "Kya aap is model ko hatana chahte hain?"
+	},
+	"deleteProviderConfirm": {
+		"message": "Kya aap is provider ko hatana chahte hain?"
+	},
+	"disableHighlighter": {
+		"message": "Highlighter band karein"
+	},
+	"disableReader": {
+		"message": "पठन दृश्य अक्षम करें"
+	},
+	"done": {
+		"message": "Ho gaya"
+	},
+	"dragAndDropFile": {
+		"message": "Yahan file drag aur drop karein"
+	},
+	"duplicate": {
+		"message": "Duplicate"
+	},
+	"earlyAccessDescription": {
+		"message": "Obsidian ke latest $link_start$early access version$link_end$ ki zarurat wali features ka upyog karein. Vartaman mein Obsidian 1.7.2 ya usse naya chahiye.",
+		"placeholders": {
+			"link_end": {
+				"content": "</a>"
+			},
+			"link_start": {
+				"content": "<a href=\"https://help.obsidian.md/Obsidian/Early+access+versions\" target=\"_blank\">"
+			}
+		}
+	},
+	"earlyAccessFeatures": {
+		"message": "Early access features"
+	},
+	"editModel": {
+		"message": "Model edit karein"
+	},
+	"editProvider": {
+		"message": "Provider edit karein"
+	},
+	"editTemplate": {
+		"message": "Template edit karein"
+	},
+	"embedded": {
+		"message": "सम्मिलित"
+	},
+	"enableHighlighterDescription": {
+		"message": "Web page par content highlight karein jise aap Logseq mein save kar sakte hain."
+	},
+	"enableInterpreter": {
+		"message": "Interpreter enable karein"
+	},
+	"enableInterpreterDescription": {
+		"message": "Page se data nikalne ke liye natural language ka upyog karein. Udaharan ke liye, aap template syntax $strong_start${{\"page ka summary\"}}$strong_end$ ka upyog kar sakte hain. Niche configure kiye gaye API key ya custom model ki zarurat hai. $link_start$Aur janein$link_end$",
+		"placeholders": {
+			"link_end": {
+				"content": "</a>"
+			},
+			"link_start": {
+				"content": "<a href=\"https://help.obsidian.md/web-clipper/interpreter\" target=\"_blank\">"
+			},
+			"strong_end": {
+				"content": "</strong>"
+			},
+			"strong_start": {
+				"content": "<strong>"
+			}
+		}
+	},
+	"enableReader": {
+		"message": "पठन दृश्य खोलें"
+	},
+	"error": {
+		"message": "Error"
+	},
+	"export": {
+		"message": "Export"
+	},
+	"exportAllSettings": {
+		"message": "Sabhi settings export karein"
+	},
+	"exportAllSettingsDescription": {
+		"message": "Templates aur properties sahit sabhi settings export karein."
+	},
+	"exportHighlights": {
+		"message": "Highlights export karein"
+	},
+	"exportHighlightsDescription": {
+		"message": "Apne highlights ko file mein export karein."
+	},
+	"exportProperties": {
+		"message": "Properties export karein"
+	},
+	"exportPropertiesDescription": {
+		"message": "Web Clipper properties ko $strong_start$types.json$strong_end$ file mein save karein jise aapke Obsidian vault mein, ya dusre devices par Web Clipper mein import kiya ja sakta hai.",
+		"placeholders": {
+			"strong_end": {
+				"content": "</strong>"
+			},
+			"strong_start": {
+				"content": "<strong>"
+			}
+		}
+	},
+	"extensionDescription": {
+		"message": "Web se content ko ek private aur durable format mein save karein jise aap offline access kar sakte hain. Logseq ka unofficial browser extension."
+	},
+	"extensionName": {
+		"message": "Logseq Web Clipper"
+	},
+	"failedToCopyText": {
+		"message": "Text copy karne mein fail"
+	},
+	"failedToDeleteTemplate": {
+		"message": "Template delete karne mein fail. Kripya dobara koshish karein."
+	},
+	"failedToDuplicateTemplate": {
+		"message": "Template duplicate karne mein fail. Kripya dobara koshish karein."
+	},
+	"failedToExportHighlights": {
+		"message": "Highlights export karne mein fail. Details ke liye console check karein."
+	},
+	"failedToExportSettings": {
+		"message": "Settings export karne mein fail. Details ke liye console check karein."
+	},
+	"failedToExtractContent": {
+		"message": "Page content extract karne mein asafal."
+	},
+	"failedToImportTemplate": {
+		"message": "Template import karne mein error. File check karein aur dobara koshish karein."
+	},
+	"failedToInitialize": {
+		"message": "Kripya extension ko reload karne ki koshish karein."
+	},
+	"failedToInitializeContent": {
+		"message": "Page content initialize karne mein asafal."
+	},
+	"failedToProcessInterpreter": {
+		"message": "Interpreter processing fail. Kripya dobara koshish karein."
+	},
+	"failedToResetProviders": {
+		"message": "Providers aur models reset karne mein fail"
+	},
+	"failedToResetTemplate": {
+		"message": "Default template reset karne mein fail. Kripya dobara koshish karein."
+	},
+	"failedToSave": {
+		"message": "File save karne mein fail"
+	},
+	"failedToSaveFile": {
+		"message": "File save karne mein fail"
+	},
+	"failedToSaveProvider": {
+		"message": "Provider save karne mein fail. Kripya dobara koshish karein."
+	},
+	"feedback": {
+		"message": "प्रतिक्रिया"
+	},
+	"feedbackDescription": {
+		"message": "हम वेब क्लिपर को कैसे सुधार सकते हैं? कृपया हमारे सहायता पृष्ठ पर जाएं, जहां आप बग्स की रिपोर्ट कर सकते हैं, सुविधाओं का सुझाव दे सकते हैं, और सामान्य समस्याओं की सहायता प्राप्त कर सकते हैं।"
+	},
+	"feedbackTitle": {
+		"message": "आपकी प्रतिक्रिया के लिए धन्यवाद"
+	},
+	"folder": {
+		"message": "Folder"
+	},
+	"general": {
+		"message": "General"
+	},
+	"generalSettings": {
+		"message": "General settings"
+	},
+	"getApiKeyHere": {
+		"message": "Apni $1 API key yahan se prapt karein."
+	},
+	"help": {
+		"message": "Help"
+	},
+	"helpDescription": {
+		"message": "Web Clipper ka upyog karna seekhein aur troubleshooting help prapt karein."
+	},
+	"highlightInline": {
+		"message": "Page content highlight karein"
+	},
+	"highlightPage": {
+		"message": "Page highlight karein"
+	},
+	"highlighter": {
+		"message": "Highlighter"
+	},
+	"highlighterOn": {
+		"message": "हाइलाइटर"
+	},
+	"highlighterSettings": {
+		"message": "Highlighter"
+	},
+	"history": {
+		"message": "इतिहास"
+	},
+	"hotkeys": {
+		"message": "Hotkeys"
+	},
+	"import": {
+		"message": "Import"
+	},
+	"importAllSettings": {
+		"message": "Sabhi settings import karein"
+	},
+	"importAllSettingsDescription": {
+		"message": "Templates aur properties sahit sabhi settings import karein. Yeh aapki vartaman configuration ko replace karega."
+	},
+	"importFailed": {
+		"message": "Import fail. Details ke liye console check karein."
+	},
+	"importModalTitle": {
+		"message": "Import"
+	},
+	"importProperties": {
+		"message": "Properties import karein"
+	},
+	"importPropertiesDescription": {
+		"message": "Obsidian se properties import karne ke liye, apne vault mein $strong_1_start$types.json$strong_1_end$ file ko $strong_2_start$.obsidian$strong_2_end$ folder mein dhundhein. Note karein ki yeh folder default roop se adhikansh operating systems mein hidden hota hai.",
+		"placeholders": {
+			"strong_1_end": {
+				"content": "</strong>"
+			},
+			"strong_1_start": {
+				"content": "<strong>"
+			},
+			"strong_2_end": {
+				"content": "</strong>"
+			},
+			"strong_2_start": {
+				"content": "<strong>"
+			}
+		}
+	},
+	"importSettings": {
+		"message": "Settings import karein"
+	},
+	"importTemplate": {
+		"message": "Template import karein"
+	},
+	"interpret": {
+		"message": "Interpret"
+	},
+	"interpreter": {
+		"message": "Interpreter"
+	},
+	"interpreterContext": {
+		"message": "Interpreter context"
+	},
+	"interpreterContextDescription": {
+		"message": "Prompt variables ki interpretation ke liye upyog kiya jane wala context. $link_start$Interpreter settings$link_end$ mein define kiye gaye default context ko override karta hai. Yahan variables ka upyog kiya ja sakta hai.",
+		"placeholders": {
+			"link_end": {
+				"content": "</a>"
+			},
+			"link_start": {
+				"content": "<a href=\"?section=interpreter\">"
+			}
+		}
+	},
+	"language": {
+		"message": "Language"
+	},
+	"languageDescription": {
+		"message": "Extension interface ke liye display language chunein."
+	},
+	"last30Days": {
+		"message": "अंतिम 30 दिन"
+	},
+	"lastUsed": {
+		"message": "Last used"
+	},
+	"legacyMode": {
+		"message": "Legacy mode"
+	},
+	"legacyModeDescription": {
+		"message": "Obsidian 1.6.7 ya purane version ke saath compatible URI clipping method ka upyog karta hai. Note karein ki aap kitna content clip kar sakte hain woh aapke browser aur OS dwara limited hai. Kuch pages bina kisi errors ke fail ho sakte hain."
+	},
+	"modelName": {
+		"message": "Display name"
+	},
+	"modelNameDescription": {
+		"message": "Interface mein display karne ke liye model ka naam."
+	},
+	"modelProvider": {
+		"message": "Provider"
+	},
+	"modelProviderDescription": {
+		"message": "Model provider, jaise Ollama, OpenRouter, Google, etc."
+	},
+	"modelProviderPlaceholder": {
+		"message": "Provider"
+	},
+	"modelRequiredFields": {
+		"message": "Model name, Provider, aur Model ID jaruri hain."
+	},
+	"models": {
+		"message": "Models"
+	},
+	"modelsListFor": {
+		"message": "$1 के लिए मॉडल सूची"
+	},
+	"more": {
+		"message": "More"
+	},
+	"newTemplate": {
+		"message": "Naya template"
+	},
+	"noHighlights": {
+		"message": "Kuch nahi karein"
+	},
+	"noTemplates": {
+		"message": "Koi templates available nahi hain. Kripya settings mein template add karein."
+	},
+	"noUnusedProperties": {
+		"message": "Koi unused properties nahi mili."
+	},
+	"noteContent": {
+		"message": "Note content"
+	},
+	"noteContentDescription": {
+		"message": "Note ka content customize karein. Page se data pre-populate karne ke liye variables ka upyog karein."
+	},
+	"noteLocation": {
+		"message": "Note location"
+	},
+	"noteLocationDescription": {
+		"message": "Note ka folder ya path."
+	},
+	"noteName": {
+		"message": "Note name"
+	},
+	"noteNameFormat": {
+		"message": "Note name"
+	},
+	"noteNameFormatDescription": {
+		"message": "Note ke file name ka format. Aap page se data pre-populate karne ke liye {{title}}, {{date}}, aur {{published}} jaise variables ka upyog kar sakte hain. $link_start$Aur janein$link_end$.",
+		"placeholders": {
+			"link_end": {
+				"content": "</a>"
+			},
+			"link_start": {
+				"content": "<a href=\"https://help.obsidian.md/web-clipper/variables\" target=\"_blank\">"
+			}
+		}
+	},
+	"notesAboutPage": {
+		"message": "Is page ke baare mein notes..."
+	},
+	"onlyHttpSupported": {
+		"message": "Is page ko clip nahi kiya ja sakta. Sirf http aur https URLs supported hain."
+	},
+	"open": {
+		"message": "Open"
+	},
+	"openBehaviorDescription": {
+		"message": "चुनें कि वेब क्लिपर डिफ़ॉल्ट रूप से कैसे खुलता है।"
+	},
+	"openBehaviorTitle": {
+		"message": "खुलने का व्यवहार"
+	},
+	"openEmbedded": {
+		"message": "पृष्ठ में खोलें"
+	},
+	"openSidePanel": {
+		"message": "साइड पैनल खोलें"
+	},
+	"optional": {
+		"message": "(optional)"
+	},
+	"orPasteBelow": {
+		"message": "Ya niche paste karein"
+	},
+	"overwriteNote": {
+		"message": "नोट को अधिलेखित करें"
+	},
+	"pageCannotBeClipped": {
+		"message": "Is page ko clip nahi kiya ja sakta."
+	},
+	"pageVariables": {
+		"message": "Page variables"
+	},
+	"pagesSaved": {
+		"message": "पृष्ठ सहेजा गया"
+	},
+	"pagesSavedPlural": {
+		"message": "पृष्ठ सहेजे गए"
+	},
+	"pasteJsonHere": {
+		"message": "JSON yahan paste karein"
+	},
+	"pleaseReload": {
+		"message": "Kripya page reload karne ki koshish karein."
+	},
+	"popularModels": {
+		"message": "लोकप्रिय मॉडल"
+	},
+	"popularModelsDescription": {
+		"message": "सामान्य रूप से प्रयुक्त मॉडलों में से चुनें या कस्टम मॉडल विवरण दर्ज करें।"
+	},
+	"popup": {
+		"message": "पॉपअप"
+	},
+	"prependToDaily": {
+		"message": "Daily note mein, shuruat mein add karein"
+	},
+	"prependToExisting": {
+		"message": "Existing note mein, shuruat mein add karein"
+	},
+	"preview": {
+		"message": "पूर्वावलोकन"
+	},
+	"processing": {
+		"message": "Processing"
+	},
+	"properties": {
+		"message": "Properties"
+	},
+	"propertiesSettings": {
+		"message": "Properties"
+	},
+	"propertyName": {
+		"message": "Property name"
+	},
+	"propertyTypeCheckbox": {
+		"message": "चेकबॉक्स"
+	},
+	"propertyTypeDate": {
+		"message": "तारीख"
+	},
+	"propertyTypeDatetime": {
+		"message": "तारीख और समय"
+	},
+	"propertyTypeMultitext": {
+		"message": "सूची"
+	},
+	"propertyTypeNumber": {
+		"message": "संख्या"
+	},
+	"propertyTypeText": {
+		"message": "पाठ"
+	},
+	"propertyValue": {
+		"message": "Property value"
+	},
+	"provider": {
+		"message": "Provider"
+	},
+	"providerApiKey": {
+		"message": "API key"
+	},
+	"providerApiKeyDescription": {
+		"message": "Is provider ke liye aapki API key."
+	},
+	"providerBaseUrl": {
+		"message": "Base URL"
+	},
+	"providerBaseUrlDescription": {
+		"message": "Is provider ke liye API endpoint URL."
+	},
+	"providerModelId": {
+		"message": "Model ID"
+	},
+	"providerModelIdDescription": {
+		"message": "Aapke provider se model ka identifier. Generally spaces ke bina ek short name."
+	},
+	"providerModelIdPlaceholder": {
+		"message": "Model ID"
+	},
+	"providerName": {
+		"message": "Provider name"
+	},
+	"providerNameDescription": {
+		"message": "Is provider ke liye display name."
+	},
+	"providerPreset": {
+		"message": "Preset"
+	},
+	"providerPresetDescription": {
+		"message": "Ek provider chunein ya custom banayein."
+	},
+	"providerRequiredFields": {
+		"message": "Provider name aur Base URL jaruri hain."
+	},
+	"providers": {
+		"message": "Providers"
+	},
+	"rateExtensionDescription": {
+		"message": "क्या आप वेब क्लिपर का आनंद ले रहे हैं? हमारी मदद करें इसे रेटिंग देकर।"
+	},
+	"reader": {
+		"message": "पाठक"
+	},
+	"readerAppearance": {
+		"message": "दिखावट"
+	},
+	"readerAppearanceAuto": {
+		"message": "स्वचालित"
+	},
+	"readerAppearanceDark": {
+		"message": "डार्क"
+	},
+	"readerAppearanceDescription": {
+		"message": "लाइट या डार्क दिखावट चुनें।"
+	},
+	"readerAppearanceLight": {
+		"message": "लाइट"
+	},
+	"readerAutoScroll": {
+		"message": "स्वचालित स्क्रॉल"
+	},
+	"readerAutoScrollDescription": {
+		"message": "प्लेबैक के साथ ट्रांसक्रिप्ट को अपने-आप स्क्रॉल करें।"
+	},
+	"readerBlendImages": {
+		"message": "छवियाँ मिलाएँ"
+	},
+	"readerBlendImagesDescription": {
+		"message": "छवियों को पेज की पृष्ठभूमि के साथ मिलाएँ।"
+	},
+	"readerCloseImageViewer": {
+		"message": "छवि दर्शक बंद करें"
+	},
+	"readerCollapseComment": {
+		"message": "टिप्पणी संक्षिप्त करें"
+	},
+	"readerColorLinks": {
+		"message": "लिंक रंगीन करें"
+	},
+	"readerColorSchemeDefault": {
+		"message": "डिफ़ॉल्ट"
+	},
+	"readerCurrentPosition": {
+		"message": "वर्तमान स्थिति"
+	},
+	"readerCustomCss": {
+		"message": "कस्टम CSS"
+	},
+	"readerCustomCssDescription": {
+		"message": "रीडिंग व्यू में अपने-आप लागू होने वाला CSS।"
+	},
+	"readerDarkTheme": {
+		"message": "डार्क मोड थीम"
+	},
+	"readerDarkThemeDescription": {
+		"message": "डार्क मोड में अलग थीम का उपयोग करें।"
+	},
+	"readerError": {
+		"message": "सामग्री निकालने में विफल।"
+	},
+	"readerFont": {
+		"message": "फ़ॉन्ट विकल्प"
+	},
+	"readerFontDefault": {
+		"message": "डिफ़ॉल्ट"
+	},
+	"readerFontDescription": {
+		"message": "अपने सिस्टम में इंस्टॉल किए गए फ़ॉन्ट जोड़ें। फ़ॉन्ट जोड़ने के लिए Enter दबाएँ।"
+	},
+	"readerFontNotFound": {
+		"message": "नहीं मिला"
+	},
+	"readerFontPlaceholder": {
+		"message": "फ़ॉन्ट जोड़ने के लिए Enter दबाएँ"
+	},
+	"readerFontSetDefault": {
+		"message": "डिफ़ॉल्ट सेट करें"
+	},
+	"readerFontSize": {
+		"message": "आधार फ़ॉन्ट आकार"
+	},
+	"readerFontSystem": {
+		"message": "सिस्टम"
+	},
+	"readerFontSystemSans": {
+		"message": "सैंस-सेरिफ़"
+	},
+	"readerFontSystemSerif": {
+		"message": "सेरिफ़"
+	},
+	"readerFonts": {
+		"message": "फ़ॉन्ट"
+	},
+	"readerFootnotes": {
+		"message": "पादटिप्पणियाँ"
+	},
+	"readerHighlightActiveLine": {
+		"message": "सक्रिय पंक्ति हाइलाइट करें"
+	},
+	"readerHighlightActiveLineDescription": {
+		"message": "प्लेबैक के दौरान ट्रांसक्रिप्ट में वर्तमान वाक्य को हाइलाइट करें।"
+	},
+	"readerImages": {
+		"message": "छवियाँ"
+	},
+	"readerLineHeight": {
+		"message": "पंक्ति ऊँचाई"
+	},
+	"readerLineWidth": {
+		"message": "पंक्ति चौड़ाई"
+	},
+	"readerLoading": {
+		"message": "सरल किया जा रहा है…"
+	},
+	"readerOn": {
+		"message": "रीडर"
+	},
+	"readerPinPlayer": {
+		"message": "प्लेयर पिन करें"
+	},
+	"readerPinPlayerDescription": {
+		"message": "ट्रांसक्रिप्ट स्क्रॉल करते समय वीडियो प्लेयर को दिखाई देता रखें।"
+	},
+	"readerSettings": {
+		"message": "रीडर सेटिंग्स"
+	},
+	"readerTheme": {
+		"message": "थीम"
+	},
+	"readerThemeDescription": {
+		"message": "रीडिंग व्यू में उपयोग होने वाले रंग चुनें।"
+	},
+	"readerThemeSection": {
+		"message": "थीम"
+	},
+	"readerTranscripts": {
+		"message": "ट्रांसक्रिप्ट"
+	},
+	"readerTypography": {
+		"message": "टाइपोग्राफी"
+	},
+	"readerViewFullSize": {
+		"message": "पूर्ण आकार में देखें"
+	},
+	"recommended": {
+		"message": "सिफारिश की गई"
+	},
+	"refresh": {
+		"message": "Refresh"
+	},
+	"remove": {
+		"message": "Remove"
+	},
+	"removeProperty": {
+		"message": "Property remove karein"
+	},
+	"removeUnusedProperties": {
+		"message": "Unused properties remove karein"
+	},
+	"removeUnusedPropertiesDescription": {
+		"message": "Sabhi properties remove karein jo kisi bhi template mein use nahi ki gayi hain."
+	},
+	"removeVault": {
+		"message": "Vault remove karein"
+	},
+	"replaceContent": {
+		"message": "Page content replace karein"
+	},
+	"reset": {
+		"message": "Reset"
+	},
+	"resetDefaultTemplate": {
+		"message": "Default template reset karein"
+	},
+	"resetDefaultTemplateDescription": {
+		"message": "Default template mein kiye gaye sabhi changes ko remove karein."
+	},
+	"resetProvidersAndModels": {
+		"message": "Default models reset karein"
+	},
+	"resetProvidersAndModelsDescription": {
+		"message": "Providers aur models ko default settings par reset karein."
+	},
+	"save": {
+		"message": "Save"
+	},
+	"saveBehaviorDescription": {
+		"message": "पेज सहेजने के लिए डिफ़ॉल्ट विकल्प चुनें। वैकल्पिक विकल्प मुख्य बटन के बगल में ड्रॉपडाउन मेनू में दिखाई देते हैं।"
+	},
+	"saveBehaviorLabel": {
+		"message": "सहेजने का व्यवहार"
+	},
+	"saveFile": {
+		"message": "File save karein..."
+	},
+	"searchVariables": {
+		"message": "Variables search karein..."
+	},
+	"selectProvider": {
+		"message": "Provider select karein"
+	},
+	"selectTemplateToExport": {
+		"message": "Kripya export karne ke liye ek template select karein."
+	},
+	"settings": {
+		"message": "Settings"
+	},
+	"settingsHeading": {
+		"message": "Settings"
+	},
+	"settingsImportSuccess": {
+		"message": "Sabhi settings successfully import ho gayi hain. Changes dekhne ke liye kripya page refresh karein."
+	},
+	"share": {
+		"message": "Share..."
+	},
+	"shortcutInstructionsBrave": {
+		"message": "Key assignments change karne ke liye, $1 par jayein"
+	},
+	"shortcutInstructionsChrome": {
+		"message": "Key assignments change karne ke liye, $1 par jayein"
+	},
+	"shortcutInstructionsDefault": {
+		"message": "Key assignments change karne ke liye, kripya apne browser ki extension settings dekhein."
+	},
+	"shortcutInstructionsEdge": {
+		"message": "Key assignments change karne ke liye, $1 par jayein"
+	},
+	"shortcutInstructionsFirefox": {
+		"message": "Key assignments change karne ke liye, $1 par jayein, gear icon par click karein, aur \"Manage Extension Shortcuts\" select karein"
+	},
+	"shortcutInstructionsIntro": {
+		"message": "Keyboard shortcuts aapko clipper features tak quick access dete hain."
+	},
+	"shortcutInstructionsSafari": {
+		"message": "Safari par keyboard shortcuts customize nahi kiye ja sakte."
+	},
+	"shortcutNotSet": {
+		"message": "Set nahi hai"
+	},
+	"showActionsButton": {
+		"message": "Actions button dikhayein"
+	},
+	"showActionsDescription": {
+		"message": "Clipper menu se page variables inspect karne ki permission deta hai. Templates mein use ke liye available variables dekhne mein helpful."
+	},
+	"showPageVariables": {
+		"message": "Page variables dikhayein"
+	},
+	"silentOpen": {
+		"message": "Clipped note ko bina open kiye save karein"
+	},
+	"silentOpenDescription": {
+		"message": "Clipped notes save ho jayengi lekin naye tab mein nahi khulengi. Logseq abhi bhi foreground mein layega."
+	},
+	"specificNoteName": {
+		"message": "Specific note name"
+	},
+	"systemDefault": {
+		"message": "System"
+	},
+	"template": {
+		"message": "टेम्पलेट"
+	},
+	"templateCopied": {
+		"message": "Template JSON clipboard par copy ho gaya"
+	},
+	"templateCopyError": {
+		"message": "Template JSON ko clipboard par copy karne mein fail"
+	},
+	"templateErrorCount": {
+		"message": "आपके टेम्पलेट में एक त्रुटि है।"
+	},
+	"templateErrorsCount": {
+		"message": "आपके टेम्पलेट में $1 त्रुटियाँ हैं।"
+	},
+	"templateGroupContent": {
+		"message": "सामग्री"
+	},
+	"templateGroupLocation": {
+		"message": "स्थान"
+	},
+	"templateName": {
+		"message": "Template name"
+	},
+	"templateProperties": {
+		"message": "Properties"
+	},
+	"templatePropertiesDescription": {
+		"message": "Clipped note ke top par add karne ke liye properties. Page se data pre-populate karne ke liye variables ka upyog karein."
+	},
+	"templateTriggers": {
+		"message": "Template triggers"
+	},
+	"templateTriggersDescription": {
+		"message": "URL pattern se match hone ya schema.org data hone par is template ko automatically select karne ke liye rules define karein. Ek line mein ek rule."
+	},
+	"templateValid": {
+		"message": "टेम्पलेट सिंटैक्स मान्य है"
+	},
+	"templatesHeading": {
+		"message": "Templates"
+	},
+	"thinking": {
+		"message": "Soch raha hai"
+	},
+	"unknownProvider": {
+		"message": "Unknown provider"
+	},
+	"updateAvailable": {
+		"message": "Update available hai."
+	},
+	"usingLatestVersion": {
+		"message": "Aap latest version use kar rahe hain."
+	},
+	"vault": {
+		"message": "Vault"
+	},
+	"vaultDescription": {
+		"message": "Is template ke liye default vault select karein. Vaults add ya remove karne ke liye $link_start$general settings$link_end$ par jayein.",
+		"placeholders": {
+			"link_end": {
+				"content": "</a>"
+			},
+			"link_start": {
+				"content": "<a href=\"?section=general\">"
+			}
+		}
+	},
+	"vaults": {
+		"message": "Vaults"
+	},
+	"vaultsDescription": {
+		"message": "By default, clipped notes currently open vault mein save hoti hain. Agar aap different vaults mein save karne ka option chahte hain to aap yahan vaults add kar sakte hain. Vault names Obsidian vault ke name se exactly match karne chahiye. Vault add karne ke liye $strong_start$enter$strong_end$ dabaein.",
+		"placeholders": {
+			"strong_end": {
+				"content": "</strong>"
+			},
+			"strong_start": {
+				"content": "<strong>"
+			}
+		}
+	},
+	"version": {
+		"message": "Version"
+	},
+	"pasteCursorPosition": {
+		"message": "Paste at cursor position"
+	}
+}

@@ -2,7 +2,7 @@
 	"manifest_version": 3,
 	"default_locale": "en",
 	"name": "Logseq Web Clipper",
-	"version": "0.10.5",
+	"version": "1.4.0",
 	"description": "Save content from the web to Logseq, in a private and durable format you can access offline.",
 	"permissions": [
 		"activeTab",
@@ -36,16 +36,15 @@
 	},
 	"content_scripts": [
 		{
-			"matches": [
-				"http://*/*",
-				"https://*/*"
-			],
-			"js": [
-				"content.js"
-			],
-			"css": [
-				"highlighter.css"
-			]
+			"matches": ["http://*/*", "https://*/*"],
+			"js": ["browser-polyfill.min.js", "content.js"]
+		}
+	],
+	"web_accessible_resources": [
+		{
+			"resources": ["reader.css", "reader-script.js", "browser-polyfill.min.js", "style.css", "side-panel.html", "flatten-shadow-dom.js", "highlighter.css"],
+			"extension_ids": ["*"],
+			"matches": [ "*://*/*" ]
 		}
 	],
 	"content_security_policy": {
@@ -72,6 +71,13 @@
 				"mac": "Alt+Shift+H"
 			},
 			"description": "Toggle highlighter mode"
+		},
+		"toggle_reader": {
+			"suggested_key": {
+				"default": "Alt+Shift+R",
+				"mac": "Alt+Shift+R"
+			},
+			"description": "Toggle reading view"
 		}
 	}
 }

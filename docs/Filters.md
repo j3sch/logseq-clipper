@@ -6,9 +6,9 @@ Filters allow you to modify [[variables]] in [[Obsidian Web Clipper/Templates|We
 - Filters work for any kind of [[Variables|variable]] including `prompt`, `meta`, `selector`, and `schema` variables.
 - Filters can be chained, e.g. `{{variable|filter1|filter2}}`, and are applied in the order they are added.
 
-## Date and time
+## Dates
 
-Convert and modify date and time values.
+Convert and modify dates.
 
 ### `date`
 
@@ -28,9 +28,9 @@ Modifies a date by adding or subtracting a specified amount of time, [see refere
 
 Converts ISO 8601 duration strings or seconds into formatted time strings. Uses tokens: `HH` (padded hours), `H` (hours), `mm` (padded minutes), `m` (minutes), `ss` (padded seconds), `s` (seconds).
 
-- `"PT1H30M"|duration:"HH:mm:ss"` returns `"01:30:00"`
-- `"3665"|duration:"H:mm:ss"` returns `"1:01:05"`
-- Setting `duration` without any parameters uses a smart format: `HH:mm:ss` for ≥1 hour, `mm:ss` for <1 hour.
+- `"PT1H30M"|duration:"HH:mm:ss"` returns `"01:30:00"`.
+- `"3665"|duration:"H:mm:ss"` returns `"1:01:05"`.
+- Setting `duration` without any parameters uses `HH:mm:ss` over 1 hour, `mm:ss` under 1 hour.
 - Supports both ISO 8601 duration strings (e.g., `PT6702S`, `PT1H30M`) and plain seconds.
 
 ## Text conversion and capitalization
@@ -44,6 +44,13 @@ Converts text to `camelCase`.
 ### `capitalize`
 
 Capitalizes the first character of the value and converts the rest to lowercase, e.g. `"hELLO wORLD"|capitalize` returns `"Hello world"`.
+
+### `decode_uri`
+
+Decodes a URI-encoded string, e.g. `"%E4%BD%A0%E5%A5%BD"|decode_uri` returns `"你好"`.
+
+- `"hello%20world"|decode_uri` returns `"hello world"`.
+- Returns the original string if decoding fails (e.g. malformed URI sequences).
 
 ### `kebab`
 
@@ -133,8 +140,8 @@ Converts an array or object into a list of Markdown footnotes.
 
 Converts strings and arrays into [text fragment](https://developer.mozilla.org/en-US/docs/Web/URI/Fragment/Text_fragments) links. Defaults to "link" for the link text.
 
-- `highlights|fragment` returns `Highlight content [link](text-fragment-url)`
-- `highlights|fragment:"custom title"` returns `Highlight content [custom title](text-fragment-url)
+- `highlights|fragment_link` returns `Highlight content [link](text-fragment-url)`
+- `highlights|fragment_link:"custom title"` returns `Highlight content [custom title](text-fragment-url)`
 
 ### `image` 
 
@@ -156,10 +163,10 @@ Converts strings, arrays, or objects into Markdown link syntax (not to be confus
 
 Converts an array to a Markdown list.
 
-- Use `list` to convert to a bullet list.
-- Use `list:task` to convert to a task list.
-- Use `list:numbered` to convert to a numbered list.
-- Use `list:numbered-task` to convert to a task list with numbers.
+- `list` to convert to a bullet list.
+- `list:task` to convert to a task list.
+- `list:numbered` to convert to a numbered list.
+- `list:numbered-task` to convert to a task list with numbers.
 
 ### `table`
 
@@ -168,6 +175,7 @@ Converts an array or array of objects into a [[Advanced formatting syntax#Tables
 - For an array of objects, it uses the object keys as headers.
 - For an array of arrays, it creates a table with each nested array as a row.
 - For a simple array, it creates a single-column table with "Value" as the header.
+- Custom column headers can be specified using: `table:("Column 1", "Column 2", "Column 3")`. When used with a simple array, it automatically breaks the data into rows based on the number of columns specified.
 
 ### `wikilink`
 
@@ -186,17 +194,17 @@ Converts strings, arrays, or objects into Obsidian [[Link notes|wikilink]] synta
 Performs basic arithmetic operations on numbers.
 
 - Supports operators: `+`, `-`, `*`, `/`, `**` (or `^`) for exponentiation.
-- Example: `"5"|calc:"+10"` returns `"15"`.
-- Example: `"2"|calc:"**3"` returns `"8"` (2 cubed).
+- Example: `5|calc:"+10"` returns `15`.
+- Example: `2|calc:"**3"` returns `8` (2 cubed).
 - Returns the original string if the input is not a number.
 
 ### `length`
 
 Returns the length of strings, arrays, or number of keys in objects.
 
-- For strings: `"hello"|length` returns `"5".`
-- For arrays: `["a","b","c"]|length` returns `"3".`
-- For objects: `{"a":1,"b":2}|length` returns `"2"`.
+- For strings: `"hello"|length` returns `5`.
+- For arrays: `["a","b","c"]|length` returns `3`.
+- For objects: `{"a":1,"b":2}|length` returns `2`.
 
 ### `round`
 
@@ -220,13 +228,13 @@ Converts a string to an [[Obsidian Flavored Markdown]] formatted string.
 Removes only the specified HTML attributes from tags.
 
 - Example: `"<div class="test" id="example">Content</div>"|remove_attr:"class"` returns `<div id="example">Content</div>`.
-- Multiple attributes: `{{contentHtml|remove_attr:("class,style,id")}}`
+- Multiple attributes: `{{fullHtml|remove_attr:("class,style,id")}}`
 
 ### `remove_html`
 
 Removes the specified HTML elements and their content from a string.
 
-- Supports tag name, class, or id, e.g. `{{contentHtml|remove_html:("img,.class-name,#element-id")}}`
+- Supports tag name, class, or id, e.g. `{{fullHtml|remove_html:("img,.class-name,#element-id")}}`
 - To remove only HTML tags or attributes without removing the content use the `strip_tags` or `strip_attr` filters.
 
 ### `remove_tags` 
@@ -234,13 +242,13 @@ Removes the specified HTML elements and their content from a string.
 Removes only the specified HTML tags. Keeps the content of the tags.
 
 - Example: `"<p>Hello <b>world</b>!</p>"|remove_tags:"b"` returns `"<p>Hello world!</p>"`.
-- Multiple tags: `{{contentHtml|remove_tags:("a,em,strong")}}`
+- Multiple tags: `{{fullHtml|remove_tags:("a,em,strong")}}`
 
 ### `replace_tags`
 
 Replaces HTML tags, maintaining the content and attributes of the tag.
 
-- `{{contentHtml|replace_tags:"strong":"h2"}}` replaces all `<strong>` tags with `<h2>`.
+- `{{fullHtml|replace_tags:"strong":"h2"}}` replaces all `<strong>` tags with `<h2>`.
 
 ### `strip_attr`
 
@@ -258,7 +266,7 @@ Removes **all** Markdown formatting and returns a plain text string, e.g. turnin
 
 ### `strip_tags`
 
-Removes **all** HTML tags from a string. Unlike `remove_html` this doesn't remove the content within the tags.
+Removes **all** HTML tags from a string. Content within the tag is preserved.
 
 - Use `strip_tags:("p,strong,em")` to keep specific tags.
 - Example: `"<p>Hello <b>world</b>!</p>"|strip_tags:("b")` returns `Hello <b>world</b>!`.
@@ -296,9 +304,32 @@ Applies a transformation to each element of an array using the syntax `map:item 
 - `[{gem: "obsidian", color: "black"}, {gem: "amethyst", color: "purple"}]|map:item => item.gem` returns `["obsidian", "amethyst"]`.
 - Use parentheses for object literals and complex expressions: `map:item => ({key: value})`, e.g.: `[{gem: "obsidian", color: "black"}, {gem: "amethyst", color: "purple"}]|map:item => ({name: item.gem, color: item.color})`  returns `[{name: "obsidian", color: "black"}, {name: "amethyst", color: "purple"}]`.
 
-String literals are supported and automatically wrapped in an object with a `str` property. The `str` property is used to store the result of string literal transformations, e.g. `["rock", "pop"]|map:item => "genres/${item}"` returns `[{str: "genres/rock"}, {str: "genres/pop"}]`.
+String literals are also supported, e.g. `["rock", "pop"]|map:item => "genres/${item}"` returns `["genres/rock", "genres/pop"]`.
 
-Combine `map` with the `template` filter, e.g. `map:item => ({name: ${item.gem}, color: item.color})|template:"- ${name} is ${color}\n"`.
+Combine `map` with the `template` filter, e.g. `map:item => ({name: ${item.gem}, color: item.color})|template:"- ${name} is ${color}\n"`. For string literal maps, use `${str}` in the template, e.g. `["rock", "pop"]|map:item => "genres/${item}"|template:"- ${str}"`.
+
+Note: Built-in filters cannot be used inside `map`. This means that, for example, trimming each value of an array cannot be done with `map`.
+
+### `merge`
+
+Adds new values to an array.
+
+- For arrays: `["a","b"]|merge:("c","d")` returns `["a","b","c","d"]`.
+- Single value: `["a","b"]|merge:"c"` returns `["a","b","c"]`.
+- If input is not an array, it creates a new array: `"a"|merge:("b","c")` returns `["a","b","c"]`.
+- Values can be quoted: `["a"]|merge:('b,"c,d",e')` returns `["a","b","c,d","e"]`.
+
+### `nth`
+
+Keeps nth items in an array using CSS-style nth-child syntax and group patterns. All positions are 1-based (first item is position 1).
+
+- `array|nth:3` keeps only the 3rd element.
+- `array|nth:3n` keeps every 3rd element (3, 6, 9, etc.).
+- `array|nth:n+3` keeps the 3rd and all following elements.
+
+Group pattern syntax for repeating structures:
+
+- `array|nth:1,2,3:5` keeps positions 1, 2, 3 from each group of 5 items. Example: `[1,2,3,4,5,6,7,8,9,10]|nth:1,2,3:5` returns `[1,2,3,6,7,8]`.
 
 ### `object`
 
@@ -337,10 +368,9 @@ Applies a template string to an object or array of objects, using the syntax `ob
 - For objects: `{"gem":"obsidian","hardness":5}|template:"${gem} has a hardness of ${hardness}"` returns `"obsidian has a hardness of 5"`.
 - For arrays: `[{"gem":"obsidian","hardness":5},{"gem":"amethyst","hardness":7}]|template:"- ${gem} has a hardness of ${hardness}\n"` returns a formatted list.
 
-Works with string literals from `map` by accessing the `str` property:
+Works with string literals from `map` using `${str}`:
 
-- Example: `["rock", "pop"]|map:item => "genres/${item}"|template:"${str}"` returns `"genres/rock\ngenres/pop"`.
-- The `str` property is automatically used when applying `template` to objects created by `map` with string literals.
+- Example: `["rock", "pop"]|map:item => "genres/${item}"|template:"- ${str}"` returns a formatted list.
 
 ### `unique`
 

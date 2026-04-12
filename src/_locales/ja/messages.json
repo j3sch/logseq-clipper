@@ -1,0 +1,1009 @@
+{
+	"activity": {
+		"message": "アクティビティ"
+	},
+	"addModel": {
+		"message": "+ モデルを追加"
+	},
+	"addModelTitle": {
+		"message": "モデルを追加"
+	},
+	"addProperty": {
+		"message": "+ プロパティを追加"
+	},
+	"addProvider": {
+		"message": "\"+ プロバイダーを追加\""
+	},
+	"addProviderTitle": {
+		"message": "\"プロバイダーを追加\""
+	},
+	"addToObsidian": {
+		"message": "Logseqに追加"
+	},
+	"addVaultPlaceholder": {
+		"message": "Enterキーを押して保管庫を追加"
+	},
+	"advanced": {
+		"message": "詳細設定"
+	},
+	"allProperties": {
+		"message": "すべてのプロパティ"
+	},
+	"allTime": {
+		"message": "全期間"
+	},
+	"alwaysShowHighlights": {
+		"message": "常にハイライトを表示"
+	},
+	"alwaysShowHighlightsDescription": {
+		"message": "ページ読み込み時に保存したハイライトを表示します。オフにすると、ハイライトモードが有効な時のみ表示されます。"
+	},
+	"apiKeyMissing": {
+		"message": "\"APIキーがありません\""
+	},
+	"apiKeysWarning": {
+		"message": "外部プロバイダーを使用することで、そのプロバイダーの利用規約とプライバシーポリシーに同意したことになります。インタープリターのリクエストは選択したプロバイダーに直接送信されます。Logseqはリクエストに関するデータを収集または保存しません。"
+	},
+	"appendToDaily": {
+		"message": "デイリーノートの末尾に追加"
+	},
+	"appendToExisting": {
+		"message": "既存のノートの末尾に追加"
+	},
+	"autoRunInterpreter": {
+		"message": "自動実行"
+	},
+	"autoRunInterpreterDescription": {
+		"message": "テンプレートにプロンプト変数が含まれている場合、即座に実行します。これによりモデルプロバイダーのAPIクレジットが消費されます。インタープリターを手動でのみ実行したい場合はオフにしてください。"
+	},
+	"behavior": {
+		"message": "動作"
+	},
+	"byDay": {
+		"message": "日別"
+	},
+	"byMonth": {
+		"message": "月別"
+	},
+	"byWeek": {
+		"message": "週別"
+	},
+	"cancel": {
+		"message": "キャンセル"
+	},
+	"cannotDeleteProvider": {
+		"message": "\"$2 モデルで使用中のため、プロバイダー \"$1\" を削除できません。\""
+	},
+	"changelog": {
+		"message": "変更履歴"
+	},
+	"chooseFile": {
+		"message": "\"ファイルを選択\""
+	},
+	"choosePropertiesFile": {
+		"message": "\"プロパティファイルを選択\""
+	},
+	"chooseSettingsFile": {
+		"message": "\"設定ファイルを選択\""
+	},
+	"chooseTemplateFile": {
+		"message": "\"テンプレートファイルを選択\""
+	},
+	"clipBehavior": {
+		"message": "クリップの動作"
+	},
+	"clipBehaviorDescription": {
+		"message": "ハイライトしたコンテンツをLogseqに保存する方法を選択します。$strong_start${{content}}$strong_end$変数を定義します。",
+		"placeholders": {
+			"strong_end": {
+				"content": "</strong>"
+			},
+			"strong_start": {
+				"content": "<strong>"
+			}
+		}
+	},
+	"clipboardError": {
+		"message": "Obsidian がクリップボードにアクセスできません。こちらのトラブルシューティング手順をお試しください: $1",
+		"placeholders": {
+			"1": {
+				"content": "$1"
+			}
+		}
+	},
+	"close": {
+		"message": "閉じる"
+	},
+	"commandOpenClipper": {
+		"message": "Logseq Clipperを開く"
+	},
+	"commandQuickClip": {
+		"message": "クイッククリップ"
+	},
+	"commandToggleHighlighter": {
+		"message": "ハイライトモードの切り替え"
+	},
+	"commandToggleReader": {
+		"message": "閲覧ビューを切り替える"
+	},
+	"confirmDeleteTemplate": {
+		"message": "テンプレート「$1」を削除してもよろしいですか？"
+	},
+	"confirmReplaceSettings": {
+		"message": "\"これにより、現在のすべての設定（テンプレートとプロパティを含む）が置き換えられます。本当に続行しますか？\""
+	},
+	"copied": {
+		"message": "コピーしました！"
+	},
+	"copyAsJson": {
+		"message": "JSONとしてコピー"
+	},
+	"copyToClipboard": {
+		"message": "クリップボードにコピー"
+	},
+	"createNewNote": {
+		"message": "新規ノートを作成"
+	},
+	"custom": {
+		"message": "\"カスタム\""
+	},
+	"dailyNoteFormat": {
+		"message": "デイリーノートの形式（例：YYYY-MM-DD）"
+	},
+	"defaultInterpreterContext": {
+		"message": "デフォルトインタープリターコンテキスト"
+	},
+	"defaultInterpreterContextDescription": {
+		"message": "モデルはプロンプト変数を解釈する際にこのコンテキストを使用します。変数とフィルターを使用できます。"
+	},
+	"defaultTemplateName": {
+		"message": "デフォルト"
+	},
+	"delete": {
+		"message": "削除"
+	},
+	"deleteModelConfirm": {
+		"message": "このモデルを削除してもよろしいですか？"
+	},
+	"deleteProviderConfirm": {
+		"message": "\"このプロバイダーを削除してもよろしいですか？\""
+	},
+	"disableHighlighter": {
+		"message": "ハイライトを無効化"
+	},
+	"disableReader": {
+		"message": "閲覧ビューを無効にする"
+	},
+	"done": {
+		"message": "完了"
+	},
+	"dragAndDropFile": {
+		"message": "\"ここにファイルをドラッグ＆ドロップ\""
+	},
+	"duplicate": {
+		"message": "複製"
+	},
+	"earlyAccessDescription": {
+		"message": "Obsidianの最新の$link_start$アーリーアクセスバージョン$link_end$が必要な機能を使用します。現在はObsidian 1.7.2以降が必要です。",
+		"placeholders": {
+			"link_end": {
+				"content": "</a>"
+			},
+			"link_start": {
+				"content": "<a href=\"https://help.obsidian.md/Obsidian/Early+access+versions\" target=\"_blank\">"
+			}
+		}
+	},
+	"earlyAccessFeatures": {
+		"message": "アーリーアクセス機能"
+	},
+	"editModel": {
+		"message": "モデルを編集"
+	},
+	"editProvider": {
+		"message": "\"プロバイダーを編集\""
+	},
+	"editTemplate": {
+		"message": "テンプレートを編集"
+	},
+	"embedded": {
+		"message": "埋め込み"
+	},
+	"enableHighlighterDescription": {
+		"message": "WebページのコンテンツをハイライトしてLogseqに保存できます。"
+	},
+	"enableInterpreter": {
+		"message": "インタープリターを有効化"
+	},
+	"enableInterpreterDescription": {
+		"message": "自然言語を使用してページからデータを抽出します。例えば、テンプレート構文$strong_start${{\"ページの要約\"}}$strong_end$を使用できます。APIキーまたは以下で設定したカスタムモデルが必要です。$link_start$詳細$link_end$",
+		"placeholders": {
+			"link_end": {
+				"content": "</a>"
+			},
+			"link_start": {
+				"content": "<a href=\"https://help.obsidian.md/web-clipper/interpreter\" target=\"_blank\">"
+			},
+			"strong_end": {
+				"content": "</strong>"
+			},
+			"strong_start": {
+				"content": "<strong>"
+			}
+		}
+	},
+	"enableReader": {
+		"message": "閲覧ビューを開く"
+	},
+	"error": {
+		"message": "エラー"
+	},
+	"export": {
+		"message": "エクスポート"
+	},
+	"exportAllSettings": {
+		"message": "すべての設定をエクスポート"
+	},
+	"exportAllSettingsDescription": {
+		"message": "テンプレートとプロパティを含むすべての設定をエクスポートします。"
+	},
+	"exportHighlights": {
+		"message": "ハイライトをエクスポート"
+	},
+	"exportHighlightsDescription": {
+		"message": "ハイライトをファイルにエクスポートします。"
+	},
+	"exportProperties": {
+		"message": "プロパティをエクスポート"
+	},
+	"exportPropertiesDescription": {
+		"message": "Web Clipperのプロパティを$strong_start$types.json$strong_end$ファイルに保存します。このファイルはObsidian保管庫や他のデバイスのWeb Clipperにインポートできます。",
+		"placeholders": {
+			"strong_end": {
+				"content": "</strong>"
+			},
+			"strong_start": {
+				"content": "<strong>"
+			}
+		}
+	},
+	"extensionDescription": {
+		"message": "Webコンテンツをプライベートで永続的なオフラインアクセス可能な形式で保存します。Logseqの公式ブラウザ拡張機能です。"
+	},
+	"extensionName": {
+		"message": "Logseq Web Clipper"
+	},
+	"failedToCopyText": {
+		"message": "テキストのコピーに失敗しました"
+	},
+	"failedToDeleteTemplate": {
+		"message": "テンプレートの削除に失敗しまた。もう一度お試しください。"
+	},
+	"failedToDuplicateTemplate": {
+		"message": "\"テンプレートの複製に失敗しました。もう一度お試しください。\""
+	},
+	"failedToExportHighlights": {
+		"message": "\"ハイライトのエクスポートに失敗しました。詳細はコンソールを確認してください。\""
+	},
+	"failedToExportSettings": {
+		"message": "\"設定のエクスポートに失敗しました。詳細はコンソールを確認してください。\""
+	},
+	"failedToExtractContent": {
+		"message": "ページコンテンツの抽出に失敗しました。"
+	},
+	"failedToImportTemplate": {
+		"message": "\"テンプレートのインポートエラーです。ファイルを確認して、もう一度お試しください。\""
+	},
+	"failedToInitialize": {
+		"message": "拡張機能の再読み込みをお試しください。"
+	},
+	"failedToInitializeContent": {
+		"message": "ページコンテンツの初期化に失敗しました。"
+	},
+	"failedToProcessInterpreter": {
+		"message": "インタープリターの処理に失敗しました。もう一度お試しください。"
+	},
+	"failedToResetProviders": {
+		"message": "プロバイダーとモデルのリセットに失敗しました"
+	},
+	"failedToResetTemplate": {
+		"message": "\"デフォルトテンプレートのリセットに失敗しました。もう一度お試しください。\""
+	},
+	"failedToSave": {
+		"message": "ファイルの保存に失敗しました"
+	},
+	"failedToSaveFile": {
+		"message": "ファイルの保存に失敗しました"
+	},
+	"failedToSaveProvider": {
+		"message": "\"プロバイダーの保存に失敗しました。もう一度お試しください。\""
+	},
+	"feedback": {
+		"message": "フィードバック"
+	},
+	"feedbackDescription": {
+		"message": "Web Clipperをどのように改善できるでしょうか？バグを報告したり、機能を提案したり、一般的な問題に対するヘルプを得るために、ヘルプページをご覧ください。"
+	},
+	"feedbackTitle": {
+		"message": "フィードバックありがとうございます"
+	},
+	"folder": {
+		"message": "フォルダ"
+	},
+	"general": {
+		"message": "一般"
+	},
+	"generalSettings": {
+		"message": "一般設定"
+	},
+	"getApiKeyHere": {
+		"message": "\"$1のAPIキーはこちらから取得できます。\""
+	},
+	"help": {
+		"message": "ヘルプ"
+	},
+	"helpDescription": {
+		"message": "Web Clipperの使い方とトラブルシューティングのヘルプを参照してください。"
+	},
+	"highlightInline": {
+		"message": "ページ内容をハイライトする"
+	},
+	"highlightPage": {
+		"message": "ページをハイライト"
+	},
+	"highlighter": {
+		"message": "ハイライト"
+	},
+	"highlighterOn": {
+		"message": "ハイライト"
+	},
+	"highlighterSettings": {
+		"message": "ハイライト"
+	},
+	"history": {
+		"message": "履歴"
+	},
+	"hotkeys": {
+		"message": "ホットキー"
+	},
+	"import": {
+		"message": "インポート"
+	},
+	"importAllSettings": {
+		"message": "すべての設定をインポート"
+	},
+	"importAllSettingsDescription": {
+		"message": "テンプレートとプロパティを含むすべての設定をインポートします。現在の設定は上書きされます。"
+	},
+	"importFailed": {
+		"message": "\"インポートに失敗しました。詳細はコンソールを確認してください。\""
+	},
+	"importModalTitle": {
+		"message": "\"インポート\""
+	},
+	"importProperties": {
+		"message": "プロパティをインポート"
+	},
+	"importPropertiesDescription": {
+		"message": "Obsidianからプロパティをインポートするには、保管庫内の$strong_2_start$.obsidian$strong_2_end$フォルダにある$strong_1_start$types.json$strong_1_end$ファイルを探してください。このフォルダは多くのOSでデフォルトで非表示になっています。",
+		"placeholders": {
+			"strong_1_end": {
+				"content": "</strong>"
+			},
+			"strong_1_start": {
+				"content": "<strong>"
+			},
+			"strong_2_end": {
+				"content": "</strong>"
+			},
+			"strong_2_start": {
+				"content": "<strong>"
+			}
+		}
+	},
+	"importSettings": {
+		"message": "設定をインポート"
+	},
+	"importTemplate": {
+		"message": "テンプレートをインポート"
+	},
+	"interpret": {
+		"message": "解釈"
+	},
+	"interpreter": {
+		"message": "インタープリター"
+	},
+	"interpreterContext": {
+		"message": "インタープリターコンテキスト"
+	},
+	"interpreterContextDescription": {
+		"message": "プロンプト変数の解釈に使用されるコンテキストです。$link_start$インタープリター設定$link_end$で定義されたデフォルトコンテキストを上書きします。ここで変数を使用できます。",
+		"placeholders": {
+			"link_end": {
+				"content": "</a>"
+			},
+			"link_start": {
+				"content": "<a href=\"?section=interpreter\">"
+			}
+		}
+	},
+	"language": {
+		"message": "言語"
+	},
+	"languageDescription": {
+		"message": "拡張機能のインターフェース表示言語を選択します。"
+	},
+	"last30Days": {
+		"message": "過去30日間"
+	},
+	"lastUsed": {
+		"message": "最後に使用"
+	},
+	"legacyMode": {
+		"message": "レガシーモード"
+	},
+	"legacyModeDescription": {
+		"message": "Obsidian 1.6.7以前と互換性のあるURIクリップ方式を使用します。クリップできるコンテンツの長さはブラウザとOSによって制限されます。エラーなしに失敗する場合があります。"
+	},
+	"modelName": {
+		"message": "モデル名"
+	},
+	"modelNameDescription": {
+		"message": "インターフェースに表示したいモデルの名前。"
+	},
+	"modelProvider": {
+		"message": "プロバイダー"
+	},
+	"modelProviderDescription": {
+		"message": "モデルプロバイダー（例：Ollama、OpenRouter、Google など）。"
+	},
+	"modelProviderPlaceholder": {
+		"message": "プロバイダー"
+	},
+	"modelRequiredFields": {
+		"message": "モデル名、プロバイダー、モデルIDは必須です。"
+	},
+	"models": {
+		"message": "モデル"
+	},
+	"modelsListFor": {
+		"message": "$1のモデルリスト"
+	},
+	"more": {
+		"message": "その他"
+	},
+	"newTemplate": {
+		"message": "新規テンプレート"
+	},
+	"noHighlights": {
+		"message": "何もしない"
+	},
+	"noTemplates": {
+		"message": "テンプレートがありません。設定でテンプレートを追加してください。"
+	},
+	"noUnusedProperties": {
+		"message": "未使用のプロパティが見つかりませんでした。"
+	},
+	"noteContent": {
+		"message": "ノートの内容"
+	},
+	"noteContentDescription": {
+		"message": "ノートの内容をカスタマイズします。変数を使用してページのデータを事前に入力できます。"
+	},
+	"noteLocation": {
+		"message": "ノートの場所"
+	},
+	"noteLocationDescription": {
+		"message": "ノートのフォルダまたはパス。"
+	},
+	"noteName": {
+		"message": "ノート名"
+	},
+	"noteNameFormat": {
+		"message": "ノート名"
+	},
+	"noteNameFormatDescription": {
+		"message": "ノートのファイル名の形式です。{{title}}、{{date}}、{{published}}などの変数を使用してページのデータを事前に入力できます。$link_start$詳細$link_end$",
+		"placeholders": {
+			"link_end": {
+				"content": "</a>"
+			},
+			"link_start": {
+				"content": "<a href=\"https://help.obsidian.md/web-clipper/variables\" target=\"_blank\">"
+			}
+		}
+	},
+	"notesAboutPage": {
+		"message": "このページに関するノート..."
+	},
+	"onlyHttpSupported": {
+		"message": "このページはクリップできません。httpとhttpsのURLのみがサポートされています。"
+	},
+	"open": {
+		"message": "開く"
+	},
+	"openBehaviorDescription": {
+		"message": "Web Clipperがデフォルトでどのように開くかを選択します。"
+	},
+	"openBehaviorTitle": {
+		"message": "開く動作"
+	},
+	"openEmbedded": {
+		"message": "ページ内で開く"
+	},
+	"openSidePanel": {
+		"message": "サイドパネルを開く"
+	},
+	"optional": {
+		"message": "(オプション)"
+	},
+	"orPasteBelow": {
+		"message": "または以下に内容を貼り付けてください"
+	},
+	"overwriteNote": {
+		"message": "ノートを上書きする"
+	},
+	"pageCannotBeClipped": {
+		"message": "このページはクリップできません。"
+	},
+	"pageVariables": {
+		"message": "ページ変数"
+	},
+	"pagesSaved": {
+		"message": "ページが保存されました"
+	},
+	"pagesSavedPlural": {
+		"message": "ページが保存されました"
+	},
+	"pasteJsonHere": {
+		"message": "ここにJSONを貼り付けてください"
+	},
+	"pleaseReload": {
+		"message": "ページの再読み込みをお試しください。"
+	},
+	"popularModels": {
+		"message": "人気のモデル"
+	},
+	"popularModelsDescription": {
+		"message": "よく使用されるモデルから選択するか、カスタムモデルの詳細を入力してください。"
+	},
+	"popup": {
+		"message": "ポップアップ"
+	},
+	"prependToDaily": {
+		"message": "デイリーノートの先頭に追加"
+	},
+	"prependToExisting": {
+		"message": "既存のノートの先頭に追加"
+	},
+	"preview": {
+		"message": "プレビュー"
+	},
+	"processing": {
+		"message": "処理中"
+	},
+	"properties": {
+		"message": "プロパティ"
+	},
+	"propertiesSettings": {
+		"message": "プロパティ"
+	},
+	"propertyName": {
+		"message": "プロパティ名"
+	},
+	"propertyTypeCheckbox": {
+		"message": "チェックボックス"
+	},
+	"propertyTypeDate": {
+		"message": "日付"
+	},
+	"propertyTypeDatetime": {
+		"message": "日付＆時間"
+	},
+	"propertyTypeMultitext": {
+		"message": "リスト"
+	},
+	"propertyTypeNumber": {
+		"message": "番号"
+	},
+	"propertyTypeText": {
+		"message": "テキスト"
+	},
+	"propertyValue": {
+		"message": "プロパティ値"
+	},
+	"provider": {
+		"message": "プロバイダー"
+	},
+	"providerApiKey": {
+		"message": "APIキー"
+	},
+	"providerApiKeyDescription": {
+		"message": "このプロバイダーのAPIキー。"
+	},
+	"providerBaseUrl": {
+		"message": "ベースURL"
+	},
+	"providerBaseUrlDescription": {
+		"message": "このプロバイダーのAPIエンドポイントURL。"
+	},
+	"providerModelId": {
+		"message": "モデルID"
+	},
+	"providerModelIdDescription": {
+		"message": "プロバイダーのモデルの識別子。通常はスペースを含まない短い名前です。"
+	},
+	"providerModelIdPlaceholder": {
+		"message": "モデルID"
+	},
+	"providerName": {
+		"message": "プロバイダー名"
+	},
+	"providerNameDescription": {
+		"message": "このプロバイダーの表示名。"
+	},
+	"providerPreset": {
+		"message": "プリセット"
+	},
+	"providerPresetDescription": {
+		"message": "プロバイダーを選択するか、カスタムプロバイダーを作成してください。"
+	},
+	"providerRequiredFields": {
+		"message": "プロバイダー名とベースURLは必須です。"
+	},
+	"providers": {
+		"message": "プロバイダー"
+	},
+	"rateExtensionDescription": {
+		"message": "Web Clipperを楽しんでいますか？評価をつけることで私たちを支えてください。"
+	},
+	"reader": {
+		"message": "リーダー"
+	},
+	"readerAppearance": {
+		"message": "外観"
+	},
+	"readerAppearanceAuto": {
+		"message": "自動"
+	},
+	"readerAppearanceDark": {
+		"message": "ダーク"
+	},
+	"readerAppearanceDescription": {
+		"message": "ライトまたはダークの外観を選択します。"
+	},
+	"readerAppearanceLight": {
+		"message": "ライト"
+	},
+	"readerAutoScroll": {
+		"message": "自動スクロール"
+	},
+	"readerAutoScrollDescription": {
+		"message": "再生に合わせて文字起こしを自動的にスクロールします。"
+	},
+	"readerBlendImages": {
+		"message": "画像を背景になじませる"
+	},
+	"readerBlendImagesDescription": {
+		"message": "画像をページの背景に溶け込ませます。"
+	},
+	"readerCloseImageViewer": {
+		"message": "画像ビューアを閉じる"
+	},
+	"readerCollapseComment": {
+		"message": "コメントを折りたたむ"
+	},
+	"readerColorLinks": {
+		"message": "リンクに色を付ける"
+	},
+	"readerColorSchemeDefault": {
+		"message": "デフォルト"
+	},
+	"readerCurrentPosition": {
+		"message": "現在位置"
+	},
+	"readerCustomCss": {
+		"message": "カスタムCSS"
+	},
+	"readerCustomCssDescription": {
+		"message": "読み取りビューで自動的に適用されるCSSです。"
+	},
+	"readerDarkTheme": {
+		"message": "ダークモードのテーマ"
+	},
+	"readerDarkThemeDescription": {
+		"message": "ダークモードで別のテーマを使用します。"
+	},
+	"readerError": {
+		"message": "コンテンツの抽出に失敗しました。"
+	},
+	"readerFont": {
+		"message": "フォントオプション"
+	},
+	"readerFontDefault": {
+		"message": "デフォルト"
+	},
+	"readerFontDescription": {
+		"message": "システムにインストールされているフォントを追加します。Enterキーを押してフォントを追加します。"
+	},
+	"readerFontNotFound": {
+		"message": "見つかりません"
+	},
+	"readerFontPlaceholder": {
+		"message": "Enterキーを押してフォントを追加"
+	},
+	"readerFontSetDefault": {
+		"message": "デフォルトに設定"
+	},
+	"readerFontSize": {
+		"message": "基本フォントサイズ"
+	},
+	"readerFontSystem": {
+		"message": "システム"
+	},
+	"readerFontSystemSans": {
+		"message": "サンセリフ"
+	},
+	"readerFontSystemSerif": {
+		"message": "セリフ"
+	},
+	"readerFonts": {
+		"message": "フォント"
+	},
+	"readerFootnotes": {
+		"message": "脚注"
+	},
+	"readerHighlightActiveLine": {
+		"message": "アクティブ行をハイライト"
+	},
+	"readerHighlightActiveLineDescription": {
+		"message": "再生中に文字起こし内の現在の文をハイライトします。"
+	},
+	"readerImages": {
+		"message": "画像"
+	},
+	"readerLineHeight": {
+		"message": "行間"
+	},
+	"readerLineWidth": {
+		"message": "行幅"
+	},
+	"readerLoading": {
+		"message": "読みやすくしています…"
+	},
+	"readerOn": {
+		"message": "リーダー"
+	},
+	"readerPinPlayer": {
+		"message": "プレーヤーを固定"
+	},
+	"readerPinPlayerDescription": {
+		"message": "文字起こしをスクロールしている間も動画プレーヤーを表示したままにします。"
+	},
+	"readerSettings": {
+		"message": "リーダー設定"
+	},
+	"readerTheme": {
+		"message": "テーマ"
+	},
+	"readerThemeDescription": {
+		"message": "読み取りビューで使用する色を選択します。"
+	},
+	"readerThemeSection": {
+		"message": "テーマ"
+	},
+	"readerTranscripts": {
+		"message": "文字起こし"
+	},
+	"readerTypography": {
+		"message": "タイポグラフィ"
+	},
+	"readerViewFullSize": {
+		"message": "フルサイズで表示"
+	},
+	"recommended": {
+		"message": "推奨"
+	},
+	"refresh": {
+		"message": "更新"
+	},
+	"remove": {
+		"message": "削除"
+	},
+	"removeProperty": {
+		"message": "プロパティを削除"
+	},
+	"removeUnusedProperties": {
+		"message": "未使用のプロパティを削除"
+	},
+	"removeUnusedPropertiesDescription": {
+		"message": "どのテンプレートでも使用されていないプロパティをすべて削除します。"
+	},
+	"removeVault": {
+		"message": "保管庫を削除"
+	},
+	"replaceContent": {
+		"message": "ページコンテンツを置換"
+	},
+	"reset": {
+		"message": "リセット"
+	},
+	"resetDefaultTemplate": {
+		"message": "デフォルトテンプレートをリセット"
+	},
+	"resetDefaultTemplateDescription": {
+		"message": "デフォルトテンプレートへの変更をすべて削除します。"
+	},
+	"resetProvidersAndModels": {
+		"message": "デフォルトモデルをリセット"
+	},
+	"resetProvidersAndModelsDescription": {
+		"message": "プロバイダーとモデルをデフォルト設定にリセットします。"
+	},
+	"save": {
+		"message": "保存"
+	},
+	"saveBehaviorDescription": {
+		"message": "ページを保存するためのデフォルトオプションを選択します。他のオプションはメインボタンの隣のドロップダウンメニューに表示されます。"
+	},
+	"saveBehaviorLabel": {
+		"message": "保存の動作"
+	},
+	"saveFile": {
+		"message": "ファイルを保存..."
+	},
+	"searchVariables": {
+		"message": "変数を検索..."
+	},
+	"selectProvider": {
+		"message": "プロバイダーを選択"
+	},
+	"selectTemplateToExport": {
+		"message": "エクスポートするテンプレートを選択してください。"
+	},
+	"settings": {
+		"message": "設定"
+	},
+	"settingsHeading": {
+		"message": "設定"
+	},
+	"settingsImportSuccess": {
+		"message": "すべての設定が正常にインポートされました。変更を確認するにはページを更新してください。"
+	},
+	"share": {
+		"message": "共有..."
+	},
+	"shortcutInstructionsBrave": {
+		"message": "キー割り当てを変更するには、$1に移動してください"
+	},
+	"shortcutInstructionsChrome": {
+		"message": "キー割り当てを変更するには、$1に移動してください"
+	},
+	"shortcutInstructionsDefault": {
+		"message": "キー割り当てを変更するには、ブラウザの拡張機能設定を参照してください。"
+	},
+	"shortcutInstructionsEdge": {
+		"message": "キー割り当てを変更するには、$1に移動してください"
+	},
+	"shortcutInstructionsFirefox": {
+		"message": "キー割り当てを変更するには、$1に移動し、歯車アイコンをクリックして「拡張機能のショートカットを管理」を選択してください。"
+	},
+	"shortcutInstructionsIntro": {
+		"message": "キーボードショートカットでクリッパー機能に素早くアクセスできます。"
+	},
+	"shortcutInstructionsSafari": {
+		"message": "Safariではキーボードショートカットをカスタマイズできません。"
+	},
+	"shortcutNotSet": {
+		"message": "未設定"
+	},
+	"showActionsButton": {
+		"message": "アクションボタンを表示"
+	},
+	"showActionsDescription": {
+		"message": "クリッパーメニューからページ変数を確認できます。テンプレートで使用可能な変数を確認するのに便利です。"
+	},
+	"showPageVariables": {
+		"message": "ページ変数を表示"
+	},
+	"silentOpen": {
+		"message": "ノートを開かずに保存"
+	},
+	"silentOpenDescription": {
+		"message": "クリップしたノートは保存されますが、新しいタブで開きません。Logseqは引き続き前面に表示されます。"
+	},
+	"specificNoteName": {
+		"message": "特定のノート名"
+	},
+	"systemDefault": {
+		"message": "システム"
+	},
+	"template": {
+		"message": "テンプレート"
+	},
+	"templateCopied": {
+		"message": "テンプレートのJSONをクリップボードにコピーしました"
+	},
+	"templateCopyError": {
+		"message": "テンプレートのJSONのクリップボードへのコピーに失敗しました"
+	},
+	"templateErrorCount": {
+		"message": "テンプレートにエラーがあります。"
+	},
+	"templateErrorsCount": {
+		"message": "テンプレートに$1件のエラーがあります。"
+	},
+	"templateGroupContent": {
+		"message": "コンテンツ"
+	},
+	"templateGroupLocation": {
+		"message": "場所"
+	},
+	"templateName": {
+		"message": "テンプレート名"
+	},
+	"templateProperties": {
+		"message": "プロパティ"
+	},
+	"templatePropertiesDescription": {
+		"message": "クリップしたノートの先頭に追加するプロパティです。変数を使用してページのデータを事前に入力できます。"
+	},
+	"templateTriggers": {
+		"message": "テンプレートトリガー"
+	},
+	"templateTriggersDescription": {
+		"message": "URLパターンやschema.orgデータに一致する場合に、このテンプレートを自動的に択するルールを定義します。1行に1つのルールを述してください。"
+	},
+	"templateValid": {
+		"message": "テンプレート構文は有効です"
+	},
+	"templatesHeading": {
+		"message": "テンプレート"
+	},
+	"thinking": {
+		"message": "考え中"
+	},
+	"unknownProvider": {
+		"message": "不明なプロバイダー"
+	},
+	"updateAvailable": {
+		"message": "アップデートが利用可能です。"
+	},
+	"usingLatestVersion": {
+		"message": "最新バージョンを使用しています。"
+	},
+	"vault": {
+		"message": "保管庫"
+	},
+	"vaultDescription": {
+		"message": "このテンプレートのデフォルト保管庫を選択します。保管庫の追加や削除は$link_start$一般設定$link_end$で行えます。",
+		"placeholders": {
+			"link_end": {
+				"content": "</a>"
+			},
+			"link_start": {
+				"content": "<a href=\"?section=general\">"
+			}
+		}
+	},
+	"vaults": {
+		"message": "保管庫"
+	},
+	"vaultsDescription": {
+		"message": "デフォルトでは、クリップしたノートは現在開いている保管庫に保存されます。異なる保管庫に保存するオプションが必要な場合は、ここで保管庫を追加できます。保管庫名はObsidian保管庫の名前と完全に一致する必要があります。$strong_start$Enter$strong_end$キーを押して保管庫を追加します。",
+		"placeholders": {
+			"strong_end": {
+				"content": "</strong>"
+			},
+			"strong_start": {
+				"content": "<strong>"
+			}
+		}
+	},
+	"version": {
+		"message": "バージョン"
+	},
+	"pasteCursorPosition": {
+		"message": "Paste at cursor position"
+	}
+}

@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ZipPlugin = require('zip-webpack-plugin');
 const package = require('./package.json');
 const webpack = require('webpack');
+const TerserPlugin = require('terser-webpack-plugin');
 
 // Remove .DS_Store files
 function removeDSStore(dir) {
@@ -35,7 +36,7 @@ module.exports = (env, argv) => {
 	const outputDir = getOutputDir();
 	const browserName = isFirefox ? 'firefox' : (isSafari ? 'safari' : 'chrome');
 
-	return {
+	const mainConfig = {
 		mode: argv.mode,
 		entry: {
 			popup: './src/core/popup.ts',
@@ -44,24 +45,72 @@ module.exports = (env, argv) => {
 			background: './src/background.ts',
 			style: './src/style.scss',
 			highlighter: './src/highlighter.scss',
+			reader: './src/reader.scss',
+			'reader-script': './src/reader-script.ts'
 		},
 		output: {
 			path: path.resolve(__dirname, outputDir),
 			filename: '[name].js',
-			module: true,
+			module: false,
 		},
 		devtool: isProduction ? false : 'source-map',
+		optimization: {
+			minimize: true,
+			minimizer: [
+				new TerserPlugin({
+					terserOptions: {
+						mangle: false,
+						compress: {
+							defaults: true,
+							global_defs: {
+								DEBUG_MODE: !isProduction
+							},
+							unused: true,
+							dead_code: true,
+							passes: 2,
+							ecma: 2020,
+							module: false
+						},
+						format: {
+							ascii_only: true,
+							comments: false,
+							ecma: 2020
+						},
+						module: false,
+						toplevel: true,
+						keep_classnames: true,
+						keep_fnames: true
+					},
+					extractComments: false
+				})
+			],
+			moduleIds: 'named',
+			chunkIds: 'named'
+		},
 		experiments: {
-			outputModule: true,
+			outputModule: false,
 		},
 		resolve: {
-			extensions: ['.ts', '.js']
+			extensions: ['.ts', '.js'],
+			alias: {
+				'./utils/browser-polyfill': path.resolve(__dirname, 'node_modules/webextension-polyfill/dist/browser-polyfill.min.js'),
+				'../utils/browser-polyfill': path.resolve(__dirname, 'node_modules/webextension-polyfill/dist/browser-polyfill.min.js')
+			}
 		},
 		module: {
 			rules: [
 				{
 					test: /\.tsx?$/,
-					use: 'ts-loader',
+					use: [
+						{
+							loader: 'ts-loader',
+							options: {
+								compilerOptions: {
+									module: 'ES2020'
+								}
+							}
+						}
+					],
 					exclude: /node_modules/,
 				},
 				{
@@ -97,8 +146,9 @@ module.exports = (env, argv) => {
 					{ from: "src/settings.html", to: "settings.html" },
 					{ from: "src/icons", to: "icons" },
 					{ from: "node_modules/webextension-polyfill/dist/browser-polyfill.min.js", to: "browser-polyfill.min.js" },
+					{ from: "src/flatten-shadow-dom.js", to: "flatten-shadow-dom.js" },
 					{
-						from: 'src/locales',
+						from: 'src/_locales',
 						to: '_locales'
 					},
 { from: "LICENSE", to: "LICENSE.txt" } 
@@ -127,4 +177,6 @@ module.exports = (env, argv) => {
 			] : [])
 		]
 	};
+
+	return [mainConfig];
 };

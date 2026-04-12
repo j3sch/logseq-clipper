@@ -2,7 +2,7 @@
 	"manifest_version": 3,
 	"default_locale": "en",
 	"name": "Logseq Web Clipper",
-	"version": "0.10.5",
+	"version": "1.4.0",
 	"description": "Save content from the web to Logseq, in a private and durable format you can access offline.",
 	"permissions": [
 		"activeTab",
@@ -33,23 +33,19 @@
 		"128": "icons/icon128.png"
 	},
 	"background": {
-		"scripts": [
-			"background.js"
-		],
-		"type": "module"
+		"scripts": ["background.js"]
 	},
 	"content_scripts": [
 		{
-			"matches": [
-				"http://*/*",
-				"https://*/*"
-			],
-			"js": [
-				"content.js"
-			],
-			"css": [
-				"highlighter.css"
-			]
+			"matches": ["http://*/*", "https://*/*"],
+			"js": ["browser-polyfill.min.js", "content.js"]
+		}
+	],
+	"web_accessible_resources": [
+		{
+			"resources": ["reader.css", "reader-script.js", "browser-polyfill.min.js", "style.css", "side-panel.html", "flatten-shadow-dom.js", "highlighter.css"],
+			"extension_ids": ["*"],
+   			"matches": [ "*://*/*" ]
 		}
 	],
 	"content_security_policy": {
@@ -69,15 +65,28 @@
 				"mac": "Alt+Shift+H"
 			},
 			"description": "__MSG_commandToggleHighlighter__"
+		},
+		"toggle_reader": {
+			"suggested_key": {
+				"default": "Alt+Shift+R",
+				"mac": "Alt+Shift+R"
+			},
+			"description": "__MSG_commandToggleReader__"
 		}
 	},
 	"browser_specific_settings": {
 		"gecko": {
 			"id": "clipper@logseq.md",
-			"strict_min_version": "113.0"
+			"strict_min_version": "113.0",
+			"data_collection_permissions": {
+				"required": ["none"]
+			}
 		},
 		"gecko_android": {
-			"strict_min_version": "113.0"
+			"strict_min_version": "113.0",
+			"data_collection_permissions": {
+				"required": ["none"]
+			}
 		}
 	}
 }

@@ -13,14 +13,18 @@
 					<option value=""></option>
 				</select>
 			</div>
-			<div id="popup-actions">
+			<div class="popup-actions">
 				<a href="#" id="show-variables" class="clickable-icon" 
 					data-i18n-title="showPageVariables">
 					<i data-lucide="ellipsis"></i>
 				</a>
-				<a href="#" id="highlighter-mode" class="clickable-icon" 
+				<a href="#" id="highlighter-mode" class="clickable-icon"
 					data-i18n-title="highlightPage">
 					<i data-lucide="highlighter"></i>
+				</a>
+				<a href="#" id="reader-mode" class="clickable-icon"
+					data-i18n-title="reader">
+					<i data-lucide="book-open"></i>
 				</a>
 				<a href="#" id="refresh-pane" class="clickable-icon"
 					data-i18n-title="refresh">
@@ -29,14 +33,18 @@
 				<a href="#" id="open-settings" class="clickable-icon" 
 					data-i18n-title="settings">
 					<i data-lucide="settings"></i>
-				</a>		
+				</a>
+				<a href="#" id="embedded-mode" class="clickable-icon" 
+					data-i18n-title="embeddedMode">
+					<i data-lucide="x"></i>
+				</a>
 			</div>
 		</div>
 		<p class="error-message" style="display: none;"></p>
 		<div class="clipper">
 			<textarea id="note-name-field" type="text" data-i18n="noteName" rows="1"></textarea>
 			<div class="metadata-properties-header">
-				<span data-i18n="properties">Properties</span>
+				<span data-i18n="properties"></span>
 				<i data-lucide="chevron-down"></i>
 			</div>
 			<div class="metadata-properties"></div>
@@ -48,40 +56,19 @@
 					<textarea id="prompt-context" rows="3"></textarea>
 					<div class="interpreter-controls">
 						<select id="model-select" style="display: none;"></select>
-						<button id="interpret-btn" data-i18n="interpret">interpret</button>
+						<button id="interpret-btn" data-i18n="interpret"></button>
 						<span id="interpreter-timer" style="display: none;"></span>
 					</div>
 					<div id="token-counter" class="token-counter"></div>
 					<div id="interpreter-error" style="display: none;"></div>
 				</div>
 				<div class="action-buttons" id="action-buttons">
-					<button id="clip-btn" class="mod-cta" data-i18n="addToObsidian">Add to Logseq</button>
+					<button id="clip-btn" class="mod-cta"><!-- Text set by determineMainAction --></button>
 					<div class="menu-btn">
 						<button id="more-btn"><i data-lucide="chevron-down"></i></button>
 						<div class="menu" id="more-dropdown">
-							<div class="menu-item" id="copy-content">
-								<div class="menu-item-icon">
-									<i data-lucide="copy"></i>
-								</div>
-								<div class="menu-item-title" data-i18n="copyToClipboard">
-									Copy to clipboard
-								</div>
-							</div>
-							<div class="menu-item" id="save-downloads">
-								<div class="menu-item-icon">
-									<i data-lucide="file-down"></i>
-								</div>
-								<div class="menu-item-title" data-i18n="saveFile">
-									Save file...
-								</div>
-							</div>
-							<div class="menu-item share-content">
-								<div class="menu-item-icon">
-									<i data-lucide="arrow-up-right"></i>
-								</div>
-								<div class="menu-item-title" data-i18n="share">
-									Share...
-								</div>
+							<div class="secondary-actions">
+								<!-- Secondary actions will be populated by ts -->
 							</div>
 						</div>
 					</div>

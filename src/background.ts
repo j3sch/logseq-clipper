@@ -1,15 +1,136 @@
-import browser from './utils/browser-polyfill';
-import { ensureContentScriptLoaded } from './utils/content-script-utils';
+import browser from 'webextension-polyfill';
 import { detectBrowser } from './utils/browser-detection';
 import { updateCurrentActiveTab, isValidUrl, isBlankPage } from './utils/active-tab-manager';
 import { TextHighlightData } from './utils/highlighter';
 import { debounce } from './utils/debounce';
+import { Settings } from './types/types';
+
+const YOUTUBE_EMBED_RULE_ID = 9001;
+
+// Chrome: declarativeNetRequest to rewrite Referer on YouTube embeds.
+// Safari/Firefox use the native video element instead (see reader.ts).
+async function enableYouTubeEmbedRule(tabId: number): Promise<void> {
+	await chrome.declarativeNetRequest.updateSessionRules({
+		removeRuleIds: [YOUTUBE_EMBED_RULE_ID],
+		addRules: [{
+			id: YOUTUBE_EMBED_RULE_ID,
+			priority: 1,
+			action: {
+				type: 'modifyHeaders' as any,
+				requestHeaders: [{
+					header: 'Referer',
+					operation: 'set' as any,
+					value: 'https://obsidian.md/'
+				}]
+			},
+			condition: {
+				urlFilter: '||youtube.com/embed/',
+				resourceTypes: ['sub_frame' as any],
+				tabIds: [tabId]
+			}
+		}]
+	});
+}
+
+async function disableYouTubeEmbedRule(): Promise<void> {
+	await chrome.declarativeNetRequest.updateSessionRules({
+		removeRuleIds: [YOUTUBE_EMBED_RULE_ID]
+	});
+}
 
 let sidePanelOpenWindows: Set<number> = new Set();
-let isHighlighterMode = false;
+let highlighterModeState: { [tabId: number]: boolean } = {};
+let readerModeState: { [tabId: number]: boolean } = {};
 let hasHighlights = false;
 let isContextMenuCreating = false;
 let popupPorts: { [tabId: number]: browser.Runtime.Port } = {};
+
+async function injectContentScript(tabId: number): Promise<void> {
+	if (browser.scripting) {
+		console.log('[Logseq Clipper] Using scripting API');
+		await browser.scripting.executeScript({
+			target: { tabId },
+			files: ['content.js']
+		});
+	} else {
+		console.log('[Logseq Clipper] Using tabs.executeScript fallback');
+		await browser.tabs.executeScript(tabId, { file: 'content.js' });
+	}
+	console.log('[Logseq Clipper] Injection completed, waiting for init...');
+
+	// Poll until the content script responds, rather than a fixed delay.
+	// Try immediately after injection, then back off with 50ms sleeps.
+	let ready = false;
+	for (let i = 0; i < 8; i++) {
+		try {
+			await browser.tabs.sendMessage(tabId, { action: "ping" });
+			ready = true;
+			break;
+		} catch {
+			// Not ready yet
+		}
+		await new Promise(resolve => setTimeout(resolve, 50));
+	}
+	if (!ready) {
+		throw new Error('Content script did not respond after injection');
+	}
+	console.log('[Logseq Clipper] Post-injection ping succeeded');
+}
+
+async function ensureContentScriptLoadedInBackground(tabId: number): Promise<void> {
+	try {
+		// First, get the tab information
+		const tab = await browser.tabs.get(tabId);
+
+		// Check if the URL is valid before proceeding
+		if (!tab.url || !isValidUrl(tab.url)) {
+			throw new Error('Invalid URL for content script injection');
+		}
+
+		// Attempt to send a message to the content script
+		await browser.tabs.sendMessage(tabId, { action: "ping" });
+		console.log('[Logseq Clipper] Content script ping succeeded');
+	} catch (error) {
+		// If the error is about invalid URL, re-throw it
+		if (error instanceof Error && error.message.includes('invalid URL')) {
+			throw error;
+		}
+
+		// If the message fails, the content script is not loaded, so inject it
+		console.log('[Logseq Clipper] Ping failed, injecting content script...', error);
+		await injectContentScript(tabId);
+	}
+}
+
+function getHighlighterModeForTab(tabId: number): boolean {
+	return highlighterModeState[tabId] ?? false;
+}
+
+function getReaderModeForTab(tabId: number): boolean {
+	return readerModeState[tabId] ?? false;
+}
+
+async function initialize() {
+	try {
+		// Set up tab listeners
+		await setupTabListeners();
+
+		browser.tabs.onRemoved.addListener((tabId) => {
+			delete highlighterModeState[tabId];
+			delete readerModeState[tabId];
+		});
+
+		// Initialize context menu
+		await debouncedUpdateContextMenu(-1);
+
+		// Set up action popup based on openBehavior setting
+		await updateActionPopup();
+
+		console.log('Background script initialized successfully');
+	} catch (error) {
+		console.error('Error initializing background script:', error);
+	}
+}
 
 // Check if a popup is open for a given tab
 function isPopupOpen(tabId: number): boolean {
@@ -38,26 +159,78 @@ async function sendMessageToPopup(tabId: number, message: any): Promise<void> {
 	}
 }
 
-browser.action.onClicked.addListener((tab) => {
-	if (tab.id) {
-		browser.scripting.executeScript({
-			target: { tabId: tab.id },
-			files: ['content.js']
-		});
-	}
-});
+
 
 browser.runtime.onMessage.addListener((request: unknown, sender: browser.Runtime.MessageSender, sendResponse: (response?: any) => void): true | undefined => {
 	if (typeof request === 'object' && request !== null) {
-		const typedRequest = request as { action: string; isActive?: boolean; hasHighlights?: boolean; tabId?: number };
+		const typedRequest = request as { action: string; isActive?: boolean; hasHighlights?: boolean; tabId?: number; text?: string; section?: string };
+
+		if (typedRequest.action === 'copy-to-clipboard' && typedRequest.text) {
+			// Use content script to copy to clipboard
+			browser.tabs.query({active: true, currentWindow: true}).then(async (tabs) => {
+				const currentTab = tabs[0];
+				if (currentTab && currentTab.id) {
+					try {
+						const response = await browser.tabs.sendMessage(currentTab.id, {
+							action: 'copy-text-to-clipboard',
+							text: typedRequest.text
+						});
+						if ((response as any) && (response as any).success) {
+							sendResponse({success: true});
+						} else {
+							sendResponse({success: false, error: 'Failed to copy from content script'});
+						}
+					} catch (err) {
+						sendResponse({ success: false, error: (err as Error).message });
+					}
+				} else {
+					sendResponse({success: false, error: 'No active tab found'});
+				}
+			});
+			return true;
+		}
 
 		if (typedRequest.action === "extractContent" && sender.tab && sender.tab.id) {
 			browser.tabs.sendMessage(sender.tab.id, request).then(sendResponse);
 			return true;
 		}
 
-		if (typedRequest.action === "ensureContentScriptLoaded" && typedRequest.tabId) {
-			ensureContentScriptLoaded(typedRequest.tabId).then(sendResponse);
+		if (typedRequest.action === "ensureContentScriptLoaded") {
+			const tabId = typedRequest.tabId || sender.tab?.id;
+			if (tabId) {
+				ensureContentScriptLoadedInBackground(tabId)
+					.then(() => sendResponse({ success: true }))
+					.catch((error) => sendResponse({
+						success: false,
+						error: error instanceof Error ? error.message : String(error)
+					}));
+				return true;
+			} else {
+				sendResponse({ success: false, error: 'No tab ID provided' });
+				return true;
+			}
+		}
+
+		if (typedRequest.action === "enableYouTubeEmbedRule") {
+			const tabId = sender.tab?.id;
+			if (tabId) {
+				enableYouTubeEmbedRule(tabId).then(() => {
+					sendResponse({ success: true });
+				}).catch(() => {
+					sendResponse({ success: true });
+				});
+			} else {
+				sendResponse({ success: true });
+			}
+			return true;
+		}
+
+		if (typedRequest.action === "disableYouTubeEmbedRule") {
+			disableYouTubeEmbedRule().then(() => {
+				sendResponse({ success: true });
+			}).catch(() => {
+				sendResponse({ success: true });
+			});
 			return true;
 		}
 
@@ -75,11 +248,20 @@ browser.runtime.onMessage.addListener((request: unknown, sender: browser.Runtime
 		}
 
 		if (typedRequest.action === "highlighterModeChanged" && sender.tab && typedRequest.isActive !== undefined) {
-			isHighlighterMode = typedRequest.isActive;
-			if (sender.tab.id) {
-				sendMessageToPopup(sender.tab.id, { action: "updatePopupHighlighterUI", isActive: isHighlighterMode });
+			const tabId = sender.tab.id;
+			if (tabId) {
+				highlighterModeState[tabId] = typedRequest.isActive;
+				sendMessageToPopup(tabId, { action: "updatePopupHighlighterUI", isActive: typedRequest.isActive });
+				debouncedUpdateContextMenu(tabId);
 			}
-			debouncedUpdateContextMenu(sender.tab.id!);
+		}
+
+		if (typedRequest.action === "readerModeChanged" && sender.tab && typedRequest.isActive !== undefined) {
+			const tabId = sender.tab.id;
+			if (tabId) {
+				readerModeState[tabId] = typedRequest.isActive;
+				debouncedUpdateContextMenu(tabId);
+			}
 		}
 
 		if (typedRequest.action === "highlightsCleared" && sender.tab) {
@@ -93,17 +275,34 @@ browser.runtime.onMessage.addListener((request: unknown, sender: browser.Runtime
 		}
 
 		if (typedRequest.action === "getHighlighterMode") {
-			const result = browser.storage.local.get('isHighlighterMode');
-			sendResponse({ isActive: result });
+			const tabId = typedRequest.tabId || sender.tab?.id;
+			if (tabId) {
+				sendResponse({ isActive: getHighlighterModeForTab(tabId) });
+			} else {
+				sendResponse({ isActive: false });
+			}
+			return true;
+		}
+
+		if (typedRequest.action === "getReaderMode") {
+			const tabId = typedRequest.tabId || sender.tab?.id;
+			if (tabId) {
+				sendResponse({ isActive: getReaderModeForTab(tabId) });
+			} else {
+				sendResponse({ isActive: false });
+			}
+			return true;
 		}
 
 		if (typedRequest.action === "toggleHighlighterMode" && typedRequest.tabId) {
-			toggleHighlighterMode(typedRequest.tabId);
-			sendResponse({ success: true });
+			toggleHighlighterMode(typedRequest.tabId)
+				.then(newMode => sendResponse({ success: true, isActive: newMode }))
+				.catch(error => sendResponse({ success: false, error: error.message }));
+			return true;
 		}
 
 		if (typedRequest.action === "openPopup") {
-			browser.action.openPopup()
+			openPopup()
 				.then(() => {
 					sendResponse({ success: true });
 				})
@@ -114,11 +313,240 @@ browser.runtime.onMessage.addListener((request: unknown, sender: browser.Runtime
 			return true;
 		}
 
+		if (typedRequest.action === "toggleReaderMode" && typedRequest.tabId) {
+			injectReaderScript(typedRequest.tabId).then(() => {
+				browser.tabs.sendMessage(typedRequest.tabId!, { action: "toggleReaderMode" })
+					.then((response: any) => {
+						if (response?.success) {
+							readerModeState[typedRequest.tabId!] = response.isActive ?? false;
+							debouncedUpdateContextMenu(typedRequest.tabId!);
+						}
+						sendResponse(response);
+					})
+					.catch(() => {
+						// Page may have reloaded before responding (reader restore)
+						sendResponse({ success: true, isActive: false });
+					});
+			});
+			return true;
+		}
+
+		if (typedRequest.action === "getActiveTabAndToggleIframe") {
+			browser.tabs.query({active: true, currentWindow: true}).then(async (tabs) => {
+				const currentTab = tabs[0];
+				if (currentTab && currentTab.id) {
+					try {
+						// Check if the URL is valid before trying to inject content script
+						if (!currentTab.url || !isValidUrl(currentTab.url) || isBlankPage(currentTab.url)) {
+							sendResponse({success: false, error: 'Cannot open iframe on this page'});
+							return;
+						}
+
+						// Ensure content script is loaded first
+						await ensureContentScriptLoadedInBackground(currentTab.id);
+						await browser.tabs.sendMessage(currentTab.id, { action: "toggle-iframe" });
+						sendResponse({success: true});
+					} catch (error) {
+						console.error('Error sending toggle-iframe message:', error);
+						sendResponse({success: false, error: error instanceof Error ? error.message : String(error)});
+					}
+				} else {
+					sendResponse({success: false, error: 'No active tab found'});
+				}
+			});
+			return true;
+		}
+
+		if (typedRequest.action === "toggleIframe") {
+			const tab = sender.tab;
+			if (tab?.id && tab.url && isValidUrl(tab.url) && !isBlankPage(tab.url)) {
+				ensureContentScriptLoadedInBackground(tab.id)
+					.then(() => browser.tabs.sendMessage(tab.id!, { action: "toggle-iframe" }))
+					.then(() => sendResponse({ success: true }))
+					.catch((error) => {
+						console.error('Error toggling iframe:', error);
+						sendResponse({ success: false, error: error instanceof Error ? error.message : String(error) });
+					});
+			} else {
+				sendResponse({ success: false, error: 'Cannot open iframe on this page' });
+			}
+			return true;
+		}
+
+		if (typedRequest.action === "getActiveTab") {
+			browser.tabs.query({active: true, currentWindow: true}).then(async (tabs) => {
+				let currentTab = tabs[0];
+				// Fallback for when currentWindow has no tabs (e.g., debugging popup in DevTools)
+				if (!currentTab || !currentTab.id) {
+					const allActiveTabs = await browser.tabs.query({active: true});
+					currentTab = allActiveTabs.find(tab =>
+						tab.id && tab.url && !tab.url.startsWith('chrome-extension://') && !tab.url.startsWith('moz-extension://')
+					) || allActiveTabs[0];
+				}
+				if (currentTab && currentTab.id) {
+					sendResponse({tabId: currentTab.id});
+				} else {
+					sendResponse({error: 'No active tab found'});
+				}
+			});
+			return true;
+		}
+
+		if (typedRequest.action === "openOptionsPage") {
+			try {
+				if (typeof browser.runtime.openOptionsPage === 'function') {
+					// Chrome way
+					browser.runtime.openOptionsPage();
+				} else {
+					// Firefox way
+					browser.tabs.create({
+						url: browser.runtime.getURL('settings.html')
+					});
+				}
+				sendResponse({success: true});
+			} catch (error) {
+				console.error('Error opening options page:', error);
+				sendResponse({success: false, error: error instanceof Error ? error.message : String(error)});
+			}
+			return true;
+		}
+
+		if (typedRequest.action === "openSettings") {
+			try {
+				const section = typedRequest.section ? `?section=${typedRequest.section}` : '';
+				browser.tabs.create({
+					url: browser.runtime.getURL(`settings.html${section}`)
+				});
+				sendResponse({success: true});
+			} catch (error) {
+				console.error('Error opening settings:', error);
+				sendResponse({success: false, error: error instanceof Error ? error.message : String(error)});
+			}
+			return true;
+		}
+
+		if (typedRequest.action === "copyMarkdownToClipboard" || typedRequest.action === "saveMarkdownToFile") {
+			if (sender.tab?.id) {
+				(async () => {
+					try {
+						await ensureContentScriptLoadedInBackground(sender.tab!.id!);
+						await browser.tabs.sendMessage(sender.tab!.id!, { action: typedRequest.action });
+						sendResponse({success: true});
+					} catch (error) {
+						sendResponse({success: false, error: error instanceof Error ? error.message : String(error)});
+					}
+				})();
+				return true;
+			}
+		}
+
+		if (typedRequest.action === "getTabInfo") {
+			browser.tabs.get(typedRequest.tabId as number).then((tab) => {
+				sendResponse({
+					success: true,
+					tab: {
+						id: tab.id,
+						url: tab.url
+					}
+				});
+			}).catch((error) => {
+				console.error('Error getting tab info:', error);
+				sendResponse({
+					success: false,
+					error: error instanceof Error ? error.message : String(error)
+				});
+			});
+			return true;
+		}
+
+		if (typedRequest.action === "forceInjectContentScript") {
+			const tabId = typedRequest.tabId;
+			if (tabId) {
+				injectContentScript(tabId)
+					.then(() => sendResponse({ success: true }))
+					.catch((error) => {
+						console.error('[Logseq Clipper] forceInjectContentScript failed:', error);
+						sendResponse({ success: false, error: error instanceof Error ? error.message : String(error) });
+					});
+				return true;
+			} else {
+				sendResponse({ success: false, error: 'Missing tabId' });
+				return true;
+			}
+		}
+
+		if (typedRequest.action === "sendMessageToTab") {
+			const tabId = (typedRequest as any).tabId;
+			const message = (typedRequest as any).message;
+			if (tabId && message) {
+				// Ensure content script is loaded before sending message
+				ensureContentScriptLoadedInBackground(tabId).then(() => {
+					console.log('[Logseq Clipper] Sending message to tab:', message.action);
+					return browser.tabs.sendMessage(tabId, message);
+				}).then((response) => {
+					console.log('[Logseq Clipper] Tab response:', response ? 'has content=' + !!((response as any).content) : response);
+					sendResponse(response);
+				}).catch((error) => {
+					console.error('[Logseq Clipper] Error sending message to tab:', error);
+					sendResponse({
+						success: false,
+						error: error instanceof Error ? error.message : String(error)
+					});
+				});
+				return true;
+			} else {
+				sendResponse({
+					success: false,
+					error: 'Missing tabId or message'
+				});
+				return true;
+			}
+		}
+
+		if (typedRequest.action === "openObsidianUrl") {
+			const url = (typedRequest as any).url;
+			if (url) {
+				browser.tabs.query({active: true, currentWindow: true}).then((tabs) => {
+					const currentTab = tabs[0];
+					if (currentTab && currentTab.id) {
+						browser.tabs.update(currentTab.id, { url: url }).then(() => {
+							sendResponse({ success: true });
+						}).catch((error) => {
+							console.error('Error opening Obsidian URL:', error);
+							sendResponse({
+								success: false,
+								error: error instanceof Error ? error.message : String(error)
+							});
+						});
+					} else {
+						sendResponse({
+							success: false,
+							error: 'No active tab found'
+						});
+					}
+				}).catch((error) => {
+					console.error('Error querying tabs:', error);
+					sendResponse({
+						success: false,
+						error: error instanceof Error ? error.message : String(error)
+					});
+				});
+				return true;
+			} else {
+				sendResponse({
+					success: false,
+					error: 'Missing URL'
+				});
+				return true;
+			}
+		}
+
 		// For other actions that use sendResponse
 		if (typedRequest.action === "extractContent" ||
 			typedRequest.action === "ensureContentScriptLoaded" ||
 			typedRequest.action === "getHighlighterMode" ||
-			typedRequest.action === "toggleHighlighterMode") {
+			typedRequest.action === "toggleHighlighterMode" ||
+			typedRequest.action === "openObsidianUrl") {
 			return true;
 		}
 	}
@@ -126,20 +554,32 @@ browser.runtime.onMessage.addListener((request: unknown, sender: browser.Runtime
 });
 
 browser.commands.onCommand.addListener(async (command, tab) => {
-	if (command === 'quick_clip') {
-		browser.tabs.query({ active: true, currentWindow: true }).then((tabs) => {
-			if (tabs[0]?.id) {
-				browser.action.openPopup();
-				setTimeout(() => {
-					browser.runtime.sendMessage({ action: "triggerQuickClip" })
-						.catch(error => console.error("Failed to send quick clip message:", error));
-				}, 500);
-			}
-		});
+	// Some browsers (e.g. Orion) don't pass the tab parameter, so fall back to querying
+	if (!tab?.id) {
+		const tabs = await browser.tabs.query({active: true, currentWindow: true});
+		tab = tabs[0];
 	}
-	if (command === "toggle_highlighter" && tab && tab.id) {
-		await ensureContentScriptLoaded(tab.id);
+
+	if (command === 'quick_clip') {
+		if (tab?.id) {
+			openPopup();
+			setTimeout(() => {
+				browser.runtime.sendMessage({action: "triggerQuickClip"})
+					.catch(error => console.error("Failed to send quick clip message:", error));
+			}, 500);
+		}
+	}
+	if (command === "toggle_highlighter" && tab?.id) {
+		await ensureContentScriptLoadedInBackground(tab.id);
 		toggleHighlighterMode(tab.id);
+	}
+	if (command === "copy_to_clipboard" && tab?.id) {
+		await browser.tabs.sendMessage(tab.id, { action: "copyToClipboard" });
+	}
+	if (command === "toggle_reader" && tab?.id) {
+		await ensureContentScriptLoadedInBackground(tab.id);
+		await injectReaderScript(tab.id);
+		await browser.tabs.sendMessage(tab.id, { action: "toggleReaderMode" });
 	}
 });
 
@@ -152,6 +592,17 @@ const debouncedUpdateContextMenu = debounce(async (tabId: number) => {
 	try {
 		await browser.contextMenus.removeAll();
 
+		let currentTabId = tabId;
+		if (currentTabId === -1) {
+			const tabs = await browser.tabs.query({ active: true, currentWindow: true });
+			if (tabs.length > 0) {
+				currentTabId = tabs[0].id!;
+			}
+		}
+
+		const isHighlighterMode = getHighlighterModeForTab(currentTabId);
+		const isReaderMode = getReaderModeForTab(currentTabId);
+
 		const menuItems: {
 			id: string;
 			title: string;
@@ -163,9 +614,19 @@ const debouncedUpdateContextMenu = debounce(async (tabId: number) => {
 					contexts: ["page", "selection", "image", "video", "audio"]
 				},
 				{
+					id: 'copy-markdown-to-clipboard',
+					title: browser.i18n.getMessage('copyToClipboard'),
+					contexts: ["page", "selection"]
+				},
+				{
+					id: isReaderMode ? "exit-reader" : "enter-reader",
+					title: isReaderMode ? browser.i18n.getMessage('disableReader') : browser.i18n.getMessage('readerOn'),
+					contexts: ["page", "selection"]
+				},
+				{
 					id: isHighlighterMode ? "exit-highlighter" : "enter-highlighter",
-					title: isHighlighterMode ? "Exit highlighter mode" : "Highlight this page",
-					contexts: ["page", "image", "video", "audio"]
+					title: isHighlighterMode ? browser.i18n.getMessage('disableHighlighter') : browser.i18n.getMessage('highlighterOn'),
+					contexts: ["page","image", "video", "audio"]
 				},
 				{
 					id: "highlight-selection",
@@ -176,6 +637,11 @@ const debouncedUpdateContextMenu = debounce(async (tabId: number) => {
 					id: "highlight-element",
 					title: "Add to highlights",
 					contexts: ["image", "video", "audio"]
+				},
+				{
+					id: 'open-embedded',
+					title: browser.i18n.getMessage('openEmbedded'),
+					contexts: ["page", "selection"]
 				}
 			];
 
@@ -183,7 +649,7 @@ const debouncedUpdateContextMenu = debounce(async (tabId: number) => {
 		if (browserType === 'chrome') {
 			menuItems.push({
 				id: 'open-side-panel',
-				title: 'Open side panel',
+				title: browser.i18n.getMessage('openSidePanel'),
 				contexts: ["page", "selection"]
 			});
 		}
@@ -200,7 +666,7 @@ const debouncedUpdateContextMenu = debounce(async (tabId: number) => {
 
 browser.contextMenus.onClicked.addListener(async (info, tab) => {
 	if (info.menuItemId === "open-logseq-clipper") {
-		browser.action.openPopup();
+		openPopup();
 	} else if (info.menuItemId === "enter-highlighter" && tab && tab.id) {
 		await setHighlighterMode(tab.id, true);
 	} else if (info.menuItemId === "exit-highlighter" && tab && tab.id) {
@@ -209,10 +675,24 @@ browser.contextMenus.onClicked.addListener(async (info, tab) => {
 		await highlightSelection(tab.id, info);
 	} else if (info.menuItemId === "highlight-element" && tab && tab.id) {
 		await highlightElement(tab.id, info);
+	} else if ((info.menuItemId === "enter-reader" || info.menuItemId === "exit-reader") && tab && tab.id) {
+		await ensureContentScriptLoadedInBackground(tab.id);
+		await injectReaderScript(tab.id);
+		const response = await browser.tabs.sendMessage(tab.id, { action: "toggleReaderMode" }) as { success?: boolean; isActive?: boolean };
+		if (response?.success) {
+			readerModeState[tab.id] = response.isActive ?? false;
+			debouncedUpdateContextMenu(tab.id);
+		}
+	} else if (info.menuItemId === 'open-embedded' && tab && tab.id) {
+		await ensureContentScriptLoadedInBackground(tab.id);
+		await browser.tabs.sendMessage(tab.id, { action: "toggle-iframe" });
 	} else if (info.menuItemId === 'open-side-panel' && tab && tab.id && tab.windowId) {
 		chrome.sidePanel.open({ tabId: tab.id });
 		sidePanelOpenWindows.add(tab.windowId);
-		await ensureContentScriptLoaded(tab.id);
+		await ensureContentScriptLoadedInBackground(tab.id);
+	} else if (info.menuItemId === 'copy-markdown-to-clipboard' && tab && tab.id) {
+		await ensureContentScriptLoadedInBackground(tab.id);
+		await browser.tabs.sendMessage(tab.id, { action: "copyMarkdownToClipboard" });
 	}
 });
 
@@ -237,7 +717,9 @@ async function setupTabListeners() {
 }
 
 const debouncedPaintHighlights = debounce(async (tabId: number) => {
-	await setHighlighterMode(tabId, false);
+	if (!getHighlighterModeForTab(tabId)) {
+		await setHighlighterMode(tabId, false);
+	}
 	await paintHighlights(tabId);
 }, 250);
 
@@ -255,7 +737,7 @@ async function paintHighlights(tabId: number) {
 			return;
 		}
 
-		await ensureContentScriptLoaded(tabId);
+		await ensureContentScriptLoadedInBackground(tabId);
 		await browser.tabs.sendMessage(tabId, { action: "paintHighlights" });
 
 	} catch (error) {
@@ -277,11 +759,10 @@ async function setHighlighterMode(tabId: number, activate: boolean) {
 		}
 
 		// Then, ensure the content script is loaded
-		await ensureContentScriptLoaded(tabId);
+		await ensureContentScriptLoadedInBackground(tabId);
 
 		// Now try to send the message
-		isHighlighterMode = activate;
-		await browser.storage.local.set({ isHighlighterMode: activate });
+		highlighterModeState[tabId] = activate;
 		await browser.tabs.sendMessage(tabId, { action: "setHighlighterMode", isActive: activate });
 		debouncedUpdateContextMenu(tabId);
 		await sendMessageToPopup(tabId, { action: "updatePopupHighlighterUI", isActive: activate });
@@ -289,29 +770,29 @@ async function setHighlighterMode(tabId: number, activate: boolean) {
 	} catch (error) {
 		console.error('Error setting highlighter mode:', error);
 		// If there's an error, assume highlighter mode should be off
-		isHighlighterMode = false;
-		await browser.storage.local.set({ isHighlighterMode: false });
+		highlighterModeState[tabId] = false;
 		debouncedUpdateContextMenu(tabId);
 		await sendMessageToPopup(tabId, { action: "updatePopupHighlighterUI", isActive: false });
 	}
 }
 
-async function toggleHighlighterMode(tabId: number) {
+async function toggleHighlighterMode(tabId: number): Promise<boolean> {
 	try {
-		const result = await browser.storage.local.get('isHighlighterMode');
-		const currentMode = result.isHighlighterMode || false;
+		const currentMode = getHighlighterModeForTab(tabId);
 		const newMode = !currentMode;
-		await browser.storage.local.set({ isHighlighterMode: newMode });
+		highlighterModeState[tabId] = newMode;
 		await browser.tabs.sendMessage(tabId, { action: "setHighlighterMode", isActive: newMode });
 		debouncedUpdateContextMenu(tabId);
 		await sendMessageToPopup(tabId, { action: "updatePopupHighlighterUI", isActive: newMode });
+		return newMode;
 	} catch (error) {
 		console.error('Error toggling highlighter mode:', error);
+		throw error;
 	}
 }
 
 async function highlightSelection(tabId: number, info: browser.Menus.OnClickData) {
-	isHighlighterMode = true;
+	highlighterModeState[tabId] = true;
 
 	const highlightData: Partial<TextHighlightData> = {
 		id: Date.now().toString(),
@@ -321,7 +802,7 @@ async function highlightSelection(tabId: number, info: browser.Menus.OnClickData
 
 	await browser.tabs.sendMessage(tabId, {
 		action: "highlightSelection",
-		isActive: isHighlighterMode,
+		isActive: true,
 		highlightData,
 	});
 	hasHighlights = true;
@@ -329,11 +810,11 @@ async function highlightSelection(tabId: number, info: browser.Menus.OnClickData
 }
 
 async function highlightElement(tabId: number, info: browser.Menus.OnClickData) {
-	isHighlighterMode = true;
+	highlighterModeState[tabId] = true;
 
 	await browser.tabs.sendMessage(tabId, {
 		action: "highlightElement",
-		isActive: isHighlighterMode,
+		isActive: true,
 		targetElementInfo: {
 			mediaType: info.mediaType === 'image' ? 'img' : info.mediaType,
 			srcUrl: info.srcUrl,
@@ -344,10 +825,96 @@ async function highlightElement(tabId: number, info: browser.Menus.OnClickData) 
 	debouncedUpdateContextMenu(tabId);
 }
 
-// Initialize the tab listeners
-setupTabListeners();
+async function injectReaderScript(tabId: number) {
+	try {
+		await browser.scripting.insertCSS({
+			target: { tabId },
+			files: ['reader.css']
+		});
+		await browser.scripting.insertCSS({
+			target: { tabId },
+			files: ['highlighter.css']
+		}).catch(() => {});
 
-// Initialize the global highlighter state when the extension starts
-browser.storage.local.get('isHighlighterMode').then((result: { isHighlighterMode?: boolean }) => {
-	isHighlighterMode = result.isHighlighterMode ?? false;
+		// Inject scripts in sequence for all browsers
+		await browser.scripting.executeScript({
+			target: { tabId },
+			files: ['browser-polyfill.min.js']
+		});
+		await browser.scripting.executeScript({
+			target: { tabId },
+			files: ['reader-script.js']
+		});
+
+		return true;
+	} catch (error) {
+		console.error('Error injecting reader script:', error);
+		return false;
+	}
+}
+
+// When set to 'reader' or 'embedded', clear the popup so action.onClicked fires
+// instead, handling the action directly without briefly opening the popup.
+const validOpenBehaviors: Settings['openBehavior'][] = ['popup', 'embedded', 'reader'];
+
+function parseOpenBehavior(raw: string | undefined): Settings['openBehavior'] {
+	return validOpenBehaviors.includes(raw as Settings['openBehavior']) ? raw as Settings['openBehavior'] : 'popup';
+}
+
+async function updateActionPopup(openBehavior?: Settings['openBehavior']): Promise<void> {
+	if (!openBehavior) {
+		const data = await browser.storage.sync.get('general_settings');
+		openBehavior = parseOpenBehavior((data.general_settings as Record<string, string>)?.openBehavior);
+	}
+	currentOpenBehavior = openBehavior;
+	if (openBehavior === 'reader' || openBehavior === 'embedded') {
+		await browser.action.setPopup({ popup: '' });
+	} else {
+		await browser.action.setPopup({ popup: 'popup.html' });
+	}
+}
+
+let currentOpenBehavior: Settings['openBehavior'] = 'popup';
+
+// In reader/embedded mode, opens embedded iframe instead of popup.
+async function openPopup(): Promise<void> {
+	if (currentOpenBehavior === 'reader' || currentOpenBehavior === 'embedded') {
+		const tabs = await browser.tabs.query({ active: true, currentWindow: true });
+		const tab = tabs[0];
+		if (tab?.id && tab.url && isValidUrl(tab.url) && !isBlankPage(tab.url)) {
+			await ensureContentScriptLoadedInBackground(tab.id);
+			await browser.tabs.sendMessage(tab.id, { action: "toggle-iframe" });
+			return;
+		}
+		// Fall through to popup if tab is invalid
+	}
+	await browser.action.openPopup();
+}
+
+browser.action.onClicked.addListener(async (tab) => {
+	if (!tab?.id || !tab.url || !isValidUrl(tab.url) || isBlankPage(tab.url)) return;
+
+	if (currentOpenBehavior === 'reader') {
+		await ensureContentScriptLoadedInBackground(tab.id);
+		await injectReaderScript(tab.id);
+		const response = await browser.tabs.sendMessage(tab.id, { action: "toggleReaderMode" }) as { success?: boolean; isActive?: boolean };
+		if (response?.success) {
+			readerModeState[tab.id] = response.isActive ?? false;
+			debouncedUpdateContextMenu(tab.id);
+		}
+	} else if (currentOpenBehavior === 'embedded') {
+		await ensureContentScriptLoadedInBackground(tab.id);
+		await browser.tabs.sendMessage(tab.id, { action: "toggle-iframe" });
+	}
+});
+
+browser.storage.onChanged.addListener((changes, area) => {
+	if (area === 'sync' && changes.general_settings) {
+		updateActionPopup(parseOpenBehavior((changes.general_settings.newValue as Record<string, string>)?.openBehavior));
+	}
+});
+
+// Initialize the extension
+initialize().catch(error => {
+	console.error('Failed to initialize background script:', error);
 });

@@ -46,7 +46,7 @@ export function sanitizeFileName(fileName: string): string {
 	sanitized = sanitized
 		.replace(/^\.+/, '') // Remove leading periods
 		.trim()
-		.slice(0, 250); // Trim to 250 characters, leaving room to append ' 1.md'
+		.slice(0, 245); // Trim to 245 characters, leaving room to append ' 1.md'
 
 	// Ensure the file name is not empty
 	if (sanitized.length === 0) {
@@ -135,15 +135,29 @@ export function makeUrlAbsolute(element: Element, attributeName: string, baseUrl
 }
 
 export function processUrls(htmlContent: string, baseUrl: URL): string {
-	const tempDiv = document.createElement('div');
-	tempDiv.innerHTML = htmlContent;
+	const parser = new DOMParser();
+	const doc = parser.parseFromString(htmlContent, 'text/html');
 	
-	// Handle relative URLs for both images and links
-	tempDiv.querySelectorAll('img').forEach(img => makeUrlAbsolute(img, 'srcset', baseUrl));
-	tempDiv.querySelectorAll('img').forEach(img => makeUrlAbsolute(img, 'src', baseUrl));
-	tempDiv.querySelectorAll('a').forEach(link => makeUrlAbsolute(link, 'href', baseUrl));
+	// Handle relative URLs for images, links, videos, and audio embeds.
+	doc.querySelectorAll('img').forEach(img => makeUrlAbsolute(img, 'srcset', baseUrl));
+	doc.querySelectorAll('img').forEach(img => makeUrlAbsolute(img, 'src', baseUrl));
+	doc.querySelectorAll('a').forEach(link => makeUrlAbsolute(link, 'href', baseUrl));
+	doc.querySelectorAll('video').forEach(video => makeUrlAbsolute(video, 'src', baseUrl));
+	doc.querySelectorAll('audio').forEach(audio => makeUrlAbsolute(audio, 'src', baseUrl));
+	doc.querySelectorAll(':is(video, audio) :is(source, track)').forEach(sourceOrTrack => makeUrlAbsolute(sourceOrTrack, 'src', baseUrl));
 	
-	return tempDiv.innerHTML;
+	// Serialize back to HTML
+	const serializer = new XMLSerializer();
+	let result = '';
+	Array.from(doc.body.childNodes).forEach(node => {
+		if (node.nodeType === Node.ELEMENT_NODE) {
+			result += serializer.serializeToString(node);
+		} else if (node.nodeType === Node.TEXT_NODE) {
+			result += node.textContent;
+		}
+	});
+	
+	return result;
 }
 
 export function formatDuration(ms: number): string {
@@ -151,5 +165,32 @@ export function formatDuration(ms: number): string {
 		return `${Math.round(ms)}ms`;
 	} else {
 		return `${(ms / 1000).toFixed(2)}s`;
+	}
+}
+
+export function getDomain(url: string): string {
+	try {
+		const urlObj = new URL(url);
+		const hostname = urlObj.hostname;
+
+		// Handle local development URLs
+		if (hostname === 'localhost' || hostname === '127.0.0.1' || hostname.match(/^(\d{1,3}\.){3}\d{1,3}$/)) {
+			return hostname;
+		}
+
+		const hostParts = hostname.split('.');
+		
+		// Handle special cases like co.uk, com.au, etc.
+		if (hostParts.length > 2) {
+			const lastTwo = hostParts.slice(-2).join('.');
+			if (lastTwo.match(/^(co|com|org|net|edu|gov|mil)\.[a-z]{2}$/)) {
+				return hostParts.slice(-3).join('.');
+			}
+		}
+		
+		return hostParts.slice(-2).join('.');
+	} catch (error) {
+		console.warn('Invalid URL:', url);
+		return '';
 	}
 }

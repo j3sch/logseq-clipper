@@ -23,8 +23,8 @@ export async function sendToLLM(promptContext: string, content: string, promptVa
 		throw new Error(`Provider not found for model ${model.name}`);
 	}
 
-	// Get API key from provider
-	if (!provider.apiKey) {
+	// Only check for API key if the provider requires it
+	if (provider.apiKeyRequired && !provider.apiKey) {
 		throw new Error(`API key is not set for provider ${provider.name}`);
 	}
 
@@ -75,7 +75,6 @@ export async function sendToLLM(promptContext: string, content: string, promptVa
 					{ role: 'user', content: `${promptContext}` },
 					{ role: 'user', content: `${JSON.stringify(promptContent)}` }
 				],
-				temperature: 0.5,
 				max_tokens: 1600,
 				stream: false
 			};
@@ -101,6 +100,26 @@ export async function sendToLLM(promptContext: string, content: string, promptVa
 				'anthropic-version': '2023-06-01',
 				'anthropic-dangerous-direct-browser-access': 'true'
 			};
+		} else if (provider.name.toLowerCase().includes('perplexity')) {
+			requestUrl = provider.baseUrl;
+			requestBody = {
+				model: model.providerModelId,
+				max_tokens: 1600,
+				messages: [
+					{ role: 'system', content: systemContent },
+					{ role: 'user', content: `
+						"${promptContext}"
+						"${JSON.stringify(promptContent)}"`
+					}
+				],
+				temperature: 0.3
+			};
+			headers = {
+				...headers,
+				'HTTP-Referer': 'https://obsidian.md/',
+				'X-Title': 'Obsidian Web Clipper',
+				'Authorization': `Bearer ${provider.apiKey}`
+			};
 		} else if (provider.name.toLowerCase().includes('ollama')) {
 			requestUrl = provider.baseUrl;
 			requestBody = {
@@ -111,11 +130,12 @@ export async function sendToLLM(promptContext: string, content: string, promptVa
 					{ role: 'user', content: `${JSON.stringify(promptContent)}` }
 				],
 				format: 'json',
+				num_ctx: 120000,
 				temperature: 0.5,
 				stream: false
 			};
 		} else {
-			// Default OpenAI-compatible request format
+			// Default request format
 			requestUrl = provider.baseUrl;
 			requestBody = {
 				model: model.providerModelId,
@@ -123,13 +143,12 @@ export async function sendToLLM(promptContext: string, content: string, promptVa
 					{ role: 'system', content: systemContent },
 					{ role: 'user', content: `${promptContext}` },
 					{ role: 'user', content: `${JSON.stringify(promptContent)}` }
-				],
-				temperature: 0.7
+				]
 			};
 			headers = {
 				...headers,
-				"HTTP-Referer": 'https://obsidian.md/',
-				"X-Title": 'Obsidian Web Clipper',
+				'HTTP-Referer': 'https://obsidian.md/',
+				'X-Title': 'Obsidian Web Clipper',
 				'Authorization': `Bearer ${provider.apiKey}`
 			};
 		}
@@ -145,6 +164,15 @@ export async function sendToLLM(promptContext: string, content: string, promptVa
 		if (!response.ok) {
 			const errorText = await response.text();
 			console.error(`${provider.name} error response:`, errorText);
+			
+			// Add specific message for Ollama 403 errors
+			if (provider.name.toLowerCase().includes('ollama') && response.status === 403) {
+				throw new Error(
+					`Ollama cannot process requests originating from a browser extension without setting OLLAMA_ORIGINS. ` +
+					`See instructions at https://help.obsidian.md/web-clipper/interpreter`
+				);
+			}
+			
 			throw new Error(`${provider.name} error: ${response.statusText} ${errorText}`);
 		}
 
@@ -192,7 +220,6 @@ export async function sendToLLM(promptContext: string, content: string, promptVa
 				llmResponseContent = JSON.stringify(data);
 			}
 		} else {
-			// OpenAI and others
 			llmResponseContent = data.choices[0]?.message?.content || JSON.stringify(data);
 		}
 		debugLog('Interpreter', 'Processed LLM response:', llmResponseContent);
@@ -219,27 +246,29 @@ function parseLLMResponse(responseContent: string, promptVariables: PromptVariab
 
 		// Helper function to sanitize JSON string
 		const sanitizeJsonString = (str: string) => {
-			// First, escape all quotes that are part of the content
-			let result = str.replace(/(?<!\\)"/g, '\\"');
+			// First, normalize all newlines to \n
+			let result = str.replace(/\r\n/g, '\n');
+			
+			// Escape newlines properly
+			result = result.replace(/\n/g, '\\n');
+			
+			// Escape quotes that are part of the content
+			result = result.replace(/(?<!\\)"/g, '\\"');
 			
 			// Then unescape the quotes that are JSON structural elements
-			// This regex matches quotes that are preceded by {, [, :, or comma
-			result = result.replace(/(?<=[{[,:]\s*)\\"/g, '"');
-			// This regex matches quotes that are followed by }, ], :, or comma
-			result = result.replace(/\\"(?=\s*[}\],:}])/g, '"');
+			result = result.replace(/(?<=[{[,:]\s*)\\"/g, '"')
+				.replace(/\\"(?=\s*[}\],:}])/g, '"');
 			
 			return result
 				// Replace curly quotes
 				.replace(/[""]/g, '\\"')
-				// Properly escape newlines
-				.replace(/\n/g, '\\n')
 				// Remove any bad control characters
-				.replace(/[\u0000-\u001F\u007F-\u009F]/g, '')
+				.replace(/[\u0000-\u0008\u000B-\u001F\u007F-\u009F]/g, '')
 				// Remove any whitespace between quotes and colons
 				.replace(/"\s*:/g, '":')
 				.replace(/:\s*"/g, ':"')
 				// Fix any triple or more backslashes
-				.replace(/\\{3,}/g, '\\');
+				.replace(/\\{3,}/g, '\\\\');
 		};
 
 		// First try to parse the content directly
@@ -258,6 +287,7 @@ function parseLLMResponse(responseContent: string, promptVariables: PromptVariab
 			try {
 				const minimalSanitized = jsonMatch[0]
 					.replace(/[""]/g, '"')
+					.replace(/\r\n/g, '\\n')
 					.replace(/\n/g, '\\n');
 				parsedResponse = JSON.parse(minimalSanitized);
 			} catch (minimalError) {
@@ -269,17 +299,23 @@ function parseLLMResponse(responseContent: string, promptVariables: PromptVariab
 					parsedResponse = JSON.parse(sanitizedMatch);
 				} catch (fullError) {
 					// Last resort: try to manually rebuild the JSON structure
-					const contentMatch = jsonMatch[0].match(/"prompt_1":\s*"([^]*?)(?:"}|"\s*})/);
-					if (!contentMatch) {
-						throw new Error('Could not extract prompt content');
-					}
+					const prompts_responses: { [key: string]: string } = {};
 					
-					const content = contentMatch[1]
-						.replace(/\\/g, '\\\\')
-						.replace(/"/g, '\\"')
-						.replace(/\n/g, '\\n');
-					
-					const rebuiltJson = `{"prompts_responses":{"prompt_1":"${content}"}}`;
+					// Extract each prompt response separately
+					promptVariables.forEach((variable, index) => {
+						const promptKey = `prompt_${index + 1}`;
+						const promptRegex = new RegExp(`"${promptKey}"\\s*:\\s*"([^]*?)(?:"\\s*,|"\\s*})`, 'g');
+						const match = promptRegex.exec(jsonMatch[0]);
+						if (match) {
+							let content = match[1]
+								.replace(/"/g, '\\"')
+								.replace(/\r\n/g, '\\n')
+								.replace(/\n/g, '\\n');
+							prompts_responses[promptKey] = content;
+						}
+					});
+
+					const rebuiltJson = JSON.stringify({ prompts_responses });
 					debugLog('Interpreter', 'Rebuilt JSON:', rebuiltJson);
 					parsedResponse = JSON.parse(rebuiltJson);
 				}
@@ -291,6 +327,15 @@ function parseLLMResponse(responseContent: string, promptVariables: PromptVariab
 			debugLog('Interpreter', 'No prompts_responses found in parsed response', parsedResponse);
 			return { promptResponses: [] };
 		}
+
+		// Convert escaped newlines to actual newlines in the responses
+		Object.keys(parsedResponse.prompts_responses).forEach(key => {
+			if (typeof parsedResponse.prompts_responses[key] === 'string') {
+				parsedResponse.prompts_responses[key] = parsedResponse.prompts_responses[key]
+					.replace(/\\n/g, '\n')
+					.replace(/\r/g, '');
+			}
+		});
 
 		// Map the responses to their prompts
 		const promptResponses = promptVariables.map(variable => ({
@@ -313,7 +358,7 @@ function parseLLMResponse(responseContent: string, promptVariables: PromptVariab
 
 export function collectPromptVariables(template: Template | null): PromptVariable[] {
 	const promptMap = new Map<string, PromptVariable>();
-	const promptRegex = /{{(?:prompt:)?"(.*?)"(\|.*?)?}}/g;
+	const promptRegex = /{{(?:prompt:)?"([\s\S]*?)"(\|.*?)?}}/g;
 	let match;
 
 	function addPrompt(prompt: string, filters: string) {
@@ -434,25 +479,29 @@ export async function initializeInterpreter(template: Template, variables: { [ke
 			storeListener(modelSelect, 'change', changeListener);
 
 			modelSelect.style.display = 'inline-block';
-			
-			// Filter enabled models
-			const enabledModels = generalSettings.models.filter(model => model.enabled);
-			
-			modelSelect.innerHTML = enabledModels
-				.map(model => 
-					`<option value="${model.id}">${model.name}</option>`
-				).join('');
 
-			// Check if last selected model exists and is enabled
-			const lastSelectedModel = enabledModels.find(model => model.id === generalSettings.interpreterModel);
-			
-			if (!lastSelectedModel && enabledModels.length > 0) {
-				// If last selected model is not available/enabled, use first enabled model
-				generalSettings.interpreterModel = enabledModels[0].id;
-				await saveSettings();
+			// Only repopulate if the skeleton hasn't already done it
+			if (modelSelect.options.length === 0) {
+				const enabledModels = generalSettings.models.filter(model => model.enabled);
+				modelSelect.textContent = '';
+				enabledModels.forEach(model => {
+					const option = document.createElement('option');
+					option.value = model.id;
+					option.textContent = model.name;
+					modelSelect.appendChild(option);
+				});
+				modelSelect.value = generalSettings.interpreterModel || (enabledModels[0]?.id ?? '');
 			}
 
-			modelSelect.value = generalSettings.interpreterModel || (enabledModels[0]?.id ?? '');
+			// Validate that the selected model is still enabled
+			const enabledModels = generalSettings.models.filter(model => model.enabled);
+			const lastSelectedModel = enabledModels.find(model => model.id === generalSettings.interpreterModel);
+
+			if (!lastSelectedModel && enabledModels.length > 0) {
+				generalSettings.interpreterModel = enabledModels[0].id;
+				await saveSettings();
+				modelSelect.value = generalSettings.interpreterModel;
+			}
 		}
 	}
 }
@@ -486,8 +535,9 @@ export async function handleInterpreterUI(
 			throw new Error(`Provider not found for model ${modelConfig.name}`);
 		}
 
-		if (!provider.apiKey) {
-			throw new Error(`No API key is set for ${provider.name}. Please set an API key in the extension settings.`);
+		// Only check for API key if the provider requires it
+		if (provider.apiKeyRequired && !provider.apiKey) {
+			throw new Error(`API key is not set for provider ${provider.name}`);
 		}
 
 		const promptVariables = collectPromptVariables(template);
@@ -531,7 +581,7 @@ export async function handleInterpreterUI(
 		responseTimer.textContent = formatDuration(totalTime);
 
 		// Update button state
-		interpretBtn.textContent = getMessage('done');
+		interpretBtn.textContent = getMessage('done').toLowerCase();
 		interpretBtn.classList.remove('processing');
 		interpretBtn.classList.add('done');
 		interpretBtn.disabled = true;
@@ -588,7 +638,7 @@ export function replacePromptVariables(promptVariables: PromptVariable[], prompt
 	const allInputs = document.querySelectorAll('input, textarea');
 	allInputs.forEach((input) => {
 		if (input instanceof HTMLInputElement || input instanceof HTMLTextAreaElement) {
-			input.value = input.value.replace(/{{(?:prompt:)?"(.*?)"(\|.*?)?}}/g, (match, promptText, filters) => {
+			input.value = input.value.replace(/{{(?:prompt:)?"([\s\S]*?)"(\|[\s\S]*?)?}}/g, (match, promptText, filters) => {
 				const variable = promptVariables.find(v => v.prompt === promptText);
 				if (!variable) return match;
 

@@ -1,0 +1,1009 @@
+{
+	"activity": {
+		"message": "活动"
+	},
+	"addModel": {
+		"message": "+ 添加模型"
+	},
+	"addModelTitle": {
+		"message": "添加模型"
+	},
+	"addProperty": {
+		"message": "+ 添加属性"
+	},
+	"addProvider": {
+		"message": "+ 添加提供商"
+	},
+	"addProviderTitle": {
+		"message": "添加提供商"
+	},
+	"addToObsidian": {
+		"message": "添加到 Logseq"
+	},
+	"addVaultPlaceholder": {
+		"message": "按回车键添加保管库"
+	},
+	"advanced": {
+		"message": "高级"
+	},
+	"allProperties": {
+		"message": "所有属性"
+	},
+	"allTime": {
+		"message": "全部时间"
+	},
+	"alwaysShowHighlights": {
+		"message": "始终显示高亮"
+	},
+	"alwaysShowHighlightsDescription": {
+		"message": "加载页面时显示已保存的高亮内容。关闭此选项则仅在高亮模式激活时显示高亮。"
+	},
+	"apiKeyMissing": {
+		"message": "无 API 密钥"
+	},
+	"apiKeysWarning": {
+		"message": "使用外部提供商即表示您同意其条款和隐私政策。解释器请求直接发送给您选择的提供商。Logseq 不会收集或存储任何关于您请求的数据。"
+	},
+	"appendToDaily": {
+		"message": "添加到日记末尾"
+	},
+	"appendToExisting": {
+		"message": "添加到现有笔记末尾"
+	},
+	"autoRunInterpreter": {
+		"message": "自动运行"
+	},
+	"autoRunInterpreterDescription": {
+		"message": "如果模板包含提示变量，则立即运行。这将消耗模型提供商的 API 额度。如果您只想手动运行解释器，请关闭此选项。"
+	},
+	"behavior": {
+		"message": "行为"
+	},
+	"byDay": {
+		"message": "天"
+	},
+	"byMonth": {
+		"message": "月"
+	},
+	"byWeek": {
+		"message": "周"
+	},
+	"cancel": {
+		"message": "取消"
+	},
+	"cannotDeleteProvider": {
+		"message": "无法删除提供商 \"$1\"，因为它正在被 $2 个模型使用。"
+	},
+	"changelog": {
+		"message": "更新日志"
+	},
+	"chooseFile": {
+		"message": "选择一个文件"
+	},
+	"choosePropertiesFile": {
+		"message": "选择属性文件"
+	},
+	"chooseSettingsFile": {
+		"message": "选择设置文件"
+	},
+	"chooseTemplateFile": {
+		"message": "选择模板文件"
+	},
+	"clipBehavior": {
+		"message": "保存方式"
+	},
+	"clipBehaviorDescription": {
+		"message": "选择如何将高亮内容保存到 Logseq。定义 $strong_start${{content}}$strong_end$ 变量。",
+		"placeholders": {
+			"strong_end": {
+				"content": "</strong>"
+			},
+			"strong_start": {
+				"content": "<strong>"
+			}
+		}
+	},
+	"clipboardError": {
+		"message": "Obsidian 无法访问你的剪贴板。请尝试此处的故障排除说明：$1",
+		"placeholders": {
+			"1": {
+				"content": "$1"
+			}
+		}
+	},
+	"close": {
+		"message": "关闭"
+	},
+	"commandOpenClipper": {
+		"message": "打开 Logseq 剪藏器"
+	},
+	"commandQuickClip": {
+		"message": "快速剪藏"
+	},
+	"commandToggleHighlighter": {
+		"message": "切换高亮模式"
+	},
+	"commandToggleReader": {
+		"message": "切换阅读视图"
+	},
+	"confirmDeleteTemplate": {
+		"message": "确定要删除模板「$1」吗？"
+	},
+	"confirmReplaceSettings": {
+		"message": "这将替换您当前的所有设置，包括模板和属性。您确定要继续吗？"
+	},
+	"copied": {
+		"message": "已复制！"
+	},
+	"copyAsJson": {
+		"message": "复制为 JSON"
+	},
+	"copyToClipboard": {
+		"message": "复制到剪贴板"
+	},
+	"createNewNote": {
+		"message": "创建新笔记"
+	},
+	"custom": {
+		"message": "自定义"
+	},
+	"dailyNoteFormat": {
+		"message": "日记格式（如：YYYY-MM-DD）"
+	},
+	"defaultInterpreterContext": {
+		"message": "默认解释器上下文"
+	},
+	"defaultInterpreterContextDescription": {
+		"message": "模型将使用此上下文来解释提示变量。可以在此处使用变量和过滤器。"
+	},
+	"defaultTemplateName": {
+		"message": "默认"
+	},
+	"delete": {
+		"message": "删除"
+	},
+	"deleteModelConfirm": {
+		"message": "您确定要删除此模型吗？"
+	},
+	"deleteProviderConfirm": {
+		"message": "您确定要删除此提供商吗？"
+	},
+	"disableHighlighter": {
+		"message": "禁用高亮"
+	},
+	"disableReader": {
+		"message": "禁用阅读视图"
+	},
+	"done": {
+		"message": "完成"
+	},
+	"dragAndDropFile": {
+		"message": "将文件拖放到此处"
+	},
+	"duplicate": {
+		"message": "复制"
+	},
+	"earlyAccessDescription": {
+		"message": "使用需要最新$link_start$早期访问版本$link_end$的 Obsidian 功能。目前需要 Obsidian 1.7.2 或更高版本。",
+		"placeholders": {
+			"link_end": {
+				"content": "</a>"
+			},
+			"link_start": {
+				"content": "<a href=\"https://help.obsidian.md/Obsidian/Early+access+versions\" target=\"_blank\">"
+			}
+		}
+	},
+	"earlyAccessFeatures": {
+		"message": "早期访问功能"
+	},
+	"editModel": {
+		"message": "编辑模型"
+	},
+	"editProvider": {
+		"message": "编辑提供商"
+	},
+	"editTemplate": {
+		"message": "编辑模板"
+	},
+	"embedded": {
+		"message": "嵌入式"
+	},
+	"enableHighlighterDescription": {
+		"message": "在网页上高亮内容并保存到 Logseq。"
+	},
+	"enableInterpreter": {
+		"message": "启用解释器"
+	},
+	"enableInterpreterDescription": {
+		"message": "使用自然语言从页面提取数据。例如，您可以使用模板语法 $strong_start${{\"页面摘要\"}}$strong_end$。需要 API 密钥或下面配置的自定义模型。$link_start$了解更多$link_end$",
+		"placeholders": {
+			"link_end": {
+				"content": "</a>"
+			},
+			"link_start": {
+				"content": "<a href=\"https://help.obsidian.md/web-clipper/interpreter\" target=\"_blank\">"
+			},
+			"strong_end": {
+				"content": "</strong>"
+			},
+			"strong_start": {
+				"content": "<strong>"
+			}
+		}
+	},
+	"enableReader": {
+		"message": "打开阅读视图"
+	},
+	"error": {
+		"message": "错误"
+	},
+	"export": {
+		"message": "导出"
+	},
+	"exportAllSettings": {
+		"message": "导出所有设置"
+	},
+	"exportAllSettingsDescription": {
+		"message": "导出包括模板和属性在内的所有设置。"
+	},
+	"exportHighlights": {
+		"message": "导出高亮"
+	},
+	"exportHighlightsDescription": {
+		"message": "将高亮内容导出到文件。"
+	},
+	"exportProperties": {
+		"message": "导出属性"
+	},
+	"exportPropertiesDescription": {
+		"message": "将网页剪藏器的属性保存到 $strong_start$types.json$strong_end$ 文件，可以导入到 Obsidian 保管库或其他设备上的网页剪藏器。",
+		"placeholders": {
+			"strong_end": {
+				"content": "</strong>"
+			},
+			"strong_start": {
+				"content": "<strong>"
+			}
+		}
+	},
+	"extensionDescription": {
+		"message": "以私密且持久的格式保存网页内容，可离线访问。Logseq 官方浏览器扩展。"
+	},
+	"extensionName": {
+		"message": "Logseq 网页剪藏器"
+	},
+	"failedToCopyText": {
+		"message": "复制文本失败"
+	},
+	"failedToDeleteTemplate": {
+		"message": "删除模板失败。请重试。"
+	},
+	"failedToDuplicateTemplate": {
+		"message": "无法复制模板。请再试一次。"
+	},
+	"failedToExportHighlights": {
+		"message": "无法导出高亮显示。请检查控制台以获取更多详细信息。"
+	},
+	"failedToExportSettings": {
+		"message": "无法导出设置。请检查控制台以获取更多详细信息。"
+	},
+	"failedToExtractContent": {
+		"message": "无法提取页面内容。"
+	},
+	"failedToImportTemplate": {
+		"message": "导入模板出错。请检查文件并重试。"
+	},
+	"failedToInitialize": {
+		"message": "请尝试重新加载扩展。"
+	},
+	"failedToInitializeContent": {
+		"message": "无法初始化页面内容。"
+	},
+	"failedToProcessInterpreter": {
+		"message": "解释器处理失败。请重试。"
+	},
+	"failedToResetProviders": {
+		"message": "重置提供商和模型失败"
+	},
+	"failedToResetTemplate": {
+		"message": "无法重置默认模板。请再试一次。"
+	},
+	"failedToSave": {
+		"message": "保存文件失败"
+	},
+	"failedToSaveFile": {
+		"message": "保存文件失败"
+	},
+	"failedToSaveProvider": {
+		"message": "无法保存提供商。请再试一次。"
+	},
+	"feedback": {
+		"message": "反馈"
+	},
+	"feedbackDescription": {
+		"message": "我们如何改进Web Clipper？请访问我们的帮助页面，您可以在那里报告错误，建议功能，并获得常见问题的帮助。"
+	},
+	"feedbackTitle": {
+		"message": "感谢您的反馈"
+	},
+	"folder": {
+		"message": "文件夹"
+	},
+	"general": {
+		"message": "常规"
+	},
+	"generalSettings": {
+		"message": "常规设置"
+	},
+	"getApiKeyHere": {
+		"message": "在此处获取您的 $1 API 密钥。"
+	},
+	"help": {
+		"message": "帮助"
+	},
+	"helpDescription": {
+		"message": "了解如何使用 Web Clipper 并获取故障排除帮助。"
+	},
+	"highlightInline": {
+		"message": "高亮页面内容"
+	},
+	"highlightPage": {
+		"message": "高亮页面"
+	},
+	"highlighter": {
+		"message": "高亮"
+	},
+	"highlighterOn": {
+		"message": "高亮"
+	},
+	"highlighterSettings": {
+		"message": "高亮"
+	},
+	"history": {
+		"message": "历史"
+	},
+	"hotkeys": {
+		"message": "快捷键"
+	},
+	"import": {
+		"message": "导入"
+	},
+	"importAllSettings": {
+		"message": "导入所有设置"
+	},
+	"importAllSettingsDescription": {
+		"message": "导入包括模板和属性在内的所有设置。这将替换您当前的配置。"
+	},
+	"importFailed": {
+		"message": "导入失败。请检查控制台以获取更多详细信息。"
+	},
+	"importModalTitle": {
+		"message": "导入"
+	},
+	"importProperties": {
+		"message": "导入属性"
+	},
+	"importPropertiesDescription": {
+		"message": "要从 Obsidian 导入属性，请在保管库中找到 $strong_2_start$.obsidian$strong_2_end$ 文件夹中的 $strong_1_start$types.json$strong_1_end$ 文件。请注意，该文件夹在大多数操作系统中默认是隐藏的。",
+		"placeholders": {
+			"strong_1_end": {
+				"content": "</strong>"
+			},
+			"strong_1_start": {
+				"content": "<strong>"
+			},
+			"strong_2_end": {
+				"content": "</strong>"
+			},
+			"strong_2_start": {
+				"content": "<strong>"
+			}
+		}
+	},
+	"importSettings": {
+		"message": "导入设置"
+	},
+	"importTemplate": {
+		"message": "导入模板"
+	},
+	"interpret": {
+		"message": "解释"
+	},
+	"interpreter": {
+		"message": "解释器"
+	},
+	"interpreterContext": {
+		"message": "解释器上下文"
+	},
+	"interpreterContextDescription": {
+		"message": "用于解释提示变量的上下文。覆盖$link_start$解释器设置$link_end$中定义的默认上下文。此处可以使用变量。",
+		"placeholders": {
+			"link_end": {
+				"content": "</a>"
+			},
+			"link_start": {
+				"content": "<a href=\"?section=interpreter\">"
+			}
+		}
+	},
+	"language": {
+		"message": "语言"
+	},
+	"languageDescription": {
+		"message": "选择扩展界面的显示语言。"
+	},
+	"last30Days": {
+		"message": "过去30天"
+	},
+	"lastUsed": {
+		"message": "最近使用"
+	},
+	"legacyMode": {
+		"message": "传统模式"
+	},
+	"legacyModeDescription": {
+		"message": "使用与 Obsidian 1.6.7 或更早版本兼容的 URI 剪藏方法。请注意，您可以剪藏的内容长度受浏览器和操作系统限制。某些页面可能会静默失败。"
+	},
+	"modelName": {
+		"message": "模型名称"
+	},
+	"modelNameDescription": {
+		"message": "您想在界面中显示的模型名称。"
+	},
+	"modelProvider": {
+		"message": "提供商"
+	},
+	"modelProviderDescription": {
+		"message": "模型提供商，例如 Ollama、OpenRouter、Google 等。"
+	},
+	"modelProviderPlaceholder": {
+		"message": "提供商"
+	},
+	"modelRequiredFields": {
+		"message": "模型名称、提供商和模型 ID 是必需的。"
+	},
+	"models": {
+		"message": "模型"
+	},
+	"modelsListFor": {
+		"message": "$1的模型列表"
+	},
+	"more": {
+		"message": "更多"
+	},
+	"newTemplate": {
+		"message": "新建模板"
+	},
+	"noHighlights": {
+		"message": "不执行任何操作"
+	},
+	"noTemplates": {
+		"message": "没有可用的模板。请在设置中添加模板。"
+	},
+	"noUnusedProperties": {
+		"message": "未找到未使用的属性。"
+	},
+	"noteContent": {
+		"message": "笔记内容"
+	},
+	"noteContentDescription": {
+		"message": "自定义笔记内容。使用变量预填充页面数据。"
+	},
+	"noteLocation": {
+		"message": "笔记位置"
+	},
+	"noteLocationDescription": {
+		"message": "笔记的文件夹或路径。"
+	},
+	"noteName": {
+		"message": "笔记名称"
+	},
+	"noteNameFormat": {
+		"message": "笔记名称"
+	},
+	"noteNameFormatDescription": {
+		"message": "笔记文件名的格式。您可以使用 {{title}}、{{date}} 和 {{published}} 等变量预填充页面数据。$link_start$了解更多$link_end$",
+		"placeholders": {
+			"link_end": {
+				"content": "</a>"
+			},
+			"link_start": {
+				"content": "<a href=\"https://help.obsidian.md/web-clipper/variables\" target=\"_blank\">"
+			}
+		}
+	},
+	"notesAboutPage": {
+		"message": "关于此页面的笔记..."
+	},
+	"onlyHttpSupported": {
+		"message": "无法剪藏此页面。仅支持 http 和 https URL。"
+	},
+	"open": {
+		"message": "打开"
+	},
+	"openBehaviorDescription": {
+		"message": "选择Web Clipper默认的打开方式。"
+	},
+	"openBehaviorTitle": {
+		"message": "打开行为"
+	},
+	"openEmbedded": {
+		"message": "在页面中打开"
+	},
+	"openSidePanel": {
+		"message": "打开侧面板"
+	},
+	"optional": {
+		"message": "(可选)"
+	},
+	"orPasteBelow": {
+		"message": "或在下面粘贴内容"
+	},
+	"overwriteNote": {
+		"message": "覆盖笔记"
+	},
+	"pageCannotBeClipped": {
+		"message": "无法剪藏此页面。"
+	},
+	"pageVariables": {
+		"message": "页面变量"
+	},
+	"pagesSaved": {
+		"message": "页面已保存"
+	},
+	"pagesSavedPlural": {
+		"message": "页面已保存"
+	},
+	"pasteJsonHere": {
+		"message": "在此处粘贴 JSON"
+	},
+	"pleaseReload": {
+		"message": "请尝试重新加载页面。"
+	},
+	"popularModels": {
+		"message": "热门模型"
+	},
+	"popularModelsDescription": {
+		"message": "从常用模型中选择，或输入自定义模型详细信息。"
+	},
+	"popup": {
+		"message": "弹出窗口"
+	},
+	"prependToDaily": {
+		"message": "添加到日记开头"
+	},
+	"prependToExisting": {
+		"message": "添加到现有笔记开头"
+	},
+	"preview": {
+		"message": "预览"
+	},
+	"processing": {
+		"message": "处理中"
+	},
+	"properties": {
+		"message": "属性"
+	},
+	"propertiesSettings": {
+		"message": "属性"
+	},
+	"propertyName": {
+		"message": "属性名称"
+	},
+	"propertyTypeCheckbox": {
+		"message": "复选框"
+	},
+	"propertyTypeDate": {
+		"message": "日期"
+	},
+	"propertyTypeDatetime": {
+		"message": "日期和时间"
+	},
+	"propertyTypeMultitext": {
+		"message": "列表"
+	},
+	"propertyTypeNumber": {
+		"message": "数字"
+	},
+	"propertyTypeText": {
+		"message": "文本"
+	},
+	"propertyValue": {
+		"message": "属性值"
+	},
+	"provider": {
+		"message": "提供商"
+	},
+	"providerApiKey": {
+		"message": "API 密钥"
+	},
+	"providerApiKeyDescription": {
+		"message": "此提供商的 API 密钥。"
+	},
+	"providerBaseUrl": {
+		"message": "基础 URL"
+	},
+	"providerBaseUrlDescription": {
+		"message": "此提供商的 API 端点 URL。"
+	},
+	"providerModelId": {
+		"message": "模型 ID"
+	},
+	"providerModelIdDescription": {
+		"message": "来自提供商的模型标识符。通常是一个不含空格的简短名称。"
+	},
+	"providerModelIdPlaceholder": {
+		"message": "模型 ID"
+	},
+	"providerName": {
+		"message": "提供商名称"
+	},
+	"providerNameDescription": {
+		"message": "此提供商的显示名称。"
+	},
+	"providerPreset": {
+		"message": "预设"
+	},
+	"providerPresetDescription": {
+		"message": "选择一个提供商或创建一个自定义的。"
+	},
+	"providerRequiredFields": {
+		"message": "提供商名称和基础 URL 是必需的。"
+	},
+	"providers": {
+		"message": "提供商"
+	},
+	"rateExtensionDescription": {
+		"message": "您喜欢使用Web Clipper吗？请帮助我们给它评分。"
+	},
+	"reader": {
+		"message": "阅读器"
+	},
+	"readerAppearance": {
+		"message": "外观"
+	},
+	"readerAppearanceAuto": {
+		"message": "自动"
+	},
+	"readerAppearanceDark": {
+		"message": "深色"
+	},
+	"readerAppearanceDescription": {
+		"message": "选择浅色或深色外观。"
+	},
+	"readerAppearanceLight": {
+		"message": "浅色"
+	},
+	"readerAutoScroll": {
+		"message": "自动滚动"
+	},
+	"readerAutoScrollDescription": {
+		"message": "自动滚动字幕稿以跟随播放进度。"
+	},
+	"readerBlendImages": {
+		"message": "融合图片"
+	},
+	"readerBlendImagesDescription": {
+		"message": "将图片与页面背景融合。"
+	},
+	"readerCloseImageViewer": {
+		"message": "关闭图片查看器"
+	},
+	"readerCollapseComment": {
+		"message": "折叠评论"
+	},
+	"readerColorLinks": {
+		"message": "链接着色"
+	},
+	"readerColorSchemeDefault": {
+		"message": "默认"
+	},
+	"readerCurrentPosition": {
+		"message": "当前位置"
+	},
+	"readerCustomCss": {
+		"message": "自定义 CSS"
+	},
+	"readerCustomCssDescription": {
+		"message": "在阅读视图中自动应用的 CSS。"
+	},
+	"readerDarkTheme": {
+		"message": "深色模式主题"
+	},
+	"readerDarkThemeDescription": {
+		"message": "在深色模式下使用不同的主题。"
+	},
+	"readerError": {
+		"message": "内容提取失败。"
+	},
+	"readerFont": {
+		"message": "字体选项"
+	},
+	"readerFontDefault": {
+		"message": "默认"
+	},
+	"readerFontDescription": {
+		"message": "添加系统中已安装的字体。按 Enter 添加字体。"
+	},
+	"readerFontNotFound": {
+		"message": "未找到"
+	},
+	"readerFontPlaceholder": {
+		"message": "按 Enter 添加字体"
+	},
+	"readerFontSetDefault": {
+		"message": "设为默认"
+	},
+	"readerFontSize": {
+		"message": "基础字号"
+	},
+	"readerFontSystem": {
+		"message": "系统"
+	},
+	"readerFontSystemSans": {
+		"message": "无衬线"
+	},
+	"readerFontSystemSerif": {
+		"message": "衬线"
+	},
+	"readerFonts": {
+		"message": "字体"
+	},
+	"readerFootnotes": {
+		"message": "脚注"
+	},
+	"readerHighlightActiveLine": {
+		"message": "高亮当前行"
+	},
+	"readerHighlightActiveLineDescription": {
+		"message": "播放时在字幕稿中高亮当前句子。"
+	},
+	"readerImages": {
+		"message": "图片"
+	},
+	"readerLineHeight": {
+		"message": "行高"
+	},
+	"readerLineWidth": {
+		"message": "行宽"
+	},
+	"readerLoading": {
+		"message": "正在净化…"
+	},
+	"readerOn": {
+		"message": "阅读器"
+	},
+	"readerPinPlayer": {
+		"message": "固定播放器"
+	},
+	"readerPinPlayerDescription": {
+		"message": "滚动字幕稿时保持视频播放器可见。"
+	},
+	"readerSettings": {
+		"message": "阅读器设置"
+	},
+	"readerTheme": {
+		"message": "主题"
+	},
+	"readerThemeDescription": {
+		"message": "选择阅读视图中使用的颜色。"
+	},
+	"readerThemeSection": {
+		"message": "主题"
+	},
+	"readerTranscripts": {
+		"message": "字幕稿"
+	},
+	"readerTypography": {
+		"message": "排版"
+	},
+	"readerViewFullSize": {
+		"message": "查看原始大小"
+	},
+	"recommended": {
+		"message": "推荐"
+	},
+	"refresh": {
+		"message": "刷新"
+	},
+	"remove": {
+		"message": "移除"
+	},
+	"removeProperty": {
+		"message": "移除属性"
+	},
+	"removeUnusedProperties": {
+		"message": "移除未使用的属性"
+	},
+	"removeUnusedPropertiesDescription": {
+		"message": "移除所有未在任何模板中使用的属性。"
+	},
+	"removeVault": {
+		"message": "移除保管库"
+	},
+	"replaceContent": {
+		"message": "替换页面内容"
+	},
+	"reset": {
+		"message": "重置"
+	},
+	"resetDefaultTemplate": {
+		"message": "重置默认模板"
+	},
+	"resetDefaultTemplateDescription": {
+		"message": "移除对默认模板的所有更改。"
+	},
+	"resetProvidersAndModels": {
+		"message": "重置默认模型"
+	},
+	"resetProvidersAndModelsDescription": {
+		"message": "将提供商和模型重置为默认设置。"
+	},
+	"save": {
+		"message": "保存"
+	},
+	"saveBehaviorDescription": {
+		"message": "选择保存页面的默认选项。其他选项将出现在主按钮旁边的下拉菜单中。"
+	},
+	"saveBehaviorLabel": {
+		"message": "保存行为"
+	},
+	"saveFile": {
+		"message": "保存文件..."
+	},
+	"searchVariables": {
+		"message": "搜索变量..."
+	},
+	"selectProvider": {
+		"message": "选择一个提供商"
+	},
+	"selectTemplateToExport": {
+		"message": "请选择要导出的模板。"
+	},
+	"settings": {
+		"message": "设置"
+	},
+	"settingsHeading": {
+		"message": "设置"
+	},
+	"settingsImportSuccess": {
+		"message": "所有设置已成功导入。请刷新页面查看更改。"
+	},
+	"share": {
+		"message": "分享..."
+	},
+	"shortcutInstructionsBrave": {
+		"message": "要更改快捷键，请前往 $1"
+	},
+	"shortcutInstructionsChrome": {
+		"message": "要更改快捷键，请前往 $1"
+	},
+	"shortcutInstructionsDefault": {
+		"message": "要更改快捷键，请参考浏览器的扩展设置。"
+	},
+	"shortcutInstructionsEdge": {
+		"message": "要更改快捷键，请前往 $1"
+	},
+	"shortcutInstructionsFirefox": {
+		"message": "要更改快捷键，请前往 $1，点击齿轮图标并选择“管理扩展快捷方式”"
+	},
+	"shortcutInstructionsIntro": {
+		"message": "键盘快捷键可以快速访问剪藏器功能。"
+	},
+	"shortcutInstructionsSafari": {
+		"message": "Safari 上的键盘快捷键无法自定义。"
+	},
+	"shortcutNotSet": {
+		"message": "未设置"
+	},
+	"showActionsButton": {
+		"message": "显示操作按钮"
+	},
+	"showActionsDescription": {
+		"message": "允许从剪藏器菜单查看页面变量。有助于查看模板中可用的变量。"
+	},
+	"showPageVariables": {
+		"message": "显示页面变量"
+	},
+	"silentOpen": {
+		"message": "保存笔记但不打开"
+	},
+	"silentOpenDescription": {
+		"message": "剪藏的笔记将被保存但不会在新标签页中打开。Logseq 仍会被置于前台。"
+	},
+	"specificNoteName": {
+		"message": "特定笔记名称"
+	},
+	"systemDefault": {
+		"message": "系统默认"
+	},
+	"template": {
+		"message": "模板"
+	},
+	"templateCopied": {
+		"message": "已将模板 JSON 复制到剪贴板"
+	},
+	"templateCopyError": {
+		"message": "无法将模板 JSON 复制到剪贴板"
+	},
+	"templateErrorCount": {
+		"message": "你的模板中有一个错误。"
+	},
+	"templateErrorsCount": {
+		"message": "你的模板中有 $1 个错误。"
+	},
+	"templateGroupContent": {
+		"message": "内容"
+	},
+	"templateGroupLocation": {
+		"message": "位置"
+	},
+	"templateName": {
+		"message": "模板名称"
+	},
+	"templateProperties": {
+		"message": "属性"
+	},
+	"templatePropertiesDescription": {
+		"message": "添加到剪藏笔记顶部的属性。使用变量预填充页面数据。"
+	},
+	"templateTriggers": {
+		"message": "模板触发器"
+	},
+	"templateTriggersDescription": {
+		"message": "定义规则以在匹配 URL 模式或包含 schema.org 数据时自动选择此模板。每行一个规则。"
+	},
+	"templateValid": {
+		"message": "模板语法有效"
+	},
+	"templatesHeading": {
+		"message": "模板"
+	},
+	"thinking": {
+		"message": "思考中"
+	},
+	"unknownProvider": {
+		"message": "未知的提供商"
+	},
+	"updateAvailable": {
+		"message": "有可用更新。"
+	},
+	"usingLatestVersion": {
+		"message": "您正在使用最新版本。"
+	},
+	"vault": {
+		"message": "保管库"
+	},
+	"vaultDescription": {
+		"message": "选择此模板的默认保管库。前往$link_start$常规设置$link_end$添加或移除保管库。",
+		"placeholders": {
+			"link_end": {
+				"content": "</a>"
+			},
+			"link_start": {
+				"content": "<a href=\"?section=general\">"
+			}
+		}
+	},
+	"vaults": {
+		"message": "保管库"
+	},
+	"vaultsDescription": {
+		"message": "默认情况下，剪藏的笔记会保存到当前打开的保管库。如果您需要保存到不同的保管库，可以在此处添加保管库。保管库名称必须与 Obsidian 保管库的名称完全匹配。按 $strong_start$回车键$strong_end$ 添加保管库。",
+		"placeholders": {
+			"strong_end": {
+				"content": "</strong>"
+			},
+			"strong_start": {
+				"content": "<strong>"
+			}
+		}
+	},
+	"version": {
+		"message": "版本"
+	},
+	"pasteCursorPosition": {
+		"message": "Paste at cursor position"
+	}
+}

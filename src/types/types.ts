@@ -1,7 +1,7 @@
 export interface Template {
 	id: string;
 	name: string;
-	behavior: 'create' | 'append-daily' | 'cursor';
+	behavior: 'create' | 'append-specific' | 'append-daily' | 'prepend-specific' | 'prepend-daily' | 'overwrite' | 'cursor';
 	noteNameFormat: string;
 	path: string;
 	noteContentFormat: string;
@@ -41,6 +41,32 @@ export interface Provider {
 	name: string;
 	baseUrl: string;
 	apiKey: string;
+	apiKeyRequired?: boolean;
+	presetId?: string;
+}
+
+export interface Rating {
+	rating: number;
+	date: string;
+}
+
+export type SaveBehavior = 'addToObsidian' | 'saveFile' | 'copyToClipboard';
+
+export interface ReaderSettings {
+	fontSize: number;
+	lineHeight: number;
+	maxWidth: number;
+	lightTheme: string;
+	darkTheme: string;
+	appearance: 'auto' | 'light' | 'dark';
+	fonts: string[];
+	defaultFont: string;
+	blendImages: boolean;
+	colorLinks: boolean;
+	pinPlayer: boolean;
+	autoScroll: boolean;
+	highlightActiveLine: boolean;
+	customCss: string;
 }
 
 export interface Settings {
@@ -49,6 +75,7 @@ export interface Settings {
 	betaFeatures: boolean;
 	legacyMode: boolean;
 	silentOpen: boolean;
+	openBehavior: 'popup' | 'embedded' | 'reader';
 	highlighterEnabled: boolean;
 	alwaysShowHighlights: boolean;
 	highlightBehavior: string;
@@ -59,6 +86,7 @@ export interface Settings {
 	interpreterAutoRun: boolean;
 	defaultPromptContext: string;
 	propertyTypes: PropertyType[];
+	readerSettings: ReaderSettings;
 	stats: {
 		addToObsidian: number;
 		saveFile: number;
@@ -66,6 +94,8 @@ export interface Settings {
 		share: number;
 	};
 	history: HistoryEntry[];
+	ratings: Rating[];
+	saveBehavior: 'addToObsidian' | 'saveFile' | 'copyToClipboard';
 }
 
 export interface ModelConfig {
@@ -81,4 +111,28 @@ export interface HistoryEntry {
 	url: string;
 	action: 'addToObsidian' | 'saveFile' | 'copyToClipboard' | 'share';
 	title?: string;
+	vault?: string;
+	path?: string;
+}
+
+export interface ConversationMessage {
+	author: string;
+	content: string;
+	timestamp?: string;
+	metadata?: Record<string, any>;
+}
+
+export interface ConversationMetadata {
+	title?: string;
+	description?: string;
+	site: string;
+	url: string;
+	messageCount: number;
+	startTime?: string;
+	endTime?: string;
+}
+
+export interface Footnote {
+	url: string;
+	text: string;
 }

@@ -1,0 +1,1009 @@
+{
+	"activity": {
+		"message": "Aktivität"
+	},
+	"addModel": {
+		"message": "+ Modell hinzufügen"
+	},
+	"addModelTitle": {
+		"message": "Modell hinzufügen"
+	},
+	"addProperty": {
+		"message": "+ Eigenschaft hinzufügen"
+	},
+	"addProvider": {
+		"message": "+ Anbieter hinzufügen"
+	},
+	"addProviderTitle": {
+		"message": "Anbieter hinzufügen"
+	},
+	"addToObsidian": {
+		"message": "Zu Logseq hinzufügen"
+	},
+	"addVaultPlaceholder": {
+		"message": "Drücke Enter, um einen Vault hinzuzufügen"
+	},
+	"advanced": {
+		"message": "Erweitert"
+	},
+	"allProperties": {
+		"message": "Alle Eigenschaften"
+	},
+	"allTime": {
+		"message": "Gesamte Zeit"
+	},
+	"alwaysShowHighlights": {
+		"message": "Markierungen immer anzeigen"
+	},
+	"alwaysShowHighlightsDescription": {
+		"message": "Zeigt Deine gespeicherten Markierungen beim Laden einer Seite an. Deaktiviere dies, um Markierungen nur anzuzeigen, wenn der Markiermodus aktiviert ist."
+	},
+	"apiKeyMissing": {
+		"message": "Kein API-Schlüssel"
+	},
+	"apiKeysWarning": {
+		"message": "Durch die Nutzung eines externen Anbieters stimmst du dessen Nutzungsbedingungen und Datenschutzrichtlinien zu. Interpreter-Anfragen werden direkt an den von Dir gewählten Anbieter gesendet. Logseq sammelt und speichert keine Daten über Deine Anfragen."
+	},
+	"appendToDaily": {
+		"message": "Zum Ende der Tagesnotiz hinzufügen"
+	},
+	"appendToExisting": {
+		"message": "Zum Ende einer bestehenden Notiz hinzufügen"
+	},
+	"autoRunInterpreter": {
+		"message": "Automatisch ausführen"
+	},
+	"autoRunInterpreterDescription": {
+		"message": "Führt Prompt-Variablen sofort aus, wenn die Vorlage welche enthält. Dies verbraucht API-Guthaben bei Deinem Modellanbieter. Deaktiviere dies, wenn Du den Interpreter nur manuell ausführen möchten."
+	},
+	"behavior": {
+		"message": "Verhalten"
+	},
+	"byDay": {
+		"message": "Tage"
+	},
+	"byMonth": {
+		"message": "Monate"
+	},
+	"byWeek": {
+		"message": "Wochen"
+	},
+	"cancel": {
+		"message": "Abbrechen"
+	},
+	"cannotDeleteProvider": {
+		"message": "Anbieter \"$1\" kann nicht gelöscht werden, da er von $2 Modell(en) verwendet wird."
+	},
+	"changelog": {
+		"message": "Änderungsverlauf"
+	},
+	"chooseFile": {
+		"message": "Datei auswählen"
+	},
+	"choosePropertiesFile": {
+		"message": "Eigenschaftsdatei auswählen"
+	},
+	"chooseSettingsFile": {
+		"message": "Einstellungsdatei auswählen"
+	},
+	"chooseTemplateFile": {
+		"message": "Vorlagendatei auswählen"
+	},
+	"clipBehavior": {
+		"message": "Speicherverhalten"
+	},
+	"clipBehaviorDescription": {
+		"message": "Wähle wie markierter Inhalt in Logseq gespeichert wird. Definiert die $strong_start${{content}}$strong_end$ Variable.",
+		"placeholders": {
+			"strong_end": {
+				"content": "</strong>"
+			},
+			"strong_start": {
+				"content": "<strong>"
+			}
+		}
+	},
+	"clipboardError": {
+		"message": "Obsidian kann nicht auf deine Zwischenablage zugreifen. Probiere die Anweisungen zur Fehlerbehebung hier: $1",
+		"placeholders": {
+			"1": {
+				"content": "$1"
+			}
+		}
+	},
+	"close": {
+		"message": "Schließen"
+	},
+	"commandOpenClipper": {
+		"message": "Logseq Web-Clipper öffnen"
+	},
+	"commandQuickClip": {
+		"message": "Schnelles Ausschneiden"
+	},
+	"commandToggleHighlighter": {
+		"message": "Markiermodus umschalten"
+	},
+	"commandToggleReader": {
+		"message": "Leseansicht umschalten"
+	},
+	"confirmDeleteTemplate": {
+		"message": "Möchtest Du die Vorlage \"$1\" wirklich löschen?"
+	},
+	"confirmReplaceSettings": {
+		"message": "Dies wird alle Deine aktuellen Einstellungen, einschließlich Vorlagen und Eigenschaften, ersetzen. Möchtest Du wirklich fortfahren?"
+	},
+	"copied": {
+		"message": "Kopiert!"
+	},
+	"copyAsJson": {
+		"message": "Als JSON kopieren"
+	},
+	"copyToClipboard": {
+		"message": "In die Zwischenablage kopieren"
+	},
+	"createNewNote": {
+		"message": "Neue Notiz erstellen"
+	},
+	"custom": {
+		"message": "Benutzerdefiniert"
+	},
+	"dailyNoteFormat": {
+		"message": "Tagesnotiz-Format (z.B. YYYY-MM-DD)"
+	},
+	"defaultInterpreterContext": {
+		"message": "Standard-Interpreter-Kontext"
+	},
+	"defaultInterpreterContextDescription": {
+		"message": "Der Kontext, der zur Interpretation von Prompt-Variablen verwendet wird. Variablen können hier verwendet werden."
+	},
+	"defaultTemplateName": {
+		"message": "Standard"
+	},
+	"delete": {
+		"message": "Löschen"
+	},
+	"deleteModelConfirm": {
+		"message": "Bist Du sicher, dass Du dieses Modell löschen möchtest?"
+	},
+	"deleteProviderConfirm": {
+		"message": "Bist Du sicher, dass Du diesen Anbieter löschen möchtest?"
+	},
+	"disableHighlighter": {
+		"message": "Marker deaktivieren"
+	},
+	"disableReader": {
+		"message": "Leseansicht deaktivieren"
+	},
+	"done": {
+		"message": "Fertig"
+	},
+	"dragAndDropFile": {
+		"message": "Datei hierher ziehen und ablegen"
+	},
+	"duplicate": {
+		"message": "Duplizieren"
+	},
+	"earlyAccessDescription": {
+		"message": "Verwende Funktionen, welche die neueste $link_start$Early Access Version$link_end$ von Obsidian erfordern. Erfordert derzeit Obsidian 1.7.2 oder höher.",
+		"placeholders": {
+			"link_end": {
+				"content": "</a>"
+			},
+			"link_start": {
+				"content": "<a href=\"https://help.obsidian.md/Obsidian/Early+access+versions\" target=\"_blank\">"
+			}
+		}
+	},
+	"earlyAccessFeatures": {
+		"message": "Early Access Funktionen"
+	},
+	"editModel": {
+		"message": "Modell bearbeiten"
+	},
+	"editProvider": {
+		"message": "Anbieter bearbeiten"
+	},
+	"editTemplate": {
+		"message": "Vorlage bearbeiten"
+	},
+	"embedded": {
+		"message": "Eingebettet"
+	},
+	"enableHighlighterDescription": {
+		"message": "Hebe Inhalte auf Webseiten hervor, die Du in Logseq speichern möchtest."
+	},
+	"enableInterpreter": {
+		"message": "Interpreter aktivieren"
+	},
+	"enableInterpreterDescription": {
+		"message": "Nutze natürliche Sprache, um Daten aus Seiten zu extrahieren. Du kannst zum Beispiel die Vorlagensyntax $strong_start${{\"eine Zusammenfassung der Seite\"}}$strong_end$ verwenden. Erfordert einen API-Schlüssel oder ein unten konfiguriertes benutzerdefiniertes Modell. $link_start$Mehr erfahren$link_end$.",
+		"placeholders": {
+			"link_end": {
+				"content": "</a>"
+			},
+			"link_start": {
+				"content": "<a href=\"https://help.obsidian.md/web-clipper/interpreter\" target=\"_blank\">"
+			},
+			"strong_end": {
+				"content": "</strong>"
+			},
+			"strong_start": {
+				"content": "<strong>"
+			}
+		}
+	},
+	"enableReader": {
+		"message": "Leseansicht öffnen"
+	},
+	"error": {
+		"message": "Fehler"
+	},
+	"export": {
+		"message": "Exportieren"
+	},
+	"exportAllSettings": {
+		"message": "Alle Einstellungen exportieren"
+	},
+	"exportAllSettingsDescription": {
+		"message": "Exportiere alle Deine Einstellungen einschließlich Vorlagen und Eigenschaften."
+	},
+	"exportHighlights": {
+		"message": "Markierungen exportieren"
+	},
+	"exportHighlightsDescription": {
+		"message": "Exportiere Deine Markierungen in eine Datei."
+	},
+	"exportProperties": {
+		"message": "Eigenschaften exportieren"
+	},
+	"exportPropertiesDescription": {
+		"message": "Speichert Deine Web-Clipper Eigenschaften in einer $strong_start$types.json$strong_end$ Datei, die in Deinem Obsidian-Vault oder in Web-Clipper auf anderen Geräten importiert werden kann.",
+		"placeholders": {
+			"strong_end": {
+				"content": "</strong>"
+			},
+			"strong_start": {
+				"content": "<strong>"
+			}
+		}
+	},
+	"extensionDescription": {
+		"message": "Speichet Deine Webinhalte in einem privaten und dauerhaften Format, auf das Du offline zugreifen kannst. Die offizielle Browser-Erweiterung für Logseq."
+	},
+	"extensionName": {
+		"message": "Logseq Web-Clipper"
+	},
+	"failedToCopyText": {
+		"message": "Text konnte nicht kopiert werden"
+	},
+	"failedToDeleteTemplate": {
+		"message": "Vorlage konnte nicht gelöscht werden. Bitte versuch es erneut."
+	},
+	"failedToDuplicateTemplate": {
+		"message": "Duplizieren der Vorlage fehlgeschlagen. Bitte versuch es erneut."
+	},
+	"failedToExportHighlights": {
+		"message": "Export der Markierungen fehlgeschlagen. Bitte überprüfe die Konsole für weitere Details."
+	},
+	"failedToExportSettings": {
+		"message": "Export der Einstellungen fehlgeschlagen. Bitte überprüfe die Konsole für weitere Details."
+	},
+	"failedToExtractContent": {
+		"message": "Seiteninhalt konnte nicht extrahiert werden."
+	},
+	"failedToImportTemplate": {
+		"message": "Fehler beim Importieren der Vorlage. Bitte überprüfe die Datei und versuche es erneut."
+	},
+	"failedToInitialize": {
+		"message": "Bitte versuche, die Erweiterung neu zu laden."
+	},
+	"failedToInitializeContent": {
+		"message": "Seiteninhalt konnte nicht initialisiert werden."
+	},
+	"failedToProcessInterpreter": {
+		"message": "Interpreter-Verarbeitung fehlgeschlagen. Bitte versuche es erneut."
+	},
+	"failedToResetProviders": {
+		"message": "Fehler beim Zurücksetzen von Anbietern und Modellen"
+	},
+	"failedToResetTemplate": {
+		"message": "Standardvorlage konnte nicht zurückgesetzt werden. Bitte versuche es erneut."
+	},
+	"failedToSave": {
+		"message": "Datei konnte nicht gespeichert werden"
+	},
+	"failedToSaveFile": {
+		"message": "Datei konnte nicht gespeichert werden"
+	},
+	"failedToSaveProvider": {
+		"message": "Speichern des Anbieters fehlgeschlagen. Bitte versuche es erneut."
+	},
+	"feedback": {
+		"message": "Feedback"
+	},
+	"feedbackDescription": {
+		"message": "Wie können wir den Web Clipper verbessern? Bitte besuchen Sie unsere Hilfeseite, wo Sie Fehler melden, Funktionen vorschlagen und Hilfe bei häufigen Problemen erhalten können."
+	},
+	"feedbackTitle": {
+		"message": "Vielen Dank für Ihr Feedback"
+	},
+	"folder": {
+		"message": "Ordner"
+	},
+	"general": {
+		"message": "Allgemein"
+	},
+	"generalSettings": {
+		"message": "Allgemeine Einstellungen"
+	},
+	"getApiKeyHere": {
+		"message": "Hole Dir hier Deinen $1 API-Schlüssel."
+	},
+	"help": {
+		"message": "Hilfe"
+	},
+	"helpDescription": {
+		"message": "Lerne, wie Du den Web-Clipper verwendest und erhalte Hilfe bei der Fehlerbehebung."
+	},
+	"highlightInline": {
+		"message": "Seiteninhalt markieren"
+	},
+	"highlightPage": {
+		"message": "Seite markieren"
+	},
+	"highlighter": {
+		"message": "Marker"
+	},
+	"highlighterOn": {
+		"message": "Textmarker"
+	},
+	"highlighterSettings": {
+		"message": "Marker"
+	},
+	"history": {
+		"message": "Verlauf"
+	},
+	"hotkeys": {
+		"message": "Tastenkombinationen"
+	},
+	"import": {
+		"message": "Importieren"
+	},
+	"importAllSettings": {
+		"message": "Alle Einstellungen importieren"
+	},
+	"importAllSettingsDescription": {
+		"message": "Importiere alle Einstellungen einschließlich Vorlagen und Eigenschaften. Dies wird Deine aktuelle Konfiguration ersetzen."
+	},
+	"importFailed": {
+		"message": "Import fehlgeschlagen. Bitte überprüfe die Konsole für weitere Details."
+	},
+	"importModalTitle": {
+		"message": "Importieren"
+	},
+	"importProperties": {
+		"message": "Eigenschaften importieren"
+	},
+	"importPropertiesDescription": {
+		"message": "Um Deine Eigenschaften aus Obsidian zu importieren, suche die $strong_1_start$types.json$strong_1_end$ Datei im $strong_2_start$.obsidian$strong_2_end$ Ordner in Deinem Vault. Beachte, dass dieser Ordner standardmäßig auf den meisten Betriebssystemen versteckt ist.",
+		"placeholders": {
+			"strong_1_end": {
+				"content": "</strong>"
+			},
+			"strong_1_start": {
+				"content": "<strong>"
+			},
+			"strong_2_end": {
+				"content": "</strong>"
+			},
+			"strong_2_start": {
+				"content": "<strong>"
+			}
+		}
+	},
+	"importSettings": {
+		"message": "Einstellungen importieren"
+	},
+	"importTemplate": {
+		"message": "Vorlage importieren"
+	},
+	"interpret": {
+		"message": "interpretieren"
+	},
+	"interpreter": {
+		"message": "Interpreter"
+	},
+	"interpreterContext": {
+		"message": "Interpreter-Kontext"
+	},
+	"interpreterContextDescription": {
+		"message": "Der Kontext, der zur Interpretation von Prompt-Variablen verwendet wird. Überschreibt den Standardkontext, der in den $link_start$Interpreter-Einstellungen$link_end$ definiert ist. Variablen können hier verwendet werden.",
+		"placeholders": {
+			"link_end": {
+				"content": "</a>"
+			},
+			"link_start": {
+				"content": "<a href=\"?section=interpreter\">"
+			}
+		}
+	},
+	"language": {
+		"message": "Sprache"
+	},
+	"languageDescription": {
+		"message": "Wähle die Anzeigesprache für die Erweiterungsoberfläche."
+	},
+	"last30Days": {
+		"message": "Letzte 30 Tage"
+	},
+	"lastUsed": {
+		"message": "Zuletzt verwendet"
+	},
+	"legacyMode": {
+		"message": "Legacy-Modus"
+	},
+	"legacyModeDescription": {
+		"message": "Verwendet die URI-Ausschneidemethode, die mit Obsidian 1.6.7 oder älter kompatibel ist. Beachte, dass die Länge des Inhalts, den Du ausschneiden kannst, durch Deinen Browser und das Betriebssystem begrenzt ist. Einige Seiten können ohne Fehlermeldungen fehlschlagen."
+	},
+	"modelName": {
+		"message": "Modellname"
+	},
+	"modelNameDescription": {
+		"message": "Der Name des Modells, der in der Benutzeroberfläche angezeigt werden soll."
+	},
+	"modelProvider": {
+		"message": "Anbieter"
+	},
+	"modelProviderDescription": {
+		"message": "Der Modellanbieter, z.B. Ollama, OpenRouter, Google, etc."
+	},
+	"modelProviderPlaceholder": {
+		"message": "Anbieter"
+	},
+	"modelRequiredFields": {
+		"message": "Modellname, Anbieter und Modell-ID sind erforderlich."
+	},
+	"models": {
+		"message": "Modelle"
+	},
+	"modelsListFor": {
+		"message": "Modelleliste für $1"
+	},
+	"more": {
+		"message": "Mehr"
+	},
+	"newTemplate": {
+		"message": "Neue Vorlage"
+	},
+	"noHighlights": {
+		"message": "Nichts tun"
+	},
+	"noTemplates": {
+		"message": "Keine Vorlagen verfügbar. Bitte füge eine Vorlage in den Einstellungen hinzu."
+	},
+	"noUnusedProperties": {
+		"message": "Keine unbenutzten Eigenschaften gefunden."
+	},
+	"noteContent": {
+		"message": "Notizinhalt"
+	},
+	"noteContentDescription": {
+		"message": "Passe den Inhalt der Notiz an. Verwende Variablen, um Daten von der Seite vorab auszufüllen."
+	},
+	"noteLocation": {
+		"message": "Notizspeicherort"
+	},
+	"noteLocationDescription": {
+		"message": "Der Ordner oder Pfad der Notiz."
+	},
+	"noteName": {
+		"message": "Notizname"
+	},
+	"noteNameFormat": {
+		"message": "Notizname"
+	},
+	"noteNameFormatDescription": {
+		"message": "Format für den Dateinamen der Notiz. Du kannst Variablen wie {{title}}, {{date}} und {{published}} verwenden, um Daten von der Seite vorab auszufüllen. $link_start$Mehr erfahren$link_end$.",
+		"placeholders": {
+			"link_end": {
+				"content": "</a>"
+			},
+			"link_start": {
+				"content": "<a href=\"https://help.obsidian.md/web-clipper/variables\" target=\"_blank\">"
+			}
+		}
+	},
+	"notesAboutPage": {
+		"message": "Notizen zu dieser Seite..."
+	},
+	"onlyHttpSupported": {
+		"message": "Diese Seite kann nicht ausgeschnitten werden. Nur http und https URLs werden unterstützt."
+	},
+	"open": {
+		"message": "Öffnen"
+	},
+	"openBehaviorDescription": {
+		"message": "Wählen Sie, wie der Web Clipper standardmäßig geöffnet wird."
+	},
+	"openBehaviorTitle": {
+		"message": "Öffnungsverhalten"
+	},
+	"openEmbedded": {
+		"message": "In Seite öffnen"
+	},
+	"openSidePanel": {
+		"message": "Seitenleiste öffnen"
+	},
+	"optional": {
+		"message": "(optional)"
+	},
+	"orPasteBelow": {
+		"message": "Oder füge den Inhalt unten ein"
+	},
+	"overwriteNote": {
+		"message": "Notiz überschreiben"
+	},
+	"pageCannotBeClipped": {
+		"message": "Diese Seite kann nicht ausgeschnitten werden."
+	},
+	"pageVariables": {
+		"message": "Seitenvariablen"
+	},
+	"pagesSaved": {
+		"message": "Seite gespeichert"
+	},
+	"pagesSavedPlural": {
+		"message": "Seiten gespeichert"
+	},
+	"pasteJsonHere": {
+		"message": "Füge hier JSON ein"
+	},
+	"pleaseReload": {
+		"message": "Bitte versuche, die Seite neu zu laden."
+	},
+	"popularModels": {
+		"message": "Beliebte Modelle"
+	},
+	"popularModelsDescription": {
+		"message": "Wählen Sie aus häufig verwendeten Modellen oder geben Sie benutzerdefinierte Modellinformationen ein."
+	},
+	"popup": {
+		"message": "Popup"
+	},
+	"prependToDaily": {
+		"message": "Zur Tagesnotiz am Anfang hinzufügen"
+	},
+	"prependToExisting": {
+		"message": "Zu bestehender Notiz am Anfang hinzufügen"
+	},
+	"preview": {
+		"message": "Vorschau"
+	},
+	"processing": {
+		"message": "Verarbeite"
+	},
+	"properties": {
+		"message": "Eigenschaften"
+	},
+	"propertiesSettings": {
+		"message": "Eigenschaften"
+	},
+	"propertyName": {
+		"message": "Eigenschaftsname"
+	},
+	"propertyTypeCheckbox": {
+		"message": "Kontrollkästchen"
+	},
+	"propertyTypeDate": {
+		"message": "Datum"
+	},
+	"propertyTypeDatetime": {
+		"message": "Datum & Uhrzeit"
+	},
+	"propertyTypeMultitext": {
+		"message": "Liste"
+	},
+	"propertyTypeNumber": {
+		"message": "Nummer"
+	},
+	"propertyTypeText": {
+		"message": "Text"
+	},
+	"propertyValue": {
+		"message": "Eigenschaftswert"
+	},
+	"provider": {
+		"message": "Anbieter"
+	},
+	"providerApiKey": {
+		"message": "API-Schlüssel"
+	},
+	"providerApiKeyDescription": {
+		"message": "Dein API-Schlüssel für diesen Anbieter."
+	},
+	"providerBaseUrl": {
+		"message": "Basis-URL"
+	},
+	"providerBaseUrlDescription": {
+		"message": "Die API-Endpunkt-URL für diesen Anbieter."
+	},
+	"providerModelId": {
+		"message": "Modell-ID"
+	},
+	"providerModelIdDescription": {
+		"message": "Die Kennung des Modells von Deinem Anbieter. Typischerweise ein kurzer Name ohne Leerzeichen."
+	},
+	"providerModelIdPlaceholder": {
+		"message": "Modell-ID"
+	},
+	"providerName": {
+		"message": "Anbietername"
+	},
+	"providerNameDescription": {
+		"message": "Anzeigename für diesen Anbieter."
+	},
+	"providerPreset": {
+		"message": "Voreinstellung"
+	},
+	"providerPresetDescription": {
+		"message": "Wähle einen Anbieter aus oder erstelle einen benutzerdefinierten."
+	},
+	"providerRequiredFields": {
+		"message": "Anbietername und Basis-URL sind erforderlich."
+	},
+	"providers": {
+		"message": "Anbieter"
+	},
+	"rateExtensionDescription": {
+		"message": "Gefällt Ihnen der Web Clipper? Helfen Sie uns, indem Sie ihm eine Bewertung geben."
+	},
+	"reader": {
+		"message": "Leser"
+	},
+	"readerAppearance": {
+		"message": "Erscheinungsbild"
+	},
+	"readerAppearanceAuto": {
+		"message": "Automatisch"
+	},
+	"readerAppearanceDark": {
+		"message": "Dunkel"
+	},
+	"readerAppearanceDescription": {
+		"message": "Helles oder dunkles Erscheinungsbild auswählen."
+	},
+	"readerAppearanceLight": {
+		"message": "Hell"
+	},
+	"readerAutoScroll": {
+		"message": "Automatisch scrollen"
+	},
+	"readerAutoScrollDescription": {
+		"message": "Scrollt das Transkript automatisch, um der Wiedergabe zu folgen."
+	},
+	"readerBlendImages": {
+		"message": "Bilder einblenden"
+	},
+	"readerBlendImagesDescription": {
+		"message": "Bilder mit dem Seitenhintergrund verschmelzen."
+	},
+	"readerCloseImageViewer": {
+		"message": "Bildbetrachter schließen"
+	},
+	"readerCollapseComment": {
+		"message": "Kommentar einklappen"
+	},
+	"readerColorLinks": {
+		"message": "Links einfärben"
+	},
+	"readerColorSchemeDefault": {
+		"message": "Standard"
+	},
+	"readerCurrentPosition": {
+		"message": "Aktuelle Position"
+	},
+	"readerCustomCss": {
+		"message": "Benutzerdefiniertes CSS"
+	},
+	"readerCustomCssDescription": {
+		"message": "CSS, das in der Leseansicht automatisch angewendet wird."
+	},
+	"readerDarkTheme": {
+		"message": "Design für den Dunkelmodus"
+	},
+	"readerDarkThemeDescription": {
+		"message": "Im Dunkelmodus ein anderes Design verwenden."
+	},
+	"readerError": {
+		"message": "Inhalt konnte nicht extrahiert werden."
+	},
+	"readerFont": {
+		"message": "Schriftartoptionen"
+	},
+	"readerFontDefault": {
+		"message": "Standard"
+	},
+	"readerFontDescription": {
+		"message": "Fügen Sie auf Ihrem System installierte Schriftarten hinzu. Drücken Sie die Eingabetaste, um eine Schriftart hinzuzufügen."
+	},
+	"readerFontNotFound": {
+		"message": "Nicht gefunden"
+	},
+	"readerFontPlaceholder": {
+		"message": "Eingabetaste drücken, um eine Schriftart hinzuzufügen"
+	},
+	"readerFontSetDefault": {
+		"message": "Als Standard festlegen"
+	},
+	"readerFontSize": {
+		"message": "Basis-Schriftgröße"
+	},
+	"readerFontSystem": {
+		"message": "System"
+	},
+	"readerFontSystemSans": {
+		"message": "Sans-Serif"
+	},
+	"readerFontSystemSerif": {
+		"message": "Serif"
+	},
+	"readerFonts": {
+		"message": "Schriftarten"
+	},
+	"readerFootnotes": {
+		"message": "Fußnoten"
+	},
+	"readerHighlightActiveLine": {
+		"message": "Aktive Zeile hervorheben"
+	},
+	"readerHighlightActiveLineDescription": {
+		"message": "Hebt während der Wiedergabe den aktuellen Satz im Transkript hervor."
+	},
+	"readerImages": {
+		"message": "Bilder"
+	},
+	"readerLineHeight": {
+		"message": "Zeilenhöhe"
+	},
+	"readerLineWidth": {
+		"message": "Zeilenbreite"
+	},
+	"readerLoading": {
+		"message": "Wird bereinigt…"
+	},
+	"readerOn": {
+		"message": "Lesemodus"
+	},
+	"readerPinPlayer": {
+		"message": "Player anheften"
+	},
+	"readerPinPlayerDescription": {
+		"message": "Hält den Videoplayer sichtbar, während du durch das Transkript scrollst."
+	},
+	"readerSettings": {
+		"message": "Reader-Einstellungen"
+	},
+	"readerTheme": {
+		"message": "Design"
+	},
+	"readerThemeDescription": {
+		"message": "Wählen Sie die Farben für die Leseansicht."
+	},
+	"readerThemeSection": {
+		"message": "Design"
+	},
+	"readerTranscripts": {
+		"message": "Transkripte"
+	},
+	"readerTypography": {
+		"message": "Typografie"
+	},
+	"readerViewFullSize": {
+		"message": "In voller Größe anzeigen"
+	},
+	"recommended": {
+		"message": "empfohlen"
+	},
+	"refresh": {
+		"message": "Aktualisieren"
+	},
+	"remove": {
+		"message": "Entfernen"
+	},
+	"removeProperty": {
+		"message": "Eigenschaft entfernen"
+	},
+	"removeUnusedProperties": {
+		"message": "Ungenutzte Eigenschaften entfernen"
+	},
+	"removeUnusedPropertiesDescription": {
+		"message": "Entferne alle Eigenschaften, die in keiner Vorlage verwendet werden."
+	},
+	"removeVault": {
+		"message": "Vault entfernen"
+	},
+	"replaceContent": {
+		"message": "Seiteninhalt ersetzen"
+	},
+	"reset": {
+		"message": "Zurücksetzen"
+	},
+	"resetDefaultTemplate": {
+		"message": "Standardvorlage zurücksetzen"
+	},
+	"resetDefaultTemplateDescription": {
+		"message": "Entferne alle Änderungen, die Du an der Standardvorlage vorgenommen hast."
+	},
+	"resetProvidersAndModels": {
+		"message": "Standardmodelle zurücksetzen"
+	},
+	"resetProvidersAndModelsDescription": {
+		"message": "Setze Anbieter und Modelle auf die Standardeinstellungen zurück."
+	},
+	"save": {
+		"message": "Speichern"
+	},
+	"saveBehaviorDescription": {
+		"message": "Wählen Sie die Standardoption zum Speichern von Seiten. Weitere Optionen erscheinen im Dropdown-Menü neben der Haupttaste."
+	},
+	"saveBehaviorLabel": {
+		"message": "Speicherverhalten"
+	},
+	"saveFile": {
+		"message": "Datei speichern..."
+	},
+	"searchVariables": {
+		"message": "Variablen suchen..."
+	},
+	"selectProvider": {
+		"message": "Wähle einen Anbieter aus"
+	},
+	"selectTemplateToExport": {
+		"message": "Bitte wähle eine Vorlage zum Exportieren aus."
+	},
+	"settings": {
+		"message": "Einstellungen"
+	},
+	"settingsHeading": {
+		"message": "Einstellungen"
+	},
+	"settingsImportSuccess": {
+		"message": "Alle Einstellungen wurden erfolgreich importiert. Bitte aktualisiere die Seite, um die Änderungen zu sehen."
+	},
+	"share": {
+		"message": "Teilen..."
+	},
+	"shortcutInstructionsBrave": {
+		"message": "Um Tastenzuweisungen zu ändern, gehe zu $1"
+	},
+	"shortcutInstructionsChrome": {
+		"message": "Um Tastenzuweisungen zu ändern, gehe zu $1"
+	},
+	"shortcutInstructionsDefault": {
+		"message": "Öffne die Browser-Einstellungen um Tastenkombinationen zu ändern."
+	},
+	"shortcutInstructionsEdge": {
+		"message": "Um Tastenzuweisungen zu ändern, gehe zu $1"
+	},
+	"shortcutInstructionsFirefox": {
+		"message": "Um Tastenzuweisungen zu ändern, gehe zu $1, klicke auf das Zahnrad-Symbol und wähle \"Erweiterungs-Tastenkombinationen verwalten\"."
+	},
+	"shortcutInstructionsIntro": {
+		"message": "Tastenkombinationen geben Dir schnelleren Zugriff auf Clipper-Funktionen."
+	},
+	"shortcutInstructionsSafari": {
+		"message": "Tastenkombinationen können in Safari nicht angepasst werden."
+	},
+	"shortcutNotSet": {
+		"message": "Nicht festgelegt"
+	},
+	"showActionsButton": {
+		"message": "Aktionsschaltfläche anzeigen"
+	},
+	"showActionsDescription": {
+		"message": "Ermöglicht es Dir, Seitenvariablen aus dem Clipper-Menü zu inspizieren. Nützlich, um die Variablen zu sehen, die in Vorlagen verwendet werden können."
+	},
+	"showPageVariables": {
+		"message": "Seitenvariablen anzeigen"
+	},
+	"silentOpen": {
+		"message": "Ausgeschnittene Notiz ohne öffnen speichern"
+	},
+	"silentOpenDescription": {
+		"message": "Ausgeschnittene Notizen werden gespeichert, aber nicht in einem neuen Tab geöffnet. Logseq wird trotzdem in den Vordergrund gebracht."
+	},
+	"specificNoteName": {
+		"message": "Spezifischer Notizname"
+	},
+	"systemDefault": {
+		"message": "System"
+	},
+	"template": {
+		"message": "Vorlage"
+	},
+	"templateCopied": {
+		"message": "Vorlagen-JSON in Zwischenablage kopiert"
+	},
+	"templateCopyError": {
+		"message": "Vorlagen-JSON konnte nicht in Zwischenablage kopiert werden"
+	},
+	"templateErrorCount": {
+		"message": "In deiner Vorlage ist ein Fehler."
+	},
+	"templateErrorsCount": {
+		"message": "In deiner Vorlage sind $1 Fehler."
+	},
+	"templateGroupContent": {
+		"message": "Inhalt"
+	},
+	"templateGroupLocation": {
+		"message": "Speicherort"
+	},
+	"templateName": {
+		"message": "Vorlagenname"
+	},
+	"templateProperties": {
+		"message": "Eigenschaften"
+	},
+	"templatePropertiesDescription": {
+		"message": "Eigenschaften, die oben zur ausgeschnittenen Notiz hinzugefügt werden sollen. Verwende Variablen, um Daten von der Seite vorab auszufüllen."
+	},
+	"templateTriggers": {
+		"message": "Vorlagen-Trigger"
+	},
+	"templateTriggersDescription": {
+		"message": "Definiere Regeln, um diese Vorlage automatisch auszuwählen, wenn sie mit einem URL-Muster übereinstimmt oder schema.org-Daten enthält. Eine Regel pro Zeile."
+	},
+	"templateValid": {
+		"message": "Die Vorlagensyntax ist gültig"
+	},
+	"templatesHeading": {
+		"message": "Vorlagen"
+	},
+	"thinking": {
+		"message": "Denke nach"
+	},
+	"unknownProvider": {
+		"message": "Unbekannter Anbieter"
+	},
+	"updateAvailable": {
+		"message": "Ein Update ist verfügbar."
+	},
+	"usingLatestVersion": {
+		"message": "Du verwendest die neueste Version."
+	},
+	"vault": {
+		"message": "Vault"
+	},
+	"vaultDescription": {
+		"message": "Wähle den Standard-Vault für diese Vorlage aus. Gehen zu $link_start$allgemeinen Einstellungen$link_end$, um Vaults hinzuzufügen oder zu entfernen.",
+		"placeholders": {
+			"link_end": {
+				"content": "</a>"
+			},
+			"link_start": {
+				"content": "<a href=\"?section=general\">"
+			}
+		}
+	},
+	"vaults": {
+		"message": "Vaults"
+	},
+	"vaultsDescription": {
+		"message": "Standardmäßig werden ausgeschnittene Notizen im aktuell geöffneten Vault gespeichert. Du kannst hier Vaults hinzufügen, wenn Du die Option haben möchtest, in verschiedenen Vaults zu speichern. Vaultnamen müssen exakt mit dem Namen des Obsidian-Vaults übereinstimmen. Drücke $strong_start$Enter$strong_end$, um einen Vault hinzuzufügen.",
+		"placeholders": {
+			"strong_end": {
+				"content": "</strong>"
+			},
+			"strong_start": {
+				"content": "<strong>"
+			}
+		}
+	},
+	"version": {
+		"message": "Version"
+	},
+	"pasteCursorPosition": {
+		"message": "Paste at cursor position"
+	}
+}

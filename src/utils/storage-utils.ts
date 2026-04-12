@@ -1,50 +1,52 @@
 import browser from './browser-polyfill';
-import { Settings, ModelConfig, PropertyType, HistoryEntry, Provider } from '../types/types';
+import { Settings, ModelConfig, PropertyType, HistoryEntry, Provider, Rating } from '../types/types';
 import { debugLog } from './debug';
+import { copyToClipboard } from 'core/popup';
 
-export type { Settings, ModelConfig, PropertyType, HistoryEntry, Provider };
+export type { Settings, ModelConfig, PropertyType, HistoryEntry, Provider, Rating };
 
 export let generalSettings: Settings = {
 	vaults: [],
 	betaFeatures: false,
 	legacyMode: false,
 	silentOpen: false,
+	openBehavior: 'popup',
 	highlighterEnabled: true,
 	alwaysShowHighlights: false,
 	highlightBehavior: 'replace-content',
 	showMoreActionsButton: false,
-	interpreterModel: 'gpt-4o-mini',
-	models: [
-		{ id: 'gpt-4o-mini', providerId: 'openai', providerModelId: 'gpt-4o-mini', name: 'GPT-4o Mini', enabled: true },
-		{ id: 'gpt-4o', providerId: 'openai', providerModelId: 'gpt-4o', name: 'GPT-4o', enabled: true },
-		{ id: 'claude-3-5-sonnet-latest', providerId: 'anthropic', providerModelId: 'claude-3-5-sonnet-latest', name: 'Claude 3.5 Sonnet', enabled: true },
-		{ id: 'claude-3-5-haiku-latest', providerId: 'anthropic', providerModelId: 'claude-3-5-haiku-latest', name: 'Claude 3.5 Haiku', enabled: true },
-	],
-	providers: [
-		{
-			id: 'openai',
-			name: 'OpenAI',
-			baseUrl: 'https://api.openai.com/v1/chat/completions',
-			apiKey: ''
-		},
-		{
-			id: 'anthropic',
-			name: 'Anthropic',
-			baseUrl: 'https://api.anthropic.com/v1/messages',
-			apiKey: ''
-		}
-	],
+	interpreterModel: '',
+	models: [],
+	providers: [],
 	interpreterEnabled: false,
 	interpreterAutoRun: false,
 	defaultPromptContext: '',
 	propertyTypes: [],
+	readerSettings: {
+		fontSize: 16,
+		lineHeight: 1.6,
+		maxWidth: 38,
+		lightTheme: 'default',
+		darkTheme: 'same',
+		appearance: 'auto',
+		fonts: [],
+		defaultFont: '',
+		blendImages: true,
+		colorLinks: false,
+		pinPlayer: true,
+		autoScroll: true,
+		highlightActiveLine: true,
+		customCss: ''
+	},
 	stats: {
 		addToObsidian: 0,
 		saveFile: 0,
 		copyToClipboard: 0,
 		share: 0
 	},
-	history: []
+	history: [],
+	ratings: [],
+	saveBehavior: 'addToObsidian'
 };
 
 export function setLocalStorage(key: string, value: any): Promise<void> {
@@ -61,12 +63,30 @@ interface StorageData {
 		betaFeatures?: boolean;
 		legacyMode?: boolean;
 		silentOpen?: boolean;
+		openBehavior?: boolean | 'popup' | 'embedded';
+		saveBehavior?: 'addToObsidian' | 'copyToClipboard' | 'saveFile';
 	};
 	vaults?: string[];
 	highlighter_settings?: {
 		highlighterEnabled?: boolean;
 		alwaysShowHighlights?: boolean;
 		highlightBehavior?: string;
+	};
+	reader_settings?: {
+		fontSize?: number;
+		lineHeight?: number;
+		maxWidth?: number;
+		lightTheme?: string;
+		darkTheme?: string;
+		appearance?: 'auto' | 'light' | 'dark';
+		fonts?: string[];
+		defaultFont?: string;
+		blendImages?: boolean;
+		colorLinks?: boolean;
+		pinPlayer?: boolean;
+		autoScroll?: boolean;
+		highlightActiveLine?: boolean;
+		customCss?: string;
 	};
 	interpreter_settings?: {
 		interpreterModel?: string;
@@ -84,172 +104,14 @@ interface StorageData {
 		share: number;
 	};
 	history?: HistoryEntry[];
-}
-
-interface LegacyModelConfig {
-	id: string;
-	name: string;
-	provider?: string;
-	providerId?: string;
-	baseUrl?: string;
-	apiKey?: string;
-	enabled: boolean;
-	providerModelId?: string;
-}
-
-interface LegacyInterpreterSettings {
-	openaiApiKey?: string;
-	anthropicApiKey?: string;
-	interpreterModel?: string;
-	models?: LegacyModelConfig[];
-	providers?: Provider[];
-	interpreterEnabled?: boolean;
-	interpreterAutoRun?: boolean;
-	defaultPromptContext?: string;
-}
-
-interface LegacyStorageData {
-	general_settings?: {
-		showMoreActionsButton?: boolean;
-		betaFeatures?: boolean;
-		legacyMode?: boolean;
-		silentOpen?: boolean;
-	};
-	vaults?: string[];
-	highlighter_settings?: {
-		highlighterEnabled?: boolean;
-		alwaysShowHighlights?: boolean;
-		highlightBehavior?: string;
-	};
-	interpreter_settings?: LegacyInterpreterSettings;
-	property_types?: PropertyType[];
-	stats?: {
-		addToObsidian: number;
-		saveFile: number;
-		copyToClipboard: number;
-		share: number;
-	};
-	history?: HistoryEntry[];
-	openaiApiKey?: string;
-	anthropicApiKey?: string;
-	openaiModel?: string;
+	ratings?: Rating[];
 	migrationVersion?: number;
 }
 
 const CURRENT_MIGRATION_VERSION = 1;
 
-async function needsMigration(data: LegacyStorageData): Promise<boolean> {
-	// Check if migration has already been run
-	if (data.migrationVersion === CURRENT_MIGRATION_VERSION) {
-		return false;
-	}
-
-	// Check for presence of legacy API key fields
-	return !!(data.anthropicApiKey ||
-		data.openaiApiKey ||
-		data.interpreter_settings?.anthropicApiKey ||
-		data.interpreter_settings?.openaiApiKey ||
-		data.interpreter_settings?.models?.some(m => m.provider || m.apiKey));
-}
-
-async function migrateModelsAndProviders(data: LegacyStorageData): Promise<{ models: ModelConfig[], providers: Provider[] }> {
-	debugLog('Migration', 'Starting models and providers migration');
-
-	try {
-		// Start with default providers from generalSettings
-		const defaultProviders = generalSettings.providers.map(provider => ({
-			...provider,
-			// Migrate API keys if they exist
-			apiKey: provider.id === 'openai'
-				? (data.openaiApiKey || data.interpreter_settings?.openaiApiKey || provider.apiKey)
-				: provider.id === 'anthropic'
-					? (data.anthropicApiKey || data.interpreter_settings?.anthropicApiKey || provider.apiKey)
-					: provider.apiKey
-		}));
-
-		// Create a map to track custom providers
-		const customProviders = new Map<string, Provider>();
-
-		// Get legacy models
-		const legacyModels = data.interpreter_settings?.models || [];
-
-		// First pass: collect all unique custom providers
-		legacyModels.forEach((model) => {
-			if (model.provider &&
-				!customProviders.has(model.provider) &&
-				!defaultProviders.some(p => p.name === model.provider) &&
-				model.provider !== 'OpenAI' &&
-				model.provider !== 'Anthropic') {
-
-				const providerId = model.provider.toLowerCase().replace(/\s+/g, '-');
-				const newProvider: Provider = {
-					id: providerId,
-					name: model.provider,
-					baseUrl: model.baseUrl || '',
-					apiKey: model.apiKey || ''
-				};
-				customProviders.set(model.provider, newProvider);
-				debugLog('Migration', `Created custom provider: ${model.provider}`);
-			}
-		});
-
-		// Combine default and custom providers
-		const allProviders = [...defaultProviders, ...Array.from(customProviders.values())];
-
-		// Create migrated models with correct structure
-		const models: ModelConfig[] = legacyModels.map((model): ModelConfig => {
-			let providerId = '';
-
-			// Match provider based on name or model name
-			if (model.provider === 'OpenAI' || model.name.toLowerCase().includes('gpt')) {
-				providerId = 'openai';
-			} else if (model.provider === 'Anthropic' || model.name.toLowerCase().includes('claude')) {
-				providerId = 'anthropic';
-			} else if (model.provider) {
-				const customProvider = customProviders.get(model.provider);
-				providerId = customProvider?.id || model.provider.toLowerCase().replace(/\s+/g, '-');
-			}
-
-			// Only keep the fields we need in the new model structure
-			return {
-				id: model.id,
-				name: model.name,
-				providerId: providerId,
-				providerModelId: model.id,
-				enabled: model.enabled
-			};
-		});
-
-		// If no models exist, use default models from generalSettings
-		if (models.length === 0) {
-			models.push(...generalSettings.models);
-		}
-
-		// Clean up legacy fields
-		await browser.storage.sync.remove([
-			'anthropicApiKey',
-			'openaiApiKey',
-			'openaiModel'
-		]);
-
-		// Save migration version
-		await browser.storage.sync.set({ migrationVersion: CURRENT_MIGRATION_VERSION });
-
-		debugLog('Migration', `Migrated ${models.length} models and ${allProviders.length} providers`);
-
-		return {
-			models,
-			providers: allProviders
-		};
-	} catch (error) {
-		console.error('Migration failed:', error);
-		debugLog('Migration', 'Migration failed:', error);
-		throw error;
-	}
-}
-
 export async function loadSettings(): Promise<Settings> {
-	const data = await browser.storage.sync.get(null) as LegacyStorageData;
+	const data = await browser.storage.sync.get(null) as StorageData;
 
 	// Load default settings first
 	const defaultSettings: Settings = {
@@ -258,60 +120,99 @@ export async function loadSettings(): Promise<Settings> {
 		betaFeatures: false,
 		legacyMode: false,
 		silentOpen: false,
+		openBehavior: 'popup',
 		highlighterEnabled: true,
 		alwaysShowHighlights: true,
 		highlightBehavior: 'replace-content',
-		interpreterModel: 'gpt-4o-mini',
+		interpreterModel: '',
 		models: [],
 		providers: [],
 		interpreterEnabled: false,
 		interpreterAutoRun: false,
 		defaultPromptContext: '',
 		propertyTypes: [],
+		saveBehavior: 'addToObsidian',
+		readerSettings: {
+			fontSize: 16,
+			lineHeight: 1.6,
+			maxWidth: 38,
+			lightTheme: 'default',
+			darkTheme: 'same',
+			appearance: 'auto',
+			fonts: [],
+			defaultFont: '',
+			blendImages: true,
+			colorLinks: false,
+			pinPlayer: true,
+			autoScroll: true,
+			highlightActiveLine: true,
+			customCss: ''
+		},
 		stats: {
 			addToObsidian: 0,
 			saveFile: 0,
 			copyToClipboard: 0,
 			share: 0
 		},
-		history: []
+		history: [],
+		ratings: [],
 	};
 
-	if (await needsMigration(data)) {
-		debugLog('Settings', 'Starting migration...');
-		try {
-			const { models, providers } = await migrateModelsAndProviders(data);
-			data.interpreter_settings = {
-				...data.interpreter_settings,
-				models,
-				providers
-			};
-			debugLog('Settings', 'Migration completed');
-		} catch (error) {
-			console.error('Migration failed:', error);
-			debugLog('Settings', 'Migration failed, using default settings');
-		}
+	// Update migration version if needed
+	if (!data.migrationVersion || data.migrationVersion < CURRENT_MIGRATION_VERSION) {
+		await browser.storage.sync.set({ migrationVersion: CURRENT_MIGRATION_VERSION });
+		debugLog('Settings', `Updated migration version to ${CURRENT_MIGRATION_VERSION}`);
 	}
+
+	// Validate and sanitize data to prevent corruption
+	const sanitizedVaults = Array.isArray(data.vaults) ? data.vaults.filter(v => typeof v === 'string') : [];
+	const sanitizedModels = Array.isArray(data.interpreter_settings?.models)
+		? data.interpreter_settings.models.filter(m => m && typeof m === 'object' && typeof m.id === 'string')
+		: [];
+	const sanitizedProviders = Array.isArray(data.interpreter_settings?.providers)
+		? data.interpreter_settings.providers.filter(p => p && typeof p === 'object' && typeof p.id === 'string')
+		: [];
 
 	// Load user settings
 	const loadedSettings: Settings = {
-		vaults: data.vaults || defaultSettings.vaults,
+		vaults: sanitizedVaults.length > 0 ? sanitizedVaults : defaultSettings.vaults,
 		showMoreActionsButton: data.general_settings?.showMoreActionsButton ?? defaultSettings.showMoreActionsButton,
 		betaFeatures: data.general_settings?.betaFeatures ?? defaultSettings.betaFeatures,
 		legacyMode: data.general_settings?.legacyMode ?? defaultSettings.legacyMode,
 		silentOpen: data.general_settings?.silentOpen ?? defaultSettings.silentOpen,
+		openBehavior: typeof data.general_settings?.openBehavior === 'boolean'
+			? (data.general_settings.openBehavior ? 'embedded' : 'popup')
+			: (data.general_settings?.openBehavior ?? defaultSettings.openBehavior),
 		highlighterEnabled: data.highlighter_settings?.highlighterEnabled ?? defaultSettings.highlighterEnabled,
 		alwaysShowHighlights: data.highlighter_settings?.alwaysShowHighlights ?? defaultSettings.alwaysShowHighlights,
 		highlightBehavior: data.highlighter_settings?.highlightBehavior ?? defaultSettings.highlightBehavior,
 		interpreterModel: data.interpreter_settings?.interpreterModel || defaultSettings.interpreterModel,
-		models: (data.interpreter_settings?.models as ModelConfig[]) || defaultSettings.models,
-		providers: data.interpreter_settings?.providers || defaultSettings.providers,
+		models: sanitizedModels,
+		providers: sanitizedProviders,
 		interpreterEnabled: data.interpreter_settings?.interpreterEnabled ?? defaultSettings.interpreterEnabled,
 		interpreterAutoRun: data.interpreter_settings?.interpreterAutoRun ?? defaultSettings.interpreterAutoRun,
 		defaultPromptContext: data.interpreter_settings?.defaultPromptContext || defaultSettings.defaultPromptContext,
 		propertyTypes: data.property_types || defaultSettings.propertyTypes,
+		readerSettings: {
+			fontSize: data.reader_settings?.fontSize ?? defaultSettings.readerSettings.fontSize,
+			lineHeight: data.reader_settings?.lineHeight ?? defaultSettings.readerSettings.lineHeight,
+			maxWidth: data.reader_settings?.maxWidth ?? defaultSettings.readerSettings.maxWidth,
+			lightTheme: data.reader_settings?.lightTheme ?? defaultSettings.readerSettings.lightTheme,
+			darkTheme: data.reader_settings?.darkTheme ?? defaultSettings.readerSettings.darkTheme,
+			appearance: data.reader_settings?.appearance as 'auto' | 'light' | 'dark' ?? defaultSettings.readerSettings.appearance,
+			fonts: data.reader_settings?.fonts ?? defaultSettings.readerSettings.fonts,
+			defaultFont: data.reader_settings?.defaultFont ?? defaultSettings.readerSettings.defaultFont,
+			blendImages: data.reader_settings?.blendImages ?? defaultSettings.readerSettings.blendImages,
+			colorLinks: data.reader_settings?.colorLinks ?? defaultSettings.readerSettings.colorLinks,
+			pinPlayer: data.reader_settings?.pinPlayer ?? defaultSettings.readerSettings.pinPlayer,
+			autoScroll: data.reader_settings?.autoScroll ?? defaultSettings.readerSettings.autoScroll,
+			highlightActiveLine: data.reader_settings?.highlightActiveLine ?? defaultSettings.readerSettings.highlightActiveLine,
+			customCss: data.reader_settings?.customCss ?? defaultSettings.readerSettings.customCss
+		},
 		stats: data.stats || defaultSettings.stats,
-		history: data.history || defaultSettings.history
+		history: data.history || defaultSettings.history,
+		ratings: data.ratings || defaultSettings.ratings,
+		saveBehavior: data.general_settings?.saveBehavior ?? defaultSettings.saveBehavior
 	};
 
 	generalSettings = loadedSettings;
@@ -330,7 +231,9 @@ export async function saveSettings(settings?: Partial<Settings>): Promise<void> 
 			showMoreActionsButton: generalSettings.showMoreActionsButton,
 			betaFeatures: generalSettings.betaFeatures,
 			legacyMode: generalSettings.legacyMode,
-			silentOpen: generalSettings.silentOpen
+			silentOpen: generalSettings.silentOpen,
+			openBehavior: generalSettings.openBehavior,
+			saveBehavior: generalSettings.saveBehavior,
 		},
 		highlighter_settings: {
 			highlighterEnabled: generalSettings.highlighterEnabled,
@@ -346,6 +249,22 @@ export async function saveSettings(settings?: Partial<Settings>): Promise<void> 
 			defaultPromptContext: generalSettings.defaultPromptContext
 		},
 		property_types: generalSettings.propertyTypes,
+		reader_settings: {
+			fontSize: generalSettings.readerSettings.fontSize,
+			lineHeight: generalSettings.readerSettings.lineHeight,
+			maxWidth: generalSettings.readerSettings.maxWidth,
+			lightTheme: generalSettings.readerSettings.lightTheme,
+			darkTheme: generalSettings.readerSettings.darkTheme,
+			appearance: generalSettings.readerSettings.appearance,
+			fonts: generalSettings.readerSettings.fonts,
+			defaultFont: generalSettings.readerSettings.defaultFont,
+			blendImages: generalSettings.readerSettings.blendImages,
+			colorLinks: generalSettings.readerSettings.colorLinks,
+			pinPlayer: generalSettings.readerSettings.pinPlayer,
+			autoScroll: generalSettings.readerSettings.autoScroll,
+			highlightActiveLine: generalSettings.readerSettings.highlightActiveLine,
+			customCss: generalSettings.readerSettings.customCss
+		},
 		stats: generalSettings.stats
 	});
 }
@@ -357,15 +276,18 @@ export async function setLegacyMode(enabled: boolean): Promise<void> {
 
 export async function incrementStat(
 	action: keyof Settings['stats'],
+	vault?: string,
+	path?: string,
+	url?: string,
+	title?: string
 ): Promise<void> {
 	const settings = await loadSettings();
 	settings.stats[action]++;
 	await saveSettings(settings);
 
-	// Get the current tab's URL and title
-	const tabs = await browser.tabs.query({ active: true, currentWindow: true });
-	if (tabs[0]?.url) {
-		await addHistoryEntry(action, tabs[0].url, tabs[0].title);
+	// Add history entry if URL is provided
+	if (url) {
+		await addHistoryEntry(action, url, title, vault, path);
 	}
 }
 
@@ -373,12 +295,16 @@ export async function addHistoryEntry(
 	action: keyof Settings['stats'],
 	url: string,
 	title?: string,
+	vault?: string,
+	path?: string
 ): Promise<void> {
 	const entry: HistoryEntry = {
 		datetime: new Date().toISOString(),
 		url,
 		action,
 		title,
+		vault,
+		path
 	};
 
 	// Get existing history from local storage
@@ -407,15 +333,17 @@ declare global {
 }
 
 // Make storage accessible from console — use `window.debugStorage()` to see all sync storage, or `window.debugStorage(key)` to see a specific key
-window.debugStorage = (key?: string) => {
-	if (key) {
-		return browser.storage.sync.get(key).then(data => {
-			console.log(`Sync storage contents for key "${key}":`, data);
+if (typeof window !== 'undefined') {
+	window.debugStorage = (key?: string) => {
+		if (key) {
+			return browser.storage.sync.get(key).then(data => {
+				console.log(`Sync storage contents for key "${key}":`, data);
+				return data;
+			});
+		}
+		return browser.storage.sync.get(null).then(data => {
+			console.log('Sync storage contents:', data);
 			return data;
 		});
-	}
-	return browser.storage.sync.get(null).then(data => {
-		console.log('Sync storage contents:', data);
-		return data;
-	});
-};
+	};
+}

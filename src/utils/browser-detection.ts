@@ -1,31 +1,58 @@
+interface KagiWindow extends Window {
+	KAGI?: any;
+}
+
 interface NavigatorExtended extends Navigator {
 	brave?: {
 		isBrave: () => Promise<boolean>;
 	};
 }
 
-export async function detectBrowser(): Promise<'chrome' | 'firefox' | 'firefox-mobile' | 'brave' | 'edge' | 'safari' | 'mobile-safari' | 'ipad-os' | 'other'> {
-	const userAgent = navigator.userAgent.toLowerCase();
-	
-	if (userAgent.includes('firefox')) {
-		return userAgent.includes('mobile') ? 'firefox-mobile' : 'firefox';
-	} else if (userAgent.indexOf("edg/") > -1) {
-		return 'edge';
-	} else if (userAgent.indexOf("chrome") > -1) {
-		// Check for Brave
-		const nav = navigator as NavigatorExtended;
-		if (nav.brave && await nav.brave.isBrave()) {
-			return 'brave';
+declare const window: KagiWindow | undefined;
+
+export async function detectBrowser(): Promise<'chrome' | 'firefox' | 'firefox-mobile' | 'brave' | 'edge' | 'safari' | 'mobile-safari' | 'ipad-os' | 'orion' | 'other'> {
+	try {
+		// Check if we're in a background script context
+		if (typeof window === 'undefined' || !window) {
+			if (typeof browser !== 'undefined') {
+				return 'firefox';
+			}
+			if (typeof chrome !== 'undefined') {
+				return 'chrome';
+			}
+			return 'other';
 		}
-		return 'chrome';
-	} else if (userAgent.includes('safari')) {
-		if (isIPad()) {
-			return 'ipad-os';
-		} else if (userAgent.includes('mobile') || userAgent.includes('iphone')) {
-			return 'mobile-safari';
+		
+		// Check for Orion first since its userAgent is Safari
+		if (typeof window.KAGI !== 'undefined') {
+			return 'orion';
 		}
-		return 'safari';
-	} else {
+
+		const userAgent = navigator.userAgent.toLowerCase();
+		
+		if (userAgent.includes('firefox')) {
+			return userAgent.includes('mobile') ? 'firefox-mobile' : 'firefox';
+		} else if (userAgent.indexOf("edg/") > -1) {
+			return 'edge';
+		} else if (userAgent.indexOf("chrome") > -1) {
+			// Check for Brave
+			const nav = navigator as NavigatorExtended;
+			if (nav.brave && await nav.brave.isBrave()) {
+				return 'brave';
+			}
+			return 'chrome';
+		} else if (userAgent.includes('safari')) {
+			if (isIPad()) {
+				return 'ipad-os';
+			} else if (userAgent.includes('mobile') || userAgent.includes('iphone')) {
+				return 'mobile-safari';
+			}
+			return 'safari';
+		} else {
+			return 'other';
+		}
+	} catch (error) {
+		console.error('Error detecting browser:', error);
 		return 'other';
 	}
 }
@@ -35,12 +62,38 @@ function isIPad(): boolean {
 		(navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 }
 
+function detectOS(): 'ios' | 'macos' | 'windows' | 'android' | 'linux' | 'other' {
+	const platform = ((navigator as any).userAgentData?.platform || navigator.platform || '').toLowerCase();
+	const ua = navigator.userAgent.toLowerCase();
+	if (/iphone|ipad|ipod/.test(ua) || (/mac/.test(platform) && navigator.maxTouchPoints > 1)) return 'ios';
+	if (/mac/.test(platform) || /macintosh/.test(ua)) return 'macos';
+	if (/win/.test(platform)) return 'windows';
+	if (/android/.test(ua)) return 'android';
+	if (/linux/.test(platform)) return 'linux';
+	return 'other';
+}
+
 export async function addBrowserClassToHtml() {
 	const browser = await detectBrowser();
 	const htmlElement = document.documentElement;
 
 	// Remove any existing browser classes
-	htmlElement.classList.remove('is-firefox-mobile', 'is-chromium', 'is-firefox', 'is-edge', 'is-chrome', 'is-brave', 'is-safari', 'is-mobile-safari', 'is-ipad-os');
+	htmlElement.classList.remove(
+		'is-firefox-mobile',
+		'is-chromium',
+		'is-firefox',
+		'is-edge',
+		'is-chrome',
+		'is-brave',
+		'is-safari',
+		'is-mobile-safari',
+		'is-ipad-os',
+		'is-orion'
+	);
+
+	const os = detectOS();
+	if (os === 'macos') htmlElement.classList.add('is-macos');
+	else if (os === 'ios') htmlElement.classList.add('is-ios');
 
 	// Add the appropriate class based on the detected browser
 	switch (browser) {
@@ -63,10 +116,13 @@ export async function addBrowserClassToHtml() {
 			htmlElement.classList.add('is-safari');
 			break;
 		case 'mobile-safari':
-			htmlElement.classList.add('is-mobile', 'is-mobile-safari', 'is-safari', 'is-ios');
+			htmlElement.classList.add('is-mobile', 'is-mobile-safari', 'is-safari');
 			break;
 		case 'ipad-os':
 			htmlElement.classList.add('is-tablet', 'is-ipad-os', 'is-safari');
+			break;
+		case 'orion':
+			htmlElement.classList.add('is-orion');
 			break;
 		default:
 			// For 'other' browsers, we don't add any class

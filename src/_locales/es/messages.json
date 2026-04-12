@@ -1,0 +1,1009 @@
+{
+	"activity": {
+		"message": "Actividad"
+	},
+	"addModel": {
+		"message": "+ Agregar modelo"
+	},
+	"addModelTitle": {
+		"message": "Agregar modelo"
+	},
+	"addProperty": {
+		"message": "+ Agregar propiedad"
+	},
+	"addProvider": {
+		"message": "+ Agregar proveedor"
+	},
+	"addProviderTitle": {
+		"message": "Agregar proveedor"
+	},
+	"addToObsidian": {
+		"message": "Agregar a Logseq"
+	},
+	"addVaultPlaceholder": {
+		"message": "Presiona enter para añadir una bóveda"
+	},
+	"advanced": {
+		"message": "Avanzado"
+	},
+	"allProperties": {
+		"message": "Todas las propiedades"
+	},
+	"allTime": {
+		"message": "Todo el tiempo"
+	},
+	"alwaysShowHighlights": {
+		"message": "Mostrar siempre los resaltados"
+	},
+	"alwaysShowHighlightsDescription": {
+		"message": "Muestra tus resaltados guardados cuando cargas una página. Desactiva para mostrar los resaltados solo cuando el modo resaltador está activado."
+	},
+	"apiKeyMissing": {
+		"message": "Sin clave API"
+	},
+	"apiKeysWarning": {
+		"message": "Al usar un proveedor externo, aceptas sus términos y política de privacidad. Las solicitudes del intérprete se envían directamente al proveedor que elijas. Logseq no recopila ni almacena ningún dato sobre tus solicitudes."
+	},
+	"appendToDaily": {
+		"message": "Agregar a la nota diaria, al final"
+	},
+	"appendToExisting": {
+		"message": "Agregar a una nota existente, al final"
+	},
+	"autoRunInterpreter": {
+		"message": "Ejecutar automáticamente"
+	},
+	"autoRunInterpreterDescription": {
+		"message": "Ejecuta las variables de prompt inmediatamente si la plantilla contiene alguna. Esto consumirá créditos de API con tu proveedor de modelo. Desactiva si solo quieres ejecutar el intérprete manualmente."
+	},
+	"behavior": {
+		"message": "Comportamiento"
+	},
+	"byDay": {
+		"message": "Días"
+	},
+	"byMonth": {
+		"message": "Meses"
+	},
+	"byWeek": {
+		"message": "Semanas"
+	},
+	"cancel": {
+		"message": "Cancelar"
+	},
+	"cannotDeleteProvider": {
+		"message": "No se puede eliminar el proveedor \"$1\" porque está siendo utilizado por $2 modelo(s)."
+	},
+	"changelog": {
+		"message": "Registro de cambios"
+	},
+	"chooseFile": {
+		"message": "Elegir un archivo"
+	},
+	"choosePropertiesFile": {
+		"message": "Elegir archivo de propiedades"
+	},
+	"chooseSettingsFile": {
+		"message": "Elegir archivo de configuración"
+	},
+	"chooseTemplateFile": {
+		"message": "Elegir archivo de plantilla"
+	},
+	"clipBehavior": {
+		"message": "Comportamiento de guardado"
+	},
+	"clipBehaviorDescription": {
+		"message": "Elige cómo se guarda el contenido resaltado en Logseq. Define la variable $strong_start${{content}}$strong_end$.",
+		"placeholders": {
+			"strong_end": {
+				"content": "</strong>"
+			},
+			"strong_start": {
+				"content": "<strong>"
+			}
+		}
+	},
+	"clipboardError": {
+		"message": "Obsidian no puede acceder a tu portapapeles. Prueba las instrucciones de solución de problemas aquí: $1",
+		"placeholders": {
+			"1": {
+				"content": "$1"
+			}
+		}
+	},
+	"close": {
+		"message": "Cerrar"
+	},
+	"commandOpenClipper": {
+		"message": "Abrir Logseq Clipper"
+	},
+	"commandQuickClip": {
+		"message": "Guardado rápido"
+	},
+	"commandToggleHighlighter": {
+		"message": "Alternar modo resaltador"
+	},
+	"commandToggleReader": {
+		"message": "Alternar vista de lectura"
+	},
+	"confirmDeleteTemplate": {
+		"message": "¿Estás seguro de que quieres eliminar la plantilla \"$1\"?"
+	},
+	"confirmReplaceSettings": {
+		"message": "Esto reemplazará todas sus configuraciones actuales, incluyendo plantillas y propiedades. ¿Está seguro de que desea continuar?"
+	},
+	"copied": {
+		"message": "¡Copiado!"
+	},
+	"copyAsJson": {
+		"message": "Copiar como JSON"
+	},
+	"copyToClipboard": {
+		"message": "Copiar al portapapeles"
+	},
+	"createNewNote": {
+		"message": "Crear nueva nota"
+	},
+	"custom": {
+		"message": "Personalizado"
+	},
+	"dailyNoteFormat": {
+		"message": "Formato de nota diaria (ej., YYYY-MM-DD)"
+	},
+	"defaultInterpreterContext": {
+		"message": "Contexto predeterminado del intérprete"
+	},
+	"defaultInterpreterContextDescription": {
+		"message": "El modelo usará este contexto para interpretar las variables de prompt. Se pueden usar variables y filtros aquí."
+	},
+	"defaultTemplateName": {
+		"message": "Predeterminado"
+	},
+	"delete": {
+		"message": "Eliminar"
+	},
+	"deleteModelConfirm": {
+		"message": "¿Estás seguro de que quieres eliminar este modelo?"
+	},
+	"deleteProviderConfirm": {
+		"message": "¿Estás seguro de que quieres eliminar este proveedor?"
+	},
+	"disableHighlighter": {
+		"message": "Desactivar resaltador"
+	},
+	"disableReader": {
+		"message": "Desactivar vista de lectura"
+	},
+	"done": {
+		"message": "Hecho"
+	},
+	"dragAndDropFile": {
+		"message": "Arrastre y suelte el archivo aquí"
+	},
+	"duplicate": {
+		"message": "Duplicar"
+	},
+	"earlyAccessDescription": {
+		"message": "Usa funciones que requieren la última versión de $link_start$acceso anticipado$link_end$ de Obsidian. Actualmente requiere Obsidian 1.7.2 o posterior.",
+		"placeholders": {
+			"link_end": {
+				"content": "</a>"
+			},
+			"link_start": {
+				"content": "<a href=\"https://help.obsidian.md/Obsidian/Early+access+versions\" target=\"_blank\">"
+			}
+		}
+	},
+	"earlyAccessFeatures": {
+		"message": "Funciones de acceso anticipado"
+	},
+	"editModel": {
+		"message": "Editar modelo"
+	},
+	"editProvider": {
+		"message": "Editar proveedor"
+	},
+	"editTemplate": {
+		"message": "Editar plantilla"
+	},
+	"embedded": {
+		"message": "Incrustado"
+	},
+	"enableHighlighterDescription": {
+		"message": "Resalta contenido en páginas web que puedes guardar en Logseq."
+	},
+	"enableInterpreter": {
+		"message": "Habilitar intérprete"
+	},
+	"enableInterpreterDescription": {
+		"message": "Usa lenguaje natural para extraer datos de las páginas. Por ejemplo, puedes usar la sintaxis de plantilla $strong_start${{\"un resumen de la página\"}}$strong_end$. Requiere una clave API o modelo personalizado configurado abajo. $link_start$Más información$link_end$",
+		"placeholders": {
+			"link_end": {
+				"content": "</a>"
+			},
+			"link_start": {
+				"content": "<a href=\"https://help.obsidian.md/web-clipper/interpreter\" target=\"_blank\">"
+			},
+			"strong_end": {
+				"content": "</strong>"
+			},
+			"strong_start": {
+				"content": "<strong>"
+			}
+		}
+	},
+	"enableReader": {
+		"message": "Abrir vista de lectura"
+	},
+	"error": {
+		"message": "Error"
+	},
+	"export": {
+		"message": "Exportar"
+	},
+	"exportAllSettings": {
+		"message": "Exportar todos los ajustes"
+	},
+	"exportAllSettingsDescription": {
+		"message": "Exporta todos los ajustes incluyendo plantillas y propiedades."
+	},
+	"exportHighlights": {
+		"message": "Exportar resaltados"
+	},
+	"exportHighlightsDescription": {
+		"message": "Exporta tus resaltados a un archivo."
+	},
+	"exportProperties": {
+		"message": "Exportar propiedades"
+	},
+	"exportPropertiesDescription": {
+		"message": "Guarda las propiedades del Web Clipper en un archivo $strong_start$types.json$strong_end$ que puede ser importado en tu bóveda de Obsidian o en Web Clipper en otros dispositivos.",
+		"placeholders": {
+			"strong_end": {
+				"content": "</strong>"
+			},
+			"strong_start": {
+				"content": "<strong>"
+			}
+		}
+	},
+	"extensionDescription": {
+		"message": "Guarda contenido web en un formato privado y duradero al que puedes acceder sin conexión. La extensión oficial para Logseq."
+	},
+	"extensionName": {
+		"message": "Logseq Web Clipper"
+	},
+	"failedToCopyText": {
+		"message": "Error al copiar el texto"
+	},
+	"failedToDeleteTemplate": {
+		"message": "Error al eliminar la plantilla. Por favor, inténtalo de nuevo."
+	},
+	"failedToDuplicateTemplate": {
+		"message": "Error al duplicar la plantilla. Por favor, inténtelo de nuevo."
+	},
+	"failedToExportHighlights": {
+		"message": "Error al exportar los resaltados. Por favor, consulte la consola para más detalles."
+	},
+	"failedToExportSettings": {
+		"message": "Error al exportar las configuraciones. Por favor, consulte la consola para más detalles."
+	},
+	"failedToExtractContent": {
+		"message": "No se pudo extraer el contenido de la página."
+	},
+	"failedToImportTemplate": {
+		"message": "Error al importar la plantilla. Por favor, revise el archivo e intente de nuevo."
+	},
+	"failedToInitialize": {
+		"message": "Por favor, intenta recargar la extensión."
+	},
+	"failedToInitializeContent": {
+		"message": "No se pudo inicializar el contenido de la página."
+	},
+	"failedToProcessInterpreter": {
+		"message": "Error al procesar el intérprete. Por favor, inténtalo de nuevo."
+	},
+	"failedToResetProviders": {
+		"message": "Error al restablecer los proveedores y modelos"
+	},
+	"failedToResetTemplate": {
+		"message": "Error al restablecer la plantilla predeterminada. Por favor, inténtalo de nuevo."
+	},
+	"failedToSave": {
+		"message": "Error al guardar el archivo"
+	},
+	"failedToSaveFile": {
+		"message": "Error al guardar el archivo"
+	},
+	"failedToSaveProvider": {
+		"message": "Error al guardar el proveedor. Por favor, intente de nuevo."
+	},
+	"feedback": {
+		"message": "Comentarios"
+	},
+	"feedbackDescription": {
+		"message": "¿Cómo podemos mejorar Web Clipper? Por favor, visita nuestra página de ayuda, donde puedes reportar errores, sugerir características y obtener ayuda con problemas comunes."
+	},
+	"feedbackTitle": {
+		"message": "Gracias por tus comentarios"
+	},
+	"folder": {
+		"message": "Carpeta"
+	},
+	"general": {
+		"message": "General"
+	},
+	"generalSettings": {
+		"message": "Ajustes generales"
+	},
+	"getApiKeyHere": {
+		"message": "Obtén tu clave API de $1 aquí."
+	},
+	"help": {
+		"message": "Ayuda"
+	},
+	"helpDescription": {
+		"message": "Aprenda a usar Web Clipper y obtenga ayuda para solucionar problemas."
+	},
+	"highlightInline": {
+		"message": "Resaltar el contenido de la página"
+	},
+	"highlightPage": {
+		"message": "Resaltar página"
+	},
+	"highlighter": {
+		"message": "Resaltador"
+	},
+	"highlighterOn": {
+		"message": "Resaltador"
+	},
+	"highlighterSettings": {
+		"message": "Resaltador"
+	},
+	"history": {
+		"message": "Historial"
+	},
+	"hotkeys": {
+		"message": "Atajos de teclado"
+	},
+	"import": {
+		"message": "Importar"
+	},
+	"importAllSettings": {
+		"message": "Importar todos los ajustes"
+	},
+	"importAllSettingsDescription": {
+		"message": "Importa todos los ajustes incluyendo plantillas y propiedades. Esto reemplazará tu configuración actual."
+	},
+	"importFailed": {
+		"message": "La importación falló. Por favor, consulte la consola para más detalles."
+	},
+	"importModalTitle": {
+		"message": "Importar"
+	},
+	"importProperties": {
+		"message": "Importar propiedades"
+	},
+	"importPropertiesDescription": {
+		"message": "Para importar tus propiedades desde Obsidian, localiza el archivo $strong_1_start$types.json$strong_1_end$ en la carpeta $strong_2_start$.obsidian$strong_2_end$ dentro de tu bóveda. Ten en cuenta que esta carpeta está oculta por defecto en la mayoría de los sistemas operativos.",
+		"placeholders": {
+			"strong_1_end": {
+				"content": "</strong>"
+			},
+			"strong_1_start": {
+				"content": "<strong>"
+			},
+			"strong_2_end": {
+				"content": "</strong>"
+			},
+			"strong_2_start": {
+				"content": "<strong>"
+			}
+		}
+	},
+	"importSettings": {
+		"message": "Importar configuraciones"
+	},
+	"importTemplate": {
+		"message": "Importar plantilla"
+	},
+	"interpret": {
+		"message": "interpretar"
+	},
+	"interpreter": {
+		"message": "Intérprete"
+	},
+	"interpreterContext": {
+		"message": "Contexto del intérprete"
+	},
+	"interpreterContextDescription": {
+		"message": "El contexto utilizado para interpretar variables de prompt. Anula el contexto predeterminado definido en $link_start$Ajustes del intérprete$link_end$. Se pueden usar variables aquí.",
+		"placeholders": {
+			"link_end": {
+				"content": "</a>"
+			},
+			"link_start": {
+				"content": "<a href=\"?section=interpreter\">"
+			}
+		}
+	},
+	"language": {
+		"message": "Idioma"
+	},
+	"languageDescription": {
+		"message": "Elige el idioma de la interfaz de la extensión."
+	},
+	"last30Days": {
+		"message": "Últimos 30 días"
+	},
+	"lastUsed": {
+		"message": "Último usado"
+	},
+	"legacyMode": {
+		"message": "Modo heredado"
+	},
+	"legacyModeDescription": {
+		"message": "Usa el método de guardado URI compatible con Obsidian 1.6.7 o anterior. Ten en cuenta que la longitud del contenido que puedes guardar está limitada por tu navegador y sistema operativo. Algunas páginas pueden fallar sin mostrar errores."
+	},
+	"modelName": {
+		"message": "Nombre del modelo"
+	},
+	"modelNameDescription": {
+		"message": "El nombre del modelo que desea mostrar en la interfaz."
+	},
+	"modelProvider": {
+		"message": "Proveedor"
+	},
+	"modelProviderDescription": {
+		"message": "El proveedor del modelo, por ejemplo Ollama, OpenRouter, Google, etc."
+	},
+	"modelProviderPlaceholder": {
+		"message": "Proveedor"
+	},
+	"modelRequiredFields": {
+		"message": "El nombre del modelo, el proveedor y la ID del modelo son obligatorios."
+	},
+	"models": {
+		"message": "Modelos"
+	},
+	"modelsListFor": {
+		"message": "Lista de modelos para $1"
+	},
+	"more": {
+		"message": "Más"
+	},
+	"newTemplate": {
+		"message": "Nueva plantilla"
+	},
+	"noHighlights": {
+		"message": "No hacer nada"
+	},
+	"noTemplates": {
+		"message": "No hay plantillas disponibles. Por favor, añade una plantilla en los ajustes."
+	},
+	"noUnusedProperties": {
+		"message": "No se encontraron propiedades sin usar."
+	},
+	"noteContent": {
+		"message": "Contenido de la nota"
+	},
+	"noteContentDescription": {
+		"message": "Personaliza el contenido de la nota. Usa variables para pre-poblar datos de la página."
+	},
+	"noteLocation": {
+		"message": "Ubicación de la nota"
+	},
+	"noteLocationDescription": {
+		"message": "La carpeta o ruta de la nota."
+	},
+	"noteName": {
+		"message": "Nombre de la nota"
+	},
+	"noteNameFormat": {
+		"message": "Nombre de la nota"
+	},
+	"noteNameFormatDescription": {
+		"message": "Formato para el nombre del archivo de la nota. Puedes usar variables como {{title}}, {{date}} y {{published}} para pre-poblar datos de la página. $link_start$Más información$link_end$.",
+		"placeholders": {
+			"link_end": {
+				"content": "</a>"
+			},
+			"link_start": {
+				"content": "<a href=\"https://help.obsidian.md/web-clipper/variables\" target=\"_blank\">"
+			}
+		}
+	},
+	"notesAboutPage": {
+		"message": "Notas sobre esta página..."
+	},
+	"onlyHttpSupported": {
+		"message": "Esta página no se puede guardar. Solo se admiten URLs http y https."
+	},
+	"open": {
+		"message": "Abrir"
+	},
+	"openBehaviorDescription": {
+		"message": "Elija cómo se abre Web Clipper por defecto."
+	},
+	"openBehaviorTitle": {
+		"message": "Comportamiento de apertura"
+	},
+	"openEmbedded": {
+		"message": "Abrir en página"
+	},
+	"openSidePanel": {
+		"message": "Abrir panel lateral"
+	},
+	"optional": {
+		"message": "(opcional)"
+	},
+	"orPasteBelow": {
+		"message": "O pegue el contenido a continuación"
+	},
+	"overwriteNote": {
+		"message": "Sobrescribir nota"
+	},
+	"pageCannotBeClipped": {
+		"message": "Esta página no se puede guardar."
+	},
+	"pageVariables": {
+		"message": "Variables de página"
+	},
+	"pagesSaved": {
+		"message": "página guardada"
+	},
+	"pagesSavedPlural": {
+		"message": "páginas guardadas"
+	},
+	"pasteJsonHere": {
+		"message": "Pegue el JSON aquí"
+	},
+	"pleaseReload": {
+		"message": "Por favor, intenta recargar la página."
+	},
+	"popularModels": {
+		"message": "Modelos populares"
+	},
+	"popularModelsDescription": {
+		"message": "Elija entre los modelos comúnmente utilizados o ingrese los detalles del modelo personalizado."
+	},
+	"popup": {
+		"message": "Ventana emergente"
+	},
+	"prependToDaily": {
+		"message": "Agregar a la nota diaria, al principio"
+	},
+	"prependToExisting": {
+		"message": "Agregar a una nota existente, al principio"
+	},
+	"preview": {
+		"message": "Vista previa"
+	},
+	"processing": {
+		"message": "procesando"
+	},
+	"properties": {
+		"message": "Propiedades"
+	},
+	"propertiesSettings": {
+		"message": "Propiedades"
+	},
+	"propertyName": {
+		"message": "Nombre de la propiedad"
+	},
+	"propertyTypeCheckbox": {
+		"message": "Casilla de verificación"
+	},
+	"propertyTypeDate": {
+		"message": "Fecha"
+	},
+	"propertyTypeDatetime": {
+		"message": "Fecha y hora"
+	},
+	"propertyTypeMultitext": {
+		"message": "Lista"
+	},
+	"propertyTypeNumber": {
+		"message": "Número"
+	},
+	"propertyTypeText": {
+		"message": "Texto"
+	},
+	"propertyValue": {
+		"message": "Valor de la propiedad"
+	},
+	"provider": {
+		"message": "Proveedor"
+	},
+	"providerApiKey": {
+		"message": "Clave API"
+	},
+	"providerApiKeyDescription": {
+		"message": "Tu clave API para este proveedor."
+	},
+	"providerBaseUrl": {
+		"message": "URL base"
+	},
+	"providerBaseUrlDescription": {
+		"message": "La URL del punto final de la API para este proveedor."
+	},
+	"providerModelId": {
+		"message": "ID del modelo"
+	},
+	"providerModelIdDescription": {
+		"message": "El identificador del modelo de su proveedor. Típicamente un nombre corto sin espacios."
+	},
+	"providerModelIdPlaceholder": {
+		"message": "ID del modelo"
+	},
+	"providerName": {
+		"message": "Nombre del proveedor."
+	},
+	"providerNameDescription": {
+		"message": "Nombre para mostrar de este proveedor."
+	},
+	"providerPreset": {
+		"message": "Preestablecido"
+	},
+	"providerPresetDescription": {
+		"message": "Elige un proveedor o crea uno personalizado."
+	},
+	"providerRequiredFields": {
+		"message": "El nombre del proveedor y la URL base son obligatorios."
+	},
+	"providers": {
+		"message": "Proveedores"
+	},
+	"rateExtensionDescription": {
+		"message": "¿Estás disfrutando de Web Clipper? Ayúdanos dándole una calificación."
+	},
+	"reader": {
+		"message": "Lector"
+	},
+	"readerAppearance": {
+		"message": "Apariencia"
+	},
+	"readerAppearanceAuto": {
+		"message": "Automático"
+	},
+	"readerAppearanceDark": {
+		"message": "Oscuro"
+	},
+	"readerAppearanceDescription": {
+		"message": "Elige apariencia clara u oscura."
+	},
+	"readerAppearanceLight": {
+		"message": "Claro"
+	},
+	"readerAutoScroll": {
+		"message": "Desplazamiento automático"
+	},
+	"readerAutoScrollDescription": {
+		"message": "Desplaza automáticamente la transcripción para seguir la reproducción."
+	},
+	"readerBlendImages": {
+		"message": "Mezclar imágenes"
+	},
+	"readerBlendImagesDescription": {
+		"message": "Mezcla las imágenes con el fondo de la página."
+	},
+	"readerCloseImageViewer": {
+		"message": "Cerrar visor de imágenes"
+	},
+	"readerCollapseComment": {
+		"message": "Contraer comentario"
+	},
+	"readerColorLinks": {
+		"message": "Colorear enlaces"
+	},
+	"readerColorSchemeDefault": {
+		"message": "Predeterminado"
+	},
+	"readerCurrentPosition": {
+		"message": "Posición actual"
+	},
+	"readerCustomCss": {
+		"message": "CSS personalizado"
+	},
+	"readerCustomCssDescription": {
+		"message": "CSS aplicado automáticamente en la vista de lectura."
+	},
+	"readerDarkTheme": {
+		"message": "Tema del modo oscuro"
+	},
+	"readerDarkThemeDescription": {
+		"message": "Usa un tema diferente en el modo oscuro."
+	},
+	"readerError": {
+		"message": "No se pudo extraer el contenido."
+	},
+	"readerFont": {
+		"message": "Opciones de fuente"
+	},
+	"readerFontDefault": {
+		"message": "Predeterminado"
+	},
+	"readerFontDescription": {
+		"message": "Añade fuentes instaladas en tu sistema. Pulsa Intro para añadir una fuente."
+	},
+	"readerFontNotFound": {
+		"message": "No encontrado"
+	},
+	"readerFontPlaceholder": {
+		"message": "Pulsa Intro para añadir una fuente"
+	},
+	"readerFontSetDefault": {
+		"message": "Establecer como predeterminado"
+	},
+	"readerFontSize": {
+		"message": "Tamaño de fuente base"
+	},
+	"readerFontSystem": {
+		"message": "Sistema"
+	},
+	"readerFontSystemSans": {
+		"message": "Sans-serif"
+	},
+	"readerFontSystemSerif": {
+		"message": "Serif"
+	},
+	"readerFonts": {
+		"message": "Fuentes"
+	},
+	"readerFootnotes": {
+		"message": "Notas al pie"
+	},
+	"readerHighlightActiveLine": {
+		"message": "Resaltar línea activa"
+	},
+	"readerHighlightActiveLineDescription": {
+		"message": "Resalta la frase actual en la transcripción durante la reproducción."
+	},
+	"readerImages": {
+		"message": "Imágenes"
+	},
+	"readerLineHeight": {
+		"message": "Altura de línea"
+	},
+	"readerLineWidth": {
+		"message": "Ancho de línea"
+	},
+	"readerLoading": {
+		"message": "Simplificando…"
+	},
+	"readerOn": {
+		"message": "Modo lectura"
+	},
+	"readerPinPlayer": {
+		"message": "Fijar reproductor"
+	},
+	"readerPinPlayerDescription": {
+		"message": "Mantén el reproductor de vídeo visible mientras te desplazas por la transcripción."
+	},
+	"readerSettings": {
+		"message": "Ajustes del lector"
+	},
+	"readerTheme": {
+		"message": "Tema"
+	},
+	"readerThemeDescription": {
+		"message": "Elige los colores usados en la vista de lectura."
+	},
+	"readerThemeSection": {
+		"message": "Tema"
+	},
+	"readerTranscripts": {
+		"message": "Transcripciones"
+	},
+	"readerTypography": {
+		"message": "Tipografía"
+	},
+	"readerViewFullSize": {
+		"message": "Ver a tamaño completo"
+	},
+	"recommended": {
+		"message": "recomendado"
+	},
+	"refresh": {
+		"message": "Refrescar"
+	},
+	"remove": {
+		"message": "Eliminar"
+	},
+	"removeProperty": {
+		"message": "Eliminar propiedad"
+	},
+	"removeUnusedProperties": {
+		"message": "Eliminar propiedades no utilizadas"
+	},
+	"removeUnusedPropertiesDescription": {
+		"message": "Elimina todas las propiedades que no se utilizan en ninguna plantilla."
+	},
+	"removeVault": {
+		"message": "Eliminar bóveda"
+	},
+	"replaceContent": {
+		"message": "Reemplazar el contenido de la página"
+	},
+	"reset": {
+		"message": "Restablecer"
+	},
+	"resetDefaultTemplate": {
+		"message": "Restablecer plantilla predeterminada"
+	},
+	"resetDefaultTemplateDescription": {
+		"message": "Elimina cualquier cambio que hayas hecho a la plantilla predeterminada."
+	},
+	"resetProvidersAndModels": {
+		"message": "Restablecer modelos predeterminados"
+	},
+	"resetProvidersAndModelsDescription": {
+		"message": "Restablecer los proveedores y modelos a la configuración predeterminada."
+	},
+	"save": {
+		"message": "Guardar"
+	},
+	"saveBehaviorDescription": {
+		"message": "Elige la opción predeterminada para guardar páginas. Las opciones alternativas aparecen en el menú desplegable junto al botón principal."
+	},
+	"saveBehaviorLabel": {
+		"message": "Comportamiento de guardado"
+	},
+	"saveFile": {
+		"message": "Guardar archivo..."
+	},
+	"searchVariables": {
+		"message": "Buscar variables..."
+	},
+	"selectProvider": {
+		"message": "Seleccionar un proveedor"
+	},
+	"selectTemplateToExport": {
+		"message": "Por favor, seleccione una plantilla para exportar."
+	},
+	"settings": {
+		"message": "Ajustes"
+	},
+	"settingsHeading": {
+		"message": "Ajustes"
+	},
+	"settingsImportSuccess": {
+		"message": "Todas las configuraciones se importaron con éxito. Por favor, actualice la página para ver los cambios."
+	},
+	"share": {
+		"message": "Compartir..."
+	},
+	"shortcutInstructionsBrave": {
+		"message": "Para cambiar las asignaciones de teclas, ve a $1"
+	},
+	"shortcutInstructionsChrome": {
+		"message": "Para cambiar las asignaciones de teclas, ve a $1"
+	},
+	"shortcutInstructionsDefault": {
+		"message": "Para cambiar las asignaciones de teclas, consulta la configuración de extensiones de tu navegador."
+	},
+	"shortcutInstructionsEdge": {
+		"message": "Para cambiar las asignaciones de teclas, ve a $1"
+	},
+	"shortcutInstructionsFirefox": {
+		"message": "Para cambiar las asignaciones de teclas, ve a $1, haz clic en el icono de engranaje y selecciona \"Gestionar atajos de extensión\"."
+	},
+	"shortcutInstructionsIntro": {
+		"message": "Los atajos de teclado te dan acceso rápido a las funciones del clipper."
+	},
+	"shortcutInstructionsSafari": {
+		"message": "Los atajos de teclado no son personalizables en Safari."
+	},
+	"shortcutNotSet": {
+		"message": "No establecido"
+	},
+	"showActionsButton": {
+		"message": "Mostrar botón de acciones"
+	},
+	"showActionsDescription": {
+		"message": "Permite inspeccionar las variables de página desde el menú del clipper. Útil para ver las variables disponibles para usar en las plantillas."
+	},
+	"showPageVariables": {
+		"message": "Mostrar variables de página"
+	},
+	"silentOpen": {
+		"message": "Guardar nota sin abrirla"
+	},
+	"silentOpenDescription": {
+		"message": "Las notas se guardarán pero no se abrirán en una nueva pestaña. Logseq seguirá siendo traído al primer plano."
+	},
+	"specificNoteName": {
+		"message": "Nombre específico de la nota"
+	},
+	"systemDefault": {
+		"message": "Sistema"
+	},
+	"template": {
+		"message": "Plantilla"
+	},
+	"templateCopied": {
+		"message": "Se copió el JSON de la plantilla al portapapeles"
+	},
+	"templateCopyError": {
+		"message": "Error al copiar el JSON de la plantilla al portapapeles"
+	},
+	"templateErrorCount": {
+		"message": "Hay un error en tu plantilla."
+	},
+	"templateErrorsCount": {
+		"message": "Hay $1 errores en tu plantilla."
+	},
+	"templateGroupContent": {
+		"message": "Contenido"
+	},
+	"templateGroupLocation": {
+		"message": "Ubicación"
+	},
+	"templateName": {
+		"message": "Nombre de la plantilla"
+	},
+	"templateProperties": {
+		"message": "Propiedades"
+	},
+	"templatePropertiesDescription": {
+		"message": "Propiedades para agregar en la parte superior de la nota guardada. Usa variables para pre-poblar datos de la página."
+	},
+	"templateTriggers": {
+		"message": "Activadores de plantilla"
+	},
+	"templateTriggersDescription": {
+		"message": "Define reglas para seleccionar automáticamente esta plantilla si coincide con un patrón de URL o contiene datos de schema.org. Una regla por línea."
+	},
+	"templateValid": {
+		"message": "La sintaxis de la plantilla es válida"
+	},
+	"templatesHeading": {
+		"message": "Plantillas"
+	},
+	"thinking": {
+		"message": "pensando"
+	},
+	"unknownProvider": {
+		"message": "Proveedor desconocido"
+	},
+	"updateAvailable": {
+		"message": "Hay una actualización disponible."
+	},
+	"usingLatestVersion": {
+		"message": "Estás usando la última versión."
+	},
+	"vault": {
+		"message": "Bóveda"
+	},
+	"vaultDescription": {
+		"message": "Selecciona la bóveda predeterminada para esta plantilla. Ve a $link_start$ajustes generales$link_end$ para agregar o eliminar bóvedas.",
+		"placeholders": {
+			"link_end": {
+				"content": "</a>"
+			},
+			"link_start": {
+				"content": "<a href=\"?section=general\">"
+			}
+		}
+	},
+	"vaults": {
+		"message": "Bóvedas"
+	},
+	"vaultsDescription": {
+		"message": "Por defecto, las notas se guardan en la bóveda abierta actualmente. Puedes añadir bóvedas aquí si quieres la opción de guardar en diferentes bóvedas. Los nombres de las bóvedas deben coincidir exactamente con el nombre de la bóveda de Obsidian. Presiona $strong_start$enter$strong_end$ para añadir una bóveda.",
+		"placeholders": {
+			"strong_end": {
+				"content": "</strong>"
+			},
+			"strong_start": {
+				"content": "<strong>"
+			}
+		}
+	},
+	"version": {
+		"message": "Versión"
+	},
+	"pasteCursorPosition": {
+		"message": "Paste at cursor position"
+	}
+}

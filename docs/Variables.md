@@ -5,11 +5,11 @@ permalink: web-clipper/variables
 
 Use the `...` icon in the [[Introduction to Obsidian Web Clipper|Web Clipper]] extension to access the current page variables for use in templates. There are five types of variables you can use:
 
-- Preset variables
-- Prompt variables
-- Meta variables
-- Selector variables
-- Schema.org variables
+- [[Variables#Preset variables|Preset variables]]
+- [[Variables#Prompt variables|Prompt variables]]
+- [[Variables#Meta variables|Meta variables]]
+- [[Variables#Selector variables|Selector variables]]
+- [[Variables#Schema.org variables|Schema.org variables]]
 
 ## Preset variables
 
@@ -17,23 +17,26 @@ Preset variables are automatically generated based on the page content. These ty
 
 The main content variable is `{{content}}`, which contains the article content, or the [[Highlight web pages|highlights]], or the selection if there is any selected text on the page. Note that `{{content}}` attempts to extract the main content of the page, which may not always be what you want. In that case, you can use other preset variables or selector variables to extract the content you need.
 
-| Variable          | Description                                                                            |
-| ----------------- | -------------------------------------------------------------------------------------- |
-| `{{author}}`      | Author of the page                                                                     |
-| `{{content}}`     | Article content, [[Highlight web pages\|highlights]], or selection, in Markdown format |
-| `{{contentHtml}}` | Article content, [[Highlight web pages\|highlights]], or selection, in HTML format     |
-| `{{date}}`        | Current date, can be formatted using the `date` filter                                 |
-| `{{description}}` | Description or excerpt                                                                 |
-| `{{domain}}`      | Domain                                                                                 |
-| `{{favicon}}`     | Favicon URL                                                                            |
-| `{{fullHtml}}`    | Unprocessed HTML for the full page content                                             |
-| `{{highlights}}`  | [[Highlight web pages\|Highlights]] with text and timestamps                           |
-| `{{image}}`       | Social share image URL                                                                 |
-| `{{published}}`   | Published date, can be formatted using the `date` filter                               |
-| `{{site}}`        | Site name or publisher                                                                 |
-| `{{title}}`       | Title of the page                                                                      |
-| `{{time}}`        | Current date and time                                                                  |
-| `{{url}}`         | Current URL                                                                            |
+| Variable            | Description                                                                            |
+| ------------------- | -------------------------------------------------------------------------------------- |
+| `{{author}}`        | Author of the page                                                                     |
+| `{{content}}`       | Article content, [[Highlight web pages\|highlights]], or selection, in Markdown format |
+| `{{contentHtml}}`   | Article content, [[Highlight web pages\|highlights]], or selection, in HTML format     |
+| `{{date}}`          | Current date, can be formatted using the `date` filter                                 |
+| `{{description}}`   | Description or excerpt                                                                 |
+| `{{domain}}`        | Domain                                                                                 |
+| `{{favicon}}`       | Favicon URL                                                                            |
+| `{{fullHtml}}`      | Unprocessed HTML for the full page content                                             |
+| `{{highlights}}`    | [[Highlight web pages\|Highlights]] with text and timestamps                           |
+| `{{image}}`         | Social share image URL                                                                 |
+| `{{published}}`     | Published date, can be formatted using the `date` filter                               |
+| `{{selection}}`     | Selection in Markdown format                                                           |
+| `{{selectionHtml}}` | Selection in HTML format                                                               |
+| `{{site}}`          | Site name or publisher                                                                 |
+| `{{title}}`         | Title of the page                                                                      |
+| `{{time}}`          | Current date and time                                                                  |
+| `{{url}}`           | Current URL                                                                            |
+| `{{words}}`         | Word count                                                                             |
 
 ## Prompt variables
 
@@ -41,15 +44,22 @@ Prompt variables leverage language models to extract and modify data using natur
 
 Prompt variables use the syntax `{{"a summary of the page"}}`. The double quotes around the prompt are important and distinguish prompts from preset variables. Prompt responses can be post-processed with [[filters]], e.g. `{{"a summary of the page"|blockquote}}`.
 
-Prompt variables have the benefit of being extremely flexible and easy to write, however they come with several tradeoffs: they are slower to run, and may have cost and privacy considerations depending on the provider you choose.
+### When to use prompt variables
 
-If the data you want to extract is in a consistent format it is best to *not* use prompt variables. Unlike other variable types, prompt variables need to be processed by an external language model, so they are replaced only once [[Interpret web pages|Interpreter]] has run.
+Prompt variables have the benefit of being extremely flexible and easy to write, however they come with several tradeoffs: they are slower to run, and may have cost and privacy considerations depending on the [[Interpret web pages#Models|provider]] you choose.
+
+Unlike other variable types, prompt variables need to be processed by an external language model, so they are replaced only once [[Interpret web pages|Interpreter]] has run.
+
+It is best to *not* use prompt variables if the data you want to extract is in a consistent format that could be extracted with other variable types. 
+
+On the other hand, prompt variables can be useful if the data you want to extract is an *inconsistent* format across websites. For example, you can make a [[Obsidian Web Clipper/Templates|template]] to save books that is agnostic of the book site. Prompt variables like `{{"author of the book"}}` will work across any book site, whereas selector variables typically only work for one site.
 
 ### Examples
 
-Prompts can use any natural language query. Depending on the model you use, prompts can query or translate data across languages.
+Prompts can use almost any natural language query. Depending on the model you use, prompts can query or translate data across languages.
 
 - `{{"a three bullet point summary, translated to French"}}` to extract bullet points about the page, and translate them to French.
+- `{{"un resumé de la page en trois points"}}` to extract three bullet points using a prompt in French.
 
 Prompts can transform page content into JSON that can be manipulated with [[Filters|filters]]. For example:
 
@@ -71,13 +81,19 @@ Selector variables allow you to extract text content from elements on the page u
 
 The syntax is `{{selector:cssSelector?attribute}}`, where `?attribute` is optional. If no attribute is specified, the text content of the element is returned. You can also use `{{selectorHtml:cssSelector}}` to get the HTML content of the element. Selector variables tend to work best on a specific website or set of websites that have consistent HTML structure.
 
-- `{{selector:h1}}` returns text content of the first `h1` element on the page.
-- `{{selector:.author}}` returns text content of the first `.author` element on the page.
-- `{{selector:img.hero?src}}` returns the `src` attribute of the first image with class `hero`.
-- `{{selector:a.main-link?href}}` returns the `href` attribute of the first anchor tag with class `main-link`.
+- `{{selector:h1}}` returns text content of any `h1` elements on the page.
+- `{{selector:.author}}` returns text content of any `.author` elements on the page.
+- `{{selector:img.hero?src}}` returns the `src` attribute of the image with class `hero`.
+- `{{selector:a.main-link?href}}` returns the `href` attribute of the anchor tag with class `main-link`.
 - `{{selectorHtml:body|markdown}}` returns the entire HTML of the `body` element, converted to Markdown using the `markdown` [[Filters#HTML processing|filter]].
 - Nested CSS selectors and combinators are supported if you need more specificity.
 - If multiple elements match the selector, an array is returned, which you can process with [[Filters#Arrays and objects|array and object filters]] like `join` or `map`.
+
+Selector variables can also be used directly in [[Templates#Template logic|template logic]]:
+
+- In loops: `{% for comment in selector:.comment %}...{% endfor %}`
+- In conditionals: `{% if selector:.premium-badge %}...{% endif %}`
+- In variable assignment: `{% set items = selector:.list-item %}`
 
 ## Schema.org variables
 

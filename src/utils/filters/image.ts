@@ -1,6 +1,6 @@
 import { escapeMarkdown } from '../string-utils';
 
-export const image = (str: string, param?: string): string => {
+export const image = (str: string, param?: string): string | string[] => {
 	if (!str.trim()) {
 		return str;
 	}
@@ -10,7 +10,7 @@ export const image = (str: string, param?: string): string => {
 		// Remove outer parentheses if present
 		param = param.replace(/^\((.*)\)$/, '$1');
 		// Remove surrounding quotes (both single and double)
-		altText = param.replace(/^(['"])(.*)\1$/, '$2');
+		altText = param.replace(/^(['"])([\s\S]*)\1$/, '$2');
 	}
 
 	try {
@@ -26,15 +26,14 @@ export const image = (str: string, param?: string): string => {
 		};
 
 		if (Array.isArray(data)) {
-			const result = data.map(item => {
+			return data.map(item => {
 				if (typeof item === 'object' && item !== null) {
 					return processObject(item);
 				}
 				return item ? `![${altText}](${escapeMarkdown(String(item))})` : '';
-			});
-			return result.join('\n');
+			}).flat();
 		} else if (typeof data === 'object' && data !== null) {
-			return processObject(data).join('\n');
+			return processObject(data);
 		}
 	} catch (error) {
 		// If parsing fails, treat it as a single URL string

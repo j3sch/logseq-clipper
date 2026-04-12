@@ -13,6 +13,56 @@ import {
 import { detectBrowser, addBrowserClassToHtml } from './browser-detection';
 import { generalSettings, loadSettings } from './storage-utils';
 
+/**
+ * Helper function to create SVG elements
+ */
+function createSVG(config: {
+	width?: string;
+	height?: string;
+	viewBox?: string;
+	className?: string;
+	paths?: string[];
+	lines?: Array<{x1: string, y1: string, x2: string, y2: string}>;
+}): SVGElement {
+	const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+	svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+	
+	if (config.width) svg.setAttribute('width', config.width);
+	if (config.height) svg.setAttribute('height', config.height);
+	if (config.viewBox) svg.setAttribute('viewBox', config.viewBox);
+	if (config.className) svg.setAttribute('class', config.className);
+	
+	// Default attributes for all SVGs
+	svg.setAttribute('fill', 'none');
+	svg.setAttribute('stroke', 'currentColor');
+	svg.setAttribute('stroke-width', '2');
+	svg.setAttribute('stroke-linecap', 'round');
+	svg.setAttribute('stroke-linejoin', 'round');
+	
+	// Add paths
+	if (config.paths) {
+		config.paths.forEach(pathData => {
+			const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+			path.setAttribute('d', pathData);
+			svg.appendChild(path);
+		});
+	}
+	
+	// Add lines
+	if (config.lines) {
+		config.lines.forEach(lineData => {
+			const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+			line.setAttribute('x1', lineData.x1);
+			line.setAttribute('y1', lineData.y1);
+			line.setAttribute('x2', lineData.x2);
+			line.setAttribute('y2', lineData.y2);
+			svg.appendChild(line);
+		});
+	}
+	
+	return svg;
+}
+
 export type AnyHighlightData = TextHighlightData | ElementHighlightData | ComplexHighlightData;
 
 export let highlights: AnyHighlightData[] = [];
@@ -30,11 +80,20 @@ let highlightHistory: HistoryAction[] = [];
 let redoHistory: HistoryAction[] = [];
 const MAX_HISTORY_LENGTH = 30;
 
+const ALLOWED_HIGHLIGHT_TAGS = [
+	'SPAN', 'P', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6',
+	'MATH', 'FIGURE', 'UL', 'OL', 'TABLE', 'LI', 'CODE', 'PRE', 'BLOCKQUOTE', 'EM', 'STRONG', 'A'
+];
+
+const BLOCK_LEVEL_TAGS_FOR_SPLIT = [
+	'P', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'LI', 'PRE', 'BLOCKQUOTE', 'FIGURE', 'TABLE'
+];
+
 export interface HighlightData {
 	id: string;
 	xpath: string;
 	content: string;
-	notes?: string[]; // Add this line
+	notes?: string[]; // Annotations
 }
 
 export interface TextHighlightData extends HighlightData {
@@ -90,9 +149,6 @@ export function toggleHighlighterMenu(isActive: boolean) {
 		enableLinkClicks();
 		removeHighlighterMenu();
 		browser.runtime.sendMessage({ action: "highlighterModeChanged", isActive: false });
-		if (!generalSettings.alwaysShowHighlights) {
-			removeExistingHighlights();
-		}
 	}
 	updateHighlightListeners();
 }
@@ -111,9 +167,7 @@ export function undo() {
 		if (lastAction) {
 			redoHistory.push(lastAction);
 			highlights = [...lastAction.oldHighlights];
-			applyHighlights();
-			saveHighlights();
-			updateHighlighterMenu();
+			commitHighlightChanges();
 			updateUndoRedoButtons();
 		}
 	}
@@ -125,9 +179,7 @@ export function redo() {
 		if (nextAction) {
 			highlightHistory.push(nextAction);
 			highlights = [...nextAction.newHighlights];
-			applyHighlights();
-			saveHighlights();
-			updateHighlighterMenu();
+			commitHighlightChanges();
 			updateUndoRedoButtons();
 		}
 	}
@@ -184,59 +236,142 @@ export function createHighlighterMenu() {
 	
 	const highlightCount = highlights.length;
 	const highlightText = `${highlightCount}`;
+
+	menu.textContent = '';
 	
-	menu.innerHTML = `
-		${highlightCount > 0 ? `<button id="obsidian-clip-button" class="mod-cta">Clip highlights</button>` : '<span class="no-highlights">Select elements to highlight</span>'}
-		${highlightCount > 0 ? `<button id="obsidian-clear-highlights">${highlightText} <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash-2"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg></button>` : ''}
-		<button id="obsidian-undo-highlights"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-undo-2"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5v0a5.5 5.5 0 0 1-5.5 5.5H11"/></svg></button>
-		<button id="obsidian-redo-highlights"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-redo-2"><path d="m15 14 5-5-5-5"/><path d="M20 9H9.5A5.5 5.5 0 0 0 4 14.5v0A5.5 5.5 0 0 0 9.5 20H13"/></svg></button>
-		<button id="obsidian-exit-highlighter"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>	
-	`;
-
+	// Add clip button or no highlights message
 	if (highlightCount > 0) {
-		const clearButton = document.getElementById('obsidian-clear-highlights');
-		const clipButton = document.getElementById('obsidian-clip-button');
+		const clipButton = document.createElement('button');
+		clipButton.id = 'obsidian-clip-button';
+		clipButton.className = 'mod-cta';
+		clipButton.textContent = 'Clip highlights';
+		menu.appendChild(clipButton);
+		
+		// Add clear highlights button
+		const clearButton = document.createElement('button');
+		clearButton.id = 'obsidian-clear-highlights';
+		clearButton.textContent = highlightText + ' ';
+		
+		// Add trash icon
+		const trashSvg = createSVG({
+			width: '16',
+			height: '16',
+			viewBox: '0 0 24 24',
+			className: 'lucide lucide-trash-2',
+			paths: [
+				'M3 6h18',
+				'M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6',
+				'M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2'
+			],
+			lines: [
+				{x1: '10', y1: '11', x2: '10', y2: '17'},
+				{x1: '14', y1: '11', x2: '14', y2: '17'}
+			]
+		});
+		clearButton.appendChild(trashSvg);
+		menu.appendChild(clearButton);
+	} else {
+		const noHighlights = document.createElement('span');
+		noHighlights.className = 'no-highlights';
+		noHighlights.textContent = 'Select elements to highlight';
+		menu.appendChild(noHighlights);
+	}
+	
+	// Add undo button
+	const undoButton = document.createElement('button');
+	undoButton.id = 'obsidian-undo-highlights';
+	const undoSvg = createSVG({
+		width: '16',
+		height: '16',
+		viewBox: '0 0 24 24',
+		className: 'lucide lucide-undo-2',
+		paths: [
+			'M9 14 4 9l5-5',
+			'M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5v0a5.5 5.5 0 0 1-5.5 5.5H11'
+		]
+	});
+	undoButton.appendChild(undoSvg);
+	menu.appendChild(undoButton);
+	
+	// Add redo button
+	const redoButton = document.createElement('button');
+	redoButton.id = 'obsidian-redo-highlights';
+	const redoSvg = createSVG({
+		width: '16',
+		height: '16',
+		viewBox: '0 0 24 24',
+		className: 'lucide lucide-redo-2',
+		paths: [
+			'm15 14 5-5-5-5',
+			'M20 9H9.5A5.5 5.5 0 0 0 4 14.5v0A5.5 5.5 0 0 0 9.5 20H13'
+		]
+	});
+	redoButton.appendChild(redoSvg);
+	menu.appendChild(redoButton);
+	
+	// Add exit button
+	const exitButton = document.createElement('button');
+	exitButton.id = 'obsidian-exit-highlighter';
+	const exitSvg = createSVG({
+		width: '16',
+		height: '16',
+		viewBox: '0 0 24 24',
+		className: 'lucide lucide-x',
+		paths: [
+			'M18 6 6 18',
+			'm6 6 12 12'
+		]
+	});
+	exitButton.appendChild(exitSvg);
+	menu.appendChild(exitButton);
 
-		if (clearButton) {
-			clearButton.addEventListener('click', clearHighlights);
-			clearButton.addEventListener('touchend', (e) => {
+	// Add event listeners to the buttons we just created
+	if (highlightCount > 0) {
+		// Use the clearButton and clipButton we already created
+		const clearButtonEl = menu.querySelector('#obsidian-clear-highlights') as HTMLButtonElement;
+		const clipButtonEl = menu.querySelector('#obsidian-clip-button') as HTMLButtonElement;
+
+		if (clearButtonEl) {
+			clearButtonEl.addEventListener('click', clearHighlights);
+			clearButtonEl.addEventListener('touchend', (e) => {
 				e.preventDefault();
 				clearHighlights();
 			});
 		}
 
-		if (clipButton) {
-			clipButton.addEventListener('click', handleClipButtonClick);
-			clipButton.addEventListener('touchend', (e) => {
+		if (clipButtonEl) {
+			clipButtonEl.addEventListener('click', handleClipButtonClick);
+			clipButtonEl.addEventListener('touchend', (e) => {
 				e.preventDefault();
 				handleClipButtonClick(e);
 			});
 		}
 	}
 
-	const exitButton = document.getElementById('obsidian-exit-highlighter');
-	const undoButton = document.getElementById('obsidian-undo-highlights');
-	const redoButton = document.getElementById('obsidian-redo-highlights');
+	// Use the buttons we already created
+	const exitButtonEl = menu.querySelector('#obsidian-exit-highlighter') as HTMLButtonElement;
+	const undoButtonEl = menu.querySelector('#obsidian-undo-highlights') as HTMLButtonElement;
+	const redoButtonEl = menu.querySelector('#obsidian-redo-highlights') as HTMLButtonElement;
 
-	if (exitButton) {
-		exitButton.addEventListener('click', exitHighlighterMode);
-		exitButton.addEventListener('touchend', (e) => {
+	if (exitButtonEl) {
+		exitButtonEl.addEventListener('click', exitHighlighterMode);
+		exitButtonEl.addEventListener('touchend', (e) => {
 			e.preventDefault();
 			exitHighlighterMode();
 		});
 	}
 
-	if (undoButton) {
-		undoButton.addEventListener('click', undo);
-		undoButton.addEventListener('touchend', (e) => {
+	if (undoButtonEl) {
+		undoButtonEl.addEventListener('click', undo);
+		undoButtonEl.addEventListener('touchend', (e) => {
 			e.preventDefault();
 			undo();
 		});
 	}
 
-	if (redoButton) {
-		redoButton.addEventListener('click', redo);
-		redoButton.addEventListener('touchend', (e) => {
+	if (redoButtonEl) {
+		redoButtonEl.addEventListener('click', redo);
+		redoButtonEl.addEventListener('touchend', (e) => {
 			e.preventDefault();
 			redo();
 		});
@@ -281,59 +416,239 @@ function enableLinkClicks() {
 
 // Highlight an entire element
 export function highlightElement(element: Element, notes?: string[]) {
-	const xpath = getElementXPath(element);
-	const content = element.outerHTML;
-	const isBlockElement = window.getComputedStyle(element).display === 'block';
+	let targetElement = element;
+	const originalTagName = element.tagName.toUpperCase();
+
+	// If a table cell or row is targeted, try to highlight the parent table instead
+	if (['TD', 'TH', 'TR'].includes(originalTagName)) {
+		const parentTable = element.closest('table');
+		if (parentTable) {
+			targetElement = parentTable;
+		} else {
+			// If a cell/row is not within a table, do not highlight.
+			console.log('Table cell/row targeted, but no parent table found. Not highlighting:', originalTagName);
+			return;
+		}
+	}
+
+	// Now, check if the determined targetElement (which could be the original element or a table) is allowed.
+	const finalTagName = targetElement.tagName.toUpperCase();
+	if (!ALLOWED_HIGHLIGHT_TAGS.includes(finalTagName)) {
+		// If the targetElement itself is not allowed, try its parent.
+		// This primarily applies to cases where the original element was not a table cell/row.
+		if (targetElement.parentElement && ALLOWED_HIGHLIGHT_TAGS.includes(targetElement.parentElement.tagName.toUpperCase())) {
+			targetElement = targetElement.parentElement;
+		} else {
+			console.log('Element type not allowed for highlighting:', finalTagName);
+			return;
+		}
+	}
+
+	const xpath = getElementXPath(targetElement);
+	const content = targetElement.outerHTML;
+	const isBlockElement = window.getComputedStyle(targetElement).display === 'block';
 	addHighlight({ 
 		xpath, 
 		content, 
 		type: isBlockElement ? 'element' : 'text', 
 		id: Date.now().toString(),
 		startOffset: 0,
-		endOffset: element.textContent?.length || 0
+		endOffset: targetElement.textContent?.length || 0
 	}, notes);
 }
 
 // Handle text selection for highlighting
 export function handleTextSelection(selection: Selection, notes?: string[]) {
+	if (selection.isCollapsed) return;
 	const range = selection.getRangeAt(0);
-	const highlightRanges = getHighlightRanges(range);
-	highlightRanges.forEach(hr => addHighlight(hr, notes));
+	const newHighlightDatas = getHighlightRanges(range);
+
+	if (newHighlightDatas.length > 0) {
+		const oldGlobalHighlights = [...highlights]; // Save global state BEFORE this operation
+		let currentBatchHighlights = [...highlights]; // Start with global state for merging
+
+		for (const highlightData of newHighlightDatas) {
+			const newHighlightWithNotes = { ...highlightData, notes: notes || [] };
+			// Merge current new highlight with the accumulating batch from this selection + pre-existing ones
+			currentBatchHighlights = mergeOverlappingHighlights(currentBatchHighlights, newHighlightWithNotes);
+		}
+		
+		highlights = currentBatchHighlights; // Update global highlights with the final merged result
+		
+		// Only add to history if something actually changed from the initial global state
+		if (JSON.stringify(oldGlobalHighlights) !== JSON.stringify(highlights)) {
+			addToHistory('add', oldGlobalHighlights, highlights); 
+		}
+		
+		sortHighlights();
+		commitHighlightChanges();
+	}
 	selection.removeAllRanges();
 }
 
 // Get highlight ranges for a given text selection
 function getHighlightRanges(range: Range): TextHighlightData[] {
-	const highlights: TextHighlightData[] = [];
-	const fragment = range.cloneContents();
-	const tempDiv = document.createElement('div');
-	tempDiv.appendChild(fragment);
+	const newHighlights: TextHighlightData[] = [];
+	if (range.collapsed) return newHighlights;
 
-	const parentElement = getHighlightableParent(range.commonAncestorContainer);
-	const xpath = getElementXPath(parentElement);
+	const uniqueParentBlocks = new Set<Element>();
+	const textNodeIterator = document.createNodeIterator(
+		range.commonAncestorContainer,
+		NodeFilter.SHOW_TEXT,
+		{
+			acceptNode: (node) => {
+				return range.intersectsNode(node) && node.nodeValue && node.nodeValue.trim().length > 0
+					? NodeFilter.FILTER_ACCEPT
+					: NodeFilter.FILTER_REJECT;
+			}
+		}
+	);
 
-	highlights.push({
-		xpath,
-		content: sanitizeAndPreserveFormatting(tempDiv.innerHTML),
-		type: 'text',
-		id: Date.now().toString(),
-		startOffset: getTextOffset(parentElement, range.startContainer, range.startOffset),
-		endOffset: getTextOffset(parentElement, range.endContainer, range.endOffset)
+	let currentTextNode;
+	while ((currentTextNode = textNodeIterator.nextNode())) {
+		const block = getClosestAllowedBlock(currentTextNode);
+		if (block) {
+			uniqueParentBlocks.add(block);
+		}
+	}
+
+	// Sort the blocks in document order to process them correctly
+	const sortedBlocks = Array.from(uniqueParentBlocks).sort((a, b) => {
+		const pos = a.compareDocumentPosition(b);
+		if (pos & Node.DOCUMENT_POSITION_FOLLOWING) return -1;
+		if (pos & Node.DOCUMENT_POSITION_PRECEDING) return 1;
+		return 0;
 	});
 
-	return highlights;
+	for (let i = 0; i < sortedBlocks.length; i++) {
+		const blockElement = sortedBlocks[i];
+		const currentBlockSelectionRange = document.createRange();
+
+		// Determine the portion of the selection that is within this blockElement
+		let startContainer = range.startContainer;
+		let startOffset = range.startOffset;
+		let endContainer = range.endContainer;
+		let endOffset = range.endOffset;
+
+		// Clip start to the current block if selection starts before it
+		if (!blockElement.contains(startContainer) && !(blockElement === startContainer)) {
+			const firstText = findFirstTextNode(blockElement);
+			if (firstText) {
+				startContainer = firstText;
+				startOffset = 0;
+			} else continue; // No text in this block to highlight
+		}
+
+		// Clip end to the current block if selection ends after it
+		if (!blockElement.contains(endContainer) && !(blockElement === endContainer)) {
+			const lastText = findLastTextNode(blockElement);
+			if (lastText) {
+				endContainer = lastText;
+				endOffset = lastText.textContent?.length || 0;
+			} else continue; // No text in this block
+		}
+
+		try {
+			currentBlockSelectionRange.setStart(startContainer, startOffset);
+			currentBlockSelectionRange.setEnd(endContainer, endOffset);
+
+			// Final check: ensure the created range is actually within the current blockElement
+			// and not collapsed.
+			if (!currentBlockSelectionRange.collapsed && 
+				(blockElement.contains(currentBlockSelectionRange.commonAncestorContainer) || blockElement === currentBlockSelectionRange.commonAncestorContainer)) {
+				
+				const contentFragment = currentBlockSelectionRange.cloneContents();
+				const tempDivForBlock = document.createElement('div');
+				tempDivForBlock.appendChild(contentFragment);
+
+				const serializer = new XMLSerializer();
+				let htmlContent = '';
+				Array.from(tempDivForBlock.childNodes).forEach(node => {
+					if (node.nodeType === Node.ELEMENT_NODE) {
+						htmlContent += serializer.serializeToString(node);
+					} else if (node.nodeType === Node.TEXT_NODE) {
+						htmlContent += node.textContent;
+					}
+				});
+				const selectedTextContent = sanitizeAndPreserveFormatting(htmlContent);
+
+				if (selectedTextContent.trim() === "") continue; // Skip empty highlights
+
+				newHighlights.push({
+					xpath: getElementXPath(blockElement),
+					content: selectedTextContent,
+					type: 'text',
+					id: Date.now().toString() + "_" + i, // Unique ID for the batch
+					startOffset: getTextOffset(blockElement, currentBlockSelectionRange.startContainer, currentBlockSelectionRange.startOffset),
+					endOffset: getTextOffset(blockElement, currentBlockSelectionRange.endContainer, currentBlockSelectionRange.endOffset)
+				});
+			}
+		} catch (e) {
+			console.warn("Error creating range for block element:", blockElement, e);
+		}
+	}
+
+	// Fallback: If no block-level highlights were created but there was a selection,
+	// try to create a single highlight based on the closest highlightable parent.
+	if (newHighlights.length === 0 && !range.collapsed) {
+		console.warn("Splitting selection by block failed or no suitable blocks found, falling back to single highlight for selection.");
+		const parentElement = getHighlightableParent(range.commonAncestorContainer);
+		if (ALLOWED_HIGHLIGHT_TAGS.includes(parentElement.tagName.toUpperCase())) {
+			const tempDivSingle = document.createElement('div');
+			tempDivSingle.appendChild(range.cloneContents());
+
+			const serializer = new XMLSerializer();
+			let htmlContent = '';
+			Array.from(tempDivSingle.childNodes).forEach(node => {
+				if (node.nodeType === Node.ELEMENT_NODE) {
+					htmlContent += serializer.serializeToString(node);
+				} else if (node.nodeType === Node.TEXT_NODE) {
+					htmlContent += node.textContent;
+				}
+			});
+			const content = sanitizeAndPreserveFormatting(htmlContent);
+			if (content.trim() !== "") {
+				newHighlights.push({
+					xpath: getElementXPath(parentElement),
+					content: content,
+					type: 'text',
+					id: Date.now().toString(),
+					startOffset: getTextOffset(parentElement, range.startContainer, range.startOffset),
+					endOffset: getTextOffset(parentElement, range.endContainer, range.endOffset)
+				});
+			}
+		} else {
+			console.log("Fallback highlight's parent is not in ALLOWED_HIGHLIGHT_TAGS, skipping highlight:", parentElement.tagName);
+		}
+	}
+
+	return newHighlights;
 }
 
 // Sanitize HTML content while preserving formatting
 function sanitizeAndPreserveFormatting(html: string): string {
-	const tempDiv = document.createElement('div');
-	tempDiv.innerHTML = html;
-
+	// Use DOMParser for safer HTML parsing
+	const parser = new DOMParser();
+	const doc = parser.parseFromString(html, 'text/html');
+	
 	// Remove any script tags
-	tempDiv.querySelectorAll('script').forEach(el => el.remove());
+	doc.querySelectorAll('script').forEach(el => el.remove());
 
+	// Get the body content and serialize it back
+	const serializer = new XMLSerializer();
+	let result = '';
+	
+	// Serialize all child nodes of the body
+	Array.from(doc.body.childNodes).forEach(node => {
+		if (node.nodeType === Node.ELEMENT_NODE) {
+			result += serializer.serializeToString(node);
+		} else if (node.nodeType === Node.TEXT_NODE) {
+			result += node.textContent;
+		}
+	});
+	
 	// Close any unclosed tags
-	return balanceTags(tempDiv.innerHTML);
+	return balanceTags(result);
 }
 
 // Balance HTML tags to ensure proper nesting
@@ -400,9 +715,7 @@ function addHighlight(highlight: AnyHighlightData, notes?: string[]) {
 	highlights = mergedHighlights;
 	addToHistory('add', oldHighlights, mergedHighlights);
 	sortHighlights();
-	applyHighlights();
-	saveHighlights();
-	updateHighlighterMenu();
+	commitHighlightChanges();
 }
 
 // Sort highlights based on their vertical position
@@ -592,7 +905,16 @@ export function saveHighlights() {
 	}
 }
 
-// Apply all highlights to the page
+export function invalidateHighlightCache() {
+	lastAppliedHighlights = '';
+}
+
+// Force reposition of all highlight overlays after layout changes
+export function repositionHighlights() {
+	invalidateHighlightCache();
+	applyHighlights();
+}
+
 export function applyHighlights() {
 	if (highlights.length === 0) {
 		return; // Don't do anything if there are no highlights
@@ -616,12 +938,14 @@ export function applyHighlights() {
 
 	lastAppliedHighlights = currentHighlightsState;
 	isApplyingHighlights = false;
-	notifyHighlightsUpdated();
 }
 
-// Notify that highlights have been updated
-function notifyHighlightsUpdated() {
-	browser.runtime.sendMessage({ action: "highlightsUpdated" });
+// Apply, save, and update UI after highlight changes.
+// The popup/side-panel detects changes via storage.local.onChanged.
+function commitHighlightChanges() {
+	applyHighlights();
+	saveHighlights();
+	updateHighlighterMenu();
 }
 
 // Get all highlight contents
@@ -664,7 +988,6 @@ export function clearHighlights() {
 			removeExistingHighlights();
 			console.log('Highlights cleared for:', url);
 			browser.runtime.sendMessage({ action: "highlightsCleared" });
-			notifyHighlightsUpdated();
 			updateHighlighterMenu();
 			addToHistory('remove', oldHighlights, []);
 		});
@@ -693,7 +1016,6 @@ function exitHighlighterMode() {
 	console.log('Exiting highlighter mode');
 	toggleHighlighterMenu(false);
 	browser.runtime.sendMessage({ action: "setHighlighterMode", isActive: false });
-	browser.storage.local.set({ isHighlighterMode: false });
 
 	// Remove highlight overlays if "Always show highlights" is off
 	if (!generalSettings.alwaysShowHighlights) {
@@ -709,6 +1031,44 @@ function addToHistory(type: 'add' | 'remove', oldHighlights: AnyHighlightData[],
 	// Clear redo history when a new action is performed
 	redoHistory = [];
 	updateUndoRedoButtons();
+}
+
+function isConsideredBlockElement(element: Element): boolean {
+	if (!element || typeof element.tagName !== 'string') return false;
+	const tagName = element.tagName.toUpperCase();
+	// Element must be an allowed highlight target AND a block tag we split by.
+	return ALLOWED_HIGHLIGHT_TAGS.includes(tagName) && BLOCK_LEVEL_TAGS_FOR_SPLIT.includes(tagName);
+}
+
+// Helper to find the closest ancestor that is an allowed highlightable block
+function getClosestAllowedBlock(node: Node | null): Element | null {
+	let current: Node | null = node;
+	while (current) {
+		if (current.nodeType === Node.ELEMENT_NODE) {
+			const el = current as Element;
+			// Check if it's an allowed tag overall and if it's a block element we use for splitting text selections.
+			if (ALLOWED_HIGHLIGHT_TAGS.includes(el.tagName.toUpperCase()) && isConsideredBlockElement(el)) {
+				return el;
+			}
+		}
+		current = current.parentElement;
+	}
+	return null;
+}
+
+function findFirstTextNode(element: Element): Text | null {
+	const treeWalker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
+	return treeWalker.firstChild() as Text | null;
+}
+
+function findLastTextNode(element: Element): Text | null {
+	const treeWalker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
+	let lastNode = null;
+	let currentNode;
+	while(currentNode = treeWalker.nextNode()) {
+		lastNode = currentNode;
+	}
+	return lastNode as Text | null;
 }
 
 export { getElementXPath } from './dom-utils';
